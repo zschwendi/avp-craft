@@ -34,7 +34,7 @@ The geometry has CPU topology and UV checks. Build checks and native shader/pipe
 
 ## Build from source
 
-Install an ARM64 Java 25 JDK, Python 3 and Xcode Command Line Tools. Then:
+Install an ARM64 Java 25 JDK, Python 3 and Xcode 26 or newer (macOS SDK 26+). The native runtime target remains macOS 15; the newer SDK supplies optional MetalFX APIs. Then:
 
 ```sh
 python3 tools/audit.py

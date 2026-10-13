@@ -41,5 +41,20 @@
     "patches/renderer/added/metal/src/main/native/mcpresent_slots.h": "b9f49c56b3ec589f694b5bb4a52f92da18c865a813ad2464814fccbd71d83d87",
     "patches/renderer/added/metal/src/main/resources/mcopt/shade/shade_material.metal": "1a4e3c5e4dc94dd9ef75eec439ad56030e56c405433c8c9bd6b29dd91790959d",
     "patches/renderer/changes.patch": "d38bc650ab12c45e77cb9098367607462133cf352f9e1f785caf19c84b6f32dd"
+  },
+  "renderer_result_files": {
+    "metal/src/main/java/mcopt/metal/MetalEncoder.java": "9fda4849ba557dda34df65c00186e25abb0a8057ac748f27922d8e395f5e6173",
+    "metal/src/main/java/mcopt/metal/mixin/shade/ShadeMaterialAtlasMixin.java": "5b035c86b07ceae4b741b1fdeefa84119b0ad5d8e32d37664644b73a23ee70cd",
+    "metal/src/main/java/mcopt/metal/mixin/shade/ShadeMaterialStitchMixin.java": "6de427b2d601fb5f8d175f400dbcf4c3c7747c4a3a3df521d624f5b1ee06cd97",
+    "metal/src/main/java/mcopt/metal/shade/ShadeFrameUpdater.java": "da3b9fced8c9040b741234c6cd105f20ca33edf52a84d0757af4faebf2f48305",
+    "metal/src/main/java/mcopt/metal/shade/ShadeMaterials.java": "b3cb9c77421fe6450136aea87a3371b77491065cfede543c0f8c3056fce200c9",
+    "metal/src/main/java/mcopt/metal/shade/ShadeMsl.java": "c2a7d1c2a64f01dc727721fa54cc237b014a961137f683c843f788f98e7039c5",
+    "metal/src/main/native/mcmetal.m": "89087ab3b1bebe69e8add6d8c3082d4744c9567796e09c4615ef56324c90bba7",
+    "metal/src/main/native/mcpresent_slots.h": "b9f49c56b3ec589f694b5bb4a52f92da18c865a813ad2464814fccbd71d83d87",
+    "metal/src/main/resources/mcopt-metal-shade.mixins.json": "cf02e94df94c499e948849996451de97bef47a44e609b3b06d32abfcbb01d30a",
+    "metal/src/main/resources/mcopt/metal/msl/sodium_terrain.fs.metal": "90468e2f0cc8f0c4fcf4e372e1796a30468505e82af0da5ef8b10c89a89a863c",
+    "metal/src/main/resources/mcopt/shade/shade_look.metal": "70142577767124b62513364d1e367029410069e1e6384ceb2b3ddd7338938303",
+    "metal/src/main/resources/mcopt/shade/shade_m2.metal": "f9a7c44a0f5b0695459f785357a9bc0887f1ec0fc9e44182b63d71d49d89fed6",
+    "metal/src/main/resources/mcopt/shade/shade_material.metal": "1a4e3c5e4dc94dd9ef75eec439ad56030e56c405433c8c9bd6b29dd91790959d"
   }
 }

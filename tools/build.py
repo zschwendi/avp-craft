@@ -46,11 +46,32 @@ def renderer_source(l, work):
             safe_name(rel)
             target = work / rel; target.parent.mkdir(parents=True, exist_ok=True); target.write_bytes(t.extractfile(entry).read())
     patch = ROOT / 'patches/renderer/changes.patch'
-    if patch.stat().st_size: subprocess.run(['git', 'apply', '--check', str(patch)], cwd=work, check=True); subprocess.run(['git', 'apply', str(patch)], cwd=work, check=True)
+    if patch.stat().st_size:
+        # The reconstructed source is not a Git checkout. In a cloned public repo,
+        # discovery of the parent .git would silently filter all patch paths out.
+        patch_env = os.environ.copy()
+        for name in ['GIT_DIR', 'GIT_WORK_TREE', 'GIT_INDEX_FILE', 'GIT_COMMON_DIR']: patch_env.pop(name, None)
+        patch_env['GIT_CEILING_DIRECTORIES'] = str(work.parent.resolve())
+        subprocess.run(['git', 'apply', '--check', str(patch)], cwd=work, env=patch_env, check=True)
+        subprocess.run(['git', 'apply', str(patch)], cwd=work, env=patch_env, check=True)
     for f in sorted((ROOT / 'patches/renderer/added').rglob('*')):
         if f.is_file():
             dest = work / f.relative_to(ROOT / 'patches/renderer/added'); dest.parent.mkdir(parents=True, exist_ok=True); shutil.copyfile(f, dest)
+    verify_renderer_results(work)
     return work
+
+def verify_renderer_results(work):
+    manifest = json.loads((ROOT / 'source-manifest.json').read_text())
+    results = manifest.get('renderer_result_files', {})
+    if set(results) != set(manifest['renderer_changed_paths']):
+        raise ValueError('Expected renderer result hashes are missing from the source manifest; re-import reviewed source')
+    for name, expected in results.items():
+        safe_name(name)
+        path = work / name
+        if expected is None:
+            if path.exists(): raise ValueError('Deleted renderer file remains after reconstruction: ' + name)
+        elif not path.is_file() or digest(path.read_bytes()) != expected:
+            raise ValueError('Renderer reconstruction differs from approved source: ' + name)
 
 def verify_snapshot():
     manifest = json.loads((ROOT / 'source-manifest.json').read_text())
@@ -96,11 +117,26 @@ def package(classes, resources, licenses, output, version, native=None):
         for name, f in licenses: zip_write(z, name, f.read_bytes())
         if native: zip_write(z, 'natives/libmcmetal.dylib', native.read_bytes())
 
+def native_toolchain():
+    """Frame interpolation headers require SDK26; its runtime calls remain availability guarded."""
+    try:
+        version = subprocess.check_output(['xcrun', '--sdk', 'macosx', '--show-sdk-version'], text=True).strip()
+        sdk = Path(subprocess.check_output(['xcrun', '--sdk', 'macosx', '--show-sdk-path'], text=True).strip())
+        clang = subprocess.check_output(['xcrun', '--sdk', 'macosx', '--find', 'clang'], text=True).strip()
+    except (OSError, subprocess.CalledProcessError) as error:
+        raise SystemExit('Select Xcode26+ or Command Line Tools with macOS SDK26+; xcrun could not find the native compiler SDK.') from error
+    if not re.fullmatch(r'\d+(?:\.\d+)*', version) or int(version.split('.')[0]) < 26:
+        raise SystemExit(f'Native source compilation needs macOS SDK26+ (selected: {version}). Select Xcode26+ or current Command Line Tools. Runtime deployment remains macOS15; optional frame generation needs macOS26.')
+    if not (sdk / 'usr/include/simd/simd.h').is_file() or not (sdk / 'System/Library/Frameworks/MetalFX.framework/Headers/MTLFXFrameInterpolator.h').is_file():
+        raise SystemExit('Selected SDK lacks required SIMD/MetalFX frame-interpolation headers; use a complete macOS SDK26+ installation.')
+    return {'version': version, 'sdk': sdk, 'clang': clang}
+
 def main():
     p = argparse.ArgumentParser(description=__doc__); p.add_argument('--version', required=True); p.add_argument('--jdk', type=Path); p.add_argument('--output', type=Path, default=ROOT / 'build/release')
     a = p.parse_args(); l = lock()
     if not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_.+-]*', a.version): raise ValueError('Invalid version')
     if platform.system() != 'Darwin' or platform.machine() != 'arm64': raise SystemExit('Build on macOS ARM64; Rosetta/Intel builds are unsupported.')
+    toolchain = native_toolchain()
     jdk = a.jdk or Path(subprocess.check_output(['/usr/libexec/java_home', '-v', '25'], text=True).strip())
     props = subprocess.run([str(jdk / 'bin/java'), '-XshowSettings:properties', '-version'], capture_output=True, text=True, check=True).stderr
     if 'java.specification.version = 25' not in props or 'os.arch = aarch64' not in props: raise SystemExit('Use an ARM64 Java25 JDK.')
@@ -111,7 +147,8 @@ def main():
     classes = out / 'renderer-classes'; javac(jdk, work / 'metal/src/main/java', classes, cp)
     native = out / 'libmcmetal.dylib'
     native_root = work / 'metal/src/main/native'
-    cmd = ['clang', '-fno-objc-arc', '-O2', '-Wall', '-arch', 'arm64', '-mmacosx-version-min=15.0', '-dynamiclib', '-install_name', '@rpath/libmcmetal.dylib']
+    # Import SIMD explicitly instead of depending on newer framework headers importing it transitively.
+    cmd = [toolchain['clang'], '-isysroot', str(toolchain['sdk']), '-include', 'simd/simd.h', '-fno-objc-arc', '-O2', '-Wall', '-arch', 'arm64', '-mmacosx-version-min=15.0', '-dynamiclib', '-install_name', '@rpath/libmcmetal.dylib']
     for framework in ['AppKit', 'CoreGraphics', 'CoreVideo', 'Foundation', 'Metal', 'MetalFX', 'QuartzCore']: cmd += ['-framework', framework]
     subprocess.run(cmd + ['-o', str(native)] + [str(native_root / f) for f in l['native_sources']], check=True)
     subprocess.run(['codesign', '--sign', '-', '--force', str(native)], check=True)
@@ -121,7 +158,7 @@ def main():
     for module in ['rounded-terrain', 'rounded-hands']:
         src = ROOT / 'mods' / module; cls = out / (module + '-classes'); javac(jdk, src / 'src/main/java', cls, cp)
         jar = out / f'{module}-{a.version}.jar'; package(cls, src / 'src/main/resources', [('LICENSE', src / 'LICENSE')], jar, a.version); outputs.append(jar)
-    receipt = {'schema': 1, 'version': a.version, 'minecraft': l['minecraft']['version'], 'java': 25, 'architecture': 'arm64', 'upstream_commit': l['upstream']['commit'], 'runtime_tested': False, 'artifacts': []}
+    receipt = {'schema': 1, 'version': a.version, 'minecraft': l['minecraft']['version'], 'java': 25, 'architecture': 'arm64', 'native_sdk': toolchain['version'], 'native_deployment_target': '15.0', 'native_force_include': 'simd/simd.h', 'upstream_commit': l['upstream']['commit'], 'source_manifest_sha256': digest((ROOT / 'source-manifest.json').read_bytes()), 'renderer_result_hashes_verified': True, 'runtime_tested': False, 'artifacts': []}
     for f in outputs: receipt['artifacts'].append({'name': f.name, 'sha256': digest(f.read_bytes()), 'sha512': digest(f.read_bytes(), 'sha512'), 'sha1': digest(f.read_bytes(), 'sha1'), 'size': f.stat().st_size})
     (out / 'build-receipt.json').write_text(json.dumps(receipt, indent=2) + '\n')
     print('Built three owned mod jars; game and dependency jars remain only in .cache.')

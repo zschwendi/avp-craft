@@ -43,15 +43,27 @@ def import_module(source, name):
     snapshot['mods/' + name + '/LICENSE'] = (source / 'LICENSE').read_bytes()
     return snapshot
 
-def write_snapshot(changed, snapshot):
+def renderer_result_files(repo, changed):
+    results = {}
+    for name in changed:
+        safe_name(name)
+        source = repo / name
+        if source.is_symlink(): raise ValueError('Source symlink is not accepted: ' + name)
+        results[name] = hashlib.sha256(source.read_bytes()).hexdigest() if source.is_file() else None
+    return results
+
+def write_snapshot(changed, snapshot, results=None):
     # Validate the entire import before creating any public files. Re-import is deliberately explicit.
     if (ROOT / 'source-manifest.json').exists() or any(
             f.is_file() for directory in ['patches', 'mods'] for f in (ROOT / directory).rglob('*')):
         raise ValueError('An imported snapshot is already present; review it before re-importing')
     for name, data in snapshot.items():
         safe_name(name); data.decode('utf-8')
+    results = results or {}
+    if set(results) != set(changed): raise ValueError('Expected result hashes are required for every changed renderer path')
     manifest = {'schema': 1, 'upstream_commit': lock()['upstream']['commit'],
                 'renderer_changed_paths': changed,
+                'renderer_result_files': results,
                 'source_files': {name: hashlib.sha256(data).hexdigest() for name, data in sorted(snapshot.items())}}
     for name, data in snapshot.items():
         target = ROOT / name; target.parent.mkdir(parents=True, exist_ok=True); target.write_bytes(data)
@@ -66,7 +78,7 @@ def main():
     changed, snapshot = import_renderer(a.renderer)
     snapshot.update(import_module(a.terrain, 'rounded-terrain'))
     snapshot.update(import_module(a.hands, 'rounded-hands'))
-    write_snapshot(changed, snapshot)
+    write_snapshot(changed, snapshot, renderer_result_files(a.renderer, changed))
     print('Imported approved source; run tools/audit.py before committing.')
 
 if __name__ == '__main__': main()

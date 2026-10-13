@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Exercise the actual import/release tools with isolated source and ZIP fixtures."""
-import io, json, subprocess, tempfile, unittest, zipfile
+import difflib, io, json, subprocess, tarfile, tempfile, unittest, zipfile
 from pathlib import Path
 from unittest import mock
 import audit, build, import_source, lib, release
@@ -132,7 +132,7 @@ class PackagingChecks(unittest.TestCase):
         with mock.patch.object(import_source, 'lock', return_value=pinned):
             changed, snapshot = import_source.import_renderer(repo)
             with mock.patch.object(import_source, 'ROOT', self.root / 'public'):
-                import_source.write_snapshot(changed, snapshot)
+                import_source.write_snapshot(changed, snapshot, import_source.renderer_result_files(repo, changed))
         self.assertEqual(len(changed), 3)
         self.assertIn('patches/renderer/added/metal/src/main/native/mcpresent_slots.h', snapshot)
         self.assertTrue(snapshot['patches/renderer/changes.patch'])
@@ -150,6 +150,25 @@ class PackagingChecks(unittest.TestCase):
                 import_source.write_snapshot([], {'patches/renderer/changes.patch': b'new'})
         self.assertFalse((target / 'patches').exists())
         self.assertEqual(existing.read_text(), 'keep')
+
+    def test_renderer_reconstructs_inside_parent_git_checkout(self):
+        public = self.root / 'public'; public.mkdir()
+        subprocess.run(['git', 'init', '-q', str(public)], check=True)
+        name = 'metal/src/main/java/Fixture.java'
+        before = 'class Fixture { int original; }\n'; after = 'class Fixture { int patched; }\n'
+        archive = self.root / 'upstream.tar.gz'
+        with tarfile.open(archive, 'w:gz') as t:
+            entry = tarfile.TarInfo('upstream/' + name); data = before.encode(); entry.size = len(data); t.addfile(entry, io.BytesIO(data))
+        patch = ''.join(difflib.unified_diff(before.splitlines(True), after.splitlines(True), fromfile='a/' + name, tofile='b/' + name)).encode()
+        target = public / 'patches/renderer/changes.patch'; target.parent.mkdir(parents=True); target.write_bytes(patch)
+        (public / 'source-manifest.json').write_text(json.dumps({'renderer_changed_paths': [name], 'renderer_result_files': {name: lib.digest(after.encode())}}))
+        pinned = {'upstream': {'url': 'https://example.invalid/upstream.tar.gz', 'sha256': lib.digest(archive.read_bytes())}}
+        with mock.patch.object(build, 'ROOT', public), mock.patch.object(build, 'download', return_value=archive):
+            work = build.renderer_source(pinned, public / 'build/work')
+            self.assertEqual((work / name).read_text(), after)
+            # Simulate silently skipped or subsequently altered reconstruction independently of Git isolation.
+            (work / name).write_text(before)
+            with self.assertRaisesRegex(ValueError, 'differs from approved'): build.verify_renderer_results(work)
 
     def test_bad_download_keeps_prior_verified_cache(self):
         target = self.root / 'cache.file'; target.write_bytes(b'prior')
