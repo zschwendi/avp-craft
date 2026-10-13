@@ -1,0 +1,7 @@
+{
+  "required": true,
+  "package": "zach.hands.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "client": ["ModelPartAccess", "AvatarHandMixin"],
+  "injectors": {"defaultRequire": 1}
+}

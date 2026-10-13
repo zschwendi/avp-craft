@@ -1,0 +1,63 @@
+mcopt
+Copyright 2026 Noah Dunnagan
+
+mcopt, a Minecraft mod, was created by Noah Dunnagan. If you use or redistribute this code, keep this NOTICE with it
+and credit mcopt (https://github.com/noahdunnagan/mcopt).
+
+Distant Horizons compatibility (metal/src/main/java/mcopt/metal/mixin/compat/DhRenderApiMixin.java and the fog-span clamp
+in sodium_terrain.vs.metal) is a re-implementation of mcopt pull request #4 by CazzaCoder
+(https://github.com/noahdunnagan/mcopt/pull/4). Distant Horizons itself (LGPL-3.0-only) is not included in mcopt and is
+not modified by it; install it separately.
+
+mcopt is licensed under the Apache License, Version 2.0 (LICENSE), except for the files below, which keep the licence
+of the project they come from. Each of them says so in its header.
+
+Sodium (https://github.com/CaffeineMC/sodium)
+  Copyright JellySquid (jellysquid3) and contributors.
+  Licensed under the PolyForm Shield License 1.0.0: LICENSES/PolyForm-Shield-1.0.0.md
+  (https://polyformproject.org/licenses/shield/1.0.0).
+  Required Notice lines: Sodium provides none (checked: every file in sodium-mc26.3-0.9.3-alpha.1-fabric.jar, and
+  LICENSE.md in Sodium's repository). Sodium is not included in mcopt; install it separately.
+
+  Copied or adapted from Sodium (the whole file is under PolyForm Shield 1.0.0):
+    metal/src/main/java/mcopt/metal/mixin/chunk/LevelSliceAirMixin.java
+    metal/src/main/java/mcopt/metal/mixin/chunk/BlockRendererMixin.java
+    metal/src/main/java/mcopt/metal/mixin/chunk/LevelBiomeSliceMixin.java
+    metal/src/main/java/mcopt/metal/mixin/chunk/LevelSliceBoundsMixin.java
+    metal/src/main/java/mcopt/metal/mixin/chunk/DirectionalVisGraphMixin.java
+    metal/src/main/resources/mcopt/metal/msl/sodium_terrain.vs.metal
+    metal/src/main/resources/mcopt/metal/msl/sodium_terrain.fs.metal
+  Portions copied or adapted from Sodium (those portions are under PolyForm Shield 1.0.0, the rest is Apache-2.0):
+    metal/src/main/java/mcopt/metal/cpu/CullReuse.java
+    metal/src/main/native/mcprobe.m
+    metal/src/main/native/mcterrain.m
+
+Native shading M2 (metal/src/main/resources/mcopt/shade/shade_post.metal): the bloom composite (an energy-conserving lerp
+toward the blurred image with octave weights i^s and a fog-weighted extra, instead of an additive threshold) follows SE
+Natural Bloom & Dirty Lens, Copyright (c) 2019 sonicether, MIT License
+(https://github.com/sonicether/SE-Natural-Bloom-Dirty-Lens); the code is an original Metal implementation. The 13-tap
+downsample / tent upsample pyramid follows Jimenez 2014 (public talk); the tone curve follows Lottes 2016 (public talk);
+the integer hash is Chris Wellons' lowbias32 (public domain).
+
+Native shading TAAU (metal/src/main/resources/mcopt/shade/taa.metal): the 5-tap Catmull-Rom history fetch
+(taaCatmullRom) is adapted from Matt Pettineo (MJP), "Bicubic texture filtering with the Catmull-Rom spline in 9 / 5
+taps" (https://gist.github.com/TheRealMJP/c83b8c0f46b63f3a88a5986f4fa982b1), MIT License, with the corner taps dropped
+as in Jimenez, "Filmic SMAA" (SIGGRAPH 2016). The output resolution's upscale (shade_post.metal shade_upscale) uses the
+same 5-tap Catmull-Rom (MJP's gist, MIT License). The rest of the resolve is original, after public techniques (Karis 2014,
+Salvi 2016, Yang et al. 2020).
+
+Native shading M3 volumetric clouds (metal/src/main/resources/mcopt/shade/clouds.metal): portions adapted from Photon
+Shaders (https://github.com/sixthsurge/photon), commit 26c2906e, Copyright (c) 2025 Benjamin Stott ("sixthsurge"), MIT
+License (full text: LICENSES/MIT-Photon.txt): the cumulus altitude shaping, the "powder" term, the cloud phase function
+as a mix of forward and backward lobes, the octave loop of the multiple-scattering approximation, the aerial perspective
+blend by the clouds' apparent distance, and the checkerboard + reprojected-history upscaling. The history's 5-tap
+Catmull-Rom fetch (cloudCatmullRom) is the MJP gist named under TAAU above, MIT License. The rest of the file is original
+(Apache-2.0).
+
+Native shading volumetric light, air mode (metal/src/main/resources/mcopt/shade/vl.metal, vl_march): portions adapted from
+Photon Shaders (https://github.com/sixthsurge/photon), commit 26c2906e, Copyright (c) 2025 Benjamin Stott ("sixthsurge"), MIT
+License (full text: LICENSES/MIT-Photon.txt), include/fog/air_fog_vl.glsl: the approach (one march of the height-layered air
+from the camera to the scene with the sun's shadow at every step and the per-step energy-conserving integral) and the forest
+air's phase function (a forward and a backward Henyey-Greenstein lobe, 0.7 / 0.3 with g 0.5 / -0.2, summed over four octaves
+of a multiple-scattering approximation). The shade grid (vl_shade_grid), the shadowed-difference output and the rest of the
+file are original (Apache-2.0).
