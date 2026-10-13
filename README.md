@@ -11,6 +11,12 @@ Native Apple Metal rendering for Minecraft: Java Edition 26.3, with shader light
 3. In **Settings → Java**, enable **Auto-detect Java version** and **Auto-download Mojang Java**. Prism then obtains ARM64 Java 25 and the pinned Minecraft/Fabric/mod dependencies. In the instance's **Edit → Settings → Java**, choose about 4 GB of maximum memory if your machine has enough available RAM. See [Prism's Java setup guide](https://prismlauncher.org/wiki/getting-started/installing-java/).
 4. For the full game, sign into the Microsoft account that owns Minecraft Java and launch. Prism's normal **Play Demo** option can preview graphics without an entitlement; the demo's normal restrictions apply.
 
+On macOS, you can also open the import directly using Prism's [documented command-line interface](https://prismlauncher.org/wiki/getting-started/command-line-interface/):
+
+```sh
+open -n -a "/Applications/Prism Launcher.app" --args --import "https://github.com/zschwendi/minecraft-metal-mac/releases/download/v0.1.0/minecraft-metal-mac-v0.1.0.mrpack"
+```
+
 Use a fresh imported instance. This renderer replaces other `mcopt-metal` variants; installing several variants together produces duplicate mod IDs. The pack starts with vanilla textures, Balanced lighting, 1080p output, 12-chunk render distance, 6-chunk simulation distance and a 60 FPS cap. You can tune these in Minecraft or `config/mcopt.properties`.
 
 Minecraft's trial can demonstrate local graphics, but Mojang disables online-server joining in [demo mode](https://www.minecraft.net/en-us/free-trial). Prism's Microsoft-account flow does not grant game ownership. Check an existing account's entitlement first. An authenticated Java 26.3 client can join ordinary compatible Java servers; other players do not need these visual mods. Bedrock crossplay requires a separate compatible Java-server bridge. The [Prism importer](https://github.com/PrismLauncher/PrismLauncher/blob/7d2d3c1ec6fcf8255ebacd02d9f792688575dfb4/launcher/modplatform/modrinth/ModrinthInstanceCreationTask.cpp) downloads release files and verifies their hashes using the [MRPACK format](https://support.modrinth.com/en/articles/8802351-modrinth-modpack-format-mrpack).
@@ -33,6 +39,8 @@ Requires Apple Silicon, macOS 15+, ARM64 Java 25, Minecraft 26.3, Fabric Loader 
 The geometry has CPU topology and UV checks. Build checks and native shader/pipeline compilation establish narrower facts than gameplay smoothness. There is no public controlled FPS gain, frame-latency benchmark or 60 FPS guarantee yet. World complexity, output resolution, warm-up and competing apps affect performance. Do not treat upstream benchmarks on other Macs as measurements of this fork.
 
 The v0.1.0 client passed a startup check on an M4 Mac mini running macOS 27: the official demo world loaded through Metal with vanilla textures, a 2×2 neutral-material atlas, curved terrain and arm mesh submission, clouds, shadows and the water scene copy. This verifies startup and initialization; movement quality and older Mac/OS combinations need further testing.
+
+The published pack also imported successfully in Prism 11.1.1 through its normal source-review dialog; all five downloaded mods, version pins and preset files matched the release. The first client session logged a chunk-loading timeout. That remains an unresolved runtime warning, and visual correctness and frame pacing are not established by the startup log.
 
 ## Build from source
 
