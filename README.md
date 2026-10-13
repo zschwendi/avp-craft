@@ -2,7 +2,7 @@
 
 Native Apple Metal rendering for Minecraft: Java Edition 26.3, with shader lighting and real curved edges on selected terrain blocks and first-person arms. This is an experimental community fork, not a Mojang product.
 
-[Download the Prism import pack](https://github.com/zschwendi/minecraft-metal-mac/releases/download/v0.1.0/minecraft-metal-mac-v0.1.0.mrpack) · [Release notes](https://github.com/zschwendi/minecraft-metal-mac/releases/tag/v0.1.0)
+**Source preview:** the first Prism download is staged while its gameplay check is pending. Published downloads will appear in [Releases](https://github.com/zschwendi/minecraft-metal-mac/releases).
 
 ## Install
 
