@@ -34,7 +34,7 @@ These are raster effects and geometry. This project does not claim hardware ray 
 
 ## Compatibility and evidence
 
-Requires Apple Silicon, macOS 15+, ARM64 Java 25, Minecraft 26.3, Fabric Loader 0.19.5 and Sodium 0.9.3-alpha.1. Intel/Rosetta, Windows and Linux are outside this renderer build's supported scope. Runtime work has focused on an M4 Mac mini; older Apple Silicon models and OS versions need separate testing. The mod's native library is not an independently notarized application. Use Apple's normal trusted-application approval process; this project does not disable Gatekeeper or remove quarantine flags.
+Requires Apple Silicon, macOS 26+, ARM64 Java 25, Minecraft 26.3, Fabric Loader 0.19.5 and Sodium 0.9.3-alpha.1. Intel/Rosetta, Windows and Linux are outside this renderer build's supported scope. Runtime work has focused on an M4 Mac mini; older Apple Silicon models and OS versions need separate testing. The mod's native library is not an independently notarized application. Use Apple's normal trusted-application approval process; this project does not disable Gatekeeper or remove quarantine flags.
 
 The geometry has CPU topology and UV checks. Build checks and native shader/pipeline compilation establish narrower facts than gameplay smoothness. There is no public controlled FPS gain, frame-latency benchmark or 60 FPS guarantee yet. World complexity, output resolution, warm-up and competing apps affect performance. Do not treat upstream benchmarks on other Macs as measurements of this fork.
 
@@ -44,7 +44,7 @@ The published pack also imported successfully in Prism 11.1.1 through its normal
 
 ## Build from source
 
-Install an ARM64 Java 25 JDK, Python 3 and Xcode 26 or newer (macOS SDK 26+). The native runtime target remains macOS 15; the newer SDK supplies optional MetalFX APIs. Then:
+Install an ARM64 Java 25 JDK, Python 3 and Xcode 26 or newer (macOS SDK 26+). The native library uses a macOS 15 deployment target, but the current mod startup check requires macOS 26 or newer. The newer SDK supplies optional MetalFX APIs. Then:
 
 ```sh
 python3 tools/audit.py
