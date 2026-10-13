@@ -2,7 +2,7 @@
 
 Native Apple Metal rendering for Minecraft: Java Edition 26.3, with shader lighting and real curved edges on selected terrain blocks and first-person arms. This is an experimental community fork, not a Mojang product.
 
-**Source preview:** the first Prism download is staged while its gameplay check is pending. Published downloads will appear in [Releases](https://github.com/zschwendi/minecraft-metal-mac/releases).
+[Download the Prism import pack](https://github.com/zschwendi/minecraft-metal-mac/releases/download/v0.1.0/minecraft-metal-mac-v0.1.0.mrpack) · [Release notes](https://github.com/zschwendi/minecraft-metal-mac/releases/tag/v0.1.0)
 
 ## Install
 
@@ -31,6 +31,8 @@ These are raster effects and geometry. This project does not claim hardware ray 
 Requires Apple Silicon, macOS 15+, ARM64 Java 25, Minecraft 26.3, Fabric Loader 0.19.5 and Sodium 0.9.3-alpha.1. Intel/Rosetta, Windows and Linux are outside this renderer build's supported scope. Runtime work has focused on an M4 Mac mini; older Apple Silicon models and OS versions need separate testing. The mod's native library is not an independently notarized application. Use Apple's normal trusted-application approval process; this project does not disable Gatekeeper or remove quarantine flags.
 
 The geometry has CPU topology and UV checks. Build checks and native shader/pipeline compilation establish narrower facts than gameplay smoothness. There is no public controlled FPS gain, frame-latency benchmark or 60 FPS guarantee yet. World complexity, output resolution, warm-up and competing apps affect performance. Do not treat upstream benchmarks on other Macs as measurements of this fork.
+
+The v0.1.0 client passed a startup check on an M4 Mac mini running macOS 27: the official demo world loaded through Metal with vanilla textures, a 2×2 neutral-material atlas, curved terrain and arm mesh submission, clouds, shadows and the water scene copy. This verifies startup and initialization; movement quality and older Mac/OS combinations need further testing.
 
 ## Build from source
 
