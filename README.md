@@ -1,20 +1,22 @@
-# Minecraft Metal Mac
+# AVPcraft
 
 Native Apple Metal rendering for Minecraft: Java Edition 26.3, with shader lighting and real curved edges on selected terrain blocks and first-person arms. This is an experimental community fork, not a Mojang product.
 
-[Download the Prism import pack](https://github.com/zschwendi/minecraft-metal-mac/releases/download/v0.1.0/minecraft-metal-mac-v0.1.0.mrpack) · [Release notes](https://github.com/zschwendi/minecraft-metal-mac/releases/tag/v0.1.0)
+[Download the Prism import pack](https://github.com/zschwendi/avp-craft/releases/download/v0.1.0/minecraft-metal-mac-v0.1.0.mrpack) · [Release notes](https://github.com/zschwendi/avp-craft/releases/tag/v0.1.0)
+
+AVPcraft was previously named Minecraft Metal Mac. The published Mac pack keeps its existing `minecraft-metal-mac-v0.1.0.mrpack` filename; existing Prism instances continue to work.
 
 ## Install
 
 1. Install the Apple Silicon build of [Prism Launcher](https://prismlauncher.org/download/).
-2. Download the `.mrpack` from [Releases](https://github.com/zschwendi/minecraft-metal-mac/releases). In Prism, choose **Add Instance → Import** and select it. Review the three project mods when Prism prompts about GitHub downloads.
+2. Download the `.mrpack` from [Releases](https://github.com/zschwendi/avp-craft/releases). In Prism, choose **Add Instance → Import** and select it. Review the three project mods when Prism prompts about GitHub downloads.
 3. In **Settings → Java**, enable **Auto-detect Java version** and **Auto-download Mojang Java**. Prism then obtains ARM64 Java 25 and the pinned Minecraft/Fabric/mod dependencies. In the instance's **Edit → Settings → Java**, choose about 4 GB of maximum memory if your machine has enough available RAM. See [Prism's Java setup guide](https://prismlauncher.org/wiki/getting-started/installing-java/).
 4. For the full game, sign into the Microsoft account that owns Minecraft Java and launch. Prism's normal **Play Demo** option can preview graphics without an entitlement; the demo's normal restrictions apply.
 
 On macOS, you can also open the import directly using Prism's [documented command-line interface](https://prismlauncher.org/wiki/getting-started/command-line-interface/):
 
 ```sh
-open -n -a "/Applications/Prism Launcher.app" --args --import "https://github.com/zschwendi/minecraft-metal-mac/releases/download/v0.1.0/minecraft-metal-mac-v0.1.0.mrpack"
+open -n -a "/Applications/Prism Launcher.app" --args --import "https://github.com/zschwendi/avp-craft/releases/download/v0.1.0/minecraft-metal-mac-v0.1.0.mrpack"
 ```
 
 Use a fresh imported instance. This renderer replaces other `mcopt-metal` variants; installing several variants together produces duplicate mod IDs. The pack starts with vanilla textures, Balanced lighting, 1080p output, 12-chunk render distance, 6-chunk simulation distance and a 60 FPS cap. You can tune these in Minecraft or `config/mcopt.properties`.
