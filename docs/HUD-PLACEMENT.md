@@ -2,7 +2,7 @@
 
 The head-locked health, food and hotbar/item HUD defaults to **15 degrees below its previous position**. Its center and orientation rotate together around the head-local right axis. The HUD remains 2 m away at scale 0.8; world projection and scale stay unchanged. The offset follows physical head orientation, including yaw, pitch and roll.
 
-This is a game-side source change, not a compositor shift. Build **all six Vivecraft patches**, normalize the resulting jar as BUILDING.md describes, then repeat the bake, native-image and visionOS relink steps before building the host. **An older compiled client reused with a new host will not acquire the fix.** No new IPA or native game binary is included in this commit.
+This is a game-side source change, not a compositor shift. Build **all six Vivecraft patches**, normalize the resulting jar as BUILDING.md describes, then repeat the bake, native-image and visionOS relink steps before building the host. **An older compiled client reused with a new host will not acquire the fix.** Compiled native game binaries are not included in this commit.
 
 ## Settings and upgrades
 

@@ -1,8 +1,8 @@
 # Install AVPcraft on Apple Vision Pro
 
-**Lower-HUD source update:** the current repo places the head-locked health/food/hotbar 15 degrees lower only after rebuilding the patched Vivecraft jar and native game image. A host build with an older prepared `libminecraft.dylib` will retain the old game-side placement. Follow [BUILDING.md](BUILDING.md) and [HUD placement](docs/HUD-PLACEMENT.md) for that rebuild; no updated IPA is included.
+**Lower-HUD source update:** the current repo places the head-locked health/food/hotbar 15 degrees lower only after rebuilding the patched Vivecraft jar and native game image. A host build with an older prepared `libminecraft.dylib` will retain the old game-side placement. Follow [BUILDING.md](BUILDING.md) and [HUD placement](docs/HUD-PLACEMENT.md) for that rebuild.
 
-This repository contains the AVPcraft Build 71 host source used on a physical Vision Pro. It is a developer source release, not a new downloadable IPA. The full source-to-headset build has not been rerun from a clean checkout for this publication.
+This repository contains the AVPcraft Build 71 host source used on a physical Vision Pro. It is a developer source release. The full source-to-headset build has not been rerun from a clean checkout for this publication.
 
 ## What you need
 
@@ -64,14 +64,14 @@ KL_NO_LAUNCH=1 ./run.sh device
 
 This builds the native host runtime, wraps the already-built native libraries and ANGLE frameworks, generates `avp-craft.xcodeproj`, builds/signs the `AVPcraft` scheme, installs on the selected headset, and stages the payload. It stops before launch. It does **not** create the Minecraft native image for you. Open AVPcraft from the headset's Home View and follow [sign-in and first play](README.md#sign-in-and-first-play). Verify windowed gameplay before immersive mode and controller input.
 
-To produce your own local signed app/IPA without looking up or installing on any headset:
+To build your own local signed app without looking up or installing on any headset:
 
 ```bash
 cd "$ROOT/visionos"
 KL_NO_INSTALL=1 KL_NO_LAUNCH=1 KL_SKIP_STAGE=1 ./run.sh device
 ```
 
-Outputs are `visionos/build/dd-device-vivecraft/Build/Products/Release-xros/AVPcraft.app` and, with `KL_NO_INSTALL=1`, `visionos/build/device-vivecraft/AVPcraft.ipa`. The bundled-payload build still prepares the local payload; `KL_SKIP_STAGE` only skips the separate container upload. An IPA produced this way is signed for your provisioning profile; it is not a universal installer.
+The app is written to `visionos/build/dd-device-vivecraft/Build/Products/Release-xros/AVPcraft.app`. The bundled-payload build still prepares the local payload; `KL_SKIP_STAGE` only skips the separate container upload.
 
 ## Direct host rebuild with existing frameworks and payload inputs
 

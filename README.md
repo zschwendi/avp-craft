@@ -18,13 +18,8 @@ AVPcraft launcher and changes to presentation, input and account handling.
 **Device support:** the current installation guide is for **Apple Vision Pro**.
 iPhone, iPad and Mac are not supported installation targets in this guide.
 
-**There's no ready-to-install AVPcraft IPA yet.** For now, you build and sign
-the app yourself. The old **v0.1.0** `.mrpack` is from an earlier Mac project
-and doesn't install anything on a headset.
-
-Wondering whether you need a Mac, how signing works, or how often a sideloaded
-app needs renewal? See [downloaded IPAs and sideloading](docs/SIDELOADING.md),
-including what remains before an AVPcraft download can be published.
+**Install from source using the guides below.** The old **v0.1.0** `.mrpack`
+is from an earlier Mac project and doesn't install anything on a headset.
 
 ## Requirements
 

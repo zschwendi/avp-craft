@@ -1,6 +1,6 @@
 # Building AVPcraft (Build 71 baseline with lower HUD)
 
-The baseline host is AVPcraft Build 71, which was used on a physical Vision Pro. The current source adds the lower-HUD patch and an independent profile migration. The patched Vivecraft Fabric jar has been built from the pinned source and checked locally. The full native-image/relink/host installation sequence has not been rerun for this update; the tested build 71 reused an older compiled client. There is no new downloadable IPA promised by this source release. See [AVP_INSTALL.md](AVP_INSTALL.md) for signing, installation, and the prepared-input host build.
+The baseline host is AVPcraft Build 71, which was used on a physical Vision Pro. The current source adds the lower-HUD patch and an independent profile migration. The patched Vivecraft Fabric jar has been built from the pinned source and checked locally. The full native-image/relink/host installation sequence has not been rerun for this update; the tested build 71 reused an older compiled client. See [AVP_INSTALL.md](AVP_INSTALL.md) for signing, installation, and the prepared-input host build.
 
 Build the visionOS app from this repo plus the downloads below. The Minecraft client, the mod jars, and `libminecraft.dylib` are build outputs. They are not in git. GitHub rejects files over 100 MB, and `libminecraft.dylib` is about 202 MB of compiled client.
 
@@ -281,28 +281,19 @@ MCV=26.2 KLEPTON_TARGET=vivecraft KL_ANGLE_PREBUILT=1 KL_NO_LAUNCH=1 \
 
 `run.sh`, `stage_native.sh`, and `mknative.sh` default `MCV` to 26.2. The launch template in `visionos/native/` is the 1.21.5 text. `stage_native.sh` rewrites version, asset index, game jar, and game-dir paths when `MCV` is not 1.21.5.
 
-A device build defaults to Release (`KL_XCODE_CONFIG=Debug` selects Debug). `KL_BUNDLE_PAYLOAD` defaults on for a vivecraft device build and off for the simulator. Set `KL_BUNDLE_PAYLOAD=1` when the simulator app should carry its own payload. `KL_NO_INSTALL=1` writes a local IPA and does not look up or install on a paired headset.
+A device build defaults to Release (`KL_XCODE_CONFIG=Debug` selects Debug). `KL_BUNDLE_PAYLOAD` defaults on for a vivecraft device build and off for the simulator. Set `KL_BUNDLE_PAYLOAD=1` when the simulator app should carry its own payload. `KL_NO_INSTALL=1` builds locally without looking up or installing on a paired headset.
 
 `make xros` compiles `runtime/xr/kl_openvr.c`. When `vendor-moltenvk/out/include/vulkan/vulkan.h` is present (`make mvk` installs the headers and the MoltenVK frameworks), the OpenVR eye copy is included. Without that header the same file builds and the eye copy is omitted. Vivecraft's guest is OpenGL ES through ANGLE. `visionos/mkmvk.sh` embeds MoltenVK when the frameworks are there, and continues when they are not.
 
 The first install that does not bundle the payload omits `KL_SKIP_STAGE`, so `stage_native.sh` fills the container (jars and assets, on the order of 0.6 GB). A payload build (`KL_BUNDLE_PAYLOAD=1`) runs `stage_native.sh --local` during `xcodebuild` and copies the scrubbed tree into the app. Later container installs can set `KL_SKIP_STAGE=1`.
 
-A public device IPA:
-
-```
-MCV=26.2 KLEPTON_TARGET=vivecraft KL_ANGLE_PREBUILT=1 KL_BUNDLE_PAYLOAD=1 \
-  KL_NO_INSTALL=1 KL_NO_LAUNCH=1 KL_SKIP_STAGE=1 \
-  KLEPTON_TEAM="$KLEPTON_TEAM" \
-  ./run.sh device
-```
-
-`visionos/scrub_paths.py` runs on the built app before the IPA is zipped, and before the simulator's ad-hoc sign. It rewrites the build machine's home prefix inside Mach-O copies when that prefix is 13 bytes, which keeps file offsets valid. The app is signed again after that rewrite. The private build inputs are not modified.
+`visionos/scrub_paths.py` runs on the built app before packaging, and before the simulator's ad-hoc sign. It rewrites the build machine's home prefix inside Mach-O copies when that prefix is 13 bytes, which keeps file offsets valid. The app is signed again after that rewrite. The private build inputs are not modified.
 
 A simulator build is the same command without `device`, on the Apple Vision Pro simulator, visionOS 27.0. Set `KL_XR_STAGE_DROP=1.6` for that run. Set `KL_BUNDLE_PAYLOAD=1` if the simulator app should materialize from the bundle.
 
 `run.sh` generates the Xcode project. Do not commit the generated project. It would capture the team id and the bundle id of the machine that wrote it.
 
-The commands above create your own signed app/IPA after all native and game inputs have been built. This source publication does not supply a new release IPA or claim a SideStore installation was tested. Prefer the paired-headset Xcode/devicectl instructions in [AVP_INSTALL.md](AVP_INSTALL.md). `KL_NO_LAUNCH=1` prevents automatic launch. A successful compile/signature check is not a gameplay test.
+The commands above create your own signed app after all native and game inputs have been built. Follow the paired-headset Xcode/devicectl instructions in [AVP_INSTALL.md](AVP_INSTALL.md). `KL_NO_LAUNCH=1` prevents automatic launch. A successful compile/signature check is not a gameplay test.
 
 ## Reproducibility limits
 
