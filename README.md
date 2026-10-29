@@ -22,6 +22,10 @@ iPhone, iPad and Mac are not supported installation targets in this guide.
 the app yourself. The old **v0.1.0** `.mrpack` is from an earlier Mac project
 and doesn't install anything on a headset.
 
+Wondering whether you need a Mac, how signing works, or how often a sideloaded
+app needs renewal? See [downloaded IPAs and sideloading](docs/SIDELOADING.md),
+including what remains before an AVPcraft download can be published.
+
 ## Requirements
 
 | To play | To build |
