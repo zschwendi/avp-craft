@@ -15,3 +15,9 @@ safe to delete (only REPORT.md, PROVENANCE.md, check-touch-map.py and patches/ a
 
 Cleanup: `rm -rf VivecraftMod qc-OpenXR-1.21.10 gradle-home host-probe *.log` loses nothing that
 REPORT.md + patches/ cannot rebuild (GraalVM 25 sits with the native-image toolchain and is kept).
+
+## 2026-10-28: AVPcraft head-HUD placement
+
+Patch 0006 consumes `hudPitchOffset` only for the no-screen head-locked in-world HUD, rotates its position and orientation together, and sets new-profile HEAD/2m/0.8/-15-degree defaults. Existing custom configuration remains authoritative. The source tree after all six patches is `bc542a09e32f6f9b74f54ddb4a37373d2b32c902`.
+
+The Fabric jar was rebuilt with OpenJDK25.0.4.1, Gradle9.3.0, Loom1.15.5 and Fabric API0.161.0+26.2. Normalize the jar using `canonicalize-vivecraft-jar.py` before the strict checksum/copy step: repeated raw builds preserve every entry payload but change nested-JAR ZIP metadata. See BUILDING.md and docs/HUD-PLACEMENT.md. No game payload, new native image or headset acceptance is published by this source update.

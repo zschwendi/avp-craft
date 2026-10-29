@@ -1,0 +1,2 @@
+# Mail-format patches require space-prefixed blank context lines.
+*.patch -whitespace

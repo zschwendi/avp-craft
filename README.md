@@ -17,7 +17,9 @@ Choose **Windowed** or **Immersive VR** in the launcher before starting the game
 
 ## Current version
 
-This is the **AVPcraft 0.4.0 / build 71 host-source snapshot** used for recent headset testing. [SOURCE-SNAPSHOT.json](SOURCE-SNAPSHOT.json) records its upstream revision and verified source hashes. Newer, untested build 72 changes are not included.
+This source tree is based on **AVPcraft 0.4.0 / build 71**, with a new **15-degree lower head-locked HUD** source update. Health, food and item slots use the lower placement; inventory and menus keep their placement. [SOURCE-SNAPSHOT.json](SOURCE-SNAPSHOT.json) distinguishes the tested build 71 baseline from the new source changes. The separate build 72 audio changes are not included.
+
+**The HUD update requires rebuilding Vivecraft and the compiled native game client, as well as the host.** Reusing an old `libminecraft.dylib` will not apply the new placement. The updated game jar and migration checks pass; a new native image and headset appearance have not been verified. See [HUD placement](docs/HUD-PLACEMENT.md).
 
 This repository now contains the Vision Pro app source and build tools. The old **v0.1.0** release and its `.mrpack` belong to the earlier **Mac Metal renderer project**. They are not an AVPcraft installer.
 

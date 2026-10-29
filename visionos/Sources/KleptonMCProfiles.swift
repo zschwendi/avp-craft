@@ -212,8 +212,14 @@ enum MCProfiles {
             // goes on with the config as it is.
             let comfort = MCUIComfort.apply(profileDir: r.path)
             NSLog("[comfort] %@: %@", name, comfort.summary)
+            // One-time HUD pitch move (MCHUDPitch.swift, its own marker): after
+            // comfort, which edits the same file, and before the game reads it.
+            // Never throws either.
+            let pitch = MCHUDPitch.apply(profileDir: r.path)
+            NSLog("[hud-pitch] %@: %@", name, pitch.summary)
             var note = r.note
             if case .applied = comfort { note += "; hud comfort defaults applied" }
+            if case .applied = pitch { note += "; hud pitch moved" }
             setenv("KL_MC_GAMEDIR", r.path, 1)
             setenv("KL_MC_PROFILE_NOTE", "\(name): \(note)", 1)
             NSLog("[profiles] %@ -> %@ (%@)", name, r.path, note)

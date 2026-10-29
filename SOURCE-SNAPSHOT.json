@@ -1,8 +1,15 @@
 {
-  "snapshot": "AVPcraft 0.4.0 build 71 host source",
+  "snapshot": "AVPcraft build71 baseline plus15degree lowerHEADHUD source update",
   "upstream_repository": "https://github.com/rebelancap/vivecraft-visionos",
   "upstream_commit": "9d0a5b0640b077765348c1db9faa026feec9f634",
-  "verified_host_source_sha256": {
+  "notes": [
+    "The baseline hash table is historicalbuild71, not the current changed files; use current_changed_source_sha256 for these edits.",
+    "Separate build72 audio changes remain excluded.",
+    "PatchedVivecraftFabricJAR build and source/migration checks pass; new native-image/relink/hostpackage/deviceHUD acceptance remain outstanding.",
+    "Gameclient/assets/accountdata/saves/compiledbinaries remain excluded.",
+    "ANGLE binaries useupstream committed code withadhocsignatures."
+  ],
+  "build71_baseline_host_source_sha256": {
     "visionos/Sources/KleptonCompositor.swift": "9d01eb89a45dd5c541923c653c1af37e6c727f25a35449e31ae35cb348c018e7",
     "visionos/Sources/KleptonMCProfiles.swift": "97d52d4183d8867c25fe2b85cbbdaceb9d6fcb0b3b9e30efd37011ae68b6856a",
     "visionos/Sources/MCUIComfort.swift": "4de216a9c9560f8dea6692a2523f8c19f7227b8d3711499d9d3dc75539806122",
@@ -21,10 +28,14 @@
     "visionos/Sources/kl_app.h": "8b8b1355fb067f71bcf8fce15d55328fa080d867dae22f25f378837b5fde5455",
     "visionos/Sources/MCWindowedInput.swift": "5ed15a76b04ee69922c6ead0fbf4dfe9bd7a5c667f02f5157cc4641c10a2fe0e"
   },
-  "notes": [
-    "Source snapshot matches recorded build 71 host hashes.",
-    "Newer untested build 72 changes are not included.",
-    "Game client, assets, account data, saves and compiled game binary are excluded.",
-    "ANGLE binaries use upstream committed code with ad-hoc signatures."
-  ]
+  "current_source_change": "15degreeheadHUDconsumer/defaults, independenthostpitchmigration, deterministiclocalJARpackaging; requires rebuilt nativeclient",
+  "current_changed_source_sha256": {
+    "visionos/Sources/KleptonMCProfiles.swift": "f0b9f4d0f1ab8a6685ff4dde484f5ec449f21447b597c86e22a4966aaf78eeab",
+    "visionos/Sources/MCHUDPitch.swift": "4ad6bc78b7afd3a5f42ba08710e354b478fde0919f2df87b5124bb7c98103b63",
+    "visionos/gen_xcodeproj.py": "927a934bdf233f7116d509e1152d35a1e6944013aa9483611d9da989241d6a92",
+    "work/vivecraft-openxr-26.2/patches/0006-lower-head-locked-in-world-HUD.patch": "b700e4bdd8f3bf73e70e3791ff5b4a814004065452210c3c4812019b64284fa9",
+    "work/vivecraft-openxr-26.2/canonicalize-vivecraft-jar.py": "99ac29349670493ba0a3fa95f4f04cc4878abff59ca3261a8d906f5eb0c59677",
+    "work/native-image/scripts/m3a/mods-26.2.json": "0aa97409120524052acfd486c287a47a5f91ab1c54d4ec3d2027dc9dd3c4cc64"
+  },
+  "HUD_checks": "docs/HUD-CHECKS.json"
 }

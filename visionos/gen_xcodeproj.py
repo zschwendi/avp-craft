@@ -275,7 +275,7 @@ F_AUDIO_C = oid("FAUDIOC"); B_AUDIO_C = oid("BAUDIOC")
 SWIFT = ["KleptonApp.swift", "KleptonCompositor.swift", "KleptonControllers.swift",
          "KleptonAudio.swift", "KleptonShell.swift", "KleptonTuning.swift",
          "KleptonChroma.swift", "KleptonMSA.swift", "KleptonPayload.swift",
-         "KleptonMCLauncher.swift", "KleptonMCProfiles.swift", "MCUIComfort.swift", "MCPlayMode.swift", "MCWindowedInput.swift", "OwnershipGate.swift"]
+         "KleptonMCLauncher.swift", "KleptonMCProfiles.swift", "MCUIComfort.swift", "MCHUDPitch.swift", "MCPlayMode.swift", "MCWindowedInput.swift", "OwnershipGate.swift"]
 swift = [{"name": s, "ref": oid(f"FS{i}"), "bld": oid(f"BS{i}")} for i, s in enumerate(SWIFT)]
 
 swift_buildfiles = "\n".join(

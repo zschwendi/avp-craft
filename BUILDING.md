@@ -1,6 +1,6 @@
-# Building AVPcraft (Build 71 source)
+# Building AVPcraft (Build 71 baseline with lower HUD)
 
-This is a source release of the AVPcraft Build 71 host. Build 71 was used on a physical Vision Pro; the full clean-checkout build below has not been rerun for this publication. The tested host reused an existing compiled Minecraft client. There is no new downloadable IPA promised by this source release. See [AVP_INSTALL.md](AVP_INSTALL.md) for signing, installation, and the prepared-input host build.
+The baseline host is AVPcraft Build 71, which was used on a physical Vision Pro. The current source adds the lower-HUD patch and an independent profile migration. The patched Vivecraft Fabric jar has been built from the pinned source and checked locally. The full native-image/relink/host installation sequence has not been rerun for this update; the tested build 71 reused an older compiled client. There is no new downloadable IPA promised by this source release. See [AVP_INSTALL.md](AVP_INSTALL.md) for signing, installation, and the prepared-input host build.
 
 Build the visionOS app from this repo plus the downloads below. The Minecraft client, the mod jars, and `libminecraft.dylib` are build outputs. They are not in git. GitHub rejects files over 100 MB, and `libminecraft.dylib` is about 202 MB of compiled client.
 
@@ -23,11 +23,11 @@ Export these settings before the app-generation/build steps:
 export MCV=26.2 KLEPTON_TARGET=vivecraft
 export KLEPTON_PRODUCT_NAME=AVPcraft KLEPTON_PROJECT_NAME=avp-craft
 export KLEPTON_DISPLAY_NAME=AVPcraft KLEPTON_MARKETING_VERSION=0.4.0
-export KLEPTON_BUILD_VERSION=71 KLEPTON_LOW_LATENCY=0
+export KLEPTON_BUILD_VERSION=73 KLEPTON_LOW_LATENCY=0
 export KLEPTON_BUNDLE_ID="com.yourname.avpcraft"
 ```
 
-The source host and generator match Build 71. These settings do not make a newly rebuilt native Minecraft image byte-identical to the previously tested one. Keep build receipts and test the result on your headset.
+The source retains the build 71 baseline plus the HUD changes listed in SOURCE-SNAPSHOT.json. Use a new build number for this rebuild; 73 above is an example. Rebuild the game client: the old compiled image cannot consume the new HUD pitch setting. Keep build receipts and test the result on your headset.
 
 ## Machine
 
@@ -90,24 +90,30 @@ git -C VivecraftMod checkout -B kl-mobile 13eafae1
 git -C VivecraftMod am "$ROOT/work/vivecraft-openxr-26.2/patches/"*.patch
 ```
 
-The tree after the patches is `8297f0ecc84bb25aecf714c23dae661cf6cdf626`. License: LGPLv3.
+The original patches 0001–0005 form the build 71 baseline. Patch 0006 adds the real head-HUD pitch consumer and new-profile defaults. The resulting Git **tree** is `bc542a09e32f6f9b74f54ddb4a37373d2b32c902` (commit IDs created by `git am` can differ). License: LGPLv3.
 
 ```
 cd VivecraftMod
 printf 'project.build.excludeForge=true\nproject.build.excludeNeoforge=true\n' > local.properties
-export JAVA_HOME="$ROOT/work/native-image/graalvm/graalvm-jdk-25.0.4+7.1/Contents/Home"
-./gradlew --no-daemon :fabric:build -x test -Pfabric_api_version=0.161.0+26.2
+export JAVA_HOME="/path/to/jdk-25.0.4.1/Contents/Home"
+./gradlew --no-daemon --max-workers=2 :fabric:build -x test -Pfabric_api_version=0.161.0+26.2
+mkdir -p build/canonical
+python3 "$ROOT/work/vivecraft-openxr-26.2/canonicalize-vivecraft-jar.py" \
+  build/libs/vivecraft-26.2-1.3.15-fabric.jar \
+  build/canonical/vivecraft-26.2-1.3.15-fabric.jar
 ```
 
-The jar is `VivecraftMod/build/libs/vivecraft-26.2-1.3.15-fabric.jar`.
+For this jar build, the verified compiler is OpenJDK 25.0.4.1, Gradle 9.3.0 and Fabric Loom 1.15.5. Set `JAVA_HOME` to your matching JDK installation in the command above. The GraalVM installation in section 1 is still used for the later bake/native-image steps.
 
-Expected sha256 (patches 0001–0005):
+The normalized jar is `VivecraftMod/build/canonical/vivecraft-26.2-1.3.15-fabric.jar`. The normalizer is required: Loom inserts changing ZIP metadata for nested dependency jars even when every payload byte is identical. It produces a deterministic stored ZIP while preserving all entry names and uncompressed bytes. It never changes the input jar. The output path must be new; move or remove only the previous generated canonical jar before intentionally repeating this step. Python 3.9.6 and 3.14.6 produced identical bytes in verification.
+
+Expected normalized sha256 (patches 0001–0006):
 
 ```
-e241a4c2888bd7158e5177916b6f524b862801c192a08f7d967fc3f21ee5be7d
+f317964c49f8e1dace17dcc4ea4a8d4f9d29c7e5a2888c61b73259f4355deac4
 ```
 
-`work/native-image/scripts/m3a/mods-26.2.json` sets `local` to `work/vivecraft-openxr-26.2/VivecraftMod/build/libs/vivecraft-26.2-1.3.15-fabric.jar` (relative to the repo root) and `sha256` to the hash above. The jar is a build output. Do not commit it.
+`work/native-image/scripts/m3a/mods-26.2.json` sets `local` to `work/vivecraft-openxr-26.2/VivecraftMod/build/canonical/vivecraft-26.2-1.3.15-fabric.jar` (relative to the repo root) and `sha256` to the hash above. The jar is a build output. Do not commit it.
 
 ## 4. Client, libraries, assets, mods
 

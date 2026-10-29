@@ -1,0 +1,199 @@
+From 24f0981ba8ba94716660411c79e8c05f0d1fafb8 Mon Sep 17 00:00:00 2001
+From: AVPcraft <noreply@avpcraft.local>
+Date: Wed, 28 Oct 2026 20:40:33 -0600
+Subject: [PATCH] Lower the head-locked in-world HUD by 15 degrees
+
+Consume hudPitchOffset for the no-screen head HUD. Rotate its position and
+orientation together around the head-local right axis, preserving distance
+and scale. Leave menus, inventory, wrist/hand and seated alternate aim alone.
+Use HEAD, 2m, 0.8 scale and -15 degrees as new-profile defaults. Existing
+profile values remain available for the host migration or user choice.
+---
+ .../gameplay/screenhandlers/GuiHandler.java   |   9 ++
+ .../gameplay/screenhandlers/HeadHudPitch.java | 126 ++++++++++++++++++
+ .../client_vr/settings/VRSettings.java        |   8 +-
+ 3 files changed, 139 insertions(+), 4 deletions(-)
+ create mode 100644 common/src/main/java/org/vivecraft/client_vr/gameplay/screenhandlers/HeadHudPitch.java
+
+diff --git a/common/src/main/java/org/vivecraft/client_vr/gameplay/screenhandlers/GuiHandler.java b/common/src/main/java/org/vivecraft/client_vr/gameplay/screenhandlers/GuiHandler.java
+index 92c9279b..4f8526ae 100644
+--- a/common/src/main/java/org/vivecraft/client_vr/gameplay/screenhandlers/GuiHandler.java
++++ b/common/src/main/java/org/vivecraft/client_vr/gameplay/screenhandlers/GuiHandler.java
+@@ -565,6 +565,15 @@ public class GuiHandler {
+                         position.z +
+                             direction.z * DH.vrPlayer.vrdata_world_render.worldScale * DH.vrSettings.hudDistance);
+ 
++                    // pitch the in-game HUD around the head, screens and the seated aim HUD keep their placement
++                    HeadHudPitch.Placement pitched = HeadHudPitch.pitchInGameHud(MC.gui.screen() != null,
++                        DH.vrSettings.seated && DH.vrSettings.seatedHudAltMode, position, guipos, guirot,
++                        DH.vrSettings.hudPitchOffset);
++                    if (pitched != null) {
++                        guipos = pitched.position();
++                        guirot = pitched.rotation();
++                    }
++
+                     scale = DH.vrSettings.hudScale;
+                 } else {
+                     // attach to controller
+diff --git a/common/src/main/java/org/vivecraft/client_vr/gameplay/screenhandlers/HeadHudPitch.java b/common/src/main/java/org/vivecraft/client_vr/gameplay/screenhandlers/HeadHudPitch.java
+new file mode 100644
+index 00000000..17e0f7d1
+--- /dev/null
++++ b/common/src/main/java/org/vivecraft/client_vr/gameplay/screenhandlers/HeadHudPitch.java
+@@ -0,0 +1,126 @@
++package org.vivecraft.client_vr.gameplay.screenhandlers;
++
++import net.minecraft.world.phys.Vec3;
++import org.joml.Matrix4f;
++import org.joml.Matrix4fc;
++
++/**
++ * pitches the head locked in-game HUD around the head, about the HUD's own right axis.
++ * Never modifies its inputs, a pitched placement is always returned as new objects.
++ */
++public final class HeadHudPitch {
++    /**
++     * largest pitch offset applied in either direction, in degrees
++     */
++    public static final float MAX_PITCH_DEGREES = 45.0F;
++
++    // squared lengths below this are treated as degenerate
++    private static final double EPSILON_SQ = 1.0E-12D;
++
++    private HeadHudPitch() {}
++
++    /**
++     * position and orientation of the HUD quad, both are new objects owned by the caller
++     */
++    public record Placement(Vec3 position, Matrix4f rotation) {}
++
++    /**
++     * pitches the head locked HUD, but only the in-game HUD. Open screens (menus, inventory, also when forced onto
++     * the HUD) and the seated HUD that follows the controller aim keep their original placement.
++     *
++     * @param screenOpen   if a screen is open
++     * @param seatedAltAim if the seated HUD follows the controller aim instead of the head
++     * @param head         position the HUD orbits, the hmd position
++     * @param position     center of the HUD quad
++     * @param rotation     orientation of the HUD quad, local -Z points from the head to the HUD, not modified
++     * @param pitchDegrees pitch offset in degrees, negative lowers the HUD, clamped to +/-{@link #MAX_PITCH_DEGREES}
++     * @return the pitched placement, or {@code null} if the HUD keeps its original placement
++     */
++    public static Placement pitchInGameHud(
++        boolean screenOpen, boolean seatedAltAim, Vec3 head, Vec3 position, Matrix4fc rotation, float pitchDegrees)
++    {
++        if (screenOpen || seatedAltAim) {
++            return null;
++        }
++        return pitch(head, position, rotation, pitchDegrees);
++    }
++
++    /**
++     * rotates {@code position} around {@code head} and {@code rotation} by the same angle, about the right axis
++     * (local +X) of {@code rotation}. The distance to the head and the size of the quad stay the same.
++     *
++     * @param head         position the HUD orbits
++     * @param position     center of the HUD quad
++     * @param rotation     orientation of the HUD quad, not modified
++     * @param pitchDegrees pitch offset in degrees, negative lowers the HUD, clamped to +/-{@link #MAX_PITCH_DEGREES}
++     * @return the pitched placement, or {@code null} for a zero or non-finite angle, or invalid geometry
++     */
++    public static Placement pitch(Vec3 head, Vec3 position, Matrix4fc rotation, float pitchDegrees) {
++        if (head == null || position == null || rotation == null ||
++            !Float.isFinite(pitchDegrees) || pitchDegrees == 0.0F)
++        {
++            return null;
++        }
++        if (!isFinite(head) || !isFinite(position) || !isFiniteBasis(rotation)) {
++            return null;
++        }
++
++        double dx = position.x - head.x;
++        double dy = position.y - head.y;
++        double dz = position.z - head.z;
++        double radiusSq = dx * dx + dy * dy + dz * dz;
++
++        // head local right axis in world space
++        double ax = rotation.m00();
++        double ay = rotation.m01();
++        double az = rotation.m02();
++        double axisSq = ax * ax + ay * ay + az * az;
++
++        if (!Double.isFinite(radiusSq) || radiusSq < EPSILON_SQ || !Double.isFinite(axisSq) || axisSq < EPSILON_SQ) {
++            return null;
++        }
++
++        double invAxis = 1.0D / Math.sqrt(axisSq);
++        ax *= invAxis;
++        ay *= invAxis;
++        az *= invAxis;
++
++        double dot = ax * dx + ay * dy + az * dz;
++        // the HUD has to be in front of the head, not off to the side along the pitch axis
++        if (dot * dot > 0.5D * radiusSq) {
++            return null;
++        }
++
++        double radians = Math.toRadians(Math.max(-MAX_PITCH_DEGREES, Math.min(MAX_PITCH_DEGREES, pitchDegrees)));
++        double c = Math.cos(radians);
++        double s = Math.sin(radians);
++
++        // Rodrigues rotation of the head to HUD offset, matches the local rotateX of the quad below
++        double rx = dx * c + (ay * dz - az * dy) * s + ax * dot * (1.0D - c);
++        double ry = dy * c + (az * dx - ax * dz) * s + ay * dot * (1.0D - c);
++        double rz = dz * c + (ax * dy - ay * dx) * s + az * dot * (1.0D - c);
++
++        double x = head.x + rx;
++        double y = head.y + ry;
++        double z = head.z + rz;
++        if (!Double.isFinite(x) || !Double.isFinite(y) || !Double.isFinite(z)) {
++            return null;
++        }
++
++        Matrix4f pitchedRotation = new Matrix4f(rotation).rotateX((float) radians);
++        if (!isFiniteBasis(pitchedRotation)) {
++            return null;
++        }
++        return new Placement(new Vec3(x, y, z), pitchedRotation);
++    }
++
++    private static boolean isFinite(Vec3 vec) {
++        return Double.isFinite(vec.x) && Double.isFinite(vec.y) && Double.isFinite(vec.z);
++    }
++
++    private static boolean isFiniteBasis(Matrix4fc m) {
++        return Float.isFinite(m.m00()) && Float.isFinite(m.m01()) && Float.isFinite(m.m02()) &&
++            Float.isFinite(m.m10()) && Float.isFinite(m.m11()) && Float.isFinite(m.m12()) &&
++            Float.isFinite(m.m20()) && Float.isFinite(m.m21()) && Float.isFinite(m.m22());
++    }
++}
+diff --git a/common/src/main/java/org/vivecraft/client_vr/settings/VRSettings.java b/common/src/main/java/org/vivecraft/client_vr/settings/VRSettings.java
+index dfbedb0c..fe706849 100644
+--- a/common/src/main/java/org/vivecraft/client_vr/settings/VRSettings.java
++++ b/common/src/main/java/org/vivecraft/client_vr/settings/VRSettings.java
+@@ -591,18 +591,18 @@ public class VRSettings {
+     @SettingField(VrOptions.TOUCH_HOTBAR)
+     public boolean vrTouchHotbar = true;
+     @SettingField(value = VrOptions.HUD_SCALE, config = "headHudScale")
+-    public float hudScale = 1.0f;
++    public float hudScale = 0.8f;
+     @SettingField(VrOptions.HUD_DISTANCE)
+-    public float hudDistance = 1.25f;
++    public float hudDistance = 2.0f;
+     @SettingField
+-    public float hudPitchOffset = -2f;
++    public float hudPitchOffset = -15.0f;
+     @SettingField
+     public float hudYawOffset = 0.0f;
+     public boolean floatInventory = true; // false not working yet, have to account for rotation and tilt in MCOpenVR>processGui()
+     @SettingField(VrOptions.MENU_ALWAYS_FOLLOW_FACE)
+     public boolean menuAlwaysFollowFace;
+     @SettingField(VrOptions.HUD_LOCK_TO)
+-    public HUDLock vrHudLockMode = HUDLock.WRIST;
++    public HUDLock vrHudLockMode = HUDLock.HEAD;
+     @SettingField(VrOptions.HUD_WRIST_OFFSET)
+     public float vrHudWristOffset = 1F;
+     @SettingField(VrOptions.FORCE_GUI_TO_HUD)
+-- 
+2.54.0
+

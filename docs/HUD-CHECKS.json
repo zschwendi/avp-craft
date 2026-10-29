@@ -1,0 +1,39 @@
+{
+  "scope": "Source/Java/build/package checks only; no updated native image or device appearance verified",
+  "minecraft": "26.2",
+  "upstream_vivecraft_commit": "13eafae17a987521cc270e81cd774a4746ad9299",
+  "patched_source_tree": "bc542a09e32f6f9b74f54ddb4a37373d2b32c902",
+  "patches": "0001-0006",
+  "toolchain": {
+    "JDK": "OpenJDK25.0.4.1",
+    "Gradle": "9.3.0",
+    "FabricLoom": "1.15.5",
+    "FabricAPI": "0.161.0+26.2"
+  },
+  "checks": {
+    "patched_source_compile": "PASS actualGuiHandler,HeadHudPitch,VRSettings against26.2API",
+    "geometry": "PASS106053 assertions using realJOML1.10.8 andMinecraftVec3",
+    "source_contract": "PASS113 checks includingaliases/defaults/loadOptions fallback",
+    "host_migration_fixtures": "PASS conditionalFoundationfixtures",
+    "old_comfort_fixtures": "PASS regression",
+    "visionos_policy_compile": "PASS arm64-apple-xros26.0 SDK27 Swift6 warnings-as-errors",
+    "full_fabric_build": "PASS :fabric:build -x test",
+    "patch_roundtrip": "PASS all6patches fromupstream,886trackedfilesbyteidentical",
+    "normalizer_fixtures": "PASS7tests",
+    "rebuild_normalization": "PASS two independently built rawjars withmetadata differences produce identicalcanonicalbytes;1284names/payloadspreserved",
+    "python_versions": "PASS byteidentical on3.9.6 and3.14.6",
+    "independent_source_peer": "CLEAR actualClaudeOpus5.5"
+  },
+  "canonical_vivecraft_jar": {
+    "sha256": "f317964c49f8e1dace17dcc4ea4a8d4f9d29c7e5a2888c61b73259f4355deac4",
+    "bytes": 19032717,
+    "local": "work/vivecraft-openxr-26.2/VivecraftMod/build/canonical/vivecraft-26.2-1.3.15-fabric.jar"
+  },
+  "not_verified": [
+    "new26.2 native-image compilation",
+    "newvisionOSrelink/fullhostpackage",
+    "newinstallation",
+    "physicalHUDappearance",
+    "otheraudio/persistencefixes"
+  ]
+}

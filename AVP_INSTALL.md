@@ -1,5 +1,7 @@
 # Install AVPcraft on Apple Vision Pro
 
+**Lower-HUD source update:** the current repo places the head-locked health/food/hotbar 15 degrees lower only after rebuilding the patched Vivecraft jar and native game image. A host build with an older prepared `libminecraft.dylib` will retain the old game-side placement. Follow [BUILDING.md](BUILDING.md) and [HUD placement](docs/HUD-PLACEMENT.md) for that rebuild; no updated IPA is included.
+
 This repository contains the AVPcraft Build 71 host source used on a physical Vision Pro. It is a developer source release, not a new downloadable IPA. The full source-to-headset build has not been rerun from a clean checkout for this publication.
 
 ## What you need
