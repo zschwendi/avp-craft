@@ -220,6 +220,14 @@ enum MCProfiles {
             var note = r.note
             if case .applied = comfort { note += "; hud comfort defaults applied" }
             if case .applied = pitch { note += "; hud pitch moved" }
+            // Turning (build 72, MCTurningPreferences.swift): the launcher's
+            // Smooth / 45° Snap choice -> this profile's vrWorldRotationIncrement,
+            // re-applied every launch. After comfort so a brand-new profile's
+            // missing config is reported once, not seeded. Never throws.
+            let turning = MCTurning.stored
+            let turned = MCTurning.apply(turning, profileDir: r.path)
+            NSLog("[turning] %@: %@ -> %@", name, turning.rawValue, turned.summary)
+            if case .applied = turned { note += "; turning \(turning.rawValue)" }
             setenv("KL_MC_GAMEDIR", r.path, 1)
             setenv("KL_MC_PROFILE_NOTE", "\(name): \(note)", 1)
             NSLog("[profiles] %@ -> %@ (%@)", name, r.path, note)

@@ -160,7 +160,18 @@ INFOPLIST_FILE = "Info.plist"
 # keys .playAndRecord off this same key, so every other target keeps the
 # .playback session it has always had.
 _MIC = "libopus4j" in KLT["libs"].split()
-if KLT["immersion"] != targets_mod.IMMERSION_DEFAULT or _MIC:
+# Background-audio eligibility, per target (targets.py "background_audio"). The
+# native Minecraft row's immersive world keeps playing after its launcher window
+# closes, which takes the app phase to background; playback there needs the
+# declaration. It permits audio, it does not force it: KleptonAudio still pauses
+# and deactivates on Crown/Home. A flag on any other kind is a mistake in the
+# table, so it stops the build rather than being silently dropped — and the flag
+# alone forces the rewrite, even for a row on the default style without a mic.
+_BG_AUDIO = bool(KLT.get("background_audio"))
+if _BG_AUDIO and KLT.get("kind") != "native":
+    raise SystemExit(f"!! {KLT['name']}: background_audio is for the native "
+                     f"(Minecraft) row only, not kind {KLT.get('kind')!r}")
+if KLT["immersion"] != targets_mod.IMMERSION_DEFAULT or _MIC or _BG_AUDIO:
     import plistlib
     _src = pathlib.Path(__file__).with_name("Info.plist")
     _d = plistlib.loads(_src.read_bytes())
@@ -176,6 +187,15 @@ if KLT["immersion"] != targets_mod.IMMERSION_DEFAULT or _MIC:
         _d["NSMicrophoneUsageDescription"] = ("Voice chat: other players hear you "
                                               "through the game's voice chat.")
         print("  NSMicrophoneUsageDescription: on (voice chat)")
+    if _BG_AUDIO:
+        # Merged, not replaced: any mode the base plist already declares stays.
+        _modes = _d.get("UIBackgroundModes", [])
+        if not isinstance(_modes, list) or not all(isinstance(m, str) for m in _modes):
+            raise SystemExit("!! Info.plist UIBackgroundModes is not an array of strings")
+        if "audio" not in _modes:
+            _modes = _modes + ["audio"]
+        _d["UIBackgroundModes"] = _modes
+        print(f"  UIBackgroundModes: {', '.join(_modes)}")
     _out = pathlib.Path(__file__).with_name("build") / f"Info-{KLT['name']}.plist"
     _out.parent.mkdir(parents=True, exist_ok=True)
     _out.write_bytes(plistlib.dumps(_d))
@@ -275,7 +295,7 @@ F_AUDIO_C = oid("FAUDIOC"); B_AUDIO_C = oid("BAUDIOC")
 SWIFT = ["KleptonApp.swift", "KleptonCompositor.swift", "KleptonControllers.swift",
          "KleptonAudio.swift", "KleptonShell.swift", "KleptonTuning.swift",
          "KleptonChroma.swift", "KleptonMSA.swift", "KleptonPayload.swift",
-         "KleptonMCLauncher.swift", "KleptonMCProfiles.swift", "MCUIComfort.swift", "MCHUDPitch.swift", "MCPlayMode.swift", "MCWindowedInput.swift", "OwnershipGate.swift"]
+         "KleptonMCLauncher.swift", "KleptonMCProfiles.swift", "MCUIComfort.swift", "MCHUDPitch.swift", "MCPlayMode.swift", "MCWindowedInput.swift", "MCTurningPreferences.swift", "OwnershipGate.swift"]
 swift = [{"name": s, "ref": oid(f"FS{i}"), "bld": oid(f"BS{i}")} for i, s in enumerate(SWIFT)]
 
 swift_buildfiles = "\n".join(

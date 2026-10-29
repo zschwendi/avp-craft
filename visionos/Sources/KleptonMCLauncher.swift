@@ -559,6 +559,9 @@ final class MCLauncherModel: ObservableObject {
     /// Windowed or Immersive VR — the player's explicit choice, windowed until
     /// chosen otherwise (MCPlayMode.swift). Exported at every Launch.
     @Published var playMode: MCPlayMode { didSet { MCPlayMode.store(playMode) } }
+    /// Turning in VR: Smooth (default) or 45° Snap, applied to the selected
+    /// profile's Vivecraft config at every Launch (MCTurningPreferences.swift).
+    @Published var turning: MCTurning { didSet { MCTurning.store(turning) } }
     @Published var resolution: Resolution?       // nil = the env file holds another value
     @Published var customEye: String?
     @Published var worlds: [MCWorld] = []
@@ -584,6 +587,7 @@ final class MCLauncherModel: ObservableObject {
         play = Play(rawValue: UserDefaults.standard.string(forKey: "mclauncher.play") ?? "") ?? .title
         server = UserDefaults.standard.string(forKey: "mclauncher.server") ?? ""
         playMode = MCPlayMode.stored
+        turning = MCTurning.stored
         readResolution()
     }
 
@@ -1407,10 +1411,44 @@ struct MCLauncherView: View {
                 Text(model.customEye.map { "A custom resolution of \($0) pixels per eye is set. Picking one here replaces it." }
                      ?? "Pixels per eye. Sharp is the tested default; Max may judder.")
                     .font(.caption).foregroundStyle(.white.opacity(0.7))
+
+                Divider().overlay(Color.white.opacity(0.2))
+                turningRow
             }
 
             Divider().overlay(Color.white.opacity(0.2))
             micRow
+        }
+    }
+
+    /// Turning in VR (build 72): Vivecraft's own continuous turn (Smooth, the
+    /// default here) or its 45° snap. Written to the selected account's
+    /// Vivecraft settings when Play is pressed, every time, so the game runs
+    /// what the launcher shows. Not locked after boot: a re-run re-reads it.
+    private var turningRow: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            MCText("Turning", size: 18, rgb: (255, 255, 160))
+            HStack(spacing: 8) {
+                ForEach(MCTurning.allCases, id: \.self) { t in
+                    Button { model.turning = t } label: {
+                        VStack(spacing: 0) {
+                            MCText(t.title, size: 16)
+                            Text(t.subtitle).font(.caption2).foregroundStyle(.white.opacity(0.75))
+                        }
+                    }
+                    .buttonStyle(MCButtonStyle(selected: model.turning == t, height: 50))
+                    .accessibilityIdentifier("launcher.turning." + t.rawValue)
+                }
+            }
+            .disabled(locked)
+            Text((model.turning == .smooth
+                  ? "Smooth turns the world continuously while you hold the turn stick."
+                  : "Snap turns the world in 45° steps on each stick flick.")
+                 + " Applied to this account's Vivecraft settings each time you press Play; the turn stick itself is unchanged."
+                 + (MCTurning.isRemembered ? "" : " Smooth is the default."))
+                .font(.caption).foregroundStyle(.white.opacity(0.7))
+                .fixedSize(horizontal: false, vertical: true)
+                .accessibilityIdentifier("launcher.turning.caption")
         }
     }
 

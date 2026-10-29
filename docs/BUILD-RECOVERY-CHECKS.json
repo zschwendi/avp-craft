@@ -1,0 +1,64 @@
+{
+  "checked_on": "2026-10-29",
+  "source_base": "81a863314917f99662735c48a4f03b65788de9b3",
+  "reference_host": {
+    "app": "AVPcraft",
+    "version": "0.4.0",
+    "build": "72",
+    "physical_installed_metadata_verified": true,
+    "preserved_host_sources_match_build_receipt": 18,
+    "device_gameplay_retested": false
+  },
+  "host_checks": {
+    "swift_sources_typechecked_with_SDK27_minimum26": 17,
+    "audio_policy_assertions": 380,
+    "audio_category_cases": 4,
+    "generator_cases": 7,
+    "turning_HUD_comfort_fixtures": "PASS",
+    "independent_Opus55_merge_review": "CLEAR",
+    "whole_app_link": false
+  },
+  "launcher_checks": {
+    "reference_jar_sha256": "a616fbc748a9dd017778924b9d106b86b78364ea9d0d9262b4daa55ba0a27004",
+    "recovered_source_files": 4,
+    "launcher_classes_compiled": 8,
+    "normalized_class_matches": 8,
+    "behavior_comparisons": 17,
+    "actual_launcher_script_pinned_GraalVM25_0_4": "PASS with isolated instance and existing26.2dependencies",
+    "new_game_bake": false,
+    "pinned_GraalVM_script_output_normalized_matches": 8
+  },
+  "build_script_checks": {
+    "migration_fixture_cases": 7,
+    "each_migration_fixture_repeated": true,
+    "BakeAgent_compile_without_ASM": "FAIL as expected",
+    "BakeAgent_compile_with_ASM": "PASS",
+    "OpenAL_xros_SDK27_minimum26": "PASS",
+    "OpenAL_xrsimulator_SDK27_minimum26": "PASS",
+    "OpenAL_RTKIT_cache_value": "OFF on both targets",
+    "host_DBus_present_for_OpenAL_test": false
+  },
+  "graphics_headers": {
+    "status": "PASS",
+    "real_network_install": true,
+    "installed_files": 120,
+    "cached_repeat_preserved_bytes_and_mtimes": true,
+    "Python39_fixture_cases": 19,
+    "integrity": "SHA256 of exact sorted path,length,fileSHA256 inventory; Gitiles tar metadata varies on each request",
+    "ANGLE_content_sha256": "a06fb0b74c48f275a9705a10fdc78ad30b91a92a0ad85f36750e64b517c0018c",
+    "Vulkan_content_sha256": "4e2a7e2e74420f6a8923a6ae21dedddfb3106a483e423208117790ff13b9d62d"
+  },
+  "not_established": [
+    "A complete fresh public-checkout bake and native-image build",
+    "New lower-HUD appearance on headset",
+    "Launcher-close audio physical acceptance",
+    "Classification of reporter49transformationfailures without their log"
+  ],
+  "no_device_install_or_launch": true,
+  "final_independent_Opus55_review": "CLEAR; header helper covered by separate root review, Python39 fixtures and actual network test",
+  "documentation_checks": {
+    "local_links_anchors": 41,
+    "bash_blocks": 16,
+    "modified_shell_scripts": 3
+  }
+}

@@ -1,6 +1,6 @@
-# Building AVPcraft (Build 71 baseline with lower HUD)
+# Building AVPcraft (Build 72 host with lower HUD)
 
-The baseline host is AVPcraft Build 71, which was used on a physical Vision Pro. The current source adds the lower-HUD patch and an independent profile migration. The patched Vivecraft Fabric jar has been built from the pinned source and checked locally. The full native-image/relink/host installation sequence has not been rerun for this update; the tested build 71 reused an older compiled client. See [AVP_INSTALL.md](AVP_INSTALL.md) for signing, installation, and the prepared-input host build.
+The host source matches AVPcraft Build 72's audio and turning changes, with the newer lower-HUD patch and independent profile migration preserved. Build 72 is verified installed on a physical Vision Pro and uses the same native game payload as Build 71. The patched Vivecraft Fabric jar has been built from the pinned source and checked locally. The complete native-image/relink/host installation sequence has not been repeated for the newer HUD or the clean-build repairs. See [build recovery](docs/BUILD-RECOVERY.md) for the verified scope, and [AVP_INSTALL.md](AVP_INSTALL.md) for signing and installation.
 
 Build the visionOS app from this repo plus the downloads below. The Minecraft client, the mod jars, and `libminecraft.dylib` are build outputs. They are not in git. GitHub rejects files over 100 MB, and `libminecraft.dylib` is about 202 MB of compiled client.
 
@@ -27,7 +27,7 @@ export KLEPTON_BUILD_VERSION=73 KLEPTON_LOW_LATENCY=0
 export KLEPTON_BUNDLE_ID="com.yourname.avpcraft"
 ```
 
-The source retains the build 71 baseline plus the HUD changes listed in SOURCE-SNAPSHOT.json. Use a new build number for this rebuild; 73 above is an example. Rebuild the game client: the old compiled image cannot consume the new HUD pitch setting. Keep build receipts and test the result on your headset.
+The source retains the Build 72 host plus the HUD changes listed in SOURCE-SNAPSHOT.json. Use a new build number for this rebuild; 73 above is an example. Rebuild the game client: the old compiled image cannot consume the new HUD pitch setting. Keep build receipts and test the result on your headset.
 
 ## Machine
 
@@ -53,7 +53,7 @@ work/native-image/graalvm/graalvm-jdk-25.0.4+7.1
 Download:
 
 ```
-https://download.oracle.com/graalvm/25/latest/graalvm-jdk-25_macos-aarch64_bin.tar.gz
+https://download.oracle.com/graalvm/25/archive/graalvm-jdk-25.0.4_macos-aarch64_bin.tar.gz
 ```
 
 Confirm `Contents/Home/release` reads `25.0.4`. The JDK is under the [GraalVM Free Terms and Conditions](https://www.oracle.com/downloads/licenses/graal-free-license.html). Do not commit it.
@@ -64,7 +64,15 @@ Point `JAVA_HOME` at `.../graalvm-jdk-25.0.4+7.1/Contents/Home` for the Vivecraf
 
 ## 2. ANGLE
 
-Either the repo already contains the retargeted frameworks at `vendor/out/xros` and `vendor/out/xrsim` (about 12 MB each), or you build them:
+The repo contains the retargeted frameworks at `vendor/out/xros` and `vendor/out/xrsim` (about 12 MB each). Fetch the matching headers needed by the native dependency builds, even when using those frameworks:
+
+```sh
+python3 work/natives/scripts/fetch-graphics-headers.py
+```
+
+This verifies small, pinned ANGLE and Vulkan header archives and populates `vendor/include` and `vendor/third_party/vulkan-headers/src/include`. Existing differing files are left untouched and reported as conflicts. No graphics framework is rebuilt by this step.
+
+To build the frameworks themselves instead:
 
 ```
 make angle-fetch
@@ -144,7 +152,7 @@ work/native-image/scripts/t2/build-lwjgl341-natives-xros.sh
 work/native-image/scripts/t2/build-klglfw341.sh
 ```
 
-OpenAL Soft 1.25.2 is required **before** the visionOS LWJGL build: that build copies `work/natives/openal/<sdk>/libopenal.dylib` into `work/natives/build/lwjgl-3.4.1/<sdk>/`. The added OpenAL helper downloads a hash-pinned upstream archive and builds CoreAudio dylibs. It has received source/syntax review; it has not been run as part of this source-publication audit, and is not claimed to reproduce the tested binary byte for byte.
+OpenAL Soft 1.25.2 is required **before** the visionOS LWJGL build: that build copies `work/natives/openal/<sdk>/libopenal.dylib` into `work/natives/build/lwjgl-3.4.1/<sdk>/`. The helper downloads a hash-pinned upstream archive and builds CoreAudio dylibs with RTKit disabled. Both device and simulator builds passed against SDK 27 during the build-recovery check. This does not establish byte-for-byte identity with the installed app's older OpenAL library.
 
 `fetch-lwjgl341.sh` checks source commit `b800ccffab14396fc529ddb6c931b7c5c5226763`. The LWJGL macOS binaries support the host JVM bake. The headset needs the separately built xros libraries. FreeType is invoked by the visionOS LWJGL builder.
 
@@ -188,27 +196,82 @@ MCV=26.2 scripts/mkcp.sh
 MCV=26.2 scripts/mkcp-fabric.sh
 ```
 
-Build the bake agent (default package, `Premain-Class: BakeAgent`):
+Build the bake agent (default package, `Premain-Class: BakeAgent`). ASM is already
+in the generated Fabric classpath; it is required when compiling this source:
 
-```
-mkdir -p bakeagent /tmp/bakeagent-classes
-javac -d /tmp/bakeagent-classes scripts/bake-src/BakeAgent.java
-jar cfm bakeagent/bakeagent.jar scripts/bake-src/MANIFEST.MF -C /tmp/bakeagent-classes .
-```
-
-There is no wrapper script. Those three lines are the build.
-
-Run Knot with the agent. This is the bake that produced the image. It needs a display and takes a few minutes. `-Dvivecraft.openxr.mobile=true` selects the mobile OpenGL ES path.
-
-```
-MCV=26.2 GAMEARGS="--quickPlaySingleplayer world" \
-  scripts/runfabric.sh 170 \
-  -javaagent:"$PWD/bakeagent/bakeagent.jar=$PWD/inst-26.2/bake" \
-  -Dbake.fullAt=100 \
-  -Dvivecraft.openxr.mobile=true
+```bash
+mkdir -p bakeagent
+AVP_BAKE_CLASSES=$(mktemp -d "${TMPDIR:-/tmp}/avpcraft-bakeagent.XXXXXX")
+javac -cp "$(cat inst-26.2/fabric.cp)" -d "$AVP_BAKE_CLASSES" scripts/bake-src/BakeAgent.java
+jar cfm bakeagent/bakeagent.jar scripts/bake-src/MANIFEST.MF -C "$AVP_BAKE_CLASSES" .
 ```
 
-`inst.sh` names the instance directory from `MCV`. With the default, that argument is `inst-26.2/bake` when the commands run from `work/native-image`.
+The fresh temporary directory prevents classes from an earlier build entering the
+agent jar. Keep it until the jar has been checked; it contains only this compile's
+output.
+
+A fresh checkout has no world. The optional copies in `mkcp-fabric.sh` do not
+create one. First inspect `inst-26.2/fgamedir/saves/world`: if it already contains a
+world you care about, back it up and use a separate clean checkout for this bake.
+Do not overwrite, delete or bake against your only copy of a player world.
+
+Use the following foreground helper for both setup and capture. Run these commands
+in Bash, from `work/native-image`, in the same terminal as the Java setup above.
+Unlike `runfabric.sh`, this helper has no timed process kill. That older script's
+watchdog starts at JVM launch and can terminate the client during world creation
+or while saving; its example timeout is not a completion check.
+
+```bash
+AVP_BAKE_ROOT="$PWD"
+AVP_BAKE_GAMEARGS=()
+run_bake_client() (
+  cd "$AVP_BAKE_ROOT/inst-26.2/fgamedir" || exit
+  "$JAVA_HOME/bin/java" -XstartOnFirstThread -Xmx3G "$@" \
+    -cp "$(cat "$AVP_BAKE_ROOT/inst-26.2/fabric.cp")" \
+    net.fabricmc.loader.impl.launch.knot.KnotClient \
+    --accessToken 0 --username spike \
+    --uuid 00000000-0000-0000-0000-000000000000 --version 26.2 \
+    --gameDir "$AVP_BAKE_ROOT/inst-26.2/fgamedir" \
+    --assetsDir "$AVP_BAKE_ROOT/inst-26.2/assets" \
+    --assetIndex "$(cat "$AVP_BAKE_ROOT/inst-26.2/asset-index-id.txt")" \
+    "${AVP_BAKE_GAMEARGS[@]}"
+)
+run_bake_client -Dvivecraft.openxr.mobile=true
+```
+
+At the title screen choose **Singleplayer**, create a disposable world named
+`world`, and wait until terrain has loaded. Use **Save and Quit**, then quit the
+client normally. Confirm that the actual save folder is
+`inst-26.2/fgamedir/saves/world` and contains `level.dat`; a display name alone is
+not sufficient if Minecraft chose a different folder name.
+
+Now capture the prepared world. The command refuses to reuse an existing bake
+output. Preserve any previous `inst-26.2/bake` under a separate, unused backup
+name before deliberately making a new capture.
+
+```bash
+if [ ! -f inst-26.2/fgamedir/saves/world/level.dat ]; then
+  echo 'Create and save the disposable world first.' >&2
+elif [ -e inst-26.2/bake ] || [ -L inst-26.2/bake ]; then
+  echo 'Preserve the existing inst-26.2/bake before a fresh capture.' >&2
+else
+  AVP_BAKE_GAMEARGS=(--quickPlaySingleplayer world)
+  run_bake_client \
+    "-javaagent:$AVP_BAKE_ROOT/bakeagent/bakeagent.jar=$AVP_BAKE_ROOT/inst-26.2/bake" \
+    -Dbake.fullAt=300 \
+    -Dvivecraft.openxr.mobile=true
+fi
+```
+
+`bake.fullAt=300` starts the full pass five minutes after JVM launch; it is a
+starting allowance, not proof that loading is complete. Keep the world open until
+the terminal prints the final `[BAKE] defined-at-runtime=...` summary and
+`inst-26.2/bake/summary.txt` exists. If the world has not loaded before the full pass
+starts, preserve that output and repeat with a larger delay. Read
+`fullpass-failures.txt` and investigate failures; elapsed time or a copied class
+count alone does not establish a usable capture. After the pass completes, use
+**Save and Quit**, then quit normally before pruning. No timer closes the game for
+you. `-Dvivecraft.openxr.mobile=true` selects the mobile OpenGL ES path.
 
 Prune classes the bake copied unchanged from library jars. Keep classes a mixin actually changed.
 
@@ -219,7 +282,7 @@ python3 -I scripts/prune_overlay.py inst-26.2/bake/classes \
 
 Then delete these five LWJGL 3.4.1 multi-release classes if they are still in the overlay. They would shadow the natives built in step 5: `org/lwjgl/VersionImpl`, `org/lwjgl/system/CheckIntrinsics`, `org/lwjgl/system/MemoryUtilTunables`, `org/lwjgl/system/MultiReleaseTextDecoding`, `org/lwjgl/system/StackWalkUtil`.
 
-The bake that produced this image recorded this in `inst-26.2/bake/PRUNE-NOTE.txt` (a build product, not committed):
+The original baseline bake recorded the following in `inst-26.2/bake/PRUNE-NOTE.txt` (a build product, not committed). These counts are historical evidence, not acceptance criteria for your new capture:
 
 ```
 prune_overlay.py (30752 identical lib copies removed, 17 kept) + the 5 LWJGL 3.4.1 multi-release copies removed by hand

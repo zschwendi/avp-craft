@@ -27,6 +27,8 @@ set(ALSOFT_REQUIRE_COREAUDIO ON CACHE BOOL "" FORCE)
 set(ALSOFT_BACKEND_COREAUDIO ON CACHE BOOL "" FORCE)
 set(ALSOFT_OSX_FRAMEWORK OFF CACHE BOOL "" FORCE)
 set(ALSOFT_WERROR ON CACHE BOOL "" FORCE)
+# RTKit is a Linux D-Bus service; keep a host (e.g. Homebrew) D-Bus from being found and linked into visionOS.
+set(ALSOFT_RTKIT OFF CACHE BOOL "" FORCE)
 # Static try-compiles can otherwise falsely report that libatomic exists.
 set(HAVE_LIBATOMIC OFF CACHE BOOL "" FORCE)
 foreach(backend PIPEWIRE PULSEAUDIO ALSA OSS SOLARIS SNDIO WASAPI DSOUND WINMM JACK OBOE OPENSL PORTAUDIO SDL3 SDL2 WAVE)

@@ -98,6 +98,30 @@ enum MCAudioRecoveryPolicy {
     }
 }
 
+/// Category options per target, pure so CPU fixtures can pin them.
+///
+/// The native (Minecraft) target adds `.mixWithOthers` — a candidate fix for the
+/// physically observed failure, not a tuning choice. Build71 on device logged a
+/// SYSTEM deactivation with an interruption context and reason Default ("another
+/// session was activated") while the immersive world kept rendering. Its
+/// non-mixable session was taken by another app's activation, and since that
+/// app kept its audio, no shouldResume ever came. A mixable session is not the
+/// one taken for ordinary playback elsewhere, and it also stops the game from
+/// silencing the user's own music at launch. Calls/Siri still interrupt, and
+/// KleptonAudio still yields to them (see MCAudioRecoveryPolicy).
+///
+/// `.allowBluetoothA2DP` stays whenever the microphone is declared:
+/// `.playAndRecord` is kept for voice chat, and the category alone records
+/// nothing. Non-native targets get exactly their previous options: `[]` for
+/// `.playback`, `[.allowBluetoothA2DP]` for `.playAndRecord`.
+enum MCAudioCategoryPolicy {
+    static func options(nativeGuest: Bool, microphoneDeclared: Bool) -> AVAudioSession.CategoryOptions {
+        var options: AVAudioSession.CategoryOptions = microphoneDeclared ? [.allowBluetoothA2DP] : []
+        if nativeGuest { options.insert(.mixWithOthers) }
+        return options
+    }
+}
+
 /// Pure scheduling state used by the real session controller and CPU fixtures.
 /// A successful device operation cancels its chain. Automatic scene handoffs
 /// get at most two activation attempts until a real scene/layer transition.
@@ -262,7 +286,7 @@ enum KleptonAudio {
             controlOpenAL(Int32(MC_AUDIO_PAUSE))
             kl_audio_set_silenced(1)
             do { try session.setActive(false) }
-            catch { NSLog("[mc-audio] session deactivate failed") }
+            catch { NSLog("[mc-audio] session deactivate failed"); logFailure("session deactivate", error) }
         } else {
             requestRecovery(.returned)
         }
@@ -313,6 +337,7 @@ enum KleptonAudio {
             try Self.directStereo(session)
         } catch {
             NSLog("[mc-audio] session recovery failed (%@)", event.rawValue)
+            logFailure("session recovery (\(event.rawValue))", error)
             return .retry // never start a device against an inactive session
         }
         interrupted = false
@@ -374,11 +399,13 @@ enum KleptonAudio {
             try Self.directStereo(session)
         } catch {
             NSLog("[au] AVAudioSession setup failed: \(error) — expect silence")
+            logFailure("session setup", error)
         }
 
         NSLog("[au] session active: \(session.sampleRate) Hz, "
               + "\(session.outputNumberOfChannels) ch out, "
               + "IO buffer \(String(format: "%.1f", session.ioBufferDuration * 1000)) ms")
+        logSessionState("start")
         kl_audio_session_ready(session.sampleRate)
 
         if #available(visionOS 27.0, *) {
@@ -394,11 +421,13 @@ enum KleptonAudio {
                     || (context?.source == .system && context?.interruptionContext == nil)
                 NSLog("[mc-audio] session inactive source=%ld reason=%ld",
                       context?.source.rawValue ?? -1, reason.map { Int($0.rawValue) } ?? -1)
+                logSessionState("inactive")
                 becameInactive(handoffEligible: handoff)
             }
             observe(AVAudioSession.resumptionRecommendationNotification) { note in
                 let context = note.userInfo?[AVAudioSession.resumptionContextKey]
                     as? AVAudioSession.ResumptionContext
+                logSessionState("resumption")
                 guard context?.recommendation == .shouldResume else {
                     becameInactive(handoffEligible: false)
                     return
@@ -412,6 +441,8 @@ enum KleptonAudio {
         } else {
             observe(AVAudioSession.interruptionNotification) { note in
                 let raw = note.userInfo?[AVAudioSessionInterruptionTypeKey] as? UInt ?? 0
+                logSessionState(AVAudioSession.InterruptionType(rawValue: raw) == .began
+                                ? "interruption-began" : "interruption-ended")
                 if AVAudioSession.InterruptionType(rawValue: raw) == .began {
                     let reason = note.userInfo?[AVAudioSessionInterruptionReasonKey] as? UInt
                     becameInactive(handoffEligible: reason == AVAudioSession.InterruptionReason.sceneWasBackgrounded.rawValue)
@@ -481,12 +512,21 @@ enum KleptonAudio {
     /// no receiver to avoid on this device. `.allowBluetoothA2DP` keeps AirPods
     /// on the high-quality route. Record permission is asked for here, at boot
     /// in the flat window, rather than by the first capture inside immersion.
+    ///
+    /// The native (Minecraft) target's session is MIXABLE — see
+    /// MCAudioCategoryPolicy. Every other target keeps exactly the options it
+    /// had.
     private static func setCategory(_ session: AVAudioSession) throws {
-        guard Bundle.main.object(forInfoDictionaryKey: "NSMicrophoneUsageDescription") != nil else {
-            try session.setCategory(.playback, mode: .default)
+        let microphone = Bundle.main.object(forInfoDictionaryKey: "NSMicrophoneUsageDescription") != nil
+        let options = MCAudioCategoryPolicy.options(nativeGuest: kl_app_target_is_native() != 0,
+                                                    microphoneDeclared: microphone)
+        guard microphone else {
+            try session.setCategory(.playback, mode: .default, options: options)
+            NSLog("[mc-audio] category playback options=0x%lx", options.rawValue)
             return
         }
-        try session.setCategory(.playAndRecord, mode: .default, options: [.allowBluetoothA2DP])
+        try session.setCategory(.playAndRecord, mode: .default, options: options)
+        NSLog("[mc-audio] category playAndRecord options=0x%lx", options.rawValue)
         let perm = AVAudioApplication.shared.recordPermission
         NSLog("[au] category playAndRecord (microphone declared), record permission "
               + (perm == .granted ? "granted" : perm == .denied ? "DENIED" : "undetermined"))
@@ -535,6 +575,22 @@ enum KleptonAudio {
         try session.setPreferredOutputNumberOfChannels(2)
         try session.setIntendedSpatialExperience(.bypassed)
         NSLog("[au] direct stereo: system spatialisation bypassed, 2 ch preferred")
+    }
+
+    /// What the next device log needs to tell the interrupter classes apart:
+    /// our own options, and the system's two public hints about whether other
+    /// audio is playing. Booleans and a bit mask only — no app identity.
+    private static func logSessionState(_ label: String) {
+        let s = AVAudioSession.sharedInstance()
+        NSLog("[mc-audio] session %@ options=0x%lx otherAudio=%d secondaryHint=%d",
+              label, s.categoryOptions.rawValue,
+              s.isOtherAudioPlaying ? 1 : 0, s.secondaryAudioShouldBeSilencedHint ? 1 : 0)
+    }
+
+    /// An activation or category failure, by NSError domain and code only.
+    private static func logFailure(_ label: String, _ error: Error) {
+        let e = error as NSError
+        NSLog("[mc-audio] %@ failed domain=%@ code=%ld", label, e.domain, e.code)
     }
 
     private static func observe(_ name: Notification.Name,

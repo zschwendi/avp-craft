@@ -102,6 +102,7 @@ launcher menu items.
 | Pause | Circle or Options |
 
 In Immersive VR, Vivecraft provides motion controls for the Sense controllers.
+The launcher's **Turning** setting offers **Smooth** or **45° Snap**.
 
 ## Saves and sign-in
 
@@ -133,13 +134,14 @@ There's no built-in Bedrock crossplay.
 
 ## Current status
 
-The source is based on **AVPcraft 0.4.0 / build 71**, which is the baseline
-tested on a physical Vision Pro. The source also moves the head-locked HUD
+The host source is based on **AVPcraft 0.4.0 / build 72**, verified installed
+on a physical Vision Pro. It includes that build's audio policy and Smooth /
+45-degree Snap turning selection. The source also moves the head-locked HUD
 (health, food and hotbar) **15 degrees lower**. To get that change, you must
 rebuild Vivecraft, the native game client *and* the host app. The updated jar
 and its migration checks pass. A new native image and the HUD's look on a
-headset haven't been verified. The separate build 72 audio changes aren't in this
-source. See [HUD placement](docs/HUD-PLACEMENT.md) and
+headset haven't been verified. See [HUD placement](docs/HUD-PLACEMENT.md),
+[build recovery](docs/BUILD-RECOVERY.md) and
 [SOURCE-SNAPSHOT.json](SOURCE-SNAPSHOT.json).
 
 The complete source-to-headset build has not yet been repeated from a clean

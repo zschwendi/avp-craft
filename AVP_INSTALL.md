@@ -2,7 +2,7 @@
 
 **Lower-HUD source update:** the current repo places the head-locked health/food/hotbar 15 degrees lower only after rebuilding the patched Vivecraft jar and native game image. A host build with an older prepared `libminecraft.dylib` will retain the old game-side placement. Follow [BUILDING.md](BUILDING.md) and [HUD placement](docs/HUD-PLACEMENT.md) for that rebuild.
 
-This repository contains the AVPcraft Build 71 host source used on a physical Vision Pro. It is a developer source release. The full source-to-headset build has not been rerun from a clean checkout for this publication.
+This repository contains the AVPcraft Build 72 host changes, verified against the source of the installed headset build, plus the newer lower-HUD work. It is a developer source release. The full source-to-headset build has not been rerun from a clean checkout for this publication. See [build recovery](docs/BUILD-RECOVERY.md) for the repaired build blockers and validation.
 
 ## What you need
 
@@ -15,7 +15,7 @@ This repository contains the AVPcraft Build 71 host source used on a physical Vi
 
 Follow [BUILDING.md](BUILDING.md) to build the patched Vivecraft jar, download the matching Minecraft 26.2 assets/libraries, bake the classpath, compile the native image, and build the native dependencies. Source alone is not enough to run `xcodebuild`: the project embeds generated native libraries and a staged game payload. Minecraft jars/assets and the compiled client are not committed.
 
-The tested Build 71 was a host-only update that reused an existing compiled client. The command below is the same kind of host reconstruction **only if those matching inputs already exist**. A new native-image build must be tested separately; it is not automatically the tested binary.
+Build 72 was a host update that reused Build 71's compiled game client. The command below is the same kind of host reconstruction **only if those matching inputs already exist**. A new native-image build must be tested separately; it is not automatically the installed binary.
 
 ## Your signing settings
 
@@ -75,7 +75,7 @@ The app is written to `visionos/build/dd-device-vivecraft/Build/Products/Release
 
 ## Direct host rebuild with existing frameworks and payload inputs
 
-For developers who already have the matching `build/Klepton.xcframework`, `visionos/Frameworks` and game/classpath inputs, this is the Build 71 host recipe with private signing values removed:
+For developers who already have the matching `build/Klepton.xcframework`, `visionos/Frameworks` and game/classpath inputs, this is the Build 72 host recipe with private signing values removed:
 
 ```bash
 cd "$ROOT/visionos"
@@ -83,19 +83,19 @@ export XROS_PLATFORMS=xros KLEPTON_BUILD_MODE=device
 python3 gen_xcodeproj.py
 xcodebuild -project avp-craft.xcodeproj -scheme AVPcraft \
   -configuration Release -destination 'generic/platform=visionOS' \
-  -derivedDataPath build/dd-device-avpcraft71 -jobs 2 \
+  -derivedDataPath build/dd-device-avpcraft -jobs 2 \
   -allowProvisioningUpdates KL_BUNDLE_PAYLOAD=1 KLEPTON_TARGET=vivecraft \
   MCV=26.2 INFOPLIST_KEY_CFBundleDisplayName=AVPcraft build
 ```
 
-This bypasses rebuilding/wrapping dependencies. Do not use it with stale frameworks. After a successful build, install the resulting `build/dd-device-avpcraft71/Build/Products/Release-xros/AVPcraft.app` with Xcode or `xcrun devicectl device install app --device "$KLEPTON_DEVICE" <app-path>`. The `run.sh` route above handles additional path scrubbing, signature verification and staging.
+This bypasses rebuilding/wrapping dependencies. Do not use it with stale frameworks. After a successful build, install the resulting `build/dd-device-avpcraft/Build/Products/Release-xros/AVPcraft.app` with Xcode or `xcrun devicectl device install app --device "$KLEPTON_DEVICE" <app-path>`. The `run.sh` route above handles additional path scrubbing, signature verification and staging.
 
 ## Failure checks for a human or coding agent
 
 - Missing `.dylib`, `.xcframework`, classpath or asset-index files: complete the named dependency step in BUILDING.md. Do not relabel macOS libraries as visionOS libraries.
 - Signing/profile failure: check your team, unique bundle id and required memory capabilities. `KLEPTON_LOW_LATENCY=0` excludes the optional low-latency entitlement. Dropping memory entitlements can reduce the headroom needed to load the game and is not the tested setup.
 - Device locked or unavailable: unlock/wear it, confirm pairing and retry the install. A signed local app does not prove that it installed.
-- No audio after closing the launcher: this is a known limitation of the tested Build 71 host. Build 72 changes are not included in this snapshot.
+- No audio after closing the launcher: keep the launcher open. Build 72's audio policy changes are now included, but this specific behavior still needs headset verification.
 - Report build, signature, install, launch and actual gameplay separately. Verify window/immersive transitions, audio, saves and your input devices on the headset before calling a personal rebuild successful.
 
 An agent may prepare dependencies and inspect errors, but signing-account prompts, headset trust/Developer Mode and gameplay acceptance still require the owner's participation. Do not claim those steps occurred from build logs alone.

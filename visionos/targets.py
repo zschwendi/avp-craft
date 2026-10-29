@@ -96,6 +96,16 @@ TARGETS = {
         # kl_openxr; Vivecraft draws its own hands then.
         "immersion": "full",
         "own_hands": True,
+        # Background-audio ELIGIBILITY (gen_xcodeproj.py adds UIBackgroundModes
+        # "audio" to this row's generated Info.plist; native rows only). Closing
+        # the launcher window takes the app phase to background while the
+        # immersive world keeps playing, and playback with no foreground window
+        # needs the declaration. This is support, not the measured cause: the
+        # physical Build71 log showed a non-mixable session interrupted by
+        # another app (KleptonAudio.swift, mixWithOthers). The declaration
+        # permits playback; it does not keep audio on — Crown/Home still pause
+        # and deactivate the session.
+        "background_audio": True,
         # ltw must see an honest ES 3.0 (work/natives/ltw/REPORT.md risk 8).
         # KL_XR_EYE_MIRROR=0: the guest's swapchain images are re-pointed at
         # the compositor's MTLTextures instead of copied every frame (the JKXR
@@ -275,6 +285,9 @@ def resolve(name):
         t["libs"] = libs_for(t["srcdir"])
     t.setdefault("immersion", IMMERSION_DEFAULT)
     t.setdefault("own_hands", False)
+    # Off unless a row asks; gen_xcodeproj.py refuses it on a non-native row
+    # rather than silently dropping it.
+    t.setdefault("background_audio", False)
     # Empty rather than absent, so every consumer sees the same keys whether or
     # not the row bothered to state them — a shell that evals this table cannot
     # tell a missing assignment from an empty one, and `set -u` can.
