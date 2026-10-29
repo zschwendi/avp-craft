@@ -26,7 +26,7 @@ export ROOT="$PWD"
 export MCV=26.2 KLEPTON_TARGET=vivecraft
 export KLEPTON_PRODUCT_NAME=AVPcraft KLEPTON_PROJECT_NAME=avp-craft
 export KLEPTON_DISPLAY_NAME=AVPcraft
-export KLEPTON_MARKETING_VERSION=0.4.0 KLEPTON_BUILD_VERSION=71
+export KLEPTON_MARKETING_VERSION=0.4.0 KLEPTON_BUILD_VERSION=73
 export KLEPTON_TEAM="YOUR_APPLE_TEAM_ID"
 export KLEPTON_BUNDLE_ID="com.yourname.avpcraft"
 export KLEPTON_LOW_LATENCY=0
@@ -35,6 +35,8 @@ export KL_BUNDLE_PAYLOAD=1 KL_ANGLE_PREBUILT=1
 
 Use your own unique bundle identifier. Do not use the developer's default identifier with a different team. Keep your identifier stable: a different identifier creates another app and another save container. Automatic signing is enabled; do not also force a `CODE_SIGN_IDENTITY` value.
 
+`73` is an example build number for a new build of the current source, not a published release. Use a number higher than your previous installation and keep the same signing team and bundle identifier when updating it.
+
 ## Build and install a prepared checkout
 
 List devices, then explicitly select the intended Vision Pro identifier:
@@ -42,20 +44,25 @@ List devices, then explicitly select the intended Vision Pro identifier:
 ```bash
 xcrun devicectl list devices
 export KLEPTON_DEVICE="YOUR_VISION_PRO_IDENTIFIER"
-cd "$ROOT/visionos"
-KL_NO_LAUNCH=1 ./run.sh device
 ```
 
-This builds the native host runtime, wraps the already-built native libraries and ANGLE frameworks, generates `avp-craft.xcodeproj`, builds/signs the `AVPcraft` scheme, installs on the selected headset, and stages the payload. It stops before launch. It does **not** create the Minecraft native image for you. Open AVPcraft from the headset's Home View, sign in, and verify windowed gameplay before immersive mode and controller input.
-
-For an existing install, back up its worlds before updating or changing the Minecraft version:
+For an existing installation, save and quit your world, then back up its worlds **before updating or changing the Minecraft version**. Skip this backup step on a first installation:
 
 ```bash
 cd "$ROOT/visionos"
 ./stage_native.sh --backup-saves "$KLEPTON_DEVICE"
 ```
 
-Run that backup before the build/install command, with the bundle id of the install whose saves you are protecting. Do not uninstall the app as a troubleshooting step without preserving its data.
+Use the bundle id of the install whose saves you are protecting. Do not uninstall the app as a troubleshooting step without preserving its data.
+
+Build and install:
+
+```bash
+cd "$ROOT/visionos"
+KL_NO_LAUNCH=1 ./run.sh device
+```
+
+This builds the native host runtime, wraps the already-built native libraries and ANGLE frameworks, generates `avp-craft.xcodeproj`, builds/signs the `AVPcraft` scheme, installs on the selected headset, and stages the payload. It stops before launch. It does **not** create the Minecraft native image for you. Open AVPcraft from the headset's Home View and follow [sign-in and first play](README.md#sign-in-and-first-play). Verify windowed gameplay before immersive mode and controller input.
 
 To produce your own local signed app/IPA without looking up or installing on any headset:
 
