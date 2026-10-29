@@ -1,0 +1,29 @@
+{
+ "resources": {
+  "includes": [
+   {
+    "pattern": "assets/.*"
+   },
+   {
+    "pattern": "data/.*"
+   },
+   {
+    "pattern": "version\\.json"
+   },
+   {
+    "pattern": "pack\\.png"
+   },
+   {
+    "pattern": "log4j2\\.xml"
+   },
+   {
+    "pattern": "flightrecorder-config\\.jfc"
+   }
+  ]
+ },
+ "bundles": [
+  {
+   "name": "net.fabricmc.loader.Messages"
+  }
+ ]
+}

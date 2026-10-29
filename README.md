@@ -1,68 +1,89 @@
 # AVPcraft
 
-Native Apple Metal rendering for Minecraft: Java Edition 26.3, with shader lighting and real curved edges on selected terrain blocks and first-person arms. This is an experimental community fork, not a Mojang product.
+**Minecraft: Java Edition on Apple Vision Pro, with windowed play, immersive VR, and PSVR2 Sense motion controls.**
 
-[Download the Prism import pack](https://github.com/zschwendi/avp-craft/releases/download/v0.1.0/minecraft-metal-mac-v0.1.0.mrpack) · [Release notes](https://github.com/zschwendi/avp-craft/releases/tag/v0.1.0)
+The game runs locally on the headset. No PC streaming, no JIT. Minecraft and its mods are compiled ahead of time into native code.
 
-AVPcraft was previously named Minecraft Metal Mac. The published Mac pack keeps its existing `minecraft-metal-mac-v0.1.0.mrpack` filename; existing Prism instances continue to work.
+AVPcraft is a work-in-progress fork of [rebelancap/vivecraft-visionos](https://github.com/rebelancap/vivecraft-visionos), built on [Vivecraft](https://github.com/Vivecraft/VivecraftMod) and [Klepton](https://github.com/shinyquagsire23/Klepton). Their work makes this possible. This fork adds the AVPcraft launcher and changes to presentation, input, audio, and account handling.
+
+## What you can do
+
+- Play Minecraft Java Edition **26.2** in a window on Vision Pro.
+- Choose **Immersive VR** to play inside the world with stereoscopic rendering and head tracking.
+- Use **PSVR2 Sense controllers** for immersive movement and interactions.
+- Sign in with a Microsoft account that owns Minecraft: Java Edition, choose a world, or join a server.
+
+Choose **Windowed** or **Immersive VR** in the launcher before starting the game. Windowed is the default. Changing modes during a running session is not supported in this version.
+
+## Current version
+
+This is the **AVPcraft 0.4.0 / build 71 host-source snapshot** used for recent headset testing. [SOURCE-SNAPSHOT.json](SOURCE-SNAPSHOT.json) records its upstream revision and verified source hashes. Newer, untested build 72 changes are not included.
+
+This repository now contains the Vision Pro app source and build tools. The old **v0.1.0** release and its `.mrpack` belong to the earlier **Mac Metal renderer project**. They are not an AVPcraft installer.
+
+**There is no ready-to-install AVPcraft IPA published here yet. Installation currently means building and signing the app yourself.** The compiled Minecraft client, game assets, account data, and saves are not included in this repository.
 
 ## Install
 
-1. Install the Apple Silicon build of [Prism Launcher](https://prismlauncher.org/download/).
-2. Download the `.mrpack` from [Releases](https://github.com/zschwendi/avp-craft/releases). In Prism, choose **Add Instance → Import** and select it. Review the three project mods when Prism prompts about GitHub downloads.
-3. In **Settings → Java**, enable **Auto-detect Java version** and **Auto-download Mojang Java**. Prism then obtains ARM64 Java 25 and the pinned Minecraft/Fabric/mod dependencies. In the instance's **Edit → Settings → Java**, choose about 4 GB of maximum memory if your machine has enough available RAM. See [Prism's Java setup guide](https://prismlauncher.org/wiki/getting-started/installing-java/).
-4. For the full game, sign into the Microsoft account that owns Minecraft Java and launch. Prism's normal **Play Demo** option can preview graphics without an entitlement; the demo's normal restrictions apply.
+Start with **[AVP_INSTALL.md](AVP_INSTALL.md)**. It explains the installation route for a person or an agent helping them. **[BUILDING.md](BUILDING.md)** contains the full dependency and native-client build recipe.
 
-On macOS, you can also open the import directly using Prism's [documented command-line interface](https://prismlauncher.org/wiki/getting-started/command-line-interface/):
+You will need:
 
-```sh
-open -n -a "/Applications/Prism Launcher.app" --args --import "https://github.com/zschwendi/avp-craft/releases/download/v0.1.0/minecraft-metal-mac-v0.1.0.mrpack"
-```
+- An Apple Vision Pro running visionOS 26 or later.
+- A Microsoft account that owns **Minecraft: Java Edition**.
+- An Apple Silicon Mac with **Xcode 27 and the visionOS SDK**.
+- Your own Apple signing team and a paired headset with Developer Mode enabled.
+- The build tools, memory, and disk space listed in the build guide. Compiling the native Minecraft client is a substantial build.
 
-Use a fresh imported instance. This renderer replaces other `mcopt-metal` variants; installing several variants together produces duplicate mod IDs. The pack starts with vanilla textures, Balanced lighting, 1080p output, 12-chunk render distance, 6-chunk simulation distance and a 60 FPS cap. You can tune these in Minecraft or `config/mcopt.properties`.
+The process is:
 
-Minecraft's trial can demonstrate local graphics, but Mojang disables online-server joining in [demo mode](https://www.minecraft.net/en-us/free-trial). Prism's Microsoft-account flow does not grant game ownership. Check an existing account's entitlement first. An authenticated Java 26.3 client can join ordinary compatible Java servers; other players do not need these visual mods. Bedrock crossplay requires a separate compatible Java-server bridge. The [Prism importer](https://github.com/PrismLauncher/PrismLauncher/blob/7d2d3c1ec6fcf8255ebacd02d9f792688575dfb4/launcher/modplatform/modrinth/ModrinthInstanceCreationTask.cpp) downloads release files and verifies their hashes using the [MRPACK format](https://support.modrinth.com/en/articles/8802351-modrinth-modpack-format-mrpack).
-
-## What this adds
-
-- Direct Metal lighting, shadows, volumetric clouds and reflective water from the upstream renderer.
-- Neighbor-aware quarter-circle terrain edges and spherical corners, with selection outlines generated from the same mesh.
-- Curved first-person arm and sleeve cuboids that retain the existing skin UVs and animations.
-- Optional static LabPBR normal/AO/height-map support when a separately obtained compatible resource pack supplies the data. Vanilla assets use neutral material fallbacks.
-
-The fork skips faded-out material shading, reuses cached terrain meshes, keeps per-block diagnostics off during normal play, and fixes a presentation-ring case that discarded a fresh frame despite an available slot. These changes have focused regression checks; their effect on gameplay still needs controlled measurements.
-
-These are raster effects and geometry. This project does not claim hardware ray tracing, path tracing, fingers, changed terrain collision or exact mesh picking. Curved terrain remains logically Minecraft blocks. No paid or private resource pack is included.
-
-## Compatibility and evidence
-
-Requires Apple Silicon, macOS 26+, ARM64 Java 25, Minecraft 26.3, Fabric Loader 0.19.5 and Sodium 0.9.3-alpha.1. Intel/Rosetta, Windows and Linux are outside this renderer build's supported scope. Runtime work has focused on an M4 Mac mini; older Apple Silicon models and OS versions need separate testing. The mod's native library is not an independently notarized application. Use Apple's normal trusted-application approval process; this project does not disable Gatekeeper or remove quarantine flags.
-
-The geometry has CPU topology and UV checks. Build checks and native shader/pipeline compilation establish narrower facts than gameplay smoothness. There is no public controlled FPS gain, frame-latency benchmark or 60 FPS guarantee yet. World complexity, output resolution, warm-up and competing apps affect performance. Do not treat upstream benchmarks on other Macs as measurements of this fork.
-
-The v0.1.0 client passed a startup check on an M4 Mac mini running macOS 27: the official demo world loaded through Metal with vanilla textures, a 2×2 neutral-material atlas, curved terrain and arm mesh submission, clouds, shadows and the water scene copy. This verifies startup and initialization; movement quality and older Mac/OS combinations need further testing.
-
-The published pack also imported successfully in Prism 11.1.1 through its normal source-review dialog; all five downloaded mods, version pins and preset files matched the release. The first client session logged a chunk-loading timeout. That remains an unresolved runtime warning, and visual correctness and frame pacing are not established by the startup log.
-
-## Build from source
-
-Install an ARM64 Java 25 JDK, Python 3 and Xcode 26 or newer (macOS SDK 26+). The native library uses a macOS 15 deployment target, but the current mod startup check requires macOS 26 or newer. The newer SDK supplies optional MetalFX APIs. Then:
+1. Clone this repository.
+2. Follow the build guide to fetch the pinned dependencies and build the native Minecraft client. Game files and dependency downloads stay outside Git.
+3. Build the AVPcraft host with your own signing settings and install it on your paired Vision Pro.
+4. Open **AVPcraft**, choose **Add account**, and sign in with the Microsoft account that owns Java Edition.
+5. Select a world and play mode. For immersive play, pair your Sense controllers and choose **Play in VR**.
 
 ```sh
-python3 tools/audit.py
-python3 tools/test_tools.py
-python3 tools/build.py --version 0.1.0
-python3 tools/check_source.py
-python3 tools/release.py --tag v0.1.0
-python3 tools/audit.py --pack dist/minecraft-metal-mac-v0.1.0.mrpack
+git clone https://github.com/zschwendi/avp-craft.git
+cd avp-craft
 ```
 
-The build fetches the verified upstream source commit and pinned compiler dependencies into ignored `.cache/` files. It builds the ARM64 native library and three owned mod jars. Minecraft, LWJGL, Sodium and Fabric dependencies are not embedded in those jars or the import pack. Prism obtains runtime dependencies from their original hosts. The release preparation script creates files locally and does not upload them.
+The account check happens on the headset. Building the app does not replace owning Minecraft. Do not use an upstream SideStore feed expecting it to install this fork; that would install a different app.
 
-Maintainers: see [source integration](docs/MAINTAINERS.md). Builds require the reviewed source snapshot and its hash manifest. Release preparation does not publish files or establish gameplay performance.
+### If an agent is helping you
+
+Have it read [AVP_INSTALL.md](AVP_INSTALL.md), [BUILDING.md](BUILDING.md), and [SOURCE-SNAPSHOT.json](SOURCE-SNAPSHOT.json) before running commands. It should check the required SDKs and dependencies, use your signing identity, and preserve existing worlds and account data. A successful compile is not proof that the game installed or plays correctly: verify the installed app and test it on the headset.
+
+## Known issues
+
+This is still early. It is not a polished release, and bug reports are welcome.
+
+- **Audio can stop when you close the launcher window while playing in immersive mode.** Keep the launcher window open for now.
+- **Windowed and immersive modes are selected before launch.** Seamless switching while keeping the same running world is still being worked on.
+- **Immersive UI placement and controller behavior need more polish.** Some interactions can feel rough, and behavior may differ between worlds or setups.
+
+Found a reproducible bug or have a concrete feature request? Check [existing issues](https://github.com/zschwendi/avp-craft/issues) first, then open one. For bugs, include the app/build version, headset and visionOS version, play mode, controller type, steps to reproduce, and what you expected versus what happened. For features, explain the use case. A short recording or relevant log excerpt helps; remove account details, tokens, and other private information before sharing. Please keep Issues focused on bugs and feature requests.
+
+Fixes and pull requests are welcome too.
+
+## What's in this repository
+
+| Path | Purpose |
+| --- | --- |
+| `visionos/` | AVPcraft launcher, windowed/immersive host, input, account handling, and Xcode project generator |
+| `runtime/` | Klepton runtime and XR integration |
+| `work/native-image/` | Minecraft/mod dependency pins, patches, and ahead-of-time compilation scripts |
+| `work/natives/` | Native dependency build recipes and integration code |
+| `vendor/out/` | Prebuilt ANGLE frameworks and their license notice |
+| `LICENSES/`, `THIRD-PARTY.md` | Component licenses, attribution, and source references |
 
 ## Credits and licenses
 
-Built on [Noah Dunnagan's mcopt](https://github.com/noahdunnagan/mcopt) and [Gael Quintanilla's Metal Shaders fork](https://github.com/GaelQuinta/minecraft-metal-shaders), pinned at commit `e555c0334e0e061d3a84366ef135af2b13bebf51`. Sodium hooks and adapted terrain shader portions retain the PolyForm Shield 1.0.0 license. Other upstream renderer code is Apache 2.0, with the MIT portions identified in its NOTICE. Original terrain code is Apache 2.0; arm code is MIT. See [license inventory](docs/LICENSES.md) and the preserved upstream [NOTICE](LICENSES/upstream/NOTICE).
+- [rebelancap/vivecraft-visionos](https://github.com/rebelancap/vivecraft-visionos) — the Vision Pro port this fork builds on.
+- [Klepton](https://github.com/shinyquagsire23/Klepton) by [shinyquagsire23](https://github.com/shinyquagsire23), via [rebelancap/Klepton](https://github.com/rebelancap/Klepton) — the app/runtime foundation.
+- [Vivecraft](https://github.com/Vivecraft/VivecraftMod), Minecrift, and [QuestCraft](https://github.com/QuestCraftPlusPlus/QuestCraft) — VR support and related controller work.
+- Fabric, Sodium, ANGLE, LWJGL, GraalVM, and the other projects listed in [THIRD-PARTY.md](THIRD-PARTY.md).
 
-Minecraft belongs to Mojang/Microsoft. Sodium, Fabric and Prism are separately maintained projects. Their dependency downloads and licenses remain separate from this fork.
+Components retain their respective licenses; see [LICENSE](LICENSE), [LICENSES/](LICENSES/), [THIRD-PARTY.md](THIRD-PARTY.md), and [UPSTREAM.md](UPSTREAM.md). Minecraft and its assets remain subject to Mojang/Microsoft's terms and are not distributed in this source tree.
+
+AVPcraft is an unofficial project, not affiliated with Mojang, Microsoft, or Apple.

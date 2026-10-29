@@ -1,0 +1,1057 @@
+Third-party notices
+
+This folder is part of the application bundle. It lists software compiled into
+this build and the license text that applies to each component.
+
+In-jar texts are copied verbatim into in-jar/<jar>/. Where a component names a
+license and the jar omits the file, the entry points at one shared text under
+standard/ or upstream/. Those shared texts are the official license texts.
+A copyright line that was not in the jar is not filled in.
+
+Project components
+------------------
+name: Klepton
+license: MIT
+text: project/klepton-MIT.txt
+
+name: ANGLE
+license: BSD
+upstream: https://chromium.googlesource.com/angle/angle
+text: project/angle-BSD.txt
+
+Shared license texts
+---------------------
+standard/GPL-3.0.txt       GNU GPL version 3, https://www.gnu.org/licenses/gpl-3.0.txt
+standard/LGPL-3.0.txt      GNU LGPL version 3, https://www.gnu.org/licenses/lgpl-3.0.txt
+standard/LGPL-2.1.txt      GNU LGPL version 2.1, https://www.gnu.org/licenses/old-licenses/lgpl-2.1.txt
+standard/Apache-2.0.txt    Apache License 2.0, https://www.apache.org/licenses/LICENSE-2.0.txt
+standard/MIT.txt           MIT License (SPDX template; copyright placeholder left as published)
+standard/BSD-3-Clause.txt  BSD 3-Clause (SPDX template; copyright placeholder left as published)
+standard/Unlicense.txt     The Unlicense, https://unlicense.org/UNLICENSE
+
+Components
+----------
+
+Mods and mod libraries
+----------------------
+
+name: BadOptimizations
+id: badoptimizations
+version: 2.4.1
+jar: BadOptimizations.jar
+license: MIT
+authors: Thosea
+upstream: https://github.com/imthosea/BadOptimizations
+text: standard/MIT.txt
+note: The jar omitted the license text and the copyright holder. Upstream states MIT. The standard MIT text is included with the copyright placeholder left blank.
+
+name: Better Biome Blend
+id: betterbiomeblend
+version: 1.4.0
+jar: bbrb.jar
+license: LGPL
+authors: FionaTheMortal
+upstream: https://github.com/FionaTheMortal/better-biome-blend
+text: in-jar/bbrb.jar/LICENSE_Better Biome Blend
+
+name: Cloth Config v26.2
+id: cloth-config
+version: 26.2.155
+jar: Cloth-Config.jar
+license: GNU LGPLv3
+authors: shedaniel
+upstream: https://github.com/shedaniel/ClothConfig
+text: in-jar/Cloth-Config.jar/LICENSE.md
+
+name: EntityCulling
+id: entityculling
+version: 1.11.3
+jar: EntityCulling.jar
+license: tr7zw Protective License
+authors: tr7zw
+upstream: https://github.com/tr7zw/EntityCulling
+text: in-jar/EntityCulling.jar/LICENSE-EntityCulling, in-jar/EntityCulling.jar/LICENSE
+
+name: Fabric API
+id: fabric-api
+version: 0.161.0+26.2
+jar: Fabric-API.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/Fabric-API.jar/LICENSE-fabric-api
+
+name: FerriteCore
+id: ferritecore
+version: 9.0.0
+jar: Ferrite-Core.jar
+license: MIT
+authors: malte0811
+upstream: https://github.com/malte0811/FerriteCore
+text: standard/MIT.txt
+note: The jar omitted the license text and the copyright holder. Upstream states MIT. The standard MIT text is included with the copyright placeholder left blank.
+
+name: ImmediatelyFast
+id: immediatelyfast
+version: 1.16.5+26.2
+jar: ImmediatelyFast.jar
+license: LGPL-3.0-or-later
+authors: RK_01
+upstream: https://github.com/RaphiMC/ImmediatelyFast
+text: in-jar/ImmediatelyFast.jar/LICENSE_ImmediatelyFast
+
+name: Krypton
+id: krypton
+version: 0.3.1
+jar: Krypton.jar
+license: LGPL-3.0
+authors: tuxed
+upstream: https://github.com/astei/krypton
+text: in-jar/Krypton.jar/LICENSE
+
+name: Lithium
+id: lithium
+version: 0.25.3+mc26.2
+jar: Lithium.jar
+license: LGPL-3.0-only
+authors: JellySquid, 2No2Name
+upstream: https://github.com/CaffeineMC/lithium-fabric
+text: in-jar/Lithium.jar/LICENSE.md
+
+name: More Culling
+id: moreculling
+version: 1.8.1
+jar: MoreCulling.jar
+license: GPL-3.0-only
+authors: FX - PR0CESS, 1Foxy2
+upstream: https://github.com/fxmorin/moreculling
+text: standard/GPL-3.0.txt
+note: The jar names GPL-3.0-only and contains no license file. The official GNU GPL-3.0 text is included. No copyright line was added.
+
+name: Simple Voice Chat
+id: voicechat
+version: 2.6.24+26.2
+jar: Simple-Voice-Chat.jar
+license: All Rights Reserved
+authors: Max Henkel
+upstream: https://github.com/henkelmax/simple-voice-chat
+text: in-jar/Simple-Voice-Chat.jar/CONCENTUS_LICENSE, in-jar/Simple-Voice-Chat.jar/NATIVE_UTILS_LICENSE, in-jar/Simple-Voice-Chat.jar/OPUS_LICENSE, in-jar/Simple-Voice-Chat.jar/RNNOISE_LICENSE, in-jar/Simple-Voice-Chat.jar/LAME4J_LICENSE, in-jar/Simple-Voice-Chat.jar/LAME_LICENSE, in-jar/Simple-Voice-Chat.jar/MINIMP3_LICENSE, in-jar/Simple-Voice-Chat.jar/SPEEX_LICENSE
+text: upstream/simple-voice-chat-license.txt
+note: The jar has no license file for the mod. The upstream file named `license` is one line: Copyright (c) Max Henkel - All Rights Reserved. Codec notices inside the jar are separate and are copied under in-jar/.
+
+name: Sodium
+id: sodium
+version: 0.9.2+mc26.2
+jar: Sodium.jar
+license: Polyform-Shield-1.0.0
+authors: JellySquid (jellysquid3)
+upstream: https://github.com/CaffeineMC/sodium
+text: in-jar/Sodium.jar/LICENSE.md
+
+name: Vivecraft
+id: vivecraft
+version: 26.2-1.3.15
+jar: Vivecraft.jar
+license: LGPLv3
+authors: fayer3, Ferri_Arnus, IMS, jrbudda, minecraft player, Techjar
+upstream: https://github.com/Vivecraft/VivecraftMod
+text: project/vivecraft-LGPL.md
+note: The jar has no license file. The text is the upstream LICENSE.md from the tree this jar was built from.
+
+name: cloth-basic-math-0.6.1-17ea6dce277cc3b8.jar
+id: cloth-basic-math
+version: 0.6.1
+jar: cloth-basic-math-0.6.1-17ea6dce277cc3b8.jar
+license: Unlicense
+upstream: https://github.com/shedaniel/cloth-basic-math
+text: standard/Unlicense.txt
+note: The jar has no license file. Upstream SPDX is Unlicense.
+
+name: core
+id: com_electronwill_night-config_core
+version: 3.6.6
+jar: com_electronwill_night-config_core-3.6.6-33ed3f04b422659a.jar
+license: LGPL-3.0
+upstream: https://github.com/TheElectronWill/night-config
+text: standard/LGPL-3.0.txt
+note: The jar has no license file. Upstream LICENSE is LGPL-3.
+
+name: toml
+id: com_electronwill_night-config_toml
+version: 3.6.6
+jar: com_electronwill_night-config_toml-3.6.6-b289399fe0078d97.jar
+license: LGPL-3.0
+upstream: https://github.com/TheElectronWill/night-config
+text: standard/LGPL-3.0.txt
+note: The jar has no license file. Upstream LICENSE is LGPL-3.
+
+name: tact-java
+id: com_github_bhaptics_tact-java
+version: 0.1.4
+jar: com_github_bhaptics_tact-java-0.1.4-831792815522fd1d.jar
+license: Apache-2.0
+upstream: https://github.com/bhaptics/tact-java
+text: standard/Apache-2.0.txt
+note: The jar has no license file. The tact-java 0.1.4 README says it is released under the Apache 2.0 license.
+
+name: javaosc-core
+id: com_illposed_osc_javaosc-core
+version: 0.9
+jar: com_illposed_osc_javaosc-core-0.9-c9aafa92073e36ad.jar
+license: BSD-3-Clause
+upstream: https://github.com/hoijui/JavaOSC
+text: standard/BSD-3-Clause.txt
+note: The jar's pom has no licenses tag. Vivecraft LICENSE.md quotes the BSD-3 text, Copyright (c) 2002-2014, Chandrasekhar Ramakrishnan / Illposed Software. The standard text leaves the placeholder unfilled; that copyright line is in project/vivecraft-LGPL.md.
+
+name: velocity-native
+id: com_velocitypowered_velocity-native
+version: 3.4.0-SNAPSHOT
+jar: com_velocitypowered_velocity-nat.0-SNAPSHOT-ac1b171e6e8bd98a.jar
+license: GPL-3.0
+upstream: https://github.com/PaperMC/Velocity
+text: standard/GPL-3.0.txt
+note: The jar contains no license file. Upstream Velocity is GPL-3.0. Source headers on Velocity's dev/4.0.0 line say Copyright (C) 2018-2023 Velocity Contributors. The official GNU GPL-3.0 text is included.
+
+name: conditional mixin
+id: conditional-mixin
+version: 0.6.3
+jar: conditional-mixin-0.6.3-371dd4ded000e1fe.jar
+license: LGPL-3.0-only
+authors: Fallen_Breath
+upstream: https://github.com/Fallen-Breath/conditional-mixin
+text: in-jar/conditional-mixin-0.6.3-371dd4ded000e1fe.jar/LICENSE_conditional-mixin
+
+name: Fabric Advancement API (v1)
+id: fabric-advancement-api-v1
+version: 1.0.0+58719a3b9e
+jar: fabric-advancement-api-v1-1.0.0+58719a3b9e-8121aae71695a264.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-advancement-api-v1-1.0.0+58719a3b9e-8121aae71695a264.jar/LICENSE-fabric-advancement-api-v1
+
+name: Fabric API Base
+id: fabric-api-base
+version: 2.0.4+ece063239e
+jar: fabric-api-base-2.0.4+ece063239e-25b880d50d5aa2e2.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-api-base-2.0.4+ece063239e-25b880d50d5aa2e2.jar/LICENSE-fabric-api-base
+
+name: Fabric API Lookup API (v1)
+id: fabric-api-lookup-api-v1
+version: 2.0.18+11e1c9a39e
+jar: fabric-api-lookup-api-v1-2.0.18+11e1c9a39e-3056e396c0d94af3.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-api-lookup-api-v1-2.0.18+11e1c9a39e-3056e396c0d94af3.jar/LICENSE-fabric-api-lookup-api-v1
+
+name: Fabric Biome API (v1)
+id: fabric-biome-api-v1
+version: 18.0.6+c7bd5b8e9e
+jar: fabric-biome-api-v1-18.0.6+c7bd5b8e9e-9885bfedbd54269e.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-biome-api-v1-18.0.6+c7bd5b8e9e-9885bfedbd54269e.jar/LICENSE-fabric-biome-api-v1
+
+name: Fabric Block API (v1)
+id: fabric-block-api-v1
+version: 3.1.0+53515aab9e
+jar: fabric-block-api-v1-3.1.0+53515aab9e-5f75675410a9b032.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-block-api-v1-3.1.0+53515aab9e-5f75675410a9b032.jar/LICENSE-fabric-block-api-v1
+
+name: Fabric BlockGetter API (v2)
+id: fabric-block-getter-api-v2
+version: 2.0.7+ec56b6019e
+jar: fabric-block-getter-api-v2-2.0.7+ec56b6019e-966c8d9cdabc4f8e.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-block-getter-api-v2-2.0.7+ec56b6019e-966c8d9cdabc4f8e.jar/LICENSE-fabric-block-getter-api-v2
+
+name: Fabric Command API (v2)
+id: fabric-command-api-v2
+version: 3.1.0+00cb03469e
+jar: fabric-command-api-v2-3.1.0+00cb03469e-d720b639ff932d22.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-command-api-v2-3.1.0+00cb03469e-d720b639ff932d22.jar/LICENSE-fabric-command-api-v2
+
+name: Fabric Content Registries (v0)
+id: fabric-content-registries-v0
+version: 11.3.2+37b1aa249e
+jar: fabric-content-registries-v0-11.+37b1aa249e-721bfa86eda2c2c1.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-content-registries-v0-11.+37b1aa249e-721bfa86eda2c2c1.jar/LICENSE-fabric-content-registries-v0
+
+name: Fabric Convention Tags (v2)
+id: fabric-convention-tags-v2
+version: 4.7.1+1f023a9e9e
+jar: fabric-convention-tags-v2-4.7.1+1f023a9e9e-c788265350eb0500.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-convention-tags-v2-4.7.1+1f023a9e9e-c788265350eb0500.jar/LICENSE-fabric-convention-tags-v2
+
+name: Fabric Crash Report Info (v1)
+id: fabric-crash-report-info-v1
+version: 1.0.5+086d547a9e
+jar: fabric-crash-report-info-v1-1.0.+086d547a9e-9685a2b83148644a.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-crash-report-info-v1-1.0.+086d547a9e-9685a2b83148644a.jar/LICENSE-fabric-crash-report-info-v1
+
+name: Fabric Creative Tab API (v1)
+id: fabric-creative-tab-api-v1
+version: 5.0.15+6468574f9e
+jar: fabric-creative-tab-api-v1-5.0.1+6468574f9e-e248256412bb8ac0.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-creative-tab-api-v1-5.0.1+6468574f9e-e248256412bb8ac0.jar/LICENSE-fabric-creative-tab-api-v1
+
+name: Fabric Data Attachment API (v1)
+id: fabric-data-attachment-api-v1
+version: 2.2.19+515ac5339e
+jar: fabric-data-attachment-api-v1-2.+515ac5339e-f0a3c1c8f5c46115.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-data-attachment-api-v1-2.+515ac5339e-f0a3c1c8f5c46115.jar/LICENSE-fabric-data-attachment-api-v1
+
+name: Fabric Data Generation API (v1)
+id: fabric-data-generation-api-v1
+version: 25.6.0+c0da0b829e
+jar: fabric-data-generation-api-v1-25+c0da0b829e-ccb1c785a966edc3.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-data-generation-api-v1-25+c0da0b829e-ccb1c785a966edc3.jar/LICENSE-fabric-data-generation-api-v1
+
+name: Fabric Debug API (v1)
+id: fabric-debug-api-v1
+version: 1.0.2+c792624d9e
+jar: fabric-debug-api-v1-1.0.2+c792624d9e-eb0b681f426ccae6.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-debug-api-v1-1.0.2+c792624d9e-eb0b681f426ccae6.jar/LICENSE-fabric-debug-api-v1
+
+name: Fabric Dimensions API (v1)
+id: fabric-dimensions-v1
+version: 5.1.12+515ac5339e
+jar: fabric-dimensions-v1-5.1.12+515ac5339e-61f71fa003dce951.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-dimensions-v1-5.1.12+515ac5339e-61f71fa003dce951.jar/LICENSE-fabric-dimensions-v1
+
+name: Fabric Entity Events (v1)
+id: fabric-entity-events-v1
+version: 5.0.5+06488ac19e
+jar: fabric-entity-events-v1-5.0.5+06488ac19e-9ac0c9834212b60c.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-entity-events-v1-5.0.5+06488ac19e-9ac0c9834212b60c.jar/LICENSE-fabric-entity-events-v1
+
+name: Fabric Events Interaction (v0)
+id: fabric-events-interaction-v0
+version: 5.2.8+515ac5339e
+jar: fabric-events-interaction-v0-5.2+515ac5339e-c034a17183ac09fd.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-events-interaction-v0-5.2+515ac5339e-c034a17183ac09fd.jar/LICENSE-fabric-events-interaction-v0
+
+name: Fabric Game Rule API (v1)
+id: fabric-game-rule-api-v1
+version: 4.0.8+46a6d00c9e
+jar: fabric-game-rule-api-v1-4.0.8+46a6d00c9e-88173a29c40598e0.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-game-rule-api-v1-4.0.8+46a6d00c9e-88173a29c40598e0.jar/LICENSE-fabric-game-rule-api-v1
+
+name: Fabric Item API (v1)
+id: fabric-item-api-v1
+version: 14.5.0+c68f6cbe9e
+jar: fabric-item-api-v1-14.5.0+c68f6cbe9e-f3ee7a6183ae5f28.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-item-api-v1-14.5.0+c68f6cbe9e-f3ee7a6183ae5f28.jar/LICENSE-fabric-item-api-v1
+
+name: Fabric Key Mapping API (v1)
+id: fabric-key-mapping-api-v1
+version: 2.0.5+e2bdee789e
+jar: fabric-key-mapping-api-v1-2.0.5+e2bdee789e-4d7810b9fd50be71.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-key-mapping-api-v1-2.0.5+e2bdee789e-4d7810b9fd50be71.jar/LICENSE-fabric-key-mapping-api-v1
+
+name: Fabric Lifecycle Events (v1)
+id: fabric-lifecycle-events-v1
+version: 4.1.4+29b6eb019e
+jar: fabric-lifecycle-events-v1-4.1.4+29b6eb019e-f90ec9235e4e0207.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-lifecycle-events-v1-4.1.4+29b6eb019e-f90ec9235e4e0207.jar/LICENSE-fabric-lifecycle-events-v1
+
+name: Fabric Loot API (v3)
+id: fabric-loot-api-v3
+version: 3.0.17+06488ac19e
+jar: fabric-loot-api-v3-3.0.17+06488ac19e-13194bd6e826ad33.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-loot-api-v3-3.0.17+06488ac19e-13194bd6e826ad33.jar/LICENSE-fabric-loot-api-v3
+
+name: Fabric Menu API (v1)
+id: fabric-menu-api-v1
+version: 2.0.17+086d547a9e
+jar: fabric-menu-api-v1-2.0.17+086d547a9e-a5b6e3f1edf8c041.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-menu-api-v1-2.0.17+086d547a9e-a5b6e3f1edf8c041.jar/LICENSE-fabric-menu-api-v1
+
+name: Fabric Message API (v1)
+id: fabric-message-api-v1
+version: 7.0.8+bb2ed3f79e
+jar: fabric-message-api-v1-7.0.8+bb2ed3f79e-715d2c64265d7294.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-message-api-v1-7.0.8+bb2ed3f79e-715d2c64265d7294.jar/LICENSE-fabric-message-api-v1
+
+name: Fabric Model Loading API (v1)
+id: fabric-model-loading-api-v1
+version: 8.0.17+c80601bb9e
+jar: fabric-model-loading-api-v1-8.0.+c80601bb9e-a74d153caf5ba601.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-model-loading-api-v1-8.0.+c80601bb9e-a74d153caf5ba601.jar/LICENSE-fabric-model-loading-api-v1
+
+name: Fabric Networking API (v1)
+id: fabric-networking-api-v1
+version: 6.3.4+2989c6a09e
+jar: fabric-networking-api-v1-6.3.4+2989c6a09e-dbea85319463f0cb.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-networking-api-v1-6.3.4+2989c6a09e-dbea85319463f0cb.jar/LICENSE-fabric-networking-api-v1
+
+name: Fabric Object Builder API (v1)
+id: fabric-object-builder-api-v1
+version: 24.1.1+6fcd5f039e
+jar: fabric-object-builder-api-v1-24.+6fcd5f039e-383f5242a61f2746.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-object-builder-api-v1-24.+6fcd5f039e-383f5242a61f2746.jar/LICENSE-fabric-object-builder-api-v1
+
+name: Fabric Particles (v1)
+id: fabric-particles-v1
+version: 5.0.19+d1756aa99e
+jar: fabric-particles-v1-5.0.19+d1756aa99e-8c5c43d24c413ce9.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-particles-v1-5.0.19+d1756aa99e-8c5c43d24c413ce9.jar/LICENSE-fabric-particles-v1
+
+name: Fabric Permission API (v1)
+id: fabric-permission-api-v1
+version: 1.0.5+e442d8d09e
+jar: fabric-permission-api-v1-1.0.5+e442d8d09e-70539fa656926913.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-permission-api-v1-1.0.5+e442d8d09e-70539fa656926913.jar/LICENSE-fabric-permission-api-v1
+
+name: Fabric Recipe API (v1)
+id: fabric-recipe-api-v1
+version: 9.0.22+11e1c9a39e
+jar: fabric-recipe-api-v1-9.0.22+11e1c9a39e-46901fc6d1ecec5b.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-recipe-api-v1-9.0.22+11e1c9a39e-46901fc6d1ecec5b.jar/LICENSE-fabric-recipe-api-v1
+
+name: Fabric Registry Sync (v0)
+id: fabric-registry-sync-v0
+version: 7.1.1+c7bd5b8e9e
+jar: fabric-registry-sync-v0-7.1.1+c7bd5b8e9e-8c221961a9c5172c.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-registry-sync-v0-7.1.1+c7bd5b8e9e-8c221961a9c5172c.jar/LICENSE-fabric-registry-sync-v0
+
+name: Fabric Renderer API (v1)
+id: fabric-renderer-api-v1
+version: 14.1.4+2b0d8a229e
+jar: fabric-renderer-api-v1-14.1.4+2b0d8a229e-928fd47aea11c460.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-renderer-api-v1-14.1.4+2b0d8a229e-928fd47aea11c460.jar/LICENSE-fabric-renderer-api-v1
+
+name: Fabric Renderer - Indigo
+id: fabric-renderer-indigo
+version: 9.1.4+2b0d8a229e
+jar: fabric-renderer-indigo-9.1.4+2b0d8a229e-b24db722b3714a18.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-renderer-indigo-9.1.4+2b0d8a229e-b24db722b3714a18.jar/LICENSE-fabric-renderer-indigo
+
+name: Fabric Rendering Fluids (v1)
+id: fabric-rendering-fluids-v1
+version: 6.0.4+06488ac19e
+jar: fabric-rendering-fluids-v1-6.0.4+06488ac19e-280e4eabf267722b.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-rendering-fluids-v1-6.0.4+06488ac19e-280e4eabf267722b.jar/LICENSE-fabric-rendering-fluids-v1
+
+name: Fabric Rendering (v1)
+id: fabric-rendering-v1
+version: 25.3.3+515ac5339e
+jar: fabric-rendering-v1-25.3.3+515ac5339e-2281779a8e4b2fcb.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-rendering-v1-25.3.3+515ac5339e-2281779a8e4b2fcb.jar/LICENSE-fabric-rendering-v1
+
+name: Fabric Resource Conditions API (v1)
+id: fabric-resource-conditions-api-v1
+version: 6.1.0+10e9a28b9e
+jar: fabric-resource-conditions-api-v+10e9a28b9e-f834ed286ec08414.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-resource-conditions-api-v+10e9a28b9e-f834ed286ec08414.jar/LICENSE-fabric-resource-conditions-api-v1
+
+name: Fabric Resource Loader (v0)
+id: fabric-resource-loader-v0
+version: 3.3.20+4fc5413f9e
+jar: fabric-resource-loader-v0-3.3.20+4fc5413f9e-20c73f9845cf9cc2.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-resource-loader-v0-3.3.20+4fc5413f9e-20c73f9845cf9cc2.jar/LICENSE-fabric-resource-loader-v0
+
+name: Fabric Resource Loader (v1)
+id: fabric-resource-loader-v1
+version: 2.0.13+9edec1269e
+jar: fabric-resource-loader-v1-2.0.13+9edec1269e-28376715ed6c3abf.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-resource-loader-v1-2.0.13+9edec1269e-28376715ed6c3abf.jar/LICENSE-fabric-resource-loader-v1
+
+name: Fabric Screen API (v1)
+id: fabric-screen-api-v1
+version: 5.2.1+5087f8249e
+jar: fabric-screen-api-v1-5.2.1+5087f8249e-72605a28ff836f6e.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-screen-api-v1-5.2.1+5087f8249e-72605a28ff836f6e.jar/LICENSE-fabric-screen-api-v1
+
+name: Fabric Serialization API (v1)
+id: fabric-serialization-api-v1
+version: 2.0.4+11a26f319e
+jar: fabric-serialization-api-v1-2.0.+11a26f319e-3a7d22f929fdbe1c.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-serialization-api-v1-2.0.+11a26f319e-3a7d22f929fdbe1c.jar/LICENSE-fabric-serialization-api-v1
+
+name: Fabric Sound API (v1)
+id: fabric-sound-api-v1
+version: 2.0.5+11a26f319e
+jar: fabric-sound-api-v1-2.0.5+11a26f319e-425066110278a208.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-sound-api-v1-2.0.5+11a26f319e-425066110278a208.jar/LICENSE-fabric-sound-api-v1
+
+name: Fabric Tag API (v1)
+id: fabric-tag-api-v1
+version: 2.1.4+515ac5339e
+jar: fabric-tag-api-v1-2.1.4+515ac5339e-82d69a6463160864.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-tag-api-v1-2.1.4+515ac5339e-82d69a6463160864.jar/LICENSE-fabric-tag-api-v1
+
+name: Fabric Transfer API (v1)
+id: fabric-transfer-api-v1
+version: 8.0.13+11dbb7d79e
+jar: fabric-transfer-api-v1-8.0.13+11dbb7d79e-10f1197b575d3001.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-transfer-api-v1-8.0.13+11dbb7d79e-10f1197b575d3001.jar/LICENSE-fabric-transfer-api-v1
+
+name: Fabric Transitive Access Wideners (v1)
+id: fabric-transitive-access-wideners-v1
+version: 8.1.4+67c847259e
+jar: fabric-transitive-access-widener+67c847259e-28f76200e9a6f6b2.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric
+text: in-jar/fabric-transitive-access-widener+67c847259e-28f76200e9a6f6b2.jar/LICENSE-fabric-transitive-access-wideners-v1
+
+name: MixinExtras
+id: mixinextras
+version: 0.5.5
+jar: mixinextras-0.5.5-cd81fe35163f5828.jar
+license: MIT
+authors: LlamaLad7
+upstream: https://github.com/LlamaLad7/MixinExtras
+text: in-jar/mixinextras-0.5.5-cd81fe35163f5828.jar/LICENSE_MixinExtras
+
+name: MixinSquared
+id: mixinsquared
+version: 0.2.0
+jar: mixinsquared-0.2.0-928210a9dd2fedd4.jar
+license: MIT
+authors: Bawnorton
+upstream: https://github.com/Bawnorton/MixinSquared
+text: standard/MIT.txt
+note: The jar omitted the license text and the copyright holder. Upstream states MIT. The standard MIT text is included with the copyright placeholder left blank.
+
+name: Java-WebSocket
+id: org_java-websocket_java-websocket
+version: 1.5.1
+jar: org_java-websocket_java-websocket-1.5.1-7b18d876be122cec.jar
+license: MIT
+upstream: https://github.com/TooTallNate/Java-WebSocket
+text: standard/MIT.txt
+note: The jar omitted the license text and the copyright holder. Upstream SPDX is MIT.
+
+name: lwjgl-openvr
+id: org_lwjgl_lwjgl-openvr
+version: 3.3.6
+jar: org_lwjgl_lwjgl-openvr-3.3.6-62095f14c3202fd9.jar
+license: BSD-3-Clause
+text: standard/BSD-3-Clause.txt
+note: No license file in the jar. Upstream LWJGL 3 is BSD-3-Clause. Vivecraft LICENSE.md quotes it, Copyright (c) 2012-present Lightweight Java Game Library, https://github.com/LWJGL/lwjgl3. That copyright line is theirs, recorded in project/vivecraft-LGPL.md. The standard text leaves the placeholder unfilled.
+
+name: lwjgl-openxr
+id: org_lwjgl_lwjgl-openxr
+version: 3.4.1
+jar: org_lwjgl_lwjgl-openxr-3.4.1-a343b18029b600b8.jar
+license: BSD-3-Clause
+text: standard/BSD-3-Clause.txt
+note: No license file in the jar. Upstream LWJGL 3 is BSD-3-Clause. Vivecraft LICENSE.md quotes it, Copyright (c) 2012-present Lightweight Java Game Library, https://github.com/LWJGL/lwjgl3. That copyright line is theirs, recorded in project/vivecraft-LGPL.md. The standard text leaves the placeholder unfilled.
+
+name: TRansition
+id: transition
+version: 1.0.26
+jar: transition-1.0.26-ab3f083371c3601f.jar
+license: MIT
+authors: tr7zw
+upstream: https://github.com/tr7zw/TRansition
+text: standard/MIT.txt
+note: The jar omitted the license text and the copyright holder. Upstream states MIT. The standard MIT text is included with the copyright placeholder left blank.
+
+name: TRender
+id: trender
+version: 1.0.17
+jar: trender-1.0.17-732ae7d59a5de51d.jar
+license: MIT
+authors: tr7zw
+upstream: https://github.com/tr7zw/TRender
+text: standard/MIT.txt
+note: The jar omitted the license text and the copyright holder. Upstream states MIT. The standard MIT text is included with the copyright placeholder left blank.
+
+name: Simple Voice Chat API
+id: voicechat_api
+version: 2.6.24
+jar: voicechat_api-2.6.24-d72f0be8eeec1a4.jar
+license: (none recorded in the jar)
+authors: Max Henkel
+upstream: https://github.com/henkelmax/simple-voice-chat
+text: upstream/simple-voice-chat-license.txt
+note: The jar has no license file for the mod. The upstream file named `license` is one line: Copyright (c) Max Henkel - All Rights Reserved. Codec notices inside the jar are separate and are copied under in-jar/.
+
+name: Fabric Loader
+id: fabricloader
+version: 0.19.5
+jar: fabric-loader-0.19.5.jar
+license: Apache-2.0
+authors: FabricMC
+upstream: https://github.com/FabricMC/fabric-loader
+text: in-jar/fabric-loader-0.19.5.jar/LICENSE_fabric-loader
+
+Other libraries on the image classpath
+--------------------------------------
+
+name: client-26.2.jar
+jar: client-26.2.jar
+license: (none recorded in the jar)
+text: in-jar/client-26.2.jar/META-INF/LICENSE
+
+name: authlib-9.0.75.jar
+jar: authlib-9.0.75.jar
+license: Minecraft EULA
+text: in-jar/client-26.2.jar/META-INF/LICENSE
+note: Mojang proprietary library. Ships with the official client. No separate license file.
+
+name: azure-json-1.4.0.jar
+jar: azure-json-1.4.0.jar
+license: MIT
+text: standard/MIT.txt
+note: The jar omitted the license text and the copyright holder. The Azure SDK for Java repository is SPDX MIT.
+
+name: blocklist-1.0.10.jar
+jar: blocklist-1.0.10.jar
+license: Minecraft EULA
+text: in-jar/client-26.2.jar/META-INF/LICENSE
+note: Mojang proprietary library. Ships with the official client. No separate license file.
+
+name: brigadier-1.3.10.jar
+jar: brigadier-1.3.10.jar
+license: MIT
+text: standard/MIT.txt
+note: The jar has no LICENSE file. Upstream https://github.com/Mojang/brigadier is SPDX MIT. The copyright holder is not in the jar, so it is not filled in.
+
+name: commons-codec-1.22.0.jar
+jar: commons-codec-1.22.0.jar
+license: (none recorded in the jar)
+text: in-jar/commons-codec-1.22.0.jar/META-INF/LICENSE.txt, in-jar/commons-codec-1.22.0.jar/META-INF/NOTICE.txt
+
+name: commons-compress-1.28.0.jar
+jar: commons-compress-1.28.0.jar
+license: (none recorded in the jar)
+text: in-jar/commons-compress-1.28.0.jar/META-INF/LICENSE.txt, in-jar/commons-compress-1.28.0.jar/META-INF/NOTICE.txt
+
+name: commons-io-2.20.0.jar
+jar: commons-io-2.20.0.jar
+license: (none recorded in the jar)
+text: in-jar/commons-io-2.20.0.jar/META-INF/LICENSE.txt, in-jar/commons-io-2.20.0.jar/META-INF/NOTICE.txt
+
+name: commons-lang3-3.20.0.jar
+jar: commons-lang3-3.20.0.jar
+license: (none recorded in the jar)
+text: in-jar/commons-lang3-3.20.0.jar/META-INF/LICENSE.txt, in-jar/commons-lang3-3.20.0.jar/META-INF/NOTICE.txt
+
+name: datafixerupper-10.0.21.jar
+jar: datafixerupper-10.0.21.jar
+license: MIT
+text: standard/MIT.txt
+note: The jar has no LICENSE file. Upstream https://github.com/Mojang/DataFixerUpper is SPDX MIT. The copyright holder is not in the jar, so it is not filled in.
+
+name: failureaccess-1.0.3.jar
+jar: failureaccess-1.0.3.jar
+license: (none recorded in the jar)
+text: in-jar/failureaccess-1.0.3.jar/META-INF/LICENSE
+
+name: fastutil-8.5.18.jar
+jar: fastutil-8.5.18.jar
+license: Apache-2.0
+text: standard/Apache-2.0.txt
+note: The jar has no LICENSE file. Upstream SPDX is Apache-2.0 (https://github.com/vigna/fastutil).
+
+name: gson-2.14.0.jar
+jar: gson-2.14.0.jar
+license: Apache-2.0
+text: standard/Apache-2.0.txt
+note: Manifest Bundle-License names Apache-2.0. The jar has no LICENSE file.
+
+name: guava-33.6.0-jre.jar
+jar: guava-33.6.0-jre.jar
+license: (none recorded in the jar)
+text: in-jar/guava-33.6.0-jre.jar/META-INF/LICENSE
+
+name: icu4j-78.3.jar
+jar: icu4j-78.3.jar
+license: Unicode
+text: upstream/icu4j-notice.txt
+note: No LICENSE file. The notice is the copyright line from the jar manifest.
+
+name: joml-1.10.8.jar
+jar: joml-1.10.8.jar
+license: MIT
+text: standard/MIT.txt
+note: The jar omitted the license text and the copyright holder.
+
+name: jopt-simple-5.0.4.jar
+jar: jopt-simple-5.0.4.jar
+license: MIT
+text: standard/MIT.txt
+note: No LICENSE file. Manifest Bundle-License names the MIT license. The copyright holder is not in the jar, so it is not filled in.
+
+name: jorbis-0.0.17.jar
+jar: jorbis-0.0.17.jar
+license: LGPL
+text: standard/LGPL-2.1.txt
+note: No license file and no licenses tag in the pom. Upstream JCraft JOrbis is the GNU LGPL. The exact version is not printed in the jar. LGPL-2.1 is included as the historical JOrbis text; LGPL-3.0 is included for the image's other LGPL components.
+
+name: jspecify-1.0.0.jar
+jar: jspecify-1.0.0.jar
+license: Apache-2.0
+text: standard/Apache-2.0.txt
+note: Manifest Bundle-License names Apache-2.0. The jar has no LICENSE file.
+
+name: jtracy-1.0.37.jar
+jar: jtracy-1.0.37.jar
+license: BSD-3-Clause
+text: in-jar/jtracy-1.0.37-natives-macos-arm64.jar/Tracy_LICENSE
+note: The plain jar has no license file. The notice is Tracy_LICENSE from the macOS arm64 native jar, Copyright (c) 2017-2025, Bartosz Taudul.
+
+name: log4j-api-2.26.0.jar
+jar: log4j-api-2.26.0.jar
+license: (none recorded in the jar)
+text: in-jar/log4j-api-2.26.0.jar/META-INF/LICENSE, in-jar/log4j-api-2.26.0.jar/META-INF/NOTICE
+
+name: log4j-core-2.26.0.jar
+jar: log4j-core-2.26.0.jar
+license: (none recorded in the jar)
+text: in-jar/log4j-core-2.26.0.jar/META-INF/LICENSE, in-jar/log4j-core-2.26.0.jar/META-INF/NOTICE
+
+name: log4j-slf4j2-impl-2.26.0.jar
+jar: log4j-slf4j2-impl-2.26.0.jar
+license: (none recorded in the jar)
+text: in-jar/log4j-slf4j2-impl-2.26.0.jar/META-INF/LICENSE, in-jar/log4j-slf4j2-impl-2.26.0.jar/META-INF/NOTICE
+
+name: logging-1.7.12.jar
+jar: logging-1.7.12.jar
+license: unknown
+note: No license file in the jar. The Mojang/logging repository returned 404 when this inventory was made. No license text is invented here.
+
+name: lwjgl-3.4.1-unsafe.jar
+jar: lwjgl-3.4.1-unsafe.jar
+license: BSD-3-Clause
+text: standard/BSD-3-Clause.txt
+note: No license file in the jar. Upstream LWJGL 3 is BSD-3-Clause. Vivecraft LICENSE.md quotes it, Copyright (c) 2012-present Lightweight Java Game Library, https://github.com/LWJGL/lwjgl3. That copyright line is theirs, recorded in project/vivecraft-LGPL.md. The standard text leaves the placeholder unfilled.
+
+name: lwjgl-freetype-3.4.1.jar
+jar: lwjgl-freetype-3.4.1.jar
+license: BSD-3-Clause
+text: standard/BSD-3-Clause.txt
+note: No license file in the jar. Upstream LWJGL 3 is BSD-3-Clause. Vivecraft LICENSE.md quotes it, Copyright (c) 2012-present Lightweight Java Game Library, https://github.com/LWJGL/lwjgl3. That copyright line is theirs, recorded in project/vivecraft-LGPL.md. The standard text leaves the placeholder unfilled.
+
+name: lwjgl-glfw-3.4.1.jar
+jar: lwjgl-glfw-3.4.1.jar
+license: BSD-3-Clause
+text: standard/BSD-3-Clause.txt
+note: No license file in the jar. Upstream LWJGL 3 is BSD-3-Clause. Vivecraft LICENSE.md quotes it, Copyright (c) 2012-present Lightweight Java Game Library, https://github.com/LWJGL/lwjgl3. That copyright line is theirs, recorded in project/vivecraft-LGPL.md. The standard text leaves the placeholder unfilled.
+
+name: lwjgl-jemalloc-3.4.1.jar
+jar: lwjgl-jemalloc-3.4.1.jar
+license: BSD-3-Clause
+text: standard/BSD-3-Clause.txt
+note: No license file in the jar. Upstream LWJGL 3 is BSD-3-Clause. Vivecraft LICENSE.md quotes it, Copyright (c) 2012-present Lightweight Java Game Library, https://github.com/LWJGL/lwjgl3. That copyright line is theirs, recorded in project/vivecraft-LGPL.md. The standard text leaves the placeholder unfilled.
+
+name: lwjgl-openal-3.4.1.jar
+jar: lwjgl-openal-3.4.1.jar
+license: BSD-3-Clause
+text: standard/BSD-3-Clause.txt
+note: No license file in the jar. Upstream LWJGL 3 is BSD-3-Clause. Vivecraft LICENSE.md quotes it, Copyright (c) 2012-present Lightweight Java Game Library, https://github.com/LWJGL/lwjgl3. That copyright line is theirs, recorded in project/vivecraft-LGPL.md. The standard text leaves the placeholder unfilled.
+
+name: lwjgl-opengl-3.4.1.jar
+jar: lwjgl-opengl-3.4.1.jar
+license: BSD-3-Clause
+text: standard/BSD-3-Clause.txt
+note: No license file in the jar. Upstream LWJGL 3 is BSD-3-Clause. Vivecraft LICENSE.md quotes it, Copyright (c) 2012-present Lightweight Java Game Library, https://github.com/LWJGL/lwjgl3. That copyright line is theirs, recorded in project/vivecraft-LGPL.md. The standard text leaves the placeholder unfilled.
+
+name: lwjgl-shaderc-3.4.1.jar
+jar: lwjgl-shaderc-3.4.1.jar
+license: BSD-3-Clause
+text: standard/BSD-3-Clause.txt
+note: No license file in the jar. Upstream LWJGL 3 is BSD-3-Clause. Vivecraft LICENSE.md quotes it, Copyright (c) 2012-present Lightweight Java Game Library, https://github.com/LWJGL/lwjgl3. That copyright line is theirs, recorded in project/vivecraft-LGPL.md. The standard text leaves the placeholder unfilled.
+
+name: lwjgl-spvc-3.4.1.jar
+jar: lwjgl-spvc-3.4.1.jar
+license: BSD-3-Clause
+text: standard/BSD-3-Clause.txt
+note: No license file in the jar. Upstream LWJGL 3 is BSD-3-Clause. Vivecraft LICENSE.md quotes it, Copyright (c) 2012-present Lightweight Java Game Library, https://github.com/LWJGL/lwjgl3. That copyright line is theirs, recorded in project/vivecraft-LGPL.md. The standard text leaves the placeholder unfilled.
+
+name: lwjgl-stb-3.4.1.jar
+jar: lwjgl-stb-3.4.1.jar
+license: BSD-3-Clause
+text: standard/BSD-3-Clause.txt
+note: No license file in the jar. Upstream LWJGL 3 is BSD-3-Clause. Vivecraft LICENSE.md quotes it, Copyright (c) 2012-present Lightweight Java Game Library, https://github.com/LWJGL/lwjgl3. That copyright line is theirs, recorded in project/vivecraft-LGPL.md. The standard text leaves the placeholder unfilled.
+
+name: lwjgl-tinyfd-3.4.1.jar
+jar: lwjgl-tinyfd-3.4.1.jar
+license: BSD-3-Clause
+text: standard/BSD-3-Clause.txt
+note: No license file in the jar. Upstream LWJGL 3 is BSD-3-Clause. Vivecraft LICENSE.md quotes it, Copyright (c) 2012-present Lightweight Java Game Library, https://github.com/LWJGL/lwjgl3. That copyright line is theirs, recorded in project/vivecraft-LGPL.md. The standard text leaves the placeholder unfilled.
+
+name: lwjgl-vma-3.4.1.jar
+jar: lwjgl-vma-3.4.1.jar
+license: BSD-3-Clause
+text: standard/BSD-3-Clause.txt
+note: No license file in the jar. Upstream LWJGL 3 is BSD-3-Clause. Vivecraft LICENSE.md quotes it, Copyright (c) 2012-present Lightweight Java Game Library, https://github.com/LWJGL/lwjgl3. That copyright line is theirs, recorded in project/vivecraft-LGPL.md. The standard text leaves the placeholder unfilled.
+
+name: lwjgl-vulkan-3.4.1.jar
+jar: lwjgl-vulkan-3.4.1.jar
+license: BSD-3-Clause
+text: standard/BSD-3-Clause.txt
+note: No license file in the jar. Upstream LWJGL 3 is BSD-3-Clause. Vivecraft LICENSE.md quotes it, Copyright (c) 2012-present Lightweight Java Game Library, https://github.com/LWJGL/lwjgl3. That copyright line is theirs, recorded in project/vivecraft-LGPL.md. The standard text leaves the placeholder unfilled.
+
+name: lz4-java-1.10.1.jar
+jar: lz4-java-1.10.1.jar
+license: Apache-2.0
+text: standard/Apache-2.0.txt
+note: The jar has no LICENSE file. Upstream SPDX is Apache-2.0.
+
+name: msal4j-1.24.1.jar
+jar: msal4j-1.24.1.jar
+license: MIT
+text: standard/MIT.txt
+note: No LICENSE file. Manifest Bundle-License is "MIT License". The copyright holder is not in the jar, so it is not filled in.
+
+name: netty-buffer-4.2.15.Final.jar
+jar: netty-buffer-4.2.15.Final.jar
+license: Apache-2.0
+text: standard/Apache-2.0.txt
+note: Manifest Bundle-License names Apache-2.0. The jar has no LICENSE file.
+
+name: netty-codec-base-4.2.15.Final.jar
+jar: netty-codec-base-4.2.15.Final.jar
+license: Apache-2.0
+text: standard/Apache-2.0.txt
+note: Manifest Bundle-License names Apache-2.0. The jar has no LICENSE file.
+
+name: netty-codec-compression-4.2.15.Final.jar
+jar: netty-codec-compression-4.2.15.Final.jar
+license: Apache-2.0
+text: standard/Apache-2.0.txt
+note: Manifest Bundle-License names Apache-2.0. The jar has no LICENSE file.
+
+name: netty-codec-http-4.2.15.Final.jar
+jar: netty-codec-http-4.2.15.Final.jar
+license: Apache-2.0
+text: standard/Apache-2.0.txt
+note: Manifest Bundle-License names Apache-2.0. The jar has no LICENSE file.
+
+name: netty-common-4.2.15.Final.jar
+jar: netty-common-4.2.15.Final.jar
+license: Apache-2.0
+text: standard/Apache-2.0.txt
+note: Manifest Bundle-License names Apache-2.0. The jar has no LICENSE file.
+
+name: netty-handler-4.2.15.Final.jar
+jar: netty-handler-4.2.15.Final.jar
+license: Apache-2.0
+text: standard/Apache-2.0.txt
+note: Manifest Bundle-License names Apache-2.0. The jar has no LICENSE file.
+
+name: netty-resolver-4.2.15.Final.jar
+jar: netty-resolver-4.2.15.Final.jar
+license: Apache-2.0
+text: standard/Apache-2.0.txt
+note: Manifest Bundle-License names Apache-2.0. The jar has no LICENSE file.
+
+name: netty-transport-4.2.15.Final.jar
+jar: netty-transport-4.2.15.Final.jar
+license: Apache-2.0
+text: standard/Apache-2.0.txt
+note: Manifest Bundle-License names Apache-2.0. The jar has no LICENSE file.
+
+name: netty-transport-classes-epoll-4.2.15.Final.jar
+jar: netty-transport-classes-epoll-4.2.15.Final.jar
+license: Apache-2.0
+text: standard/Apache-2.0.txt
+note: Manifest Bundle-License names Apache-2.0. The jar has no LICENSE file.
+
+name: netty-transport-classes-kqueue-4.2.15.Final.jar
+jar: netty-transport-classes-kqueue-4.2.15.Final.jar
+license: Apache-2.0
+text: standard/Apache-2.0.txt
+note: Manifest Bundle-License names Apache-2.0. The jar has no LICENSE file.
+
+name: netty-transport-native-kqueue-4.2.15.Final-osx-aarch_64.jar
+jar: netty-transport-native-kqueue-4.2.15.Final-osx-aarch_64.jar
+license: Apache-2.0
+text: standard/Apache-2.0.txt
+note: Manifest Bundle-License names Apache-2.0. The jar has no LICENSE file.
+
+name: netty-transport-native-kqueue-4.2.15.Final-osx-x86_64.jar
+jar: netty-transport-native-kqueue-4.2.15.Final-osx-x86_64.jar
+license: Apache-2.0
+text: standard/Apache-2.0.txt
+note: Manifest Bundle-License names Apache-2.0. The jar has no LICENSE file.
+
+name: netty-transport-native-unix-common-4.2.15.Final.jar
+jar: netty-transport-native-unix-common-4.2.15.Final.jar
+license: Apache-2.0
+text: standard/Apache-2.0.txt
+note: Manifest Bundle-License names Apache-2.0. The jar has no LICENSE file.
+
+name: patchy-2.2.10.jar
+jar: patchy-2.2.10.jar
+license: Minecraft EULA
+text: in-jar/client-26.2.jar/META-INF/LICENSE
+note: Mojang proprietary library. Ships with the official client. No separate license file.
+
+name: slf4j-api-2.0.17.jar
+jar: slf4j-api-2.0.17.jar
+license: (none recorded in the jar)
+text: in-jar/slf4j-api-2.0.17.jar/META-INF/LICENSE.txt
+
+name: text2speech-1.19.12.jar
+jar: text2speech-1.19.12.jar
+license: Minecraft EULA
+text: in-jar/client-26.2.jar/META-INF/LICENSE
+note: Mojang proprietary library. Ships with the official client. No separate license file.
+
+name: asm-9.10.1.jar
+jar: asm-9.10.1.jar
+license: BSD-3-Clause
+text: standard/BSD-3-Clause.txt
+note: Manifest Bundle-License names BSD-3-Clause (https://asm.ow2.io/LICENSE.txt). The jar has no LICENSE file. The copyright holder is not in the jar, so it is not filled in.
+
+name: asm-analysis-9.10.1.jar
+jar: asm-analysis-9.10.1.jar
+license: BSD-3-Clause
+text: standard/BSD-3-Clause.txt
+note: Manifest Bundle-License names BSD-3-Clause (https://asm.ow2.io/LICENSE.txt). The jar has no LICENSE file. The copyright holder is not in the jar, so it is not filled in.
+
+name: asm-commons-9.10.1.jar
+jar: asm-commons-9.10.1.jar
+license: BSD-3-Clause
+text: standard/BSD-3-Clause.txt
+note: Manifest Bundle-License names BSD-3-Clause (https://asm.ow2.io/LICENSE.txt). The jar has no LICENSE file. The copyright holder is not in the jar, so it is not filled in.
+
+name: asm-tree-9.10.1.jar
+jar: asm-tree-9.10.1.jar
+license: BSD-3-Clause
+text: standard/BSD-3-Clause.txt
+note: Manifest Bundle-License names BSD-3-Clause (https://asm.ow2.io/LICENSE.txt). The jar has no LICENSE file. The copyright holder is not in the jar, so it is not filled in.
+
+name: asm-util-9.10.1.jar
+jar: asm-util-9.10.1.jar
+license: BSD-3-Clause
+text: standard/BSD-3-Clause.txt
+note: Manifest Bundle-License names BSD-3-Clause (https://asm.ow2.io/LICENSE.txt). The jar has no LICENSE file. The copyright holder is not in the jar, so it is not filled in.
+
+name: sponge-mixin-0.17.4+mixin.0.8.7.jar
+jar: sponge-mixin-0.17.4+mixin.0.8.7.jar
+license: (none recorded in the jar)
+text: in-jar/sponge-mixin-0.17.4+mixin.0.8.7.jar/LICENSE.txt
+
+name: Tracy Profiler (bundled by jtracy)
+license: BSD-3-Clause
+upstream: https://github.com/wolfpld/tracy
+text: in-jar/jtracy-1.0.37-natives-macos-arm64.jar/Tracy_LICENSE
+note: The native jar is not linked into this image. The Java jtracy jar ships with the client and the notice is the Tracy_LICENSE from the macOS arm64 native jar.

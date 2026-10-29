@@ -1,0 +1,54 @@
+# The vivecraft target's command line: klmc_main(argc, argv), one argument per
+# line, staged to Documents/vivecraft/launch.txt by stage_native.sh and expanded
+# by kl_app.c (native_build_argv). This is T8a's contract: EXACTLY the T4 native
+# command line (work/native-image/scripts/t4/run.sh, BIN=libminecraft) with the
+# Mac paths replaced by placeholders:
+#   @ROOT@       Documents/vivecraft/root (the work/native-image mirror)
+#   @FW@         <bundle>/Frameworks (every embedded dylib)
+#   @HOME@       Documents/vivecraft      @CONTAINER@  Documents
+#   @TMP@        $TMPDIR                  @CLASSPATH@  baked.cp, absolute, ':'-joined
+#   @XMX@        KL_MC_XMX (default 3G)   @USER@       KL_MC_USER (default Player)
+# KL_MC_JVM_ARGS (space-separated) is inserted before the first game argument,
+# KL_MC_ARGS appended at the end (e.g. KL_MC_ARGS=--quickPlaySingleplayer world).
+# GC (qc 04): the image is built with the serial GC's BySpaceAndTime policy (scripts/t8/build-shared.sh); -Xmn1g gives
+# chunk building a 1 GB young generation so worldgen/meshing garbage dies young. Host, 85 s of new-terrain flight:
+# 361 -> 45 collections and 8.5 -> 1.6 s paused per minute, full (~300 ms) GCs 18 -> 2. Works the same at -Xmx3G and
+# 4G. -XX:+PrintGC = one line per collection ("GC(n) Incremental GC (...) A->B N ms") for this round's device log.
+# The --accessToken/--username/--uuid below are the OFFLINE profile. When a
+# Microsoft refresh token is staged (stage_native.sh, KleptonMSA.swift), kl_app.c
+# (native_msa_args) replaces them in memory with the signed-in account's and adds
+# --userType msa --xuid; KL_MSA=0 keeps these. Never put a real token here.
+vivecraft
+-Xmx@XMX@
+-Xmn1g
+-XX:+PrintGC
+-Dfabric.gameMappingNamespace=intermediary
+-Dfabric.gameJarPath=@ROOT@/fgamedir/.fabric/remappedJars/minecraft-1.21.5-0.19.5/client-intermediary.jar
+-Dbaked.classpath=@CLASSPATH@
+-Djava.home=@ROOT@/fgamedir
+-Djava.awt.headless=true
+-Duser.home=@HOME@
+-Djava.io.tmpdir=@TMP@
+-Dorg.lwjgl.librarypath=@FW@
+-Dorg.lwjgl.system.allocator=system
+-Dorg.lwjgl.util.Debug=true
+-Dorg.lwjgl.util.DebugLoader=true
+-Dorg.lwjgl.opengl.libname=@FW@/libltw.dylib
+-Dorg.lwjgl.openal.libname=@FW@/libopenal.dylib
+-Dorg.lwjgl.openxr.libname=@FW@/libopenxr_loader.dylib
+-Dklglfw.libpath=@FW@/libklglfw.dylib
+-Djava.library.path=@FW@
+--accessToken
+0
+--username
+@USER@
+--uuid
+00000000-0000-0000-0000-000000000000
+--version
+1.21.5
+--gameDir
+@ROOT@/fgamedir
+--assetsDir
+@ROOT@/assets
+--assetIndex
+24

@@ -1,0 +1,681 @@
+From 8297f0ecc84bb25aecf714c23dae661cf6cdf626 Mon Sep 17 00:00:00 2001
+From: rebelancap <7285817+rebelancap@users.noreply.github.com>
+Date: Tue, 13 Oct 2026 12:34:01 -0600
+Subject: [PATCH] openxr: direct post - VR post pass renders straight into the
+ swapchain layer, blitTextures skipped
+
+The OpenXR GL path rendered each eye's post pass into an RGBA8 "L/R Eye"
+target and then glBlitFramebuffer'd it into layer 0/1 of the (single,
+arraySize 2) swapchain image in endFrame: one extra full-screen copy per
+eye per frame. Now the image is acquired and waited for at the left eye's
+post pass and the post pass renders into a blaze3d view of the layer
+(SwapchainLayerTexture: a GlTexture around the swapchain GL name whose
+render passes use the framebuffer OpenGLRawTexture.link already built with
+glFramebufferTextureLayer, via FrameBufferCacheVRMixin). endFrame then only
+releases and submits.
+
+Off (upstream path) when the swapchain needs the gamma pass, on Vulkan,
+while the desktop mirror reads the eye targets (SINGLE/CROPPED/DUAL/MIXED
+REALITY or renderAllPasses), and with -Dvivecraft.klepton.directpost=false.
+-Dvivecraft.klepton.directpost.selftest=true runs a flat-mode comparison of
+both paths on the running GL once (DirectPostSelfTest).
+---
+ .../client_vr/provider/VRRenderer.java        |  13 ++
+ .../provider/openxr/OpenXRStereoRenderer.java | 173 +++++++++++++++---
+ .../render/helpers/ShaderHelper.java          |  12 +-
+ .../render/helpers/VRPassHelper.java          |   3 +-
+ .../graphics/opengl/DirectPostSelfTest.java   | 172 +++++++++++++++++
+ .../graphics/opengl/OpenGLRawTexture.java     |   7 +
+ .../opengl/SwapchainLayerTexture.java         |  61 ++++++
+ .../mixin/client_vr/MinecraftVRMixin.java     |   3 +
+ .../opengl/FrameBufferCacheVRMixin.java       |  34 ++++
+ .../src/main/resources/vivecraft.mixins.json  |   1 +
+ 10 files changed, 449 insertions(+), 30 deletions(-)
+ create mode 100644 common/src/main/java/org/vivecraft/client_vr/render/helpers/graphics/opengl/DirectPostSelfTest.java
+ create mode 100644 common/src/main/java/org/vivecraft/client_vr/render/helpers/graphics/opengl/SwapchainLayerTexture.java
+ create mode 100644 common/src/main/java/org/vivecraft/mixin/client_vr/blaze3d/opengl/FrameBufferCacheVRMixin.java
+
+diff --git a/common/src/main/java/org/vivecraft/client_vr/provider/VRRenderer.java b/common/src/main/java/org/vivecraft/client_vr/provider/VRRenderer.java
+index 6011cd13..63733cda 100644
+--- a/common/src/main/java/org/vivecraft/client_vr/provider/VRRenderer.java
++++ b/common/src/main/java/org/vivecraft/client_vr/provider/VRRenderer.java
+@@ -7,6 +7,7 @@ import com.mojang.blaze3d.buffers.GpuBuffer;
+ import com.mojang.blaze3d.buffers.GpuBufferSlice;
+ import com.mojang.blaze3d.pipeline.RenderTarget;
+ import com.mojang.blaze3d.systems.RenderSystem;
++import com.mojang.blaze3d.textures.GpuTextureView;
+ import com.mojang.blaze3d.vertex.BufferBuilder;
+ import com.mojang.blaze3d.vertex.ByteBufferBuilder;
+ import com.mojang.blaze3d.vertex.DefaultVertexFormat;
+@@ -135,6 +136,18 @@ public abstract class VRRenderer {
+         this.lastError = error;
+     }
+ 
++    /**
++     * Klepton (jar patch 0005): the texture the VR post pass of {@code eye} writes into.
++     * The default is that eye's {@link #framebufferEye}; a renderer that can hand the runtime's own
++     * image to the post pass (OpenXR, "direct post") overrides this and then skips its copy.
++     *
++     * @param eye 0 = Left, 1 = Right
++     * @return the view to render the post-processed eye into
++     */
++    public GpuTextureView getPostProcessTarget(int eye) {
++        return this.framebufferEye[eye].getColorTextureView();
++    }
++
+     /**
+      * gets the cached projection matrix if the farClip distance matches with the last, else gets a new one from the VR runtime
+      *
+diff --git a/common/src/main/java/org/vivecraft/client_vr/provider/openxr/OpenXRStereoRenderer.java b/common/src/main/java/org/vivecraft/client_vr/provider/openxr/OpenXRStereoRenderer.java
+index 0d786f19..a3639ec6 100644
+--- a/common/src/main/java/org/vivecraft/client_vr/provider/openxr/OpenXRStereoRenderer.java
++++ b/common/src/main/java/org/vivecraft/client_vr/provider/openxr/OpenXRStereoRenderer.java
+@@ -3,6 +3,7 @@ package org.vivecraft.client_vr.provider.openxr;
+ import com.mojang.blaze3d.GpuFormat;
+ import com.mojang.blaze3d.systems.RenderSystem;
+ import com.mojang.blaze3d.textures.FilterMode;
++import com.mojang.blaze3d.textures.GpuTextureView;
+ import org.joml.Matrix4f;
+ import org.joml.Vector2i;
+ import org.joml.Vector2ic;
+@@ -10,6 +11,7 @@ import org.lwjgl.PointerBuffer;
+ import org.lwjgl.openxr.*;
+ import org.lwjgl.system.MemoryStack;
+ import org.lwjgl.vulkan.VK10;
++import org.vivecraft.client_vr.ClientDataHolderVR;
+ import org.vivecraft.client_vr.VRTextureTarget;
+ import org.vivecraft.client_vr.provider.VRRenderer;
+ import org.vivecraft.client_vr.render.RenderConfigException;
+@@ -19,6 +21,7 @@ import org.vivecraft.client_vr.render.helpers.graphics.GraphicsHelper;
+ import org.vivecraft.client_vr.render.helpers.graphics.ImageFormat;
+ import org.vivecraft.client_vr.render.helpers.graphics.RawTexture;
+ import org.vivecraft.client_vr.render.helpers.graphics.opengl.OpenGLRawTexture;
++import org.vivecraft.client_vr.render.helpers.graphics.opengl.SwapchainLayerTexture;
+ import org.vivecraft.client_vr.render.helpers.graphics.vulkan.VulkanRawTexture;
+ import org.vivecraft.client_vr.settings.VRSettings;
+ 
+@@ -40,6 +43,22 @@ public class OpenXRStereoRenderer extends VRRenderer {
+ 
+     private final VRTextureTarget[] gammaCorrected = new VRTextureTarget[2];
+ 
++    /**
++     * Klepton (jar patch 0005, "direct post"): the VR post pass renders straight into the acquired swapchain
++     * image's layer, and endFrame skips the gamma pass and {@code blitTextures} (one full-screen copy per eye).
++     * {@code -Dvivecraft.klepton.directpost=false} restores upstream's post-into-"L/R Eye" + blit.
++     */
++    private static final boolean DIRECT_POST = !"false".equalsIgnoreCase(
++        System.getProperty("vivecraft.klepton.directpost", "true"));
++
++    // per swapchain image: blaze3d views of layer 0 / layer 1 (OpenGL only, null when direct post is off)
++    private GpuTextureView[] leftPostViews;
++    private GpuTextureView[] rightPostViews;
++    // the image acquired early for this frame's direct post pass, -1 when none is held
++    private int directImage = -1;
++    // what the log last said about direct post (0 nothing yet, 1 on, 2 off)
++    private int directPostSaid;
++
+     public OpenXRStereoRenderer(MCOpenXR vr) {
+         super(vr);
+         this.openxr = vr;
+@@ -226,6 +245,97 @@ public class OpenXRStereoRenderer extends VRRenderer {
+                 this.lastError = !leftError.isEmpty() ? leftError : rightError;
+             }
+         }
++
++        if (DIRECT_POST && this.lastError.isEmpty()) {
++            this.leftPostViews = new GpuTextureView[imageCount];
++            this.rightPostViews = new GpuTextureView[imageCount];
++            for (int i = 0; i < imageCount; i++) {
++                // reported as the eye targets' format (the post pipeline's); the GL storage is the swapchain's
++                this.leftPostViews[i] = SwapchainLayerTexture.wrap("L Eye swapchain post " + i,
++                    this.framebufferEye[0].gpuFormat, (OpenGLRawTexture) this.leftFramebuffers[i]);
++                this.rightPostViews[i] = SwapchainLayerTexture.wrap("R Eye swapchain post " + i,
++                    this.framebufferEye[1].gpuFormat, (OpenGLRawTexture) this.rightFramebuffers[i]);
++            }
++        }
++    }
++
++    /**
++     * Klepton (jar patch 0005): direct post is possible this frame. Off when the swapchain needs the gamma
++     * pass, on Vulkan (no views), and while the desktop mirror reads the eye targets (they are no longer
++     * written in direct mode).
++     */
++    private boolean canPostDirect() {
++        if (!DIRECT_POST || this.leftPostViews == null || this.needsGammaCorrection()) {
++            return false;
++        }
++        VRSettings settings = ClientDataHolderVR.getInstance().vrSettings;
++        if (settings.renderAllPasses) {
++            return false;
++        }
++        return switch (settings.displayMirrorMode) {
++            case SINGLE, CROPPED, DUAL, MIXED_REALITY -> false;
++            default -> true;
++        };
++    }
++
++    private void sayDirectPost(boolean on, String why) {
++        int said = on ? 1 : 2;
++        if (this.directPostSaid == said) return;
++        this.directPostSaid = said;
++        if (on) {
++            VRSettings.LOGGER.info(
++                "Vivecraft: [klepton] direct post ON: the VR post pass renders straight into swapchain image layers 0/1, "
++                    + "blitTextures skipped (-Dvivecraft.klepton.directpost=false restores the blit)");
++        } else {
++            VRSettings.LOGGER.info("Vivecraft: [klepton] direct post OFF ({}): post into L/R Eye, then blitTextures",
++                why);
++        }
++    }
++
++    /**
++     * acquires the next swapchain image and waits for it
++     *
++     * @return the image index
++     */
++    private int acquireSwapchainImage(MemoryStack stack) {
++        IntBuffer indexBuffer = stack.callocInt(1);
++
++        // ask for a new image to copy the current frame into
++        int error = XR10.xrAcquireSwapchainImage(
++            this.swapchain,
++            XrSwapchainImageAcquireInfo.calloc(stack).type$Default(),
++            indexBuffer);
++        MCOpenXR.logError(error, "xrAcquireSwapchainImage", "");
++
++        // wait until the image is ready
++        error = XR10.xrWaitSwapchainImage(this.swapchain,
++            XrSwapchainImageWaitInfo.calloc(stack)
++                .type$Default()
++                .timeout(XR10.XR_INFINITE_DURATION));
++        MCOpenXR.logError(error, "xrWaitSwapchainImage", "");
++        return indexBuffer.get(0);
++    }
++
++    @Override
++    public GpuTextureView getPostProcessTarget(int eye) {
++        // decided once a frame, at the left eye (always the first pass), so both layers take the same path
++        if (this.directImage < 0 && eye == 0) {
++            boolean direct = this.canPostDirect();
++            this.sayDirectPost(direct, !DIRECT_POST ? "-Dvivecraft.klepton.directpost=false" :
++                this.leftPostViews == null ? "not OpenGL" :
++                    this.needsGammaCorrection() ? "swapchain format needs gamma correction" :
++                        "the desktop mirror reads the eye targets");
++            if (direct) {
++                // the image for this frame is taken now, before the first eye's post pass, instead of in endFrame
++                try (MemoryStack stack = MemoryStack.stackPush()) {
++                    this.directImage = this.acquireSwapchainImage(stack);
++                }
++            }
++        }
++        if (this.directImage >= 0) {
++            return (eye == 0 ? this.leftPostViews : this.rightPostViews)[this.directImage];
++        }
++        return super.getPostProcessTarget(eye);
+     }
+ 
+     private void setupVulkan(MemoryStack stack, int width, int height, IntBuffer countBuffer) {
+@@ -273,37 +383,31 @@ public class OpenXRStereoRenderer extends VRRenderer {
+     public void endFrame() throws RenderConfigException {
+         try (MemoryStack stack = MemoryStack.stackPush()) {
+ 
+-            IntBuffer indexBuffer = stack.callocInt(1);
++            int error;
+ 
+-            // ask for a new image to copy the current frame into
+-            int error = XR10.xrAcquireSwapchainImage(
+-                this.swapchain,
+-                XrSwapchainImageAcquireInfo.calloc(stack).type$Default(),
+-                indexBuffer);
+-            MCOpenXR.logError(error, "xrAcquireSwapchainImage", "");
+-
+-            // wait until the image is ready
+-            error = XR10.xrWaitSwapchainImage(this.swapchain,
+-                XrSwapchainImageWaitInfo.calloc(stack)
+-                    .type$Default()
+-                    .timeout(XR10.XR_INFINITE_DURATION));
+-            MCOpenXR.logError(error, "xrWaitSwapchainImage", "");
+-
+-            // if the target format is not srgb, openxr will try to apply a gamma correction, so we need to undo that
+-            if (needsGammaCorrection()) {
+-                for (int i = 0; i < 2; i++) {
+-                    int eye = i;
+-                    ShaderHelper.renderFullscreenQuad(() -> "gamma correction", VRShaders.GAMMA_CORRECTION_PIPELINE,
+-                        pass -> pass.bindTexture(VRShaders.BLIT_VR_COLOR_SAMPLER,
+-                            this.framebufferEye[eye].getColorTextureView(),
+-                            RenderSystem.getSamplerCache().getClampToEdge(FilterMode.NEAREST)),
+-                        this.gammaCorrected[eye].getColorTextureView());
++            if (this.directImage >= 0) {
++                // Klepton (jar patch 0005): the post pass already wrote both layers of this image, nothing to copy
++                this.directImage = -1;
++            } else {
++                int imageIndex = this.acquireSwapchainImage(stack);
++
++                // if the target format is not srgb, openxr will try to apply a gamma correction, so we need to undo that
++                if (needsGammaCorrection()) {
++                    for (int i = 0; i < 2; i++) {
++                        int eye = i;
++                        ShaderHelper.renderFullscreenQuad(() -> "gamma correction",
++                            VRShaders.GAMMA_CORRECTION_PIPELINE,
++                            pass -> pass.bindTexture(VRShaders.BLIT_VR_COLOR_SAMPLER,
++                                this.framebufferEye[eye].getColorTextureView(),
++                                RenderSystem.getSamplerCache().getClampToEdge(FilterMode.NEAREST)),
++                            this.gammaCorrected[eye].getColorTextureView());
++                    }
+                 }
+-            }
+ 
+-            // copy the mc renderTargets to the openxr swapchain
+-            GraphicsHelper.INSTANCE.blitTextures(this.gammaCorrected,
+-                this.leftFramebuffers[indexBuffer.get(0)], this.rightFramebuffers[indexBuffer.get(0)]);
++                // copy the mc renderTargets to the openxr swapchain
++                GraphicsHelper.INSTANCE.blitTextures(this.gammaCorrected,
++                    this.leftFramebuffers[imageIndex], this.rightFramebuffers[imageIndex]);
++            }
+ 
+             // tell the runtime that we are done with the image
+             error = XR10.xrReleaseSwapchainImage(
+@@ -377,6 +481,19 @@ public class OpenXRStereoRenderer extends VRRenderer {
+             }
+         }
+ 
++        // Klepton (jar patch 0005): views first (the wrapped image is the runtime's; closing never deletes it)
++        for (GpuTextureView[] views : new GpuTextureView[][]{this.leftPostViews, this.rightPostViews}) {
++            if (views != null) {
++                for (GpuTextureView view : views) {
++                    view.close();
++                    view.texture().close();
++                }
++            }
++        }
++        this.leftPostViews = null;
++        this.rightPostViews = null;
++        this.directImage = -1;
++
+         if (this.leftFramebuffers != null) {
+             for (RawTexture left : this.leftFramebuffers) {
+                 left.destroy();
+diff --git a/common/src/main/java/org/vivecraft/client_vr/render/helpers/ShaderHelper.java b/common/src/main/java/org/vivecraft/client_vr/render/helpers/ShaderHelper.java
+index 236a924a..254111bb 100644
+--- a/common/src/main/java/org/vivecraft/client_vr/render/helpers/ShaderHelper.java
++++ b/common/src/main/java/org/vivecraft/client_vr/render/helpers/ShaderHelper.java
+@@ -190,6 +190,16 @@ public class ShaderHelper {
+      */
+     public static void doVrPostProcess(
+         RenderPass eye, RenderTarget source, RenderTarget target, PostProcessRenderState postProcessState)
++    {
++        doVrPostProcess(eye, source, target.getColorTextureView(), postProcessState);
++    }
++
++    /**
++     * Klepton (jar patch 0005): {@link #doVrPostProcess(RenderPass, RenderTarget, RenderTarget, PostProcessRenderState)}
++     * into any texture view, e.g. a swapchain layer ({@code VRRenderer#getPostProcessTarget})
++     */
++    public static void doVrPostProcess(
++        RenderPass eye, RenderTarget source, GpuTextureView target, PostProcessRenderState postProcessState)
+     {
+         VRShaders.POST_PROCESS_UBO.updateBuffer(
+             postProcessState.pumpkinEffect > 0.0F ? 0.3F : postProcessState.fovReduction,
+@@ -209,7 +219,7 @@ public class ShaderHelper {
+             renderPass.setUniform(PostProcessUBO.UBO_NAME, VRShaders.POST_PROCESS_UBO.getBuffer());
+             renderPass.bindTexture(VRShaders.POST_PROCESSING_COLOR_SAMPLER, source.getColorTextureView(),
+                 RenderSystem.getSamplerCache().getClampToEdge(FilterMode.NEAREST));
+-        }, target.getColorTextureView(), GraphicsHelper.INSTANCE.flipEyeVertically());
++        }, target, GraphicsHelper.INSTANCE.flipEyeVertically());
+         VRShaders.POST_PROCESS_UBO.endFrame();
+     }
+ 
+diff --git a/common/src/main/java/org/vivecraft/client_vr/render/helpers/VRPassHelper.java b/common/src/main/java/org/vivecraft/client_vr/render/helpers/VRPassHelper.java
+index c2549396..e16e7bb5 100644
+--- a/common/src/main/java/org/vivecraft/client_vr/render/helpers/VRPassHelper.java
++++ b/common/src/main/java/org/vivecraft/client_vr/render/helpers/VRPassHelper.java
+@@ -92,8 +92,9 @@ public class VRPassHelper {
+             }
+ 
+             // do post-processing
++            // Klepton (jar patch 0005): the renderer picks the target (OpenXR "direct post": the swapchain layer)
+             ShaderHelper.doVrPostProcess(eye, rendertarget,
+-                DATA_HOLDER.vrRenderer.framebufferEye[eye == RenderPass.LEFT ? 0 : 1],
++                DATA_HOLDER.vrRenderer.getPostProcessTarget(eye == RenderPass.LEFT ? 0 : 1),
+                 ((LevelRenderStateExtension) MC.gameRenderer.gameRenderState().levelRenderState).vivecraft$getVRRenderState().postProcessState);
+ 
+             GraphicsHelper.INSTANCE.checkError("post overlay" + eye);
+diff --git a/common/src/main/java/org/vivecraft/client_vr/render/helpers/graphics/opengl/DirectPostSelfTest.java b/common/src/main/java/org/vivecraft/client_vr/render/helpers/graphics/opengl/DirectPostSelfTest.java
+new file mode 100644
+index 00000000..06c4d8d8
+--- /dev/null
++++ b/common/src/main/java/org/vivecraft/client_vr/render/helpers/graphics/opengl/DirectPostSelfTest.java
+@@ -0,0 +1,172 @@
++package org.vivecraft.client_vr.render.helpers.graphics.opengl;
++
++import com.mojang.blaze3d.opengl.GlStateManager;
++import com.mojang.blaze3d.pipeline.RenderTarget;
++import com.mojang.blaze3d.systems.RenderSystem;
++import com.mojang.blaze3d.textures.GpuTextureView;
++import net.minecraft.client.Minecraft;
++import org.joml.Vector4f;
++import org.lwjgl.opengl.GL11C;
++import org.lwjgl.opengl.GL12C;
++import org.lwjgl.opengl.GL30C;
++import org.lwjgl.system.MemoryStack;
++import org.vivecraft.api.client.data.RenderPass;
++import org.vivecraft.client_vr.VRTextureTarget;
++import org.vivecraft.client_vr.render.VRShaders;
++import org.vivecraft.client_vr.render.helpers.ShaderHelper;
++import org.vivecraft.client_vr.render.helpers.graphics.GraphicsHelper;
++import org.vivecraft.client_vr.render.helpers.graphics.ImageFormat;
++import org.vivecraft.client_vr.render.renderstates.PostProcessRenderState;
++import org.vivecraft.client_vr.render.ubos.PostProcessUBO;
++import org.vivecraft.client_vr.settings.VRSettings;
++
++import java.nio.ByteBuffer;
++
++/**
++ * Klepton (jar patch 0005): a flat-mode check of the "direct post" machinery on whatever GL the game runs on,
++ * since the VR path itself cannot run without a headset runtime. With {@code -Dvivecraft.klepton.directpost.selftest=true}
++ * it runs once, on the render thread, 30 flat frames after the resource-load overlay is gone:
++ * <ol>
++ *   <li>a GL_TEXTURE_2D_ARRAY SRGB8_ALPHA8 texture with 2 layers stands in for the OpenXR swapchain image, each
++ *   layer linked through {@link OpenGLRawTexture#link} (glFramebufferTextureLayer), exactly as OpenXRStereoRenderer
++ *   links the real one;</li>
++ *   <li>layer 0 gets Vivecraft's real VR post pass straight into a {@link SwapchainLayerTexture} view (0005);</li>
++ *   <li>layer 1 gets upstream's path: the same post pass into an RGBA8 "eye" target, then
++ *   {@code GraphicsHelper.blitTextures} into the layer;</li>
++ *   <li>both layers are read back at 5 points and compared, and the GL error state is checked.</li>
++ * </ol>
++ * One log line, {@code [klepton] direct post self-test: … PASS|FAIL}. Inert without the property.
++ */
++public final class DirectPostSelfTest {
++    private static final boolean ENABLED = Boolean.getBoolean("vivecraft.klepton.directpost.selftest");
++    private static final int RUN_AT_FRAME = 30;
++    private static final int SIZE = 64;
++    private static int frames;
++
++    private DirectPostSelfTest() {}
++
++    /**
++     * called every flat-mode frame from the mirror blit; does nothing unless the property is set
++     */
++    public static void tick() {
++        if (!ENABLED || frames > RUN_AT_FRAME) return;
++        // count only frames after the resource load (the post shader comes from Vivecraft's resources)
++        if (Minecraft.getInstance().gui.overlay() != null) return;
++        if (++frames == RUN_AT_FRAME) {
++            try {
++                run();
++            } catch (Throwable t) {
++                VRSettings.LOGGER.error("Vivecraft: [klepton] direct post self-test: FAIL (threw)", t);
++            }
++        }
++    }
++
++    private static void run() {
++        while (GL11C.glGetError() != GL11C.GL_NO_ERROR) {}
++
++        // the stand-in swapchain image: SRGB8_ALPHA8, 2 layers (kl_openxr lists SRGB8_ALPHA8 first)
++        int array = GlStateManager._genTexture();
++        GL11C.glBindTexture(GL30C.GL_TEXTURE_2D_ARRAY, array);
++        GL12C.glTexImage3D(GL30C.GL_TEXTURE_2D_ARRAY, 0, GL30C.GL_SRGB8_ALPHA8, SIZE, SIZE, 2, 0, GL11C.GL_RGBA,
++            GL11C.GL_UNSIGNED_BYTE, (ByteBuffer) null);
++        GL11C.glTexParameteri(GL30C.GL_TEXTURE_2D_ARRAY, GL11C.GL_TEXTURE_MIN_FILTER, GL11C.GL_NEAREST);
++        GL11C.glTexParameteri(GL30C.GL_TEXTURE_2D_ARRAY, GL11C.GL_TEXTURE_MAG_FILTER, GL11C.GL_NEAREST);
++        GL11C.glBindTexture(GL30C.GL_TEXTURE_2D_ARRAY, 0);
++
++        OpenGLRawTexture layer0 = OpenGLRawTexture.link("selftest layer 0", SIZE, SIZE, ImageFormat.R8G8B8A8_SRGB,
++            array, 0);
++        OpenGLRawTexture layer1 = OpenGLRawTexture.link("selftest layer 1", SIZE, SIZE, ImageFormat.R8G8B8A8_SRGB,
++            array, 1);
++        int setupError = GL11C.glGetError();
++
++        // the "3D Render" stand-in: a 4-colour quadrant pattern, so a flip or offset would show
++        VRTextureTarget source = VRTextureTarget.builder("selftest source").withSize(SIZE, SIZE).build();
++        VRTextureTarget eye = VRTextureTarget.builder("selftest eye").withSize(SIZE, SIZE).build();
++        fillQuadrants(source);
++
++        boolean ownUbo = VRShaders.POST_PROCESS_UBO == null;
++        if (ownUbo) VRShaders.POST_PROCESS_UBO = new PostProcessUBO();
++        PostProcessRenderState state = new PostProcessRenderState();
++
++        GpuTextureView direct = SwapchainLayerTexture.wrap("selftest direct", eye.gpuFormat, layer0);
++
++        // 0005: post pass straight into layer 0
++        ShaderHelper.doVrPostProcess(RenderPass.LEFT, source, direct, state);
++        // upstream: post pass into the eye target, then blitTextures into layer 1
++        ShaderHelper.doVrPostProcess(RenderPass.LEFT, source, eye, state);
++        GraphicsHelper.INSTANCE.blitTextures(new RenderTarget[]{eye}, layer1);
++        RenderSystem.getDevice().createCommandEncoder().submit();
++
++        int drawError = GL11C.glGetError();
++
++        int[][] points = {{SIZE / 4, SIZE / 4}, {3 * SIZE / 4, SIZE / 4}, {SIZE / 4, 3 * SIZE / 4},
++            {3 * SIZE / 4, 3 * SIZE / 4}, {SIZE / 2 + 1, SIZE / 2 + 1}};
++        StringBuilder sb = new StringBuilder();
++        boolean same = true;
++        boolean lit = false;
++        for (int[] p : points) {
++            int a = readPixel(layer0.getFbo(), p[0], p[1]);
++            int b = readPixel(layer1.getFbo(), p[0], p[1]);
++            same &= a == b;
++            lit |= (a & 0xFFFFFF) != 0;
++            sb.append(String.format(" (%d,%d) direct %08x blit %08x", p[0], p[1], a, b));
++        }
++        int readError = GL11C.glGetError();
++
++        // cleanup, view before texture (closing never deletes the GL name)
++        direct.close();
++        direct.texture().close();
++        layer0.destroy();
++        layer1.destroy();
++        GlStateManager._deleteTexture(array);
++        source.destroyBuffers();
++        eye.destroyBuffers();
++        if (ownUbo) {
++            VRShaders.POST_PROCESS_UBO.close();
++            VRShaders.POST_PROCESS_UBO = null;
++        }
++
++        boolean pass = same && lit && setupError == 0 && drawError == 0 && readError == 0;
++        VRSettings.LOGGER.info(
++            "Vivecraft: [klepton] direct post self-test: {} — layer 0 (post pass into a SwapchainLayerTexture view) vs "
++                + "layer 1 (post pass into RGBA8 + blitTextures), {}x{} SRGB8_ALPHA8 array:{}; GL errors setup 0x{} draw 0x{} read 0x{}",
++            pass ? "PASS" : "FAIL", SIZE, SIZE, sb, Integer.toHexString(setupError), Integer.toHexString(drawError),
++            Integer.toHexString(readError));
++    }
++
++    private static void fillQuadrants(VRTextureTarget target) {
++        // clear the whole target, then 3 scissored clears through a throwaway FBO for the other quadrants
++        RenderSystem.getDevice().createCommandEncoder()
++            .clearColorTexture(target.getColorTexture(), new Vector4f(0.25F, 0.5F, 0.75F, 1.0F));
++        RenderSystem.getDevice().createCommandEncoder().submit();
++        int fbo = GlStateManager.glGenFramebuffers();
++        int oldDraw = GlStateManager.getFrameBuffer(GL30C.GL_DRAW_FRAMEBUFFER);
++        GlStateManager._glBindFramebuffer(GL30C.GL_DRAW_FRAMEBUFFER, fbo);
++        GlStateManager._glFramebufferTexture2D(GL30C.GL_DRAW_FRAMEBUFFER, GL30C.GL_COLOR_ATTACHMENT0,
++            GL11C.GL_TEXTURE_2D, (int) GraphicsHelper.INSTANCE.getTextureHandle(target.getColorTexture()), 0);
++        GL11C.glEnable(GL11C.GL_SCISSOR_TEST);
++        float[][] colours = {{1.0F, 0.0F, 0.0F}, {0.0F, 1.0F, 0.0F}, {0.6F, 0.6F, 0.1F}};
++        int[][] origins = {{SIZE / 2, 0}, {0, SIZE / 2}, {SIZE / 2, SIZE / 2}};
++        for (int i = 0; i < 3; i++) {
++            GL11C.glScissor(origins[i][0], origins[i][1], SIZE / 2, SIZE / 2);
++            GL11C.glClearColor(colours[i][0], colours[i][1], colours[i][2], 1.0F);
++            GL11C.glClear(GL11C.GL_COLOR_BUFFER_BIT);
++        }
++        GL11C.glDisable(GL11C.GL_SCISSOR_TEST);
++        GlStateManager._glBindFramebuffer(GL30C.GL_DRAW_FRAMEBUFFER, oldDraw);
++        GlStateManager._glDeleteFramebuffers(fbo);
++    }
++
++    private static int readPixel(int fbo, int x, int y) {
++        int oldRead = GlStateManager.getFrameBuffer(GL30C.GL_READ_FRAMEBUFFER);
++        GlStateManager._glBindFramebuffer(GL30C.GL_READ_FRAMEBUFFER, fbo);
++        int rgba;
++        try (MemoryStack stack = MemoryStack.stackPush()) {
++            ByteBuffer px = stack.calloc(4);
++            GL11C.glReadPixels(x, y, 1, 1, GL11C.GL_RGBA, GL11C.GL_UNSIGNED_BYTE, px);
++            rgba = (px.get(0) & 0xFF) << 24 | (px.get(1) & 0xFF) << 16 | (px.get(2) & 0xFF) << 8 | px.get(3) & 0xFF;
++        }
++        GlStateManager._glBindFramebuffer(GL30C.GL_READ_FRAMEBUFFER, oldRead);
++        return rgba;
++    }
++}
+diff --git a/common/src/main/java/org/vivecraft/client_vr/render/helpers/graphics/opengl/OpenGLRawTexture.java b/common/src/main/java/org/vivecraft/client_vr/render/helpers/graphics/opengl/OpenGLRawTexture.java
+index 2d028b03..f122332a 100644
+--- a/common/src/main/java/org/vivecraft/client_vr/render/helpers/graphics/opengl/OpenGLRawTexture.java
++++ b/common/src/main/java/org/vivecraft/client_vr/render/helpers/graphics/opengl/OpenGLRawTexture.java
+@@ -118,6 +118,13 @@ public class OpenGLRawTexture implements RawTexture {
+         return this.glImage;
+     }
+ 
++    /**
++     * Klepton (jar patch 0005): the framebuffer this texture (or array layer) is attached to
++     */
++    public int getFbo() {
++        return this.glFbo;
++    }
++
+     @Override
+     public void destroy() {
+         if (!this.destroyed) {
+diff --git a/common/src/main/java/org/vivecraft/client_vr/render/helpers/graphics/opengl/SwapchainLayerTexture.java b/common/src/main/java/org/vivecraft/client_vr/render/helpers/graphics/opengl/SwapchainLayerTexture.java
+new file mode 100644
+index 00000000..70e8ea84
+--- /dev/null
++++ b/common/src/main/java/org/vivecraft/client_vr/render/helpers/graphics/opengl/SwapchainLayerTexture.java
+@@ -0,0 +1,61 @@
++package org.vivecraft.client_vr.render.helpers.graphics.opengl;
++
++import com.mojang.blaze3d.GpuFormat;
++import com.mojang.blaze3d.opengl.GlTexture;
++import com.mojang.blaze3d.opengl.GlTextureView;
++import com.mojang.blaze3d.textures.GpuTexture;
++import com.mojang.blaze3d.textures.GpuTextureView;
++
++/**
++ * Klepton (jar patch 0005, "direct post"): a blaze3d texture that IS one (image, layer) of the OpenXR
++ * swapchain, so the VR post pass can render straight into the swapchain instead of into the
++ * "L Eye"/"R Eye" targets that {@code blitTextures} then copies over.
++ * <p>
++ * blaze3d attaches render targets with {@code glFramebufferTexture2D}, which cannot name one layer of
++ * a GL_TEXTURE_2D_ARRAY. So this texture never goes through blaze3d's FBO cache: its view carries
++ * the framebuffer {@link OpenGLRawTexture#link} already built for the layer (with
++ * {@code glFramebufferTextureLayer}, exactly as the blit target always was), and
++ * {@code FrameBufferCacheMixin} hands that framebuffer to any render pass whose only colour
++ * attachment is this view. The swapchain image is owned by the runtime: closing this texture never
++ * deletes the GL name.
++ */
++public class SwapchainLayerTexture extends GlTexture {
++
++    private SwapchainLayerTexture(String label, GpuFormat format, int width, int height, int glImage) {
++        super(GpuTexture.USAGE_RENDER_ATTACHMENT | GpuTexture.USAGE_COPY_DST, label, format, width, height, 1, 1,
++            glImage, OpenGLHelper.getGlDevice().frameBufferCache());
++    }
++
++    /**
++     * wraps the layer {@code link} was built for as a render-target view
++     *
++     * @param label  debug name
++     * @param format the blaze3d format to report; the GL storage is whatever the runtime allocated
++     * @param link   the linked swapchain layer (its framebuffer is the one rendered into)
++     * @return a view that blaze3d render passes can target
++     */
++    public static GpuTextureView wrap(String label, GpuFormat format, OpenGLRawTexture link) {
++        SwapchainLayerTexture texture = new SwapchainLayerTexture(label, format, link.width, link.height,
++            (int) link.getHandle());
++        return new View(texture, link.getFbo());
++    }
++
++    @Override
++    public void close() {
++        // the runtime owns the image: mark closed, never glDeleteTextures it. Close the view FIRST
++        // (GlTexture#removeViews would otherwise delete the name once this is closed).
++        this.closed = true;
++    }
++
++    /**
++     * the render-target view; {@link #fbo} is the layer's framebuffer
++     */
++    public static class View extends GlTextureView {
++        public final int fbo;
++
++        private View(SwapchainLayerTexture texture, int fbo) {
++            super(texture, 0, 1, OpenGLHelper.getGlDevice().frameBufferCache());
++            this.fbo = fbo;
++        }
++    }
++}
+diff --git a/common/src/main/java/org/vivecraft/mixin/client_vr/MinecraftVRMixin.java b/common/src/main/java/org/vivecraft/mixin/client_vr/MinecraftVRMixin.java
+index 2323bc15..43f4a52d 100644
+--- a/common/src/main/java/org/vivecraft/mixin/client_vr/MinecraftVRMixin.java
++++ b/common/src/main/java/org/vivecraft/mixin/client_vr/MinecraftVRMixin.java
+@@ -80,6 +80,7 @@ import org.vivecraft.client_vr.render.RenderConfigException;
+ import org.vivecraft.client_vr.render.VRFirstPersonArmSwing;
+ import org.vivecraft.client_vr.render.helpers.RenderHelper;
+ import org.vivecraft.client_vr.render.helpers.ShaderHelper;
++import org.vivecraft.client_vr.render.helpers.graphics.opengl.DirectPostSelfTest;
+ import org.vivecraft.client_vr.render.helpers.VRPassHelper;
+ import org.vivecraft.client_vr.render.helpers.graphics.GraphicsHelper;
+ import org.vivecraft.client_vr.settings.VRHotkeys;
+@@ -389,6 +390,8 @@ public abstract class MinecraftVRMixin implements MinecraftExtension {
+                 // show message that the game is connecting to the vr runtime
+                 RenderHelper.drawVRConnectingMessage();
+             }
++            // Klepton (jar patch 0005): flat-mode check of the direct post machinery, inert without its property
++            DirectPostSelfTest.tick();
+             original.call(instance, commandEncoder, textureView);
+         }
+     }
+diff --git a/common/src/main/java/org/vivecraft/mixin/client_vr/blaze3d/opengl/FrameBufferCacheVRMixin.java b/common/src/main/java/org/vivecraft/mixin/client_vr/blaze3d/opengl/FrameBufferCacheVRMixin.java
+new file mode 100644
+index 00000000..e2b7ba08
+--- /dev/null
++++ b/common/src/main/java/org/vivecraft/mixin/client_vr/blaze3d/opengl/FrameBufferCacheVRMixin.java
+@@ -0,0 +1,34 @@
++package org.vivecraft.mixin.client_vr.blaze3d.opengl;
++
++import com.mojang.blaze3d.opengl.DirectStateAccess;
++import com.mojang.blaze3d.opengl.FrameBufferAttachment;
++import com.mojang.blaze3d.opengl.FrameBufferCache;
++import org.spongepowered.asm.mixin.Mixin;
++import org.spongepowered.asm.mixin.injection.At;
++import org.spongepowered.asm.mixin.injection.Inject;
++import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
++import org.vivecraft.client_vr.render.helpers.graphics.opengl.SwapchainLayerTexture;
++
++import java.util.List;
++
++/**
++ * Klepton (jar patch 0005, "direct post"): a render pass whose only colour attachment is an OpenXR
++ * swapchain layer renders into the framebuffer that layer was linked with
++ * ({@code glFramebufferTextureLayer}). blaze3d's own cache would attach the array texture with
++ * {@code glFramebufferTexture2D}, which cannot name a layer.
++ */
++@Mixin(FrameBufferCache.class)
++public class FrameBufferCacheVRMixin {
++
++    @Inject(method = "getFbo", at = @At("HEAD"), cancellable = true)
++    private void vivecraft$swapchainLayerFbo(
++        DirectStateAccess dsa, List<FrameBufferAttachment> colorAttachments, FrameBufferAttachment depthAttachment,
++        CallbackInfoReturnable<Integer> cir)
++    {
++        if (depthAttachment == null && colorAttachments.size() == 1 &&
++            colorAttachments.get(0) instanceof SwapchainLayerTexture.View view)
++        {
++            cir.setReturnValue(view.fbo);
++        }
++    }
++}
+diff --git a/common/src/main/resources/vivecraft.mixins.json b/common/src/main/resources/vivecraft.mixins.json
+index 4b246b2b..630e4f22 100644
+--- a/common/src/main/resources/vivecraft.mixins.json
++++ b/common/src/main/resources/vivecraft.mixins.json
+@@ -44,6 +44,7 @@
+     "client_vr.MouseHandlerVRMixin",
+     "client_vr.OptionsVRMixin",
+     "client_vr.blaze3d.audio.LibraryVRMixin",
++    "client_vr.blaze3d.opengl.FrameBufferCacheVRMixin",
+     "client_vr.blaze3d.opengl.GlStateManagerVRMixin",
+     "client_vr.blaze3d.platform.InputConstantsVRMixin",
+     "client_vr.blaze3d.platform.WindowVRMixin",
+-- 
+2.54.0 (Apple Git-157)
+

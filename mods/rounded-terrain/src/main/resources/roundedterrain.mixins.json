@@ -1,7 +1,0 @@
-{
-  "required": true,
-  "package": "local.roundedterrain.mixin",
-  "compatibilityLevel": "JAVA_25",
-  "client": ["BlockRendererMixin", "BlockOutlineRenderStateMixin", "LevelExtractorOutlineMixin", "LevelRendererOutlineMixin"],
-  "injectors": {"defaultRequire": 1}
-}

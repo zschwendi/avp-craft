@@ -1,0 +1,3346 @@
+[
+ {
+  "name": "ca.fxco.moreculling.config.option.LeavesCullingMode",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "com.mojang.authlib.Environment",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.GameProfile",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.minecraft.BanDetails",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.minecraft.MinecraftProfileTexture",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true
+ },
+ {
+  "name": "com.mojang.authlib.minecraft.MinecraftProfileTextures",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.minecraft.UserApiService$UserProperties",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.minecraft.client.MinecraftClient",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true
+ },
+ {
+  "name": "com.mojang.authlib.minecraft.client.MinecraftClient$ServiceResponse",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.minecraft.client.ObjectMapper",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true
+ },
+ {
+  "name": "com.mojang.authlib.minecraft.report.AbuseReport",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.minecraft.report.AbuseReportLimits",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.minecraft.report.ReportChatMessage",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.minecraft.report.ReportEvidence",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.minecraft.report.ReportedEntity",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.properties.Property",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.properties.PropertyMap",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true
+ },
+ {
+  "name": "com.mojang.authlib.properties.PropertyMap$Serializer",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.ChatToggleValue",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.FriendsService$PlayerData",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.ProfileActionType",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.ProfileResult",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.ToggleValue",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.YggdrasilServicesKeyInfo$KeyData",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.YggdrasilServicesKeyInfo$KeySetResponse",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.request.AbuseReportRequest",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.request.AbuseReportRequest$ClientInfo",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.request.AbuseReportRequest$RealmInfo",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.request.AbuseReportRequest$ThirdPartyServerInfo",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.request.FriendActionRequest",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.request.JoinMinecraftServerRequest",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.request.PresenceRequest",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.request.TelemetryEventsRequest",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.request.TelemetryEventsRequest$Event",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.request.UpdateType",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.request.UserAttributesRequest",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.request.UserAttributesRequest$FriendsPreferences",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.request.UserAttributesRequest$ProfanityFilterPreferences",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.response.BlockListResponse",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.response.ErrorResponse",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.response.FriendData",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.response.FriendDto",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.response.FriendRequestsResponse",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.response.FriendsErrorStatus",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.response.FriendsListResponse",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.response.HasJoinedMinecraftServerResponse",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.response.KeyPairResponse",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.response.KeyPairResponse$KeyPair",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.response.MinecraftProfilePropertiesResponse",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.response.MinecraftTexturesPayload",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.response.NameAndId",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.response.PresenceResponse",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.response.PresenceStatus",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.response.PresenceStatusDto",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.response.ProfileAction",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.response.ProfileSearchResultsResponse",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.response.ProfileSearchResultsResponse$Serializer",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.response.UserAttributesResponse",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.response.UserAttributesResponse$BanStatus",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.response.UserAttributesResponse$BanStatus$BannedScope",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.response.UserAttributesResponse$ChatPreferences",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.response.UserAttributesResponse$FriendsPreferences",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.response.UserAttributesResponse$Privileges",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.response.UserAttributesResponse$Privileges$Privilege",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.response.UserAttributesResponse$ProfanityFilterPreferences",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.realmsclient.dto.OutboundPlayer",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true
+ },
+ {
+  "name": "com.mojang.realmsclient.dto.PingResult",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.realmsclient.dto.PlayerInfo",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true
+ },
+ {
+  "name": "com.mojang.realmsclient.dto.PreferredRegionsDto",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.realmsclient.dto.RealmsConfigurationDto",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.realmsclient.dto.RealmsDescriptionDto",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.realmsclient.dto.RealmsJoinInformation",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.realmsclient.dto.RealmsJoinInformation$RegionData",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.realmsclient.dto.RealmsServer",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true
+ },
+ {
+  "name": "com.mojang.realmsclient.dto.RealmsServerList",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.realmsclient.dto.RealmsSetting",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.realmsclient.dto.RealmsSlot",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true
+ },
+ {
+  "name": "com.mojang.realmsclient.dto.RealmsSlotUpdateDto",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.realmsclient.dto.RealmsWorldOptions",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true
+ },
+ {
+  "name": "com.mojang.realmsclient.dto.RealmsWorldResetDto",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.realmsclient.dto.RegionDataDto",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.realmsclient.dto.RegionPingResult",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.realmsclient.dto.RegionSelectionPreferenceDto",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true
+ },
+ {
+  "name": "com.mojang.realmsclient.dto.ValueObject",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true
+ },
+ {
+  "name": "com.mojang.realmsclient.util.RealmsPersistence$RealmsPersistenceData",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true
+ },
+ {
+  "name": "de.maxhenkel.voicechat.Voicechat$Loader",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "de.maxhenkel.voicechat.api.opus.OpusEncoderMode",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "de.maxhenkel.voicechat.concentus.OpusApplication",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "de.maxhenkel.voicechat.concentus.OpusBandwidth",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "de.maxhenkel.voicechat.concentus.OpusFramesize",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "de.maxhenkel.voicechat.concentus.OpusMode",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "de.maxhenkel.voicechat.concentus.OpusSignal",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "de.maxhenkel.voicechat.config.ServerConfig$Codec",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "de.maxhenkel.voicechat.gui.GroupType",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "de.maxhenkel.voicechat.gui.tooltips.DisableTooltipSupplier$State",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "de.maxhenkel.voicechat.gui.tooltips.MuteTooltipSupplier$State",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "de.maxhenkel.voicechat.gui.widgets.MicTestButton$State",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "de.maxhenkel.voicechat.integration.freecam.FreecamMode",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "de.maxhenkel.voicechat.logging.LogLevel",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "de.maxhenkel.voicechat.macos.avfoundation.AVAuthorizationStatus",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "de.maxhenkel.voicechat.natives.NativeValidator$NativeLoadState",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "de.maxhenkel.voicechat.permission.PermissionType",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "de.maxhenkel.voicechat.voice.client.GroupPlayerIconOrientation",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "de.maxhenkel.voicechat.voice.client.MicrophoneActivationType",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "de.maxhenkel.voicechat.voice.client.speaker.AudioType",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "me.shedaniel.autoconfig.annotation.ConfigEntry$Gui$EnumHandler$EnumDisplayOption",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "me.shedaniel.autoconfig.example.ExampleConfig$ExampleEnum",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "me.shedaniel.autoconfig.gui.registry.GuiRegistry$Priority",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "me.shedaniel.cloth.clothconfig.shadowed.com.moandjiezana.toml.Identifier$Type",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "me.shedaniel.cloth.clothconfig.shadowed.org.yaml.snakeyaml.DumperOptions$FlowStyle",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "me.shedaniel.cloth.clothconfig.shadowed.org.yaml.snakeyaml.DumperOptions$LineBreak",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "me.shedaniel.cloth.clothconfig.shadowed.org.yaml.snakeyaml.DumperOptions$NonPrintableStyle",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "me.shedaniel.cloth.clothconfig.shadowed.org.yaml.snakeyaml.DumperOptions$ScalarStyle",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "me.shedaniel.cloth.clothconfig.shadowed.org.yaml.snakeyaml.DumperOptions$Version",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "me.shedaniel.cloth.clothconfig.shadowed.org.yaml.snakeyaml.events.Event$ID",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "me.shedaniel.cloth.clothconfig.shadowed.org.yaml.snakeyaml.introspector.BeanAccess",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "me.shedaniel.cloth.clothconfig.shadowed.org.yaml.snakeyaml.nodes.NodeId",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "me.shedaniel.cloth.clothconfig.shadowed.org.yaml.snakeyaml.tokens.Token$ID",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "me.shedaniel.clothconfig2.ClothConfigDemo$1DependencyDemoEnum",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "me.shedaniel.clothconfig2.gui.entries.ColorEntry$ColorError",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "me.shedaniel.clothconfig2.impl.EasingMethod$EasingMethodImpl",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.caffeinemc.mods.sodium.client.data.fingerprint.HashedFingerprint",
+  "allDeclaredConstructors": true,
+  "allDeclaredMethods": true,
+  "allDeclaredFields": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "net.caffeinemc.mods.sodium.client.gui.options.FullscreenMode",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.caffeinemc.mods.sodium.client.gui.options.Toggle",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.caffeinemc.mods.sodium.client.render.chunk.BlockEntityRenderHandlerImpl",
+  "methods": [
+   {
+    "name": "<init>",
+    "parameterTypes": []
+   }
+  ]
+ },
+ {
+  "name": "net.caffeinemc.mods.sodium.client.render.vertex.serializers.VertexSerializerRegistryImpl",
+  "methods": [
+   {
+    "name": "<init>",
+    "parameterTypes": []
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.client.sounds.SoundEngine",
+  "fields": [
+   {
+    "name": "executor"
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.client.sounds.SoundManager",
+  "fields": [
+   {
+    "name": "soundEngine"
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.server.network.EventLoopGroupHolder",
+  "fields": [
+   {
+    "name": "LOCAL"
+   },
+   {
+    "name": "NIO"
+   },
+   {
+    "name": "EPOLL"
+   },
+   {
+    "name": "KQUEUE"
+   },
+   {
+    "name": "group"
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.AbstractFurnaceBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.AnvilBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.BarrelBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.BeaconBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.BedBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.BellBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.BrewingStandBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.ButtonBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.CakeBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.CandleCakeBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.CartographyTableBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.CaveVinesBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.CaveVinesPlantBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.ChestBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.ChiseledBookShelfBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.CommandBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.ComparatorBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.ComposterBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.CrafterBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.CraftingTableBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.DaylightDetectorBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.DecoratedPotBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.DispenserBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.DoorBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.DragonEggBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.EnchantingTableBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.EnderChestBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.FenceBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.FenceGateBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.FlowerPotBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.GrindstoneBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.HopperBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.JigsawBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.JukeboxBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.LecternBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.LeverBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.LightBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.LoomBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.NoteBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.RedStoneWireBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.RepeaterBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.RespawnAnchorBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.ShulkerBoxBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.SignBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.SmithingTableBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.StonecutterBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.StructureBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.SweetBerryBushBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.TestBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.TestInstanceBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.TrapDoorBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.piston.MovingPistonBlock",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "net.minecraft.world.level.block.state.BlockBehaviour",
+  "queriedMethods": [
+   {
+    "name": "useWithoutItem",
+    "parameterTypes": [
+     "net.minecraft.world.level.block.state.BlockState",
+     "net.minecraft.world.level.Level",
+     "net.minecraft.core.BlockPos",
+     "net.minecraft.world.entity.player.Player",
+     "net.minecraft.world.phys.BlockHitResult"
+    ]
+   }
+  ]
+ },
+ {
+  "name": "org.vivecraft.Xloader$ModLoader",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.api.client.Tracker$ProcessType",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.api.client.data.CloseKeyboardContext",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.api.client.data.OpenKeyboardContext",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.api.client.data.RenderPass",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.api.data.FBTMode",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.api.data.VRBodyPart",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.api.data.ViveVersion$ReleaseType",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.VivecraftClickEvent$VivecraftAction",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.framework.VROptionLayout$Position",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.framework.screens.GuiListEditorScreen",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.framework.screens.GuiListScreen",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.framework.screens.GuiOrderedListEditorScreen",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.framework.screens.GuiSelectionListScreen",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.framework.screens.GuiStringListEditorScreen",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.framework.screens.GuiVROptionsBase",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.framework.screens.KeymappingSelectionScreen",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.framework.screens.TwoHandedScreen",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.screens.BlockedServerScreen",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.screens.ErrorScreen",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.screens.FBTCalibrationScreen",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.screens.GarbageCollectorScreen",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.screens.ServerVrChangesScreen",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.screens.UpdateScreen",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.settings.GuiActiveKeyboardLayoutSelector",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.settings.GuiAllSettings",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.settings.GuiBackpackSwitchingSettings",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.settings.GuiBindings",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.settings.GuiBlacklistEditor",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.settings.GuiChatNotificationSelection",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.settings.GuiClimbingSettings",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.settings.GuiDebugSettings",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.settings.GuiFreeMoveSettings",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.settings.GuiHUDSettings",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.settings.GuiKeyboardLayoutEditor",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.settings.GuiKeyboardSettings",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.settings.GuiKeyboardThemeEditor",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.settings.GuiMainVRSettings",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.settings.GuiMenuWorldSettings",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.settings.GuiMixedRealitySettings",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.settings.GuiOtherHUDSettings",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.settings.GuiPlayerModelSettings",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.settings.GuiPostEffectsSettings",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.settings.GuiQuickCommandEditor",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.settings.GuiQuickCommandsInGame",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.settings.GuiRadialConfiguration",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.settings.GuiRadialSettings",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.settings.GuiRenderOpticsSettings",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.settings.GuiRenderingSettings",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.settings.GuiRoomscaleSettings",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.settings.GuiSeatedOptions",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.settings.GuiServerSettings",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.settings.GuiShaderCompatSettings",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.settings.GuiStandingSettings",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.settings.GuiTeleportSettings",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.settings.GuiVRControls",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.settings.GuiWeaponCollisionSettings",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.gui.settings.VivecraftMainSettings",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client.render.VRPlayerRenderer$ModelType",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client.utils.RenderLayerType",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.bodylink.Haptics$Animations",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.bodylink.Haptics$DeviceType",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.bodylink.RiggedBody$AnchorType",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.gameplay.screenhandlers.GuiHandler$3",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.gui.GuiKeyboard",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.gui.GuiRadial",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.gui.keyboard.KeyboardTheme",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.provider.ControllerTransform",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.provider.DeviceSource$Source",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.provider.HardwareType",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.provider.control.ActionParams",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.provider.control.ActionType",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.provider.control.ControllerType",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.provider.control.HapticMusicPlayer$Music$Delay",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.provider.control.HapticMusicPlayer$Music$Note",
+  "allDeclaredConstructors": true,
+  "allDeclaredFields": true,
+  "allDeclaredMethods": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.provider.control.VRInputActionSet",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.provider.nullvr.BodyPart",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.render.VRFirstPersonArmSwing",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.render.VivecraftItemRendering$VivecraftItemTransformType",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.render.helpers.VRWidgetHelper$DisplayFace",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.render.helpers.graphics.GraphicsHelper$Type",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.render.helpers.graphics.ImageFormat",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.render.renderstates.VRRenderState$Keyboard",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.render.renderstates.VRRenderState$UiMode",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.settings.VRHotkeys$Triggerer",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.settings.VRSettings$AimDevice",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.settings.VRSettings$AutoOpenKeyboard",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.settings.VRSettings$BowMode",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.settings.VRSettings$ChatNotifications",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.settings.VRSettings$ChatServerMessage",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.settings.VRSettings$DataSource",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.settings.VRSettings$FreeMove",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.settings.VRSettings$HUDLock",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.settings.VRSettings$InertiaFactor",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.settings.VRSettings$MenuWorld",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.settings.VRSettings$MirrorGui",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.settings.VRSettings$MirrorMode",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.settings.VRSettings$MixedRealityGui",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.settings.VRSettings$ModelArmsMode",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.settings.VRSettings$OptionType",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.settings.VRSettings$PlayerModelType",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.settings.VRSettings$RealisticJump",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.settings.VRSettings$RenderPointerElement",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.settings.VRSettings$RightClickDelay",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.settings.VRSettings$ShaderGUIRender",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.settings.VRSettings$UpdateType",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.settings.VRSettings$VRProvider",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.settings.VRSettings$VrOptions",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_vr.settings.VRSettings$WeaponCollision",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.client_xr.render_pass.RenderPassType",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.common.network.NetworkVersion",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.common.network.packet.PayloadIdentifier",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.common.utils.math.AngleOrder",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.common.utils.math.Axis",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.mixin.client.gui.screens.JoinMultiplayerScreenMixin",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.mixin.client.gui.screens.TitleScreenMixin",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.mixin.client_vr.gui.screens.OptionsScreenVRMixin",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.mixin.client_vr.gui.screens.PauseScreenVRMixin",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.mixin.client_vr.gui.screens.SoundOptionsScreenVRMixin",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.mixin.client_vr.gui.screens.inventory.CreativeModeInventoryScreenVRMixin",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.mod_compat_vr.modmenu.mixin.PauseScreenVRModMenuMixin",
+  "allDeclaredConstructors": true,
+  "allPublicConstructors": true
+ },
+ {
+  "name": "org.vivecraft.mod_compat_vr.shaders.ShaderType",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.mod_compat_vr.shaders.ShadersHelper$UniformType",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.server.config.enums.ClimbeyBlockmode",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ },
+ {
+  "name": "org.vivecraft.server.config.enums.HeadshotIndicator",
+  "methods": [
+   {
+    "name": "values",
+    "parameterTypes": []
+   },
+   {
+    "name": "valueOf",
+    "parameterTypes": [
+     "java.lang.String"
+    ]
+   }
+  ],
+  "allDeclaredFields": true
+ }
+]

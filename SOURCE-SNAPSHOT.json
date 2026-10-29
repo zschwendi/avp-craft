@@ -1,0 +1,30 @@
+{
+  "snapshot": "AVPcraft 0.4.0 build 71 host source",
+  "upstream_repository": "https://github.com/rebelancap/vivecraft-visionos",
+  "upstream_commit": "9d0a5b0640b077765348c1db9faa026feec9f634",
+  "verified_host_source_sha256": {
+    "visionos/Sources/KleptonCompositor.swift": "9d01eb89a45dd5c541923c653c1af37e6c727f25a35449e31ae35cb348c018e7",
+    "visionos/Sources/KleptonMCProfiles.swift": "97d52d4183d8867c25fe2b85cbbdaceb9d6fcb0b3b9e30efd37011ae68b6856a",
+    "visionos/Sources/MCUIComfort.swift": "4de216a9c9560f8dea6692a2523f8c19f7227b8d3711499d9d3dc75539806122",
+    "visionos/Sources/OwnershipGate.swift": "132defe2424e7300487d3661fd6fbdb2c05560cff89f8799ca817e9f40c7b40b",
+    "visionos/Sources/KleptonMSA.swift": "70cc5c6b0e4339877b329dab1a488f824fa1ef7b1f32c188a71b7f3384770ad8",
+    "visionos/Sources/KleptonApp.swift": "52fc238118a216b2ddff7746b553fe76ce6a3e1d86f26e83c564196cfcfc14f7",
+    "visionos/Sources/KleptonMCLauncher.swift": "6d2de5ab54e9d1ee422bd92ae83f92f6bf537c46563311aae8df9241e6edf53b",
+    "visionos/Sources/KleptonShell.swift": "93ec605b93853b2f42753a5de8739645d2bf0cb2c4434f15dcbbae90ba2215a0",
+    "visionos/Sources/MCPlayMode.swift": "414d846d1167b4671f6aa22d1fd1fc858cdbce28922dbdbd17a75aa0157e30f7",
+    "visionos/Sources/KleptonAudio.swift": "372936d188206c30608243582df808d0ea87507ea0bfaee6bd66cd29bc5ab76b",
+    "visionos/Sources/MCAudioOpenAL.c": "c1c6219bd1794f9a16b2639add1e4db39e69a15affde09d0a84f8c1e14911ec0",
+    "visionos/Sources/MCAudioOpenAL.h": "13283e4a8153f7b16456032d15523dd27f6b9bc86742afcb26cf3c5b371dac9c",
+    "visionos/Sources/MCAudioOpenALInternal.h": "75f67c5f908c3bed9298af59995522207bf2ed071c35402b35cf5e3b920af67a",
+    "visionos/Sources/Klepton-Bridging-Header.h": "57c4431ae37e977474ec7b9d88653f11874d09eb08e8b92bfd1b39588226ff88",
+    "visionos/Sources/kl_app.c": "d5a5f50b21429279fe8f903f78aef2306e23689cca8c0b944d68f3ee82682da3",
+    "visionos/Sources/kl_app.h": "8b8b1355fb067f71bcf8fce15d55328fa080d867dae22f25f378837b5fde5455",
+    "visionos/Sources/MCWindowedInput.swift": "5ed15a76b04ee69922c6ead0fbf4dfe9bd7a5c667f02f5157cc4641c10a2fe0e"
+  },
+  "notes": [
+    "Source snapshot matches recorded build 71 host hashes.",
+    "Newer untested build 72 changes are not included.",
+    "Game client, assets, account data, saves and compiled game binary are excluded.",
+    "ANGLE binaries use upstream committed code with ad-hoc signatures."
+  ]
+}

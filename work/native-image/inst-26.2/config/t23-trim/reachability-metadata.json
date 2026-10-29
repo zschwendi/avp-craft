@@ -1,0 +1,7519 @@
+{
+ "reflection": [
+  {
+   "type": "apple.security.AppleProvider",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "byte[]"
+  },
+  {
+   "type": "ca.fxco.moreculling.MoreCullingFabric",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "ca.fxco.moreculling.config.MixinConfigPlugin",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    },
+    {
+     "name": "onLoad",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "ca.fxco.moreculling.config.MoreCullingConfig",
+   "fields": [
+    {
+     "name": "dontCull"
+    },
+    {
+     "name": "enableSodiumMenu"
+    },
+    {
+     "name": "endGatewayCulling"
+    },
+    {
+     "name": "includeMangroveRoots"
+    },
+    {
+     "name": "itemFrame3FaceCullingRange"
+    },
+    {
+     "name": "itemFrameLODRange"
+    },
+    {
+     "name": "itemFrameMapCulling"
+    },
+    {
+     "name": "leavesCullingAmount"
+    },
+    {
+     "name": "leavesCullingMode"
+    },
+    {
+     "name": "modCompatibility"
+    },
+    {
+     "name": "paintingCulling"
+    },
+    {
+     "name": "rainCulling"
+    },
+    {
+     "name": "signTextCulling"
+    },
+    {
+     "name": "useBlockStateCulling"
+    },
+    {
+     "name": "useCustomItemFrameRenderer"
+    },
+    {
+     "name": "useItemFrame3FaceCulling"
+    },
+    {
+     "name": "useItemFrameLOD"
+    },
+    {
+     "name": "useOnModdedBlocksByDefault"
+    },
+    {
+     "name": "version"
+    }
+   ],
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "ca.fxco.moreculling.config.option.LeavesCullingMode",
+   "fields": [
+    {
+     "name": "CHECK"
+    },
+    {
+     "name": "DEFAULT"
+    },
+    {
+     "name": "DEPTH"
+    },
+    {
+     "name": "FAST"
+    },
+    {
+     "name": "GAP"
+    },
+    {
+     "name": "RANDOM"
+    },
+    {
+     "name": "STATE"
+    },
+    {
+     "name": "VERTICAL"
+    }
+   ]
+  },
+  {
+   "type": "ca.fxco.moreculling.config.sodium.MoreCullingSodiumConfigBuilder",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "ca.fxco.moreculling.platform.FabricPlatformHelper"
+  },
+  {
+   "type": "com.electronwill.nightconfig.hocon.HoconFormat"
+  },
+  {
+   "type": "com.electronwill.nightconfig.json.JsonFormat"
+  },
+  {
+   "type": "com.electronwill.nightconfig.toml.TomlFormat"
+  },
+  {
+   "type": "com.electronwill.nightconfig.yaml.YamlFormat"
+  },
+  {
+   "type": "com.fasterxml.jackson.databind.ObjectMapper"
+  },
+  {
+   "type": "com.google.common.util.concurrent.AbstractFutureState",
+   "fields": [
+    {
+     "name": "listenersField"
+    },
+    {
+     "name": "valueField"
+    },
+    {
+     "name": "waitersField"
+    }
+   ]
+  },
+  {
+   "type": "com.google.common.util.concurrent.AbstractFutureState$Waiter",
+   "fields": [
+    {
+     "name": "next"
+    },
+    {
+     "name": "thread"
+    }
+   ]
+  },
+  {
+   "type": "com.google.gson.internal.bind.JavaTimeTypeAdapters",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "com.mojang.authlib.yggdrasil.ToggleValue",
+   "fields": [
+    {
+     "name": "DISABLED"
+    },
+    {
+     "name": "ENABLED"
+    }
+   ]
+  },
+  {
+   "type": "com.mojang.authlib.yggdrasil.YggdrasilServicesKeyInfo$KeyData",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "java.nio.ByteBuffer"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "com.mojang.authlib.yggdrasil.YggdrasilServicesKeyInfo$KeySetResponse",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "java.util.List",
+      "java.util.List"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "com.mojang.authlib.yggdrasil.request.UserAttributesRequest",
+   "methods": [
+    {
+     "name": "friendsPreferences",
+     "parameterTypes": []
+    },
+    {
+     "name": "profanityFilterPreferences",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "com.mojang.authlib.yggdrasil.request.UserAttributesRequest$FriendsPreferences",
+   "methods": [
+    {
+     "name": "acceptInvites",
+     "parameterTypes": []
+    },
+    {
+     "name": "friends",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "com.mojang.authlib.yggdrasil.request.UserAttributesRequest$ProfanityFilterPreferences"
+  },
+  {
+   "type": "com.mojang.authlib.yggdrasil.response.ErrorResponse",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "java.lang.String",
+      "java.lang.String",
+      "java.lang.String",
+      "java.util.Map"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "com.mojang.blaze3d.textures.FilterMode",
+   "fields": [
+    {
+     "name": "LINEAR"
+    },
+    {
+     "name": "NEAREST"
+    }
+   ]
+  },
+  {
+   "type": "com.mojang.logging.plugins.LegacyXMLLayout"
+  },
+  {
+   "type": "com.mojang.logging.plugins.ListenerLogAppender",
+   "methods": [
+    {
+     "name": "createAppender",
+     "parameterTypes": [
+      "java.lang.String",
+      "java.lang.String",
+      "org.apache.logging.log4j.core.Layout",
+      "org.apache.logging.log4j.core.Filter",
+      "java.lang.String"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "com.mojang.logging.plugins.QueueLogAppender",
+   "methods": [
+    {
+     "name": "createAppender",
+     "parameterTypes": [
+      "java.lang.String",
+      "java.lang.String",
+      "org.apache.logging.log4j.core.Layout",
+      "org.apache.logging.log4j.core.Filter",
+      "java.lang.String"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "com.sun.crypto.provider.AESCipher$General",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "com.sun.crypto.provider.ARCFOURCipher",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "com.sun.crypto.provider.ChaCha20Cipher$ChaCha20Poly1305",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "com.sun.crypto.provider.DESCipher",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "com.sun.crypto.provider.DESedeCipher",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "com.sun.crypto.provider.DHParameters",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "com.sun.crypto.provider.GaloisCounterMode$AESGCM",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "com.sun.crypto.provider.HKDFKeyDerivation$HKDFSHA256",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "javax.crypto.KDFParameters"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "com.sun.crypto.provider.HKDFKeyDerivation$HKDFSHA384",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "javax.crypto.KDFParameters"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "com.sun.crypto.provider.HmacCore$HmacSHA256",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "com.sun.crypto.provider.HmacCore$HmacSHA384",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "com.sun.crypto.provider.TlsMasterSecretGenerator",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "com.sun.media.sound.DirectAudioDevice",
+   "jniAccessible": true,
+   "methods": [
+    {
+     "name": "addFormat",
+     "parameterTypes": [
+      "java.util.Vector",
+      "int",
+      "int",
+      "int",
+      "float",
+      "int",
+      "boolean",
+      "boolean"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "com.sun.media.sound.DirectAudioDeviceProvider$DirectAudioDeviceInfo",
+   "jniAccessible": true,
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "int",
+      "int",
+      "int",
+      "java.lang.String",
+      "java.lang.String",
+      "java.lang.String",
+      "java.lang.String"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "com.sun.media.sound.PortMixerProvider$PortMixerInfo",
+   "jniAccessible": true,
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "int",
+      "java.lang.String",
+      "java.lang.String",
+      "java.lang.String",
+      "java.lang.String"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "com.sun.org.apache.xerces.internal.jaxp.DocumentBuilderFactoryImpl",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "de.maxhenkel.opus4j.OpusEncoder$Application",
+   "jniAccessible": true,
+   "fields": [
+    {
+     "name": "value"
+    }
+   ]
+  },
+  {
+   "type": "de.maxhenkel.voicechat.FabricVoicechatClientMod",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "de.maxhenkel.voicechat.FabricVoicechatMod",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "de.maxhenkel.voicechat.intercompatibility.ClientCompatibilityManager$KeyboardEvent[]"
+  },
+  {
+   "type": "de.maxhenkel.voicechat.intercompatibility.ClientCompatibilityManager$MouseEvent[]"
+  },
+  {
+   "type": "de.maxhenkel.voicechat.intercompatibility.ClientCompatibilityManager$RenderNameplateEvent[]"
+  },
+  {
+   "type": "de.maxhenkel.voicechat.intercompatibility.ClientCrossSideManager",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "de.maxhenkel.voicechat.intercompatibility.FabricClientCompatibilityManager"
+  },
+  {
+   "type": "de.maxhenkel.voicechat.intercompatibility.FabricCommonCompatibilityManager"
+  },
+  {
+   "type": "de.maxhenkel.voicechat.net.AddCategoryPacket",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "de.maxhenkel.voicechat.net.AddGroupPacket",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "de.maxhenkel.voicechat.net.CreateGroupPacket",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "de.maxhenkel.voicechat.net.JoinGroupPacket",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "de.maxhenkel.voicechat.net.JoinedGroupPacket",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "de.maxhenkel.voicechat.net.LeaveGroupPacket",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "de.maxhenkel.voicechat.net.PlayerStatePacket",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "de.maxhenkel.voicechat.net.PlayerStatesPacket",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "de.maxhenkel.voicechat.net.RemoveCategoryPacket",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "de.maxhenkel.voicechat.net.RemoveGroupPacket",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "de.maxhenkel.voicechat.net.RemovePlayerStatePacket",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "de.maxhenkel.voicechat.net.RequestSecretPacket",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "de.maxhenkel.voicechat.net.SecretPacket",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "de.maxhenkel.voicechat.net.UpdateStatePacket",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "de.maxhenkel.voicechat.voice.common.AuthenticateAckPacket",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "de.maxhenkel.voicechat.voice.common.AuthenticatePacket",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "de.maxhenkel.voicechat.voice.common.ConnectionCheckAckPacket",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "de.maxhenkel.voicechat.voice.common.ConnectionCheckPacket",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "de.maxhenkel.voicechat.voice.common.KeepAlivePacket",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "dev.tr7zw.entityculling.EntityCullingMod",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "dev.tr7zw.entityculling.versionless.Config",
+   "fields": [
+    {
+     "name": "blockEntityFrustumCulling"
+    },
+    {
+     "name": "blockEntityWhitelist"
+    },
+    {
+     "name": "captureRate"
+    },
+    {
+     "name": "configVersion"
+    },
+    {
+     "name": "debugMode"
+    },
+    {
+     "name": "disableF3"
+    },
+    {
+     "name": "entityWhitelist"
+    },
+    {
+     "name": "forceDisplayCulling"
+    },
+    {
+     "name": "hitboxLimit"
+    },
+    {
+     "name": "renderNametagsThroughWalls"
+    },
+    {
+     "name": "safeMode"
+    },
+    {
+     "name": "skipBlockEntityCulling"
+    },
+    {
+     "name": "skipEntityCulling"
+    },
+    {
+     "name": "sleepDelay"
+    },
+    {
+     "name": "solidLeaves"
+    },
+    {
+     "name": "tickCulling"
+    },
+    {
+     "name": "tickCullingWhitelist"
+    },
+    {
+     "name": "tracingDistance"
+    }
+   ],
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "dev.tr7zw.transition.ClientTRansitionMod",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "dev.tr7zw.transition.config.TransitionConfig",
+   "fields": [
+    {
+     "name": "userConsentedToSendCrashReports"
+    },
+    {
+     "name": "version"
+    }
+   ],
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "dev.tr7zw.trender.gui.impl.LibGuiMixinPlugin",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    },
+    {
+     "name": "onLoad",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "dev.tr7zw.trender.gui.impl.client.LibGuiClient",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "dev.tr7zw.trender.gui.impl.client.config.LibGuiConfig",
+   "fields": [
+    {
+     "name": "style"
+    },
+    {
+     "name": "version"
+    }
+   ],
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "dev.tr7zw.trender.gui.impl.client.style.GuiStyle",
+   "fields": [
+    {
+     "name": "MODERN"
+    },
+    {
+     "name": "MODERN_DARK"
+    },
+    {
+     "name": "VANILLA_MODERN"
+    },
+    {
+     "name": "VANILLA_OLD"
+    }
+   ]
+  },
+  {
+   "type": "fionathemortal.betterbiomeblend.fabric.BetterBiomeBlendFabric",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "float[]"
+  },
+  {
+   "type": "io.netty.bootstrap.ServerBootstrap$1"
+  },
+  {
+   "type": "io.netty.bootstrap.ServerBootstrap$ServerBootstrapAcceptor"
+  },
+  {
+   "type": "io.netty.buffer.AbstractByteBufAllocator"
+  },
+  {
+   "type": "io.netty.buffer.AdaptivePoolingAllocator$Magazine"
+  },
+  {
+   "type": "io.netty.buffer.AdaptivePoolingAllocator$SizeClassedChunk"
+  },
+  {
+   "type": "io.netty.channel.AbstractChannelHandlerContext"
+  },
+  {
+   "type": "io.netty.channel.ChannelOutboundBuffer"
+  },
+  {
+   "type": "io.netty.channel.DefaultChannelConfig"
+  },
+  {
+   "type": "io.netty.channel.DefaultChannelPipeline"
+  },
+  {
+   "type": "io.netty.channel.DefaultChannelPipeline$HeadContext"
+  },
+  {
+   "type": "io.netty.channel.DefaultChannelPipeline$TailContext"
+  },
+  {
+   "type": "io.netty.channel.local.LocalChannel",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "io.netty.channel.local.LocalServerChannel",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "io.netty.handler.flow.FlowControlHandler"
+  },
+  {
+   "type": "io.netty.util.DefaultAttributeMap"
+  },
+  {
+   "type": "io.netty.util.ReferenceCountUtil"
+  },
+  {
+   "type": "io.netty.util.concurrent.ConcurrentSkipListIntObjMultimap"
+  },
+  {
+   "type": "io.netty.util.concurrent.ConcurrentSkipListIntObjMultimap$Index"
+  },
+  {
+   "type": "io.netty.util.concurrent.ConcurrentSkipListIntObjMultimap$Node"
+  },
+  {
+   "type": "io.netty.util.concurrent.DefaultPromise"
+  },
+  {
+   "type": "io.netty.util.concurrent.MpscIntQueue$MpscAtomicIntegerArrayQueue"
+  },
+  {
+   "type": "io.netty.util.concurrent.SingleThreadEventExecutor"
+  },
+  {
+   "type": "io.netty.util.internal.shaded.org.jctools.queues.atomic.BaseLinkedAtomicQueueConsumerNodeRef"
+  },
+  {
+   "type": "io.netty.util.internal.shaded.org.jctools.queues.atomic.BaseLinkedAtomicQueueProducerNodeRef"
+  },
+  {
+   "type": "io.netty.util.internal.shaded.org.jctools.queues.atomic.BaseMpscLinkedAtomicArrayQueueColdProducerFields"
+  },
+  {
+   "type": "io.netty.util.internal.shaded.org.jctools.queues.atomic.BaseMpscLinkedAtomicArrayQueueConsumerFields"
+  },
+  {
+   "type": "io.netty.util.internal.shaded.org.jctools.queues.atomic.BaseMpscLinkedAtomicArrayQueueProducerFields"
+  },
+  {
+   "type": "io.netty.util.internal.shaded.org.jctools.queues.atomic.MpmcAtomicArrayQueueConsumerIndexField"
+  },
+  {
+   "type": "io.netty.util.internal.shaded.org.jctools.queues.atomic.MpmcAtomicArrayQueueProducerIndexField"
+  },
+  {
+   "type": "it.unimi.dsi.fastutil.objects.Object2BooleanOpenHashMap",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "jakarta.servlet.Servlet"
+  },
+  {
+   "type": "java.awt.Color"
+  },
+  {
+   "type": "java.io.File",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "java.io.IOException",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "java.lang.Boolean",
+   "jniAccessible": true,
+   "fields": [
+    {
+     "name": "TYPE"
+    },
+    {
+     "name": "value"
+    }
+   ],
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "boolean"
+     ]
+    },
+    {
+     "name": "getBoolean",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "java.lang.Byte",
+   "jniAccessible": true,
+   "fields": [
+    {
+     "name": "TYPE"
+    },
+    {
+     "name": "value"
+    }
+   ],
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "byte"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "java.lang.Character",
+   "jniAccessible": true,
+   "fields": [
+    {
+     "name": "TYPE"
+    },
+    {
+     "name": "value"
+    }
+   ],
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "char"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "java.lang.Class",
+   "jniAccessible": true,
+   "methods": [
+    {
+     "name": "getComponentType",
+     "parameterTypes": []
+    },
+    {
+     "name": "getModule",
+     "parameterTypes": []
+    },
+    {
+     "name": "getRecordComponents",
+     "parameterTypes": []
+    },
+    {
+     "name": "isRecord",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "java.lang.Double",
+   "jniAccessible": true,
+   "fields": [
+    {
+     "name": "TYPE"
+    },
+    {
+     "name": "value"
+    }
+   ],
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "double"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "java.lang.Enum",
+   "methods": [
+    {
+     "name": "name",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "java.lang.Float",
+   "jniAccessible": true,
+   "fields": [
+    {
+     "name": "TYPE"
+    },
+    {
+     "name": "value"
+    }
+   ],
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "float"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "java.lang.Integer",
+   "jniAccessible": true,
+   "fields": [
+    {
+     "name": "TYPE"
+    },
+    {
+     "name": "value"
+    }
+   ],
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "int"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "java.lang.Long",
+   "jniAccessible": true,
+   "fields": [
+    {
+     "name": "TYPE"
+    },
+    {
+     "name": "value"
+    }
+   ],
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "long"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "java.lang.Module",
+   "methods": [
+    {
+     "name": "isNativeAccessEnabled",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "java.lang.Object",
+   "jniAccessible": true,
+   "methods": [
+    {
+     "name": "toString",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "java.lang.ProcessHandle",
+   "methods": [
+    {
+     "name": "current",
+     "parameterTypes": []
+    },
+    {
+     "name": "pid",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "java.lang.Record"
+  },
+  {
+   "type": "java.lang.Runnable[]"
+  },
+  {
+   "type": "java.lang.Short",
+   "jniAccessible": true,
+   "fields": [
+    {
+     "name": "TYPE"
+    },
+    {
+     "name": "value"
+    }
+   ],
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "short"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "java.lang.String",
+   "jniAccessible": true,
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "byte[]"
+     ]
+    },
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "byte[]",
+      "java.lang.String"
+     ]
+    },
+    {
+     "name": "getBytes",
+     "parameterTypes": []
+    },
+    {
+     "name": "getBytes",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    },
+    {
+     "name": "toCharArray",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "java.lang.String[]"
+  },
+  {
+   "type": "java.lang.System",
+   "jniAccessible": true,
+   "methods": [
+    {
+     "name": "getProperty",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "java.lang.Thread",
+   "methods": [
+    {
+     "name": "isVirtual",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "java.lang.Throwable"
+  },
+  {
+   "type": "java.lang.UnsatisfiedLinkError",
+   "jniAccessible": true,
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "java.lang.Void",
+   "jniAccessible": true,
+   "fields": [
+    {
+     "name": "TYPE"
+    }
+   ]
+  },
+  {
+   "type": "java.lang.invoke.MethodHandle"
+  },
+  {
+   "type": "java.lang.invoke.MethodHandles",
+   "methods": [
+    {
+     "name": "byteArrayViewVarHandle",
+     "parameterTypes": [
+      "java.lang.Class",
+      "java.nio.ByteOrder"
+     ]
+    },
+    {
+     "name": "byteBufferViewVarHandle",
+     "parameterTypes": [
+      "java.lang.Class",
+      "java.nio.ByteOrder"
+     ]
+    },
+    {
+     "name": "privateLookupIn",
+     "parameterTypes": [
+      "java.lang.Class",
+      "java.lang.invoke.MethodHandles$Lookup"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "java.lang.invoke.MethodHandles$Lookup",
+   "methods": [
+    {
+     "name": "findVarHandle",
+     "parameterTypes": [
+      "java.lang.Class",
+      "java.lang.String",
+      "java.lang.Class"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "java.lang.invoke.MethodType"
+  },
+  {
+   "type": "java.lang.invoke.VarHandle",
+   "methods": [
+    {
+     "name": "acquireFence",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "java.lang.management.ManagementFactory",
+   "methods": [
+    {
+     "name": "getRuntimeMXBean",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "java.lang.management.RuntimeMXBean",
+   "methods": [
+    {
+     "name": "getInputArguments",
+     "parameterTypes": []
+    },
+    {
+     "name": "getStartTime",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "java.lang.reflect.Method",
+   "jniAccessible": true,
+   "methods": [
+    {
+     "name": "getParameterTypes",
+     "parameterTypes": []
+    },
+    {
+     "name": "getReturnType",
+     "parameterTypes": []
+    },
+    {
+     "name": "isDefault",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "java.lang.reflect.RecordComponent",
+   "methods": [
+    {
+     "name": "getName",
+     "parameterTypes": []
+    },
+    {
+     "name": "getType",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "java.net.StandardProtocolFamily"
+  },
+  {
+   "type": "java.nio.Buffer",
+   "jniAccessible": true,
+   "fields": [
+    {
+     "name": "address"
+    },
+    {
+     "name": "capacity"
+    },
+    {
+     "name": "limit"
+    },
+    {
+     "name": "mark"
+    },
+    {
+     "name": "position"
+    }
+   ],
+   "methods": [
+    {
+     "name": "position",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "java.nio.ByteBuffer",
+   "jniAccessible": true,
+   "fields": [
+    {
+     "name": "offset"
+    }
+   ],
+   "methods": [
+    {
+     "name": "alignedSlice",
+     "parameterTypes": [
+      "int"
+     ]
+    },
+    {
+     "name": "array",
+     "parameterTypes": []
+    },
+    {
+     "name": "arrayOffset",
+     "parameterTypes": []
+    },
+    {
+     "name": "put",
+     "parameterTypes": [
+      "int",
+      "java.nio.ByteBuffer",
+      "int",
+      "int"
+     ]
+    },
+    {
+     "name": "put",
+     "parameterTypes": [
+      "int",
+      "byte[]",
+      "int",
+      "int"
+     ]
+    },
+    {
+     "name": "slice",
+     "parameterTypes": [
+      "int",
+      "int"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "java.nio.CharBuffer",
+   "jniAccessible": true,
+   "methods": [
+    {
+     "name": "array",
+     "parameterTypes": []
+    },
+    {
+     "name": "arrayOffset",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "java.nio.DirectByteBuffer",
+   "unsafeAllocated": true,
+   "fields": [
+    {
+     "name": "att"
+    }
+   ]
+  },
+  {
+   "type": "java.nio.DirectCharBufferU",
+   "fields": [
+    {
+     "name": "att"
+    }
+   ]
+  },
+  {
+   "type": "java.nio.DirectDoubleBufferU",
+   "fields": [
+    {
+     "name": "att"
+    }
+   ]
+  },
+  {
+   "type": "java.nio.DirectFloatBufferU",
+   "unsafeAllocated": true,
+   "fields": [
+    {
+     "name": "att"
+    }
+   ]
+  },
+  {
+   "type": "java.nio.DirectIntBufferU",
+   "unsafeAllocated": true,
+   "fields": [
+    {
+     "name": "att"
+    }
+   ]
+  },
+  {
+   "type": "java.nio.DirectLongBufferU",
+   "fields": [
+    {
+     "name": "att"
+    }
+   ]
+  },
+  {
+   "type": "java.nio.DirectShortBufferU",
+   "fields": [
+    {
+     "name": "att"
+    }
+   ]
+  },
+  {
+   "type": "java.nio.DoubleBuffer",
+   "jniAccessible": true,
+   "methods": [
+    {
+     "name": "array",
+     "parameterTypes": []
+    },
+    {
+     "name": "arrayOffset",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "java.nio.FloatBuffer",
+   "jniAccessible": true,
+   "methods": [
+    {
+     "name": "array",
+     "parameterTypes": []
+    },
+    {
+     "name": "arrayOffset",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "java.nio.IntBuffer",
+   "jniAccessible": true,
+   "methods": [
+    {
+     "name": "array",
+     "parameterTypes": []
+    },
+    {
+     "name": "arrayOffset",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "java.nio.LongBuffer",
+   "jniAccessible": true,
+   "methods": [
+    {
+     "name": "array",
+     "parameterTypes": []
+    },
+    {
+     "name": "arrayOffset",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "java.nio.MappedByteBuffer"
+  },
+  {
+   "type": "java.nio.ShortBuffer",
+   "jniAccessible": true,
+   "methods": [
+    {
+     "name": "array",
+     "parameterTypes": []
+    },
+    {
+     "name": "arrayOffset",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "java.security.AlgorithmParametersSpi"
+  },
+  {
+   "type": "java.security.KeyStoreSpi"
+  },
+  {
+   "type": "java.security.interfaces.ECPrivateKey"
+  },
+  {
+   "type": "java.security.interfaces.ECPublicKey"
+  },
+  {
+   "type": "java.security.interfaces.RSAPrivateKey"
+  },
+  {
+   "type": "java.security.interfaces.RSAPublicKey"
+  },
+  {
+   "type": "java.sql.Date"
+  },
+  {
+   "type": "java.sql.Time"
+  },
+  {
+   "type": "java.util.ArrayList"
+  },
+  {
+   "type": "java.util.HashMap"
+  },
+  {
+   "type": "java.util.Locale",
+   "methods": [
+    {
+     "name": "getDefault",
+     "parameterTypes": [
+      "java.util.Locale$Category"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "java.util.Locale$Category"
+  },
+  {
+   "type": "java.util.concurrent.ConcurrentHashMap",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "java.util.function.BiConsumer[]"
+  },
+  {
+   "type": "java.util.function.Consumer[]"
+  },
+  {
+   "type": "java.util.function.Predicate[][][]"
+  },
+  {
+   "type": "java.util.zip.CRC32C"
+  },
+  {
+   "type": "javax.servlet.Servlet"
+  },
+  {
+   "type": "jdk.internal.jrtfs.JrtFileSystemProvider"
+  },
+  {
+   "type": "malte0811.ferritecore.PlatformHooks",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "malte0811.ferritecore.mixin.blockstatecache.Config",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "malte0811.ferritecore.mixin.config.FerriteMixinConfig",
+   "methods": [
+    {
+     "name": "onLoad",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "malte0811.ferritecore.mixin.datacomponents.Config",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "malte0811.ferritecore.mixin.fastmap.Config",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "malte0811.ferritecore.mixin.platform.ConfigFileHandler",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "malte0811.ferritecore.mixin.threaddetec.Config",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "me.fallenbreath.conditionalmixin.fabric.ConditionalMixinFabric",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "me.jellysquid.mods.sodium.client.render.immediate.model.ModelCuboid"
+  },
+  {
+   "type": "me.jellysquid.mods.sodium.client.render.immediate.model.ModelCuboid$Quad"
+  },
+  {
+   "type": "me.shedaniel.autoconfig.example.ExampleConfig",
+   "fields": [
+    {
+     "name": "empty"
+    },
+    {
+     "name": "moduleA"
+    },
+    {
+     "name": "moduleB"
+    }
+   ],
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "me.shedaniel.autoconfig.example.ExampleConfig$Empty",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "me.shedaniel.autoconfig.example.ExampleConfig$ModuleA",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "me.shedaniel.autoconfig.example.ExampleConfig$ModuleB",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "me.shedaniel.autoconfig.example.ExampleInits",
+   "methods": [
+    {
+     "name": "exampleCommonInit",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "me.shedaniel.clothconfig2.api.ConfigBuilder"
+  },
+  {
+   "type": "me.steinborn.krypton.mod.client.KryptonClientInitializer",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "me.steinborn.krypton.mod.shared.KryptonMixinPlugin",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    },
+    {
+     "name": "onLoad",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "me.steinborn.krypton.mod.shared.KryptonSharedInitializer",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "me.thosea.badoptimizations.mixin.BOMixinPlugin",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    },
+    {
+     "name": "onLoad",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "net.caffeinemc.mods.lithium.fabric.FabricMixinOverrides"
+  },
+  {
+   "type": "net.caffeinemc.mods.lithium.fabric.FabricModCompat"
+  },
+  {
+   "type": "net.caffeinemc.mods.lithium.fabric.LithiumFabricMod",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.caffeinemc.mods.lithium.mixin.LithiumMixinPlugin",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    },
+    {
+     "name": "onLoad",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "net.caffeinemc.mods.sodium.api.texture.SpriteUtil",
+   "fields": [
+    {
+     "name": "INSTANCE"
+    }
+   ]
+  },
+  {
+   "type": "net.caffeinemc.mods.sodium.client.data.fingerprint.HashedFingerprint",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "int",
+      "java.lang.String",
+      "java.lang.String",
+      "java.lang.String",
+      "long"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "net.caffeinemc.mods.sodium.client.gui.SodiumOptions",
+   "fields": [
+    {
+     "name": "advanced"
+    },
+    {
+     "name": "debug"
+    },
+    {
+     "name": "notifications"
+    },
+    {
+     "name": "performance"
+    },
+    {
+     "name": "quality"
+    }
+   ],
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.caffeinemc.mods.sodium.client.gui.SodiumOptions$AdvancedSettings",
+   "fields": [
+    {
+     "name": "enableMemoryTracing"
+    }
+   ],
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.caffeinemc.mods.sodium.client.gui.SodiumOptions$DebugSettings",
+   "fields": [
+    {
+     "name": "terrainSortingEnabled"
+    }
+   ],
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.caffeinemc.mods.sodium.client.gui.SodiumOptions$NotificationSettings",
+   "fields": [
+    {
+     "name": "hasClearedDonationButton"
+    },
+    {
+     "name": "hasEditedFullscreenOption"
+    },
+    {
+     "name": "hasSeenDonationPrompt"
+    }
+   ],
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.caffeinemc.mods.sodium.client.gui.SodiumOptions$PerformanceSettings",
+   "fields": [
+    {
+     "name": "animateOnlyVisibleTextures"
+    },
+    {
+     "name": "chunkBuildDeferMode"
+    },
+    {
+     "name": "chunkBuilderThreads"
+    },
+    {
+     "name": "quadSplittingMode"
+    },
+    {
+     "name": "useBlockFaceCulling"
+    },
+    {
+     "name": "useEntityCulling"
+    },
+    {
+     "name": "useFogOcclusion"
+    },
+    {
+     "name": "useNoErrorGLContext"
+    }
+   ],
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.caffeinemc.mods.sodium.client.gui.SodiumOptions$QualitySettings",
+   "fields": [
+    {
+     "name": "hiddenFluidCulling"
+    },
+    {
+     "name": "improvedFluidShaping"
+    },
+    {
+     "name": "pixelFilteringMode"
+    },
+    {
+     "name": "useClosestPointEntitySort"
+    }
+   ],
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.caffeinemc.mods.sodium.client.render.chunk.DeferMode",
+   "fields": [
+    {
+     "name": "ALWAYS"
+    },
+    {
+     "name": "ONE_FRAME"
+    },
+    {
+     "name": "ZERO_FRAMES"
+    }
+   ]
+  },
+  {
+   "type": "net.caffeinemc.mods.sodium.client.render.chunk.translucent_sorting.QuadSplittingMode",
+   "fields": [
+    {
+     "name": "OFF"
+    },
+    {
+     "name": "SAFE"
+    },
+    {
+     "name": "UNLIMITED"
+    }
+   ]
+  },
+  {
+   "type": "net.caffeinemc.mods.sodium.client.render.frapi.FRAPIEmitterProvider"
+  },
+  {
+   "type": "net.caffeinemc.mods.sodium.client.render.frapi.SodiumRegistrarProvider"
+  },
+  {
+   "type": "net.caffeinemc.mods.sodium.client.render.immediate.model.ModelCuboid",
+   "fields": [
+    {
+     "name": "textures"
+    }
+   ]
+  },
+  {
+   "type": "net.caffeinemc.mods.sodium.client.render.immediate.model.ModelCuboid$Quad"
+  },
+  {
+   "type": "net.caffeinemc.mods.sodium.client.render.texture.SpriteUtilImpl",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.caffeinemc.mods.sodium.client.render.vertex.VertexFormatRegistryImpl",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.caffeinemc.mods.sodium.client.render.vertex.serializers.VertexSerializerRegistryImpl",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.caffeinemc.mods.sodium.client.render.vertex.serializers.generated.VertexSerializer$Impl$000A$0008",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.caffeinemc.mods.sodium.fabric.FabricMixinOverrides"
+  },
+  {
+   "type": "net.caffeinemc.mods.sodium.fabric.FabricRuntimeInformation"
+  },
+  {
+   "type": "net.caffeinemc.mods.sodium.fabric.SodiumFabricMod",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.caffeinemc.mods.sodium.fabric.SodiumPreLaunch",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.caffeinemc.mods.sodium.fabric.block.FabricBlockAccess"
+  },
+  {
+   "type": "net.caffeinemc.mods.sodium.fabric.level.FabricLevelAccess"
+  },
+  {
+   "type": "net.caffeinemc.mods.sodium.fabric.level.FabricLevelRenderHooks"
+  },
+  {
+   "type": "net.caffeinemc.mods.sodium.fabric.model.FabricModelAccess"
+  },
+  {
+   "type": "net.caffeinemc.mods.sodium.fabric.render.FluidRendererImpl$FabricFactory"
+  },
+  {
+   "type": "net.caffeinemc.mods.sodium.mixin.SodiumMixinPlugin",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    },
+    {
+     "name": "onLoad",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "net.fabricmc.api.ClientModInitializer",
+   "allPublicMethods": true
+  },
+  {
+   "type": "net.fabricmc.api.ModInitializer",
+   "allPublicMethods": true
+  },
+  {
+   "type": "net.fabricmc.fabric.api.advancement.v1.AdvancementEvents$Loaded[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.advancement.v1.AdvancementEvents$Modify[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.advancement.v1.AdvancementEvents$Replace[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.block.v1.FluidFlowEvents$Allow[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientBlockEntityEvents$Load[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientBlockEntityEvents$Unload[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientChunkEvents$Load[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientChunkEvents$Unload[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientEntityEvents$Load[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientEntityEvents$Unload[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLevelEvents$AfterClientLevelChange[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents$ClientStarted[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents$ClientStopping[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents$EndLevelTick[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents$EndTick[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents$StartLevelTick[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents$StartTick[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.item.v1.ItemTooltipCallback[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.model.loading.v1.ModelModifier$AfterBakeBlock[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.model.loading.v1.ModelModifier$AfterBakeItem[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.model.loading.v1.ModelModifier$BeforeBakeBlock[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.model.loading.v1.ModelModifier$BeforeBakeItem[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.model.loading.v1.ModelModifier$OnLoadBlock[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.model.loading.v1.ModelModifier$OnLoad[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.networking.v1.ClientConfigurationConnectionEvents$Complete[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.networking.v1.ClientConfigurationConnectionEvents$Disconnect[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.networking.v1.ClientConfigurationConnectionEvents$Init[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.networking.v1.ClientConfigurationConnectionEvents$Ready[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.networking.v1.ClientConfigurationConnectionEvents$Start[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.networking.v1.ClientLoginConnectionEvents$Disconnect[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.networking.v1.ClientLoginConnectionEvents$Init[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.networking.v1.ClientLoginConnectionEvents$QueryStart[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents$Disconnect[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents$Init[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents$Join[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.networking.v1.ServerboundConfigurationChannelEvents$Register[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.networking.v1.ServerboundConfigurationChannelEvents$Unregister[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.networking.v1.ServerboundPlayChannelEvents$Register[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.networking.v1.ServerboundPlayChannelEvents$Unregister[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.rendering.v1.BuiltInBlockModelsCallback[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.rendering.v1.InvalidateRenderStateCallback[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.rendering.v1.LivingEntityRenderLayerRegistrationCallback[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.rendering.v1.level.LevelExtractionEvents$AfterBlockOutlineExtraction[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.rendering.v1.level.LevelExtractionEvents$EndExtraction[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents$AfterOpaqueTerrain[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents$AfterSolidFeatures[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents$AfterTranslucentFeatures[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents$AfterTranslucentTerrain[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents$BeforeBlockOutline[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents$BeforeGizmos[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents$BeforeTranslucentTerrain[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents$CollectSubmits[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents$EndMain[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.rendering.v1.level.LevelRenderEvents$StartMain[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.screen.v1.ScreenEvents$AfterBackground[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.screen.v1.ScreenEvents$AfterExtract[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.screen.v1.ScreenEvents$AfterForeground[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.screen.v1.ScreenEvents$AfterInit[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.screen.v1.ScreenEvents$AfterTick[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.screen.v1.ScreenEvents$BeforeExtract[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.screen.v1.ScreenEvents$BeforeInit[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.screen.v1.ScreenEvents$BeforeTick[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.screen.v1.ScreenEvents$Remove[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents$AfterCharType[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents$AfterKeyPress[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents$AfterKeyRelease[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents$AllowCharType[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents$AllowKeyPress[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents$AllowKeyRelease[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents$BeforeCharType[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents$BeforeKeyPress[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.screen.v1.ScreenKeyboardEvents$BeforeKeyRelease[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents$AfterMouseClick[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents$AfterMouseDrag[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents$AfterMouseRelease[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents$AfterMouseScroll[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents$AllowMouseClick[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents$AllowMouseDrag[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents$AllowMouseRelease[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents$AllowMouseScroll[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents$BeforeMouseClick[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents$BeforeMouseDrag[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents$BeforeMouseRelease[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.client.screen.v1.ScreenMouseEvents$BeforeMouseScroll[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.dimension.v1.DimensionEvents$ModifyAttributes[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.entity.event.v1.ServerEntityLevelChangeEvents$AfterEntityChange[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.entity.event.v1.ServerEntityLevelChangeEvents$AfterPlayerChange[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents$AfterDamage[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents$AfterDeath[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents$AllowDamage[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents$AllowDeath[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents$MobConversion[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents$AfterRespawn[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents$AllowDeath[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents$CopyFrom[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents$Join[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents$Leave[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.event.lifecycle.v1.CommonLifecycleEvents$TagsLoaded[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.event.lifecycle.v1.ServerBlockEntityEvents$Load[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.event.lifecycle.v1.ServerBlockEntityEvents$Unload[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents$FullChunkStatusChange[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents$Generate[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents$Load[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.event.lifecycle.v1.ServerChunkEvents$Unload[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents$AllowLoad[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents$EquipmentChange[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents$Load[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.event.lifecycle.v1.ServerEntityEvents$Unload[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLevelEvents$Load[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLevelEvents$Unload[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents$AfterSave[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents$BeforeSave[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents$EndDataPackReload[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents$ServerStarted[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents$ServerStarting[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents$ServerStopped[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents$ServerStopping[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents$StartDataPackReload[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents$SyncDataPackContents[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents$EndLevelTick[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents$EndTick[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents$StartLevelTick[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents$StartTick[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.event.player.AttackBlockCallback[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents$After[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents$Before[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents$Canceled[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.event.registry.DynamicRegistrySetupCallback[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.event.registry.RegistryIdRemapCallback[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.item.v1.DefaultItemComponentEvents$ModifyCallback[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.item.v1.EnchantmentEvents$AllowEnchanting[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.item.v1.EnchantmentEvents$ModifyWithLookup[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.item.v1.EnchantmentEvents$Modify[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.loot.v3.LootTableEvents$Loaded[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.loot.v3.LootTableEvents$ModifyDrops[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.loot.v3.LootTableEvents$Modify[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.loot.v3.LootTableEvents$Replace[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.message.v1.ServerMessageEvents$AllowChatMessage[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.message.v1.ServerMessageEvents$AllowCommandMessage[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.message.v1.ServerMessageEvents$AllowGameMessage[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.message.v1.ServerMessageEvents$ChatMessage[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.message.v1.ServerMessageEvents$CommandMessage[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.message.v1.ServerMessageEvents$GameMessage[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.networking.v1.ClientboundConfigurationChannelEvents$Register[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.networking.v1.ClientboundConfigurationChannelEvents$Unregister[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.networking.v1.ClientboundPlayChannelEvents$Register[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.networking.v1.ClientboundPlayChannelEvents$Unregister[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.networking.v1.EntityTrackingEvents$StartTracking[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.networking.v1.EntityTrackingEvents$StopTracking[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.networking.v1.ServerConfigurationConnectionEvents$Configure[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.networking.v1.ServerConfigurationConnectionEvents$Disconnect[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.networking.v1.ServerLoginConnectionEvents$Disconnect[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.networking.v1.ServerLoginConnectionEvents$Init[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.networking.v1.ServerLoginConnectionEvents$QueryStart[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents$Disconnect[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents$Init[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents$Join[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry$ModifyDefaultAttribute[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.permission.v1.PermissionEvents$OnRequest[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.permission.v1.PermissionEvents$PrepareOfflinePlayer[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.registry.FabricPotionBrewingBuilder$BuildCallback[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.registry.FuelValueEvents$BuildCallback[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.api.registry.FuelValueEvents$ExclusionsCallback[]"
+  },
+  {
+   "type": "net.fabricmc.fabric.impl.attachment.AttachmentEntrypoint",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.fabricmc.fabric.impl.attachment.client.AttachmentSyncClient",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.fabricmc.fabric.impl.attachment.sync.AttachmentSync",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.fabricmc.fabric.impl.client.event.lifecycle.ClientLifecycleEventsImpl",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.fabricmc.fabric.impl.client.indigo.Indigo",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.fabricmc.fabric.impl.client.indigo.IndigoMixinConfigPlugin",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    },
+    {
+     "name": "onLoad",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "net.fabricmc.fabric.impl.client.model.loading.CustomUnbakedBlockStateModelInit",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.fabricmc.fabric.impl.client.particle.ExtendedBlockParticleOptionSyncClient",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.fabricmc.fabric.impl.client.registry.sync.FabricRegistryClientInit",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.fabricmc.fabric.impl.client.renderer.DebugOverlayClient",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.fabricmc.fabric.impl.client.rendering.hud.HudStatusBarHeightRegistryImpl",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.fabricmc.fabric.impl.dimension.DimensionModificationImpl",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.fabricmc.fabric.impl.event.interaction.InteractionEventsRouter",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.fabricmc.fabric.impl.event.lifecycle.LifecycleEventsImpl",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.fabricmc.fabric.impl.lookup.ApiLookupImpl",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.fabricmc.fabric.impl.menu.Networking",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.fabricmc.fabric.impl.menu.client.ClientNetworking",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.fabricmc.fabric.impl.networking.CommonPacketsImpl",
+   "methods": [
+    {
+     "name": "init",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.fabricmc.fabric.impl.networking.NetworkingImpl",
+   "methods": [
+    {
+     "name": "init",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.fabricmc.fabric.impl.networking.client.ClientNetworkingImpl",
+   "methods": [
+    {
+     "name": "clientInit",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.fabricmc.fabric.impl.networking.splitter.FabricPacketMerger"
+  },
+  {
+   "type": "net.fabricmc.fabric.impl.networking.splitter.FabricPacketSplitter"
+  },
+  {
+   "type": "net.fabricmc.fabric.impl.particle.ExtendedBlockParticleOptionSync",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.fabricmc.fabric.impl.recipe.ingredient.CustomIngredientInit",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.fabricmc.fabric.impl.recipe.ingredient.CustomIngredientSync",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.fabricmc.fabric.impl.recipe.ingredient.client.CustomIngredientSyncClient",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.fabricmc.fabric.impl.recipe.sync.RecipeSyncImpl",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.fabricmc.fabric.impl.recipe.sync.client.RecipeSyncImplClient",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.fabricmc.fabric.impl.registry.sync.FabricRegistryInit",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.fabricmc.fabric.impl.resource.conditions.ResourceConditionsImpl",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.fabricmc.fabric.impl.tag.TagInit",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.fabricmc.fabric.impl.tag.convention.v2.TranslationConventionLogWarnings",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.fabricmc.loader.impl.game.minecraft.Log4jLogHandler",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.fabricmc.loader.impl.launch.knot.MixinServiceKnot"
+  },
+  {
+   "type": "net.fabricmc.loader.impl.launch.knot.MixinServiceKnotBootstrap"
+  },
+  {
+   "type": "net.minecraft.client.KeyMapping[]"
+  },
+  {
+   "type": "net.minecraft.client.main.Main",
+   "methods": [
+    {
+     "name": "main",
+     "parameterTypes": [
+      "java.lang.String[]"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "net.minecraft.client.model.geom.ModelPart"
+  },
+  {
+   "type": "net.minecraft.client.model.geom.ModelPart$Cube",
+   "fields": [
+    {
+     "name": "sodium$cuboid"
+    }
+   ]
+  },
+  {
+   "type": "net.minecraft.client.player.AbstractClientPlayer"
+  },
+  {
+   "type": "net.minecraft.client.player.LocalPlayer"
+  },
+  {
+   "type": "net.minecraft.client.renderer.chunk.ChunkSectionLayer[]"
+  },
+  {
+   "type": "net.minecraft.client.renderer.entity.layers.ArrowLayer"
+  },
+  {
+   "type": "net.minecraft.client.renderer.entity.layers.BeeStingerLayer"
+  },
+  {
+   "type": "net.minecraft.client.renderer.entity.layers.CapeLayer"
+  },
+  {
+   "type": "net.minecraft.client.renderer.entity.layers.CustomHeadLayer"
+  },
+  {
+   "type": "net.minecraft.client.renderer.entity.layers.Deadmau5EarsLayer"
+  },
+  {
+   "type": "net.minecraft.client.renderer.entity.layers.HumanoidArmorLayer"
+  },
+  {
+   "type": "net.minecraft.client.renderer.entity.layers.ParrotOnShoulderLayer"
+  },
+  {
+   "type": "net.minecraft.client.renderer.entity.layers.PlayerItemInHandLayer"
+  },
+  {
+   "type": "net.minecraft.client.renderer.entity.layers.SpinAttackEffectLayer"
+  },
+  {
+   "type": "net.minecraft.client.renderer.entity.layers.WingsLayer"
+  },
+  {
+   "type": "net.minecraft.client.renderer.item.ItemStackRenderState$FoilType[]"
+  },
+  {
+   "type": "net.minecraft.network.Connection"
+  },
+  {
+   "type": "net.minecraft.network.Connection$2"
+  },
+  {
+   "type": "net.minecraft.network.Connection$3"
+  },
+  {
+   "type": "net.minecraft.network.LocalFrameDecoder"
+  },
+  {
+   "type": "net.minecraft.network.LocalFrameEncoder"
+  },
+  {
+   "type": "net.minecraft.network.PacketBundlePacker"
+  },
+  {
+   "type": "net.minecraft.network.PacketBundleUnpacker"
+  },
+  {
+   "type": "net.minecraft.network.PacketDecoder"
+  },
+  {
+   "type": "net.minecraft.network.PacketEncoder"
+  },
+  {
+   "type": "net.minecraft.network.UnconfiguredPipelineHandler$Inbound"
+  },
+  {
+   "type": "net.minecraft.network.UnconfiguredPipelineHandler$Outbound"
+  },
+  {
+   "type": "net.minecraft.server.level.ServerPlayer"
+  },
+  {
+   "type": "net.minecraft.server.network.ServerConnectionListener$2"
+  },
+  {
+   "type": "net.minecraft.util.random.Weighted[]"
+  },
+  {
+   "type": "net.minecraft.world.entity.AgeableMob"
+  },
+  {
+   "type": "net.minecraft.world.entity.Avatar"
+  },
+  {
+   "type": "net.minecraft.world.entity.LivingEntity"
+  },
+  {
+   "type": "net.minecraft.world.entity.Mob"
+  },
+  {
+   "type": "net.minecraft.world.entity.PathfinderMob"
+  },
+  {
+   "type": "net.minecraft.world.entity.TamableAnimal"
+  },
+  {
+   "type": "net.minecraft.world.entity.ambient.AmbientCreature"
+  },
+  {
+   "type": "net.minecraft.world.entity.ambient.Bat"
+  },
+  {
+   "type": "net.minecraft.world.entity.animal.AgeableWaterCreature"
+  },
+  {
+   "type": "net.minecraft.world.entity.animal.Animal"
+  },
+  {
+   "type": "net.minecraft.world.entity.animal.axolotl.Axolotl"
+  },
+  {
+   "type": "net.minecraft.world.entity.animal.chicken.Chicken"
+  },
+  {
+   "type": "net.minecraft.world.entity.animal.cow.AbstractCow"
+  },
+  {
+   "type": "net.minecraft.world.entity.animal.cow.Cow"
+  },
+  {
+   "type": "net.minecraft.world.entity.animal.dolphin.Dolphin"
+  },
+  {
+   "type": "net.minecraft.world.entity.animal.fish.AbstractFish"
+  },
+  {
+   "type": "net.minecraft.world.entity.animal.fish.AbstractSchoolingFish"
+  },
+  {
+   "type": "net.minecraft.world.entity.animal.fish.Cod"
+  },
+  {
+   "type": "net.minecraft.world.entity.animal.fish.TropicalFish"
+  },
+  {
+   "type": "net.minecraft.world.entity.animal.fish.WaterAnimal"
+  },
+  {
+   "type": "net.minecraft.world.entity.animal.fox.Fox"
+  },
+  {
+   "type": "net.minecraft.world.entity.animal.goat.Goat"
+  },
+  {
+   "type": "net.minecraft.world.entity.animal.golem.AbstractGolem"
+  },
+  {
+   "type": "net.minecraft.world.entity.animal.nautilus.AbstractNautilus"
+  },
+  {
+   "type": "net.minecraft.world.entity.animal.nautilus.Nautilus"
+  },
+  {
+   "type": "net.minecraft.world.entity.animal.pig.Pig"
+  },
+  {
+   "type": "net.minecraft.world.entity.animal.rabbit.Rabbit"
+  },
+  {
+   "type": "net.minecraft.world.entity.animal.sheep.Sheep"
+  },
+  {
+   "type": "net.minecraft.world.entity.animal.squid.GlowSquid"
+  },
+  {
+   "type": "net.minecraft.world.entity.animal.squid.Squid"
+  },
+  {
+   "type": "net.minecraft.world.entity.item.FallingBlockEntity"
+  },
+  {
+   "type": "net.minecraft.world.entity.item.ItemEntity"
+  },
+  {
+   "type": "net.minecraft.world.entity.monster.Creeper"
+  },
+  {
+   "type": "net.minecraft.world.entity.monster.EnderMan"
+  },
+  {
+   "type": "net.minecraft.world.entity.monster.Monster"
+  },
+  {
+   "type": "net.minecraft.world.entity.monster.PatrollingMonster"
+  },
+  {
+   "type": "net.minecraft.world.entity.monster.Shulker"
+  },
+  {
+   "type": "net.minecraft.world.entity.monster.Witch"
+  },
+  {
+   "type": "net.minecraft.world.entity.monster.skeleton.AbstractSkeleton"
+  },
+  {
+   "type": "net.minecraft.world.entity.monster.skeleton.Skeleton"
+  },
+  {
+   "type": "net.minecraft.world.entity.monster.spider.Spider"
+  },
+  {
+   "type": "net.minecraft.world.entity.monster.zombie.Zombie"
+  },
+  {
+   "type": "net.minecraft.world.entity.monster.zombie.ZombieVillager"
+  },
+  {
+   "type": "net.minecraft.world.entity.player.Player"
+  },
+  {
+   "type": "net.minecraft.world.entity.projectile.hurtingprojectile.windcharge.AbstractWindCharge"
+  },
+  {
+   "type": "net.minecraft.world.entity.projectile.hurtingprojectile.windcharge.BreezeWindCharge"
+  },
+  {
+   "type": "net.minecraft.world.entity.projectile.hurtingprojectile.windcharge.WindCharge"
+  },
+  {
+   "type": "net.minecraft.world.entity.raid.Raider"
+  },
+  {
+   "type": "net.minecraft.world.entity.vehicle.VehicleEntity"
+  },
+  {
+   "type": "net.minecraft.world.entity.vehicle.minecart.AbstractMinecart"
+  },
+  {
+   "type": "net.minecraft.world.entity.vehicle.minecart.AbstractMinecartContainer"
+  },
+  {
+   "type": "net.minecraft.world.entity.vehicle.minecart.Minecart"
+  },
+  {
+   "type": "net.minecraft.world.entity.vehicle.minecart.MinecartChest"
+  },
+  {
+   "type": "net.minecraft.world.level.block.state.BlockBehaviour$BlockStateBase",
+   "fields": [
+    {
+     "name": "cache"
+    }
+   ]
+  },
+  {
+   "type": "net.minecraft.world.level.chunk.EmptyLevelChunk",
+   "unsafeAllocated": true
+  },
+  {
+   "type": "net.optifine.Config"
+  },
+  {
+   "type": "net.raphimc.immediatelyfast.fabric.FabricPlatformService"
+  },
+  {
+   "type": "net.raphimc.immediatelyfast.feature.core.ImmediatelyFastConfig",
+   "fields": [
+    {
+     "name": "DEBUG_INFO"
+    },
+    {
+     "name": "EXPERIMENTAL_INFO"
+    },
+    {
+     "name": "REGULAR_INFO"
+    },
+    {
+     "name": "avoid_redundant_framebuffer_switching"
+    },
+    {
+     "name": "batch_animated_item_updates"
+    },
+    {
+     "name": "debug_only_and_not_recommended_disable_hardware_conflict_handling"
+    },
+    {
+     "name": "debug_only_and_not_recommended_disable_mod_conflict_handling"
+    },
+    {
+     "name": "debug_only_print_additional_error_information"
+    },
+    {
+     "name": "enhanced_batching"
+    },
+    {
+     "name": "experimental_disable_resource_pack_conflict_handling"
+    },
+    {
+     "name": "experimental_sign_atlas_size"
+    },
+    {
+     "name": "experimental_sign_text_buffering"
+    },
+    {
+     "name": "fast_text_lookup"
+    },
+    {
+     "name": "fix_slow_buffer_upload_on_apple_gpu"
+    },
+    {
+     "name": "font_atlas_resizing"
+    },
+    {
+     "name": "font_atlas_size"
+    },
+    {
+     "name": "map_atlas_generation"
+    },
+    {
+     "name": "map_atlas_size"
+    },
+    {
+     "name": "skip_text_translucency_sorting"
+    }
+   ],
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "net.raphimc.immediatelyfast.injection.ImmediatelyFastMixinPlugin",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    },
+    {
+     "name": "onLoad",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.Appender[]"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.Filter[]"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.AbstractAppender$Builder",
+   "fields": [
+    {
+     "name": "configuration"
+    },
+    {
+     "name": "ignoreExceptions"
+    },
+    {
+     "name": "layout"
+    },
+    {
+     "name": "name"
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.AbstractOutputStreamAppender$Builder",
+   "fields": [
+    {
+     "name": "bufferSize"
+    },
+    {
+     "name": "bufferedIo"
+    },
+    {
+     "name": "immediateFlush"
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.AppenderSet"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.AsyncAppender"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.ConsoleAppender",
+   "methods": [
+    {
+     "name": "newBuilder",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.ConsoleAppender$Builder",
+   "fields": [
+    {
+     "name": "direct"
+    },
+    {
+     "name": "follow"
+    },
+    {
+     "name": "target"
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.CountingNoOpAppender"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.FailoverAppender"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.FailoversPlugin"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.FileAppender"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.HttpAppender"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.MemoryMappedFileAppender"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.NullAppender"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.OutputStreamAppender"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.RandomAccessFileAppender"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.RollingFileAppender"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.RollingRandomAccessFileAppender",
+   "methods": [
+    {
+     "name": "newBuilder",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.RollingRandomAccessFileAppender$Builder",
+   "fields": [
+    {
+     "name": "advertise"
+    },
+    {
+     "name": "advertiseURI"
+    },
+    {
+     "name": "append"
+    },
+    {
+     "name": "fileGroup"
+    },
+    {
+     "name": "fileName"
+    },
+    {
+     "name": "fileOwner"
+    },
+    {
+     "name": "filePattern"
+    },
+    {
+     "name": "filePermissions"
+    },
+    {
+     "name": "policy"
+    },
+    {
+     "name": "strategy"
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.ScriptAppenderSelector"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.SmtpAppender"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.SocketAppender"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.SyslogAppender"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.WriterAppender"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.db.ColumnMapping"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.db.jdbc.ColumnConfig"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.db.jdbc.DataSourceConnectionSource"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.db.jdbc.DriverManagerConnectionSource"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.db.jdbc.FactoryMethodConnectionSource"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.db.jdbc.JdbcAppender"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.mom.JmsAppender"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.mom.jeromq.JeroMqAppender"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.mom.kafka.KafkaAppender"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.nosql.NoSqlAppender"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.rewrite.LoggerNameLevelRewritePolicy"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.rewrite.MapRewritePolicy"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.rewrite.PropertiesRewritePolicy"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.rewrite.RewriteAppender"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.rolling.CompositeTriggeringPolicy",
+   "methods": [
+    {
+     "name": "createPolicy",
+     "parameterTypes": [
+      "org.apache.logging.log4j.core.appender.rolling.TriggeringPolicy[]"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.rolling.CronTriggeringPolicy"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.rolling.DefaultRolloverStrategy"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.rolling.DirectWriteRolloverStrategy"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.rolling.NoOpTriggeringPolicy"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.rolling.OnStartupTriggeringPolicy",
+   "methods": [
+    {
+     "name": "createPolicy",
+     "parameterTypes": [
+      "long"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.rolling.RollingFileManager"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.rolling.SizeBasedTriggeringPolicy"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.rolling.TimeBasedTriggeringPolicy",
+   "methods": [
+    {
+     "name": "newBuilder",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.rolling.TimeBasedTriggeringPolicy$Builder",
+   "fields": [
+    {
+     "name": "interval"
+    },
+    {
+     "name": "maxRandomDelay"
+    },
+    {
+     "name": "modulate"
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.rolling.TriggeringPolicy[]"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.rolling.action.DeleteAction"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.rolling.action.IfAccumulatedFileCount"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.rolling.action.IfAccumulatedFileSize"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.rolling.action.IfAll"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.rolling.action.IfAny"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.rolling.action.IfFileName"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.rolling.action.IfLastModified"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.rolling.action.IfNot"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.rolling.action.PathSortByModificationTime"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.rolling.action.PosixViewAttributeAction"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.rolling.action.ScriptCondition"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.routing.IdlePurgePolicy"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.routing.Route"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.routing.Routes"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.appender.routing.RoutingAppender"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.async.ArrayBlockingQueueFactory"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.async.AsyncLoggerConfig"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.async.AsyncLoggerConfig$RootLogger"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.async.AsyncWaitStrategyFactoryConfig"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.async.DisruptorBlockingQueueFactory"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.async.JCToolsBlockingQueueFactory"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.async.LinkedTransferQueueFactory"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.AppenderControlArraySet"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.AppenderRef",
+   "methods": [
+    {
+     "name": "createAppenderRef",
+     "parameterTypes": [
+      "java.lang.String",
+      "org.apache.logging.log4j.Level",
+      "org.apache.logging.log4j.core.Filter"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.AppenderRef[]"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.AppendersPlugin",
+   "methods": [
+    {
+     "name": "createAppenders",
+     "parameterTypes": [
+      "org.apache.logging.log4j.core.Appender[]"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.CustomLevelConfig"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.CustomLevels"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.DefaultAdvertiser"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.HttpWatcher"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.LoggerConfig"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.LoggerConfig$RootLogger",
+   "methods": [
+    {
+     "name": "newRootBuilder",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.LoggerConfig$RootLogger$Builder",
+   "fields": [
+    {
+     "name": "additivity"
+    },
+    {
+     "name": "config"
+    },
+    {
+     "name": "filter"
+    },
+    {
+     "name": "includeLocation"
+    },
+    {
+     "name": "level"
+    },
+    {
+     "name": "levelAndRefs"
+    },
+    {
+     "name": "properties"
+    },
+    {
+     "name": "refs"
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.LoggerConfig[]"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.LoggersPlugin",
+   "methods": [
+    {
+     "name": "createLoggers",
+     "parameterTypes": [
+      "org.apache.logging.log4j.core.config.LoggerConfig[]"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.MonitorResource"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.MonitorResources"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.PropertiesPlugin"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.Property"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.Property[]"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.ScriptsPlugin"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.arbiters.ClassArbiter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.arbiters.DefaultArbiter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.arbiters.EnvironmentArbiter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.arbiters.ScriptArbiter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.arbiters.SelectArbiter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.arbiters.SystemPropertyArbiter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.json.JsonConfigurationFactory",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.plugins.convert.TypeConverters$BigDecimalConverter",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.plugins.convert.TypeConverters$BigIntegerConverter",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.plugins.convert.TypeConverters$BooleanConverter",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.plugins.convert.TypeConverters$ByteArrayConverter",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.plugins.convert.TypeConverters$ByteConverter",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.plugins.convert.TypeConverters$CharArrayConverter",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.plugins.convert.TypeConverters$CharacterConverter",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.plugins.convert.TypeConverters$CharsetConverter",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.plugins.convert.TypeConverters$ClassConverter",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.plugins.convert.TypeConverters$CronExpressionConverter",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.plugins.convert.TypeConverters$DoubleConverter",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.plugins.convert.TypeConverters$DurationConverter",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.plugins.convert.TypeConverters$FileConverter",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.plugins.convert.TypeConverters$FloatConverter",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.plugins.convert.TypeConverters$InetAddressConverter",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.plugins.convert.TypeConverters$IntegerConverter",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.plugins.convert.TypeConverters$LevelConverter",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.plugins.convert.TypeConverters$LongConverter",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.plugins.convert.TypeConverters$PathConverter",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.plugins.convert.TypeConverters$PatternConverter",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.plugins.convert.TypeConverters$SecurityProviderConverter",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.plugins.convert.TypeConverters$ShortConverter",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.plugins.convert.TypeConverters$StringConverter",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.plugins.convert.TypeConverters$UriConverter",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.plugins.convert.TypeConverters$UrlConverter",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.plugins.convert.TypeConverters$UuidConverter",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.plugins.validation.validators.RequiredValidator",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.plugins.visitors.PluginAttributeVisitor",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.plugins.visitors.PluginBuilderAttributeVisitor",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.plugins.visitors.PluginConfigurationVisitor",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.plugins.visitors.PluginElementVisitor",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.properties.PropertiesConfigurationFactory",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.xml.XmlConfigurationFactory",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.config.yaml.YamlConfigurationFactory",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.filter.AbstractFilterable$Builder",
+   "fields": [
+    {
+     "name": "filter"
+    },
+    {
+     "name": "propertyArray"
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.filter.BurstFilter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.filter.CompositeFilter",
+   "methods": [
+    {
+     "name": "createFilters",
+     "parameterTypes": [
+      "org.apache.logging.log4j.core.Filter[]"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.filter.DenyAllFilter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.filter.DynamicThresholdFilter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.filter.LevelMatchFilter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.filter.LevelRangeFilter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.filter.MapFilter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.filter.MarkerFilter",
+   "methods": [
+    {
+     "name": "createFilter",
+     "parameterTypes": [
+      "java.lang.String",
+      "org.apache.logging.log4j.core.Filter$Result",
+      "org.apache.logging.log4j.core.Filter$Result"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.filter.MutableThreadContextMapFilter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.filter.NoMarkerFilter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.filter.RegexFilter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.filter.ScriptFilter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.filter.StringMatchFilter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.filter.StructuredDataFilter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.filter.ThreadContextMapFilter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.filter.ThresholdFilter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.filter.TimeFilter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.impl.Log4jProvider"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.impl.ThreadContextDataProvider"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.layout.CsvLogEventLayout"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.layout.CsvParameterLayout"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.layout.GelfLayout"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.layout.HtmlLayout"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.layout.JsonLayout"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.layout.LevelPatternSelector"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.layout.LoggerFields"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.layout.MarkerPatternSelector"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.layout.MessageLayout"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.layout.PatternLayout",
+   "methods": [
+    {
+     "name": "newBuilder",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.layout.PatternLayout$Builder",
+   "fields": [
+    {
+     "name": "alwaysWriteExceptions"
+    },
+    {
+     "name": "charset"
+    },
+    {
+     "name": "configuration"
+    },
+    {
+     "name": "disableAnsi"
+    },
+    {
+     "name": "footer"
+    },
+    {
+     "name": "header"
+    },
+    {
+     "name": "noConsoleNoAnsi"
+    },
+    {
+     "name": "pattern"
+    },
+    {
+     "name": "patternSelector"
+    },
+    {
+     "name": "regexReplacement"
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.layout.PatternMatch"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.layout.Rfc5424Layout"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.layout.ScriptPatternSelector"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.layout.SerializedLayout"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.layout.SyslogLayout"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.layout.XmlLayout"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.layout.YamlLayout"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.lookup.ContextMapLookup",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.lookup.DateLookup",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.lookup.EnvironmentLookup",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.lookup.EventLookup",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.lookup.JavaLookup",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.lookup.JndiLookup"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.lookup.Log4jLookup",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.lookup.LowerLookup",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.lookup.MainMapLookup",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.lookup.MapLookup",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.lookup.MarkerLookup",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.lookup.ResourceBundleLookup",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.lookup.StructuredDataLookup",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.lookup.SystemPropertiesLookup",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.lookup.UpperLookup",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.net.MulticastDnsAdvertiser"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.net.SocketAddress"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.net.SocketOptions"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.net.SocketPerformancePreferences"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.net.ssl.KeyStoreConfiguration"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.net.ssl.SslConfiguration"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.net.ssl.TrustStoreConfiguration"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.AbstractStyleNameConverter$Black"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.AbstractStyleNameConverter$Blue"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.AbstractStyleNameConverter$Cyan"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.AbstractStyleNameConverter$Green"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.AbstractStyleNameConverter$Magenta"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.AbstractStyleNameConverter$Red"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.AbstractStyleNameConverter$White"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.AbstractStyleNameConverter$Yellow"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.ClassNamePatternConverter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.DatePatternConverter",
+   "methods": [
+    {
+     "name": "newInstance",
+     "parameterTypes": [
+      "java.lang.String[]"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.EncodingPatternConverter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.EndOfBatchPatternConverter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.EqualsIgnoreCaseReplacementConverter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.EqualsReplacementConverter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.ExtendedThrowablePatternConverter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.FileDatePatternConverter",
+   "methods": [
+    {
+     "name": "newInstance",
+     "parameterTypes": [
+      "java.lang.String[]"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.FileLocationPatternConverter",
+   "methods": [
+    {
+     "name": "newInstance",
+     "parameterTypes": [
+      "java.lang.String[]"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.FullLocationPatternConverter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.HighlightConverter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.IntegerPatternConverter",
+   "methods": [
+    {
+     "name": "newInstance",
+     "parameterTypes": [
+      "java.lang.String[]"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.LevelPatternConverter",
+   "methods": [
+    {
+     "name": "newInstance",
+     "parameterTypes": [
+      "java.lang.String[]"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.LineLocationPatternConverter",
+   "methods": [
+    {
+     "name": "newInstance",
+     "parameterTypes": [
+      "java.lang.String[]"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.LineSeparatorPatternConverter",
+   "methods": [
+    {
+     "name": "newInstance",
+     "parameterTypes": [
+      "java.lang.String[]"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.LoggerFqcnPatternConverter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.LoggerPatternConverter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.MapPatternConverter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.MarkerPatternConverter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.MarkerSimpleNamePatternConverter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.MaxLengthConverter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.MdcPatternConverter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.MessagePatternConverter",
+   "methods": [
+    {
+     "name": "newInstance",
+     "parameterTypes": [
+      "org.apache.logging.log4j.core.config.Configuration",
+      "java.lang.String[]"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.MethodLocationPatternConverter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.NanoTimePatternConverter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.NdcPatternConverter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.ProcessIdPatternConverter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.RegexReplacement"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.RegexReplacementConverter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.RelativeTimePatternConverter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.RepeatPatternConverter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.RootThrowablePatternConverter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.SequenceNumberPatternConverter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.StyleConverter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.ThreadIdPatternConverter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.ThreadNamePatternConverter",
+   "methods": [
+    {
+     "name": "newInstance",
+     "parameterTypes": [
+      "java.lang.String[]"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.ThreadPriorityPatternConverter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.ThrowablePatternConverter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.UuidPatternConverter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.pattern.VariablesNotEmptyReplacementConverter"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.script.Script"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.script.ScriptFile"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.script.ScriptRef"
+  },
+  {
+   "type": "org.apache.logging.log4j.core.util.KeyValuePair"
+  },
+  {
+   "type": "org.apache.logging.log4j.util.EnvironmentPropertySource"
+  },
+  {
+   "type": "org.apache.logging.log4j.util.SystemPropertiesPropertySource"
+  },
+  {
+   "type": "org.apache.logging.slf4j.SLF4JServiceProvider"
+  },
+  {
+   "type": "org.joml.FrustumIntersection",
+   "fields": [
+    {
+     "name": "planes"
+    }
+   ]
+  },
+  {
+   "type": "org.joml.Matrix2f",
+   "fields": [
+    {
+     "name": "m00"
+    },
+    {
+     "name": "m01"
+    },
+    {
+     "name": "m10"
+    },
+    {
+     "name": "m11"
+    }
+   ]
+  },
+  {
+   "type": "org.joml.Matrix3d",
+   "fields": [
+    {
+     "name": "m00"
+    },
+    {
+     "name": "m01"
+    },
+    {
+     "name": "m02"
+    },
+    {
+     "name": "m10"
+    },
+    {
+     "name": "m11"
+    },
+    {
+     "name": "m12"
+    },
+    {
+     "name": "m20"
+    },
+    {
+     "name": "m21"
+    },
+    {
+     "name": "m22"
+    }
+   ]
+  },
+  {
+   "type": "org.joml.Matrix3f",
+   "fields": [
+    {
+     "name": "m00"
+    },
+    {
+     "name": "m01"
+    },
+    {
+     "name": "m02"
+    },
+    {
+     "name": "m10"
+    },
+    {
+     "name": "m11"
+    },
+    {
+     "name": "m12"
+    },
+    {
+     "name": "m20"
+    },
+    {
+     "name": "m21"
+    },
+    {
+     "name": "m22"
+    }
+   ]
+  },
+  {
+   "type": "org.joml.Matrix3x2f",
+   "fields": [
+    {
+     "name": "m00"
+    },
+    {
+     "name": "m01"
+    },
+    {
+     "name": "m10"
+    },
+    {
+     "name": "m11"
+    },
+    {
+     "name": "m20"
+    },
+    {
+     "name": "m21"
+    }
+   ]
+  },
+  {
+   "type": "org.joml.Matrix4d",
+   "fields": [
+    {
+     "name": "m00"
+    },
+    {
+     "name": "m01"
+    },
+    {
+     "name": "m02"
+    },
+    {
+     "name": "m03"
+    },
+    {
+     "name": "m10"
+    },
+    {
+     "name": "m11"
+    },
+    {
+     "name": "m12"
+    },
+    {
+     "name": "m13"
+    },
+    {
+     "name": "m20"
+    },
+    {
+     "name": "m21"
+    },
+    {
+     "name": "m22"
+    },
+    {
+     "name": "m23"
+    },
+    {
+     "name": "m30"
+    },
+    {
+     "name": "m31"
+    },
+    {
+     "name": "m32"
+    },
+    {
+     "name": "m33"
+    }
+   ]
+  },
+  {
+   "type": "org.joml.Matrix4f",
+   "fields": [
+    {
+     "name": "m00"
+    },
+    {
+     "name": "m01"
+    },
+    {
+     "name": "m02"
+    },
+    {
+     "name": "m03"
+    },
+    {
+     "name": "m10"
+    },
+    {
+     "name": "m11"
+    },
+    {
+     "name": "m12"
+    },
+    {
+     "name": "m13"
+    },
+    {
+     "name": "m20"
+    },
+    {
+     "name": "m21"
+    },
+    {
+     "name": "m22"
+    },
+    {
+     "name": "m23"
+    },
+    {
+     "name": "m30"
+    },
+    {
+     "name": "m31"
+    },
+    {
+     "name": "m32"
+    },
+    {
+     "name": "m33"
+    }
+   ]
+  },
+  {
+   "type": "org.joml.Matrix4x3f",
+   "fields": [
+    {
+     "name": "m00"
+    },
+    {
+     "name": "m01"
+    },
+    {
+     "name": "m02"
+    },
+    {
+     "name": "m10"
+    },
+    {
+     "name": "m11"
+    },
+    {
+     "name": "m12"
+    },
+    {
+     "name": "m20"
+    },
+    {
+     "name": "m21"
+    },
+    {
+     "name": "m22"
+    },
+    {
+     "name": "m30"
+    },
+    {
+     "name": "m31"
+    },
+    {
+     "name": "m32"
+    }
+   ]
+  },
+  {
+   "type": "org.joml.Vector2f",
+   "fields": [
+    {
+     "name": "x"
+    },
+    {
+     "name": "y"
+    }
+   ]
+  },
+  {
+   "type": "org.joml.Vector2i",
+   "fields": [
+    {
+     "name": "x"
+    },
+    {
+     "name": "y"
+    }
+   ]
+  },
+  {
+   "type": "org.joml.Vector3f",
+   "fields": [
+    {
+     "name": "x"
+    },
+    {
+     "name": "y"
+    },
+    {
+     "name": "z"
+    }
+   ]
+  },
+  {
+   "type": "org.joml.Vector3i",
+   "fields": [
+    {
+     "name": "x"
+    },
+    {
+     "name": "y"
+    },
+    {
+     "name": "z"
+    }
+   ]
+  },
+  {
+   "type": "org.joml.Vector4f",
+   "fields": [
+    {
+     "name": "w"
+    },
+    {
+     "name": "x"
+    },
+    {
+     "name": "y"
+    },
+    {
+     "name": "z"
+    }
+   ]
+  },
+  {
+   "type": "org.joml.Vector4i",
+   "fields": [
+    {
+     "name": "w"
+    },
+    {
+     "name": "x"
+    },
+    {
+     "name": "y"
+    },
+    {
+     "name": "z"
+    }
+   ]
+  },
+  {
+   "type": "org.lwjgl.openxr.XR10",
+   "fields": [
+    {
+     "name": "XR_ERROR_ACTIONSETS_ALREADY_ATTACHED"
+    },
+    {
+     "name": "XR_ERROR_ACTIONSET_NOT_ATTACHED"
+    },
+    {
+     "name": "XR_ERROR_ACTION_TYPE_MISMATCH"
+    },
+    {
+     "name": "XR_ERROR_API_LAYER_NOT_PRESENT"
+    },
+    {
+     "name": "XR_ERROR_API_VERSION_UNSUPPORTED"
+    },
+    {
+     "name": "XR_ERROR_CALL_ORDER_INVALID"
+    },
+    {
+     "name": "XR_ERROR_ENVIRONMENT_BLEND_MODE_UNSUPPORTED"
+    },
+    {
+     "name": "XR_ERROR_EXTENSION_NOT_PRESENT"
+    },
+    {
+     "name": "XR_ERROR_FEATURE_UNSUPPORTED"
+    },
+    {
+     "name": "XR_ERROR_FILE_ACCESS_ERROR"
+    },
+    {
+     "name": "XR_ERROR_FILE_CONTENTS_INVALID"
+    },
+    {
+     "name": "XR_ERROR_FORM_FACTOR_UNAVAILABLE"
+    },
+    {
+     "name": "XR_ERROR_FORM_FACTOR_UNSUPPORTED"
+    },
+    {
+     "name": "XR_ERROR_FUNCTION_UNSUPPORTED"
+    },
+    {
+     "name": "XR_ERROR_GRAPHICS_DEVICE_INVALID"
+    },
+    {
+     "name": "XR_ERROR_GRAPHICS_REQUIREMENTS_CALL_MISSING"
+    },
+    {
+     "name": "XR_ERROR_HANDLE_INVALID"
+    },
+    {
+     "name": "XR_ERROR_INDEX_OUT_OF_RANGE"
+    },
+    {
+     "name": "XR_ERROR_INITIALIZATION_FAILED"
+    },
+    {
+     "name": "XR_ERROR_INSTANCE_LOST"
+    },
+    {
+     "name": "XR_ERROR_LAYER_INVALID"
+    },
+    {
+     "name": "XR_ERROR_LAYER_LIMIT_EXCEEDED"
+    },
+    {
+     "name": "XR_ERROR_LIMIT_REACHED"
+    },
+    {
+     "name": "XR_ERROR_LOCALIZED_NAME_DUPLICATED"
+    },
+    {
+     "name": "XR_ERROR_LOCALIZED_NAME_INVALID"
+    },
+    {
+     "name": "XR_ERROR_NAME_DUPLICATED"
+    },
+    {
+     "name": "XR_ERROR_NAME_INVALID"
+    },
+    {
+     "name": "XR_ERROR_OUT_OF_MEMORY"
+    },
+    {
+     "name": "XR_ERROR_PATH_COUNT_EXCEEDED"
+    },
+    {
+     "name": "XR_ERROR_PATH_FORMAT_INVALID"
+    },
+    {
+     "name": "XR_ERROR_PATH_INVALID"
+    },
+    {
+     "name": "XR_ERROR_PATH_UNSUPPORTED"
+    },
+    {
+     "name": "XR_ERROR_POSE_INVALID"
+    },
+    {
+     "name": "XR_ERROR_REFERENCE_SPACE_UNSUPPORTED"
+    },
+    {
+     "name": "XR_ERROR_RUNTIME_FAILURE"
+    },
+    {
+     "name": "XR_ERROR_RUNTIME_UNAVAILABLE"
+    },
+    {
+     "name": "XR_ERROR_SESSION_LOST"
+    },
+    {
+     "name": "XR_ERROR_SESSION_NOT_READY"
+    },
+    {
+     "name": "XR_ERROR_SESSION_NOT_RUNNING"
+    },
+    {
+     "name": "XR_ERROR_SESSION_NOT_STOPPING"
+    },
+    {
+     "name": "XR_ERROR_SESSION_RUNNING"
+    },
+    {
+     "name": "XR_ERROR_SIZE_INSUFFICIENT"
+    },
+    {
+     "name": "XR_ERROR_SWAPCHAIN_FORMAT_UNSUPPORTED"
+    },
+    {
+     "name": "XR_ERROR_SWAPCHAIN_RECT_INVALID"
+    },
+    {
+     "name": "XR_ERROR_SYSTEM_INVALID"
+    },
+    {
+     "name": "XR_ERROR_TIME_INVALID"
+    },
+    {
+     "name": "XR_ERROR_VALIDATION_FAILURE"
+    },
+    {
+     "name": "XR_ERROR_VIEW_CONFIGURATION_TYPE_UNSUPPORTED"
+    }
+   ]
+  },
+  {
+   "type": "org.lwjgl.system.CallbackI",
+   "jniAccessible": true,
+   "methods": [
+    {
+     "name": "callback",
+     "parameterTypes": [
+      "long",
+      "long"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.lwjgl.system.MemoryManage$DebugAllocator"
+  },
+  {
+   "type": "org.lwjgl.system.MemoryUtil$LazyInit",
+   "fields": [
+    {
+     "name": "ALLOCATOR"
+    }
+   ]
+  },
+  {
+   "type": "org.osgi.framework.FrameworkUtil"
+  },
+  {
+   "type": "org.quiltmc.loader.api.QuiltLoader"
+  },
+  {
+   "type": "org.quiltmc.loader.impl.QuiltLoaderImpl"
+  },
+  {
+   "type": "org.spongepowered.asm.service.modlauncher.MixinServiceModLauncherBootstrap"
+  },
+  {
+   "type": "org.spongepowered.asm.service.mojang.MixinServiceLaunchWrapperBootstrap"
+  },
+  {
+   "type": "org.vivecraft.MixinConfig",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    },
+    {
+     "name": "onLoad",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client.gui.settings.GuiActiveKeyboardLayoutSelector",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "net.minecraft.client.gui.screens.Screen"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client.gui.settings.GuiAllSettings",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "net.minecraft.client.gui.screens.Screen"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client.gui.settings.GuiBackpackSwitchingSettings",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "net.minecraft.client.gui.screens.Screen"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client.gui.settings.GuiBindings",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "net.minecraft.client.gui.screens.Screen"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client.gui.settings.GuiBlacklistEditor",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "net.minecraft.client.gui.screens.Screen"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client.gui.settings.GuiChatNotificationSelection",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "net.minecraft.client.gui.screens.Screen"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client.gui.settings.GuiClimbingSettings",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "net.minecraft.client.gui.screens.Screen"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client.gui.settings.GuiDebugSettings",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "net.minecraft.client.gui.screens.Screen"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client.gui.settings.GuiFreeMoveSettings",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "net.minecraft.client.gui.screens.Screen"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client.gui.settings.GuiHUDSettings",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "net.minecraft.client.gui.screens.Screen"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client.gui.settings.GuiKeyboardLayoutEditor"
+  },
+  {
+   "type": "org.vivecraft.client.gui.settings.GuiKeyboardSettings",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "net.minecraft.client.gui.screens.Screen"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client.gui.settings.GuiKeyboardThemeEditor"
+  },
+  {
+   "type": "org.vivecraft.client.gui.settings.GuiMenuWorldSettings",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "net.minecraft.client.gui.screens.Screen"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client.gui.settings.GuiMixedRealitySettings",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "net.minecraft.client.gui.screens.Screen"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client.gui.settings.GuiOtherHUDSettings",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "net.minecraft.client.gui.screens.Screen"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client.gui.settings.GuiPlayerModelSettings",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "net.minecraft.client.gui.screens.Screen"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client.gui.settings.GuiPostEffectsSettings",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "net.minecraft.client.gui.screens.Screen"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client.gui.settings.GuiQuickCommandEditor",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "net.minecraft.client.gui.screens.Screen"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client.gui.settings.GuiRadialConfiguration",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "net.minecraft.client.gui.screens.Screen"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client.gui.settings.GuiRadialSettings",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "net.minecraft.client.gui.screens.Screen"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client.gui.settings.GuiRenderOpticsSettings",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "net.minecraft.client.gui.screens.Screen"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client.gui.settings.GuiRenderingSettings",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "net.minecraft.client.gui.screens.Screen"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client.gui.settings.GuiRoomscaleSettings",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "net.minecraft.client.gui.screens.Screen"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client.gui.settings.GuiSeatedOptions",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "net.minecraft.client.gui.screens.Screen"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client.gui.settings.GuiServerSettings",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "net.minecraft.client.gui.screens.Screen"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client.gui.settings.GuiShaderCompatSettings",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "net.minecraft.client.gui.screens.Screen"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client.gui.settings.GuiStandingSettings",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "net.minecraft.client.gui.screens.Screen"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client.gui.settings.GuiTeleportSettings",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "net.minecraft.client.gui.screens.Screen"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client.gui.settings.GuiVRControls",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "net.minecraft.client.gui.screens.Screen"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client.gui.settings.GuiWeaponCollisionSettings",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "net.minecraft.client.gui.screens.Screen"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client.gui.settings.VivecraftMainSettings",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "net.minecraft.client.gui.screens.Screen"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client_vr.gui.keyboard.KeyboardTheme",
+   "methods": [
+    {
+     "name": "valueOf",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    },
+    {
+     "name": "values",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client_vr.provider.ControllerTransform",
+   "methods": [
+    {
+     "name": "valueOf",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client_vr.settings.VRSettings",
+   "fields": [
+    {
+     "name": "aimDevice"
+    },
+    {
+     "name": "allowAdvancedBindings"
+    },
+    {
+     "name": "allowBreakingClimbable"
+    },
+    {
+     "name": "allowCrawling"
+    },
+    {
+     "name": "allowStandingOriginOffset"
+    },
+    {
+     "name": "alwaysShowUpdates"
+    },
+    {
+     "name": "alwaysSimulateKeyboard"
+    },
+    {
+     "name": "analogMovement"
+    },
+    {
+     "name": "applyPlayerWorldscale"
+    },
+    {
+     "name": "autoCalibration"
+    },
+    {
+     "name": "autoCloseKeyboard"
+    },
+    {
+     "name": "autoOpenKeyboard"
+    },
+    {
+     "name": "autoSprint"
+    },
+    {
+     "name": "autoSprintThreshold"
+    },
+    {
+     "name": "backpackMainHandKeybind"
+    },
+    {
+     "name": "backpackOffhandKeybind"
+    },
+    {
+     "name": "backpackSwitching"
+    },
+    {
+     "name": "blockCollision"
+    },
+    {
+     "name": "blockIntelWindows"
+    },
+    {
+     "name": "bowMode"
+    },
+    {
+     "name": "chatNotificationSound"
+    },
+    {
+     "name": "chatNotifications"
+    },
+    {
+     "name": "climbingAutoGrab"
+    },
+    {
+     "name": "closeWithRuntime"
+    },
+    {
+     "name": "commandsButtonIcon"
+    },
+    {
+     "name": "controllerTransform"
+    },
+    {
+     "name": "crawlThreshold"
+    },
+    {
+     "name": "crosshairScale"
+    },
+    {
+     "name": "crosshairScalesWithDistance"
+    },
+    {
+     "name": "debugCameraTracker"
+    },
+    {
+     "name": "digitalMovementDeadzone"
+    },
+    {
+     "name": "disableGarbageCollectorMessage"
+    },
+    {
+     "name": "disableShaderOptimization"
+    },
+    {
+     "name": "displayMirrorCenterSmooth"
+    },
+    {
+     "name": "displayMirrorLeftEye"
+    },
+    {
+     "name": "displayMirrorMode"
+    },
+    {
+     "name": "displayMirrorUseScreenshotCamera"
+    },
+    {
+     "name": "doorHitting"
+    },
+    {
+     "name": "doubleGUIResolution"
+    },
+    {
+     "name": "dualMirrorCrop"
+    },
+    {
+     "name": "dualMirrorSwap"
+    },
+    {
+     "name": "entityCollision"
+    },
+    {
+     "name": "externalCameraAngleOrder"
+    },
+    {
+     "name": "fbtCalibrated"
+    },
+    {
+     "name": "fbtExtendedCalibrated"
+    },
+    {
+     "name": "fbtOffsets"
+    },
+    {
+     "name": "fbtRotations"
+    },
+    {
+     "name": "feetBodyPosition"
+    },
+    {
+     "name": "feetCollision"
+    },
+    {
+     "name": "forceGuiToHUD"
+    },
+    {
+     "name": "forceHardwareDetection"
+    },
+    {
+     "name": "forceStandingFreeMove"
+    },
+    {
+     "name": "fovReductionMin"
+    },
+    {
+     "name": "fovRedutioncOffset"
+    },
+    {
+     "name": "freezeEffect"
+    },
+    {
+     "name": "fullReloadOnInit"
+    },
+    {
+     "name": "gameplayTrackerToRender"
+    },
+    {
+     "name": "guiAnisotropicFiltering"
+    },
+    {
+     "name": "guiAppearOverBlock"
+    },
+    {
+     "name": "guiMipmaps"
+    },
+    {
+     "name": "guiOnMirror"
+    },
+    {
+     "name": "guiScale"
+    },
+    {
+     "name": "handCameraFov"
+    },
+    {
+     "name": "handCameraResScale"
+    },
+    {
+     "name": "headToHmdLength"
+    },
+    {
+     "name": "hideGUI"
+    },
+    {
+     "name": "hitIndicator"
+    },
+    {
+     "name": "hrtfSelection"
+    },
+    {
+     "name": "hudDistance"
+    },
+    {
+     "name": "hudMaxScale"
+    },
+    {
+     "name": "hudOcclusion"
+    },
+    {
+     "name": "hudOpacity"
+    },
+    {
+     "name": "hudPitchOffset"
+    },
+    {
+     "name": "hudScale"
+    },
+    {
+     "name": "hudYawOffset"
+    },
+    {
+     "name": "inertiaFactor"
+    },
+    {
+     "name": "ingameBindingsInGui"
+    },
+    {
+     "name": "insideBlockSolidColor"
+    },
+    {
+     "name": "jumpThreshold"
+    },
+    {
+     "name": "keyboardCodes"
+    },
+    {
+     "name": "keyboardKeys"
+    },
+    {
+     "name": "keyboardKeysShift"
+    },
+    {
+     "name": "keyboardLayoutOrder"
+    },
+    {
+     "name": "keyboardPressBinds"
+    },
+    {
+     "name": "keyboardShowLayoutSelect"
+    },
+    {
+     "name": "keyholeX"
+    },
+    {
+     "name": "lastUpdate"
+    },
+    {
+     "name": "lowHealthIndicator"
+    },
+    {
+     "name": "mainPlayerDataSource"
+    },
+    {
+     "name": "manualCalibration"
+    },
+    {
+     "name": "menuAlwaysFollowFace"
+    },
+    {
+     "name": "menuBackground"
+    },
+    {
+     "name": "menuCrosshairScale"
+    },
+    {
+     "name": "menuWorldFallbackPanorama"
+    },
+    {
+     "name": "menuWorldSelection"
+    },
+    {
+     "name": "mirrorCrop"
+    },
+    {
+     "name": "mixedRealityAlphaMask"
+    },
+    {
+     "name": "mixedRealityFov"
+    },
+    {
+     "name": "mixedRealityGui"
+    },
+    {
+     "name": "mixedRealityKeyColor"
+    },
+    {
+     "name": "mixedRealityRenderCameraModel"
+    },
+    {
+     "name": "mixedRealityRenderHands"
+    },
+    {
+     "name": "mixedRealityUndistorted"
+    },
+    {
+     "name": "mixedRealityUnityLike"
+    },
+    {
+     "name": "modelArmsMode"
+    },
+    {
+     "name": "modifyPauseMenu"
+    },
+    {
+     "name": "monoFOV"
+    },
+    {
+     "name": "movementSpeedMultiplier"
+    },
+    {
+     "name": "mrMovingCamOffset"
+    },
+    {
+     "name": "mrMovingCamOffsetRotQuat"
+    },
+    {
+     "name": "nullvrEyeAngle"
+    },
+    {
+     "name": "nullvrFOV"
+    },
+    {
+     "name": "nullvrHaptics"
+    },
+    {
+     "name": "nullvrIPD"
+    },
+    {
+     "name": "onlySwordCollision"
+    },
+    {
+     "name": "originOffset"
+    },
+    {
+     "name": "oscTrackerPort"
+    },
+    {
+     "name": "physicalGuiEnabled"
+    },
+    {
+     "name": "physicalKeyboard"
+    },
+    {
+     "name": "physicalKeyboardScale"
+    },
+    {
+     "name": "physicalKeyboardTheme"
+    },
+    {
+     "name": "playerArmAnim"
+    },
+    {
+     "name": "playerLimbsConnected"
+    },
+    {
+     "name": "playerLimbsLimit"
+    },
+    {
+     "name": "playerModelArmsScale"
+    },
+    {
+     "name": "playerModelBodyScale"
+    },
+    {
+     "name": "playerModelLegScale"
+    },
+    {
+     "name": "playerModelType"
+    },
+    {
+     "name": "playerWalkAnim"
+    },
+    {
+     "name": "portalEffect"
+    },
+    {
+     "name": "pumpkinEffect"
+    },
+    {
+     "name": "radialModeHold"
+    },
+    {
+     "name": "radialRepeat"
+    },
+    {
+     "name": "realisticBlockInteractEnabled"
+    },
+    {
+     "name": "realisticClimbEnabled"
+    },
+    {
+     "name": "realisticDismountEnabled"
+    },
+    {
+     "name": "realisticEntityInteractEnabled"
+    },
+    {
+     "name": "realisticJumpEnabled"
+    },
+    {
+     "name": "realisticRowEnabled"
+    },
+    {
+     "name": "realisticSneakEnabled"
+    },
+    {
+     "name": "realisticSwimEnabled"
+    },
+    {
+     "name": "reducedPlayerReach"
+    },
+    {
+     "name": "rememberVr"
+    },
+    {
+     "name": "renderAllPasses"
+    },
+    {
+     "name": "renderBlockOutlineMode"
+    },
+    {
+     "name": "renderDeviceAxes"
+    },
+    {
+     "name": "renderGameplayTrackers"
+    },
+    {
+     "name": "renderHeadHitbox"
+    },
+    {
+     "name": "renderInGameCrosshairMode"
+    },
+    {
+     "name": "renderScaleFactor"
+    },
+    {
+     "name": "renderTrackerPositions"
+    },
+    {
+     "name": "renderVrPlayerAxes"
+    },
+    {
+     "name": "requiredVulkanDeviceExtensions"
+    },
+    {
+     "name": "requiredVulkanDeviceUUID"
+    },
+    {
+     "name": "requiredVulkanInstanceExtensions"
+    },
+    {
+     "name": "requiredVulkanMinAPIVersion"
+    },
+    {
+     "name": "reverseHands"
+    },
+    {
+     "name": "reverseShootingEye"
+    },
+    {
+     "name": "rightclickDelay"
+    },
+    {
+     "name": "roomscaleSpearLunge"
+    },
+    {
+     "name": "seated"
+    },
+    {
+     "name": "seatedFreeMove"
+    },
+    {
+     "name": "seatedHudAltMode"
+    },
+    {
+     "name": "seatedUseHMD"
+    },
+    {
+     "name": "selfButtSparklesInFirstPerson"
+    },
+    {
+     "name": "shaderFullSizeShadowLimbs"
+    },
+    {
+     "name": "shaderGUIRender"
+    },
+    {
+     "name": "shaderPatching"
+    },
+    {
+     "name": "shouldRenderSelf"
+    },
+    {
+     "name": "showChatMessageStencil"
+    },
+    {
+     "name": "showMirrorOffText"
+    },
+    {
+     "name": "showPlayerHands"
+    },
+    {
+     "name": "showServerPluginMessage"
+    },
+    {
+     "name": "showServerPluginMissingMessageAlways"
+    },
+    {
+     "name": "showServerVrChangesMessage"
+    },
+    {
+     "name": "simulateFalling"
+    },
+    {
+     "name": "sleepEffect"
+    },
+    {
+     "name": "smoothRunTickCount"
+    },
+    {
+     "name": "smoothTick"
+    },
+    {
+     "name": "sneakThreshold"
+    },
+    {
+     "name": "sprintMovementSpeedMultiplier"
+    },
+    {
+     "name": "stencilBufferDisable"
+    },
+    {
+     "name": "stereoProviderPluginID"
+    },
+    {
+     "name": "swordBlockCollision"
+    },
+    {
+     "name": "thirdPersonItems"
+    },
+    {
+     "name": "thirdPersonItemsCustom"
+    },
+    {
+     "name": "unlabeledTrackersUsed"
+    },
+    {
+     "name": "updateType"
+    },
+    {
+     "name": "useCrosshairOcclusion"
+    },
+    {
+     "name": "useFOVReduction"
+    },
+    {
+     "name": "useFsaa"
+    },
+    {
+     "name": "useFuzzySearch"
+    },
+    {
+     "name": "vanillaClimbing"
+    },
+    {
+     "name": "vehicleRotation"
+    },
+    {
+     "name": "version"
+    },
+    {
+     "name": "vrEnabled"
+    },
+    {
+     "name": "vrFixedCampos"
+    },
+    {
+     "name": "vrFixedCamrotQuat"
+    },
+    {
+     "name": "vrFreeMoveFlyMode"
+    },
+    {
+     "name": "vrFreeMoveMode"
+    },
+    {
+     "name": "vrHotswitchingEnabled"
+    },
+    {
+     "name": "vrHudLockMode"
+    },
+    {
+     "name": "vrHudWristOffset"
+    },
+    {
+     "name": "vrLimitedSurvivalTeleport"
+    },
+    {
+     "name": "vrQuickCommands"
+    },
+    {
+     "name": "vrRadialButtons"
+    },
+    {
+     "name": "vrRadialItems"
+    },
+    {
+     "name": "vrRadialItemsAlt"
+    },
+    {
+     "name": "vrServerBlacklist"
+    },
+    {
+     "name": "vrSettingsButtonEnabled"
+    },
+    {
+     "name": "vrSettingsButtonPositionLeft"
+    },
+    {
+     "name": "vrShowBlueCircleBuddy"
+    },
+    {
+     "name": "vrTeleportDownLimit"
+    },
+    {
+     "name": "vrTeleportHorizLimit"
+    },
+    {
+     "name": "vrTeleportUpLimit"
+    },
+    {
+     "name": "vrToggleButtonEnabled"
+    },
+    {
+     "name": "vrTouchHotbar"
+    },
+    {
+     "name": "vrUseStencil"
+    },
+    {
+     "name": "walkMultiplier"
+    },
+    {
+     "name": "walkUpBlocks"
+    },
+    {
+     "name": "waterEffect"
+    },
+    {
+     "name": "weaponCollision"
+    },
+    {
+     "name": "worldRotation"
+    },
+    {
+     "name": "worldRotationIncrement"
+    },
+    {
+     "name": "worldRotationXSensitivity"
+    },
+    {
+     "name": "worldScale"
+    },
+    {
+     "name": "xSensitivity"
+    },
+    {
+     "name": "ySensitivity"
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client_vr.settings.VRSettings$AimDevice",
+   "methods": [
+    {
+     "name": "valueOf",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client_vr.settings.VRSettings$AutoOpenKeyboard",
+   "methods": [
+    {
+     "name": "valueOf",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client_vr.settings.VRSettings$BowMode",
+   "methods": [
+    {
+     "name": "valueOf",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    },
+    {
+     "name": "values",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client_vr.settings.VRSettings$ChatNotifications",
+   "methods": [
+    {
+     "name": "valueOf",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    },
+    {
+     "name": "values",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client_vr.settings.VRSettings$ChatServerMessage",
+   "methods": [
+    {
+     "name": "valueOf",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    },
+    {
+     "name": "values",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client_vr.settings.VRSettings$ChatServerMessage$2"
+  },
+  {
+   "type": "org.vivecraft.client_vr.settings.VRSettings$ChatServerMessage$3"
+  },
+  {
+   "type": "org.vivecraft.client_vr.settings.VRSettings$DataSource",
+   "methods": [
+    {
+     "name": "valueOf",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    },
+    {
+     "name": "values",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client_vr.settings.VRSettings$FreeMove",
+   "methods": [
+    {
+     "name": "valueOf",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    },
+    {
+     "name": "values",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client_vr.settings.VRSettings$HUDLock",
+   "methods": [
+    {
+     "name": "valueOf",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    },
+    {
+     "name": "values",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client_vr.settings.VRSettings$InertiaFactor",
+   "methods": [
+    {
+     "name": "valueOf",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    },
+    {
+     "name": "values",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client_vr.settings.VRSettings$MenuWorld",
+   "methods": [
+    {
+     "name": "valueOf",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    },
+    {
+     "name": "values",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client_vr.settings.VRSettings$MirrorGui",
+   "methods": [
+    {
+     "name": "valueOf",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    },
+    {
+     "name": "values",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client_vr.settings.VRSettings$MirrorMode",
+   "methods": [
+    {
+     "name": "valueOf",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    },
+    {
+     "name": "values",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client_vr.settings.VRSettings$MixedRealityGui",
+   "methods": [
+    {
+     "name": "valueOf",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    },
+    {
+     "name": "values",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client_vr.settings.VRSettings$ModelArmsMode",
+   "methods": [
+    {
+     "name": "valueOf",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    },
+    {
+     "name": "values",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client_vr.settings.VRSettings$PlayerModelType",
+   "methods": [
+    {
+     "name": "valueOf",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    },
+    {
+     "name": "values",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client_vr.settings.VRSettings$RealisticJump",
+   "methods": [
+    {
+     "name": "valueOf",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    },
+    {
+     "name": "values",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client_vr.settings.VRSettings$RenderPointerElement",
+   "methods": [
+    {
+     "name": "valueOf",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    },
+    {
+     "name": "values",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client_vr.settings.VRSettings$RightClickDelay",
+   "methods": [
+    {
+     "name": "valueOf",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    },
+    {
+     "name": "values",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client_vr.settings.VRSettings$ShaderGUIRender",
+   "methods": [
+    {
+     "name": "valueOf",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    },
+    {
+     "name": "values",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client_vr.settings.VRSettings$UpdateType",
+   "methods": [
+    {
+     "name": "valueOf",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    },
+    {
+     "name": "values",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client_vr.settings.VRSettings$VRProvider",
+   "methods": [
+    {
+     "name": "valueOf",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.client_vr.settings.VRSettings$WeaponCollision",
+   "methods": [
+    {
+     "name": "valueOf",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    },
+    {
+     "name": "values",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.common.utils.math.AngleOrder",
+   "methods": [
+    {
+     "name": "valueOf",
+     "parameterTypes": [
+      "java.lang.String"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.fabric.VivecraftMod",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "org.vivecraft.fabric.XloaderImpl"
+  },
+  {
+   "type": "org.vivecraft.fabric.XplatImpl"
+  },
+  {
+   "type": "org.vivecraft.server.AimFixHandler"
+  },
+  {
+   "type": "sun.management.VMManagementImpl",
+   "jniAccessible": true,
+   "fields": [
+    {
+     "name": "compTimeMonitoringSupport"
+    },
+    {
+     "name": "currentThreadCpuTimeSupport"
+    },
+    {
+     "name": "objectMonitorUsageSupport"
+    },
+    {
+     "name": "otherThreadCpuTimeSupport"
+    },
+    {
+     "name": "remoteDiagnosticCommandsSupport"
+    },
+    {
+     "name": "synchronizerUsageSupport"
+    },
+    {
+     "name": "threadAllocatedMemorySupport"
+    },
+    {
+     "name": "threadContentionMonitoringSupport"
+    }
+   ]
+  },
+  {
+   "type": "sun.misc.Unsafe",
+   "fields": [
+    {
+     "name": "theUnsafe"
+    }
+   ]
+  },
+  {
+   "type": "sun.net.www.protocol.http.ntlm.NTLMAuthentication",
+   "methods": [
+    {
+     "name": "supportsTransparentAuth",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "sun.security.pkcs12.PKCS12KeyStore",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "sun.security.pkcs12.PKCS12KeyStore$DualFormatPKCS12",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "sun.security.provider.DSA$SHA224withDSA",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "sun.security.provider.DSA$SHA256withDSA",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "sun.security.provider.JavaKeyStore$DualFormatJKS",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "sun.security.provider.JavaKeyStore$JKS",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "sun.security.provider.MD5",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "sun.security.provider.NativePRNG",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "java.security.SecureRandomParameters"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "sun.security.provider.SHA",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "sun.security.provider.SHA2$SHA224",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "sun.security.provider.SHA2$SHA256",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "sun.security.provider.SHA5$SHA384",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "sun.security.provider.SHA5$SHA512",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "sun.security.provider.X509Factory",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "sun.security.provider.certpath.PKIXCertPathValidator",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "sun.security.rsa.PSSParameters",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "sun.security.rsa.RSAKeyFactory$Legacy",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "sun.security.rsa.RSAKeyPairGenerator$Legacy",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "sun.security.rsa.RSAPSSSignature",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "sun.security.rsa.RSASignature$SHA224withRSA",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "sun.security.rsa.RSASignature$SHA256withRSA",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "sun.security.rsa.RSASignature$SHA384withRSA",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "sun.security.ssl.KeyManagerFactoryImpl$SunX509",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "sun.security.ssl.SSLContextImpl$DefaultSSLContext",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "sun.security.ssl.TrustManagerFactoryImpl$PKIXFactory",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": []
+    }
+   ]
+  },
+  {
+   "type": "sun.security.x509.AuthorityInfoAccessExtension",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "java.lang.Boolean",
+      "java.lang.Object"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "sun.security.x509.AuthorityKeyIdentifierExtension",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "java.lang.Boolean",
+      "java.lang.Object"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "sun.security.x509.BasicConstraintsExtension",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "java.lang.Boolean",
+      "java.lang.Object"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "sun.security.x509.CRLDistributionPointsExtension",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "java.lang.Boolean",
+      "java.lang.Object"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "sun.security.x509.CertificatePoliciesExtension",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "java.lang.Boolean",
+      "java.lang.Object"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "sun.security.x509.ExtendedKeyUsageExtension",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "java.lang.Boolean",
+      "java.lang.Object"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "sun.security.x509.KeyUsageExtension",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "java.lang.Boolean",
+      "java.lang.Object"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "sun.security.x509.NetscapeCertTypeExtension",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "java.lang.Boolean",
+      "java.lang.Object"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "sun.security.x509.OCSPNoCheckExtension",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "java.lang.Boolean",
+      "java.lang.Object"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "sun.security.x509.PrivateKeyUsageExtension",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "java.lang.Boolean",
+      "java.lang.Object"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "sun.security.x509.SubjectAlternativeNameExtension",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "java.lang.Boolean",
+      "java.lang.Object"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "sun.security.x509.SubjectKeyIdentifierExtension",
+   "methods": [
+    {
+     "name": "<init>",
+     "parameterTypes": [
+      "java.lang.Boolean",
+      "java.lang.Object"
+     ]
+    }
+   ]
+  },
+  {
+   "type": "sun.text.resources.FormatData"
+  },
+  {
+   "type": "sun.text.resources.FormatData_en"
+  },
+  {
+   "type": "sun.text.resources.FormatData_en_US"
+  },
+  {
+   "type": "sun.text.resources.JavaTimeSupplementary"
+  },
+  {
+   "type": "sun.text.resources.cldr.FormatData"
+  },
+  {
+   "type": "sun.text.resources.cldr.FormatData_en"
+  },
+  {
+   "type": "sun.text.resources.cldr.FormatData_en_US"
+  },
+  {
+   "type": "sun.util.resources.cldr.CalendarData"
+  },
+  {
+   "type": "sun.util.resources.cldr.TimeZoneNames"
+  },
+  {
+   "type": "sun.util.resources.cldr.TimeZoneNames_en"
+  },
+  {
+   "type": "sun.util.resources.cldr.TimeZoneNames_en_US"
+  },
+  {
+   "type": {
+    "proxy": [
+     "net.fabricmc.api.ClientModInitializer",
+     "sun.invoke.WrapperInstance"
+    ]
+   }
+  },
+  {
+   "type": {
+    "proxy": [
+     "net.fabricmc.api.ModInitializer",
+     "sun.invoke.WrapperInstance"
+    ]
+   }
+  },
+  {
+   "type": {
+    "proxy": [
+     "net.fabricmc.api.ModInitializer"
+    ]
+   }
+  },
+  {
+   "type": {
+    "proxy": [
+     "net.fabricmc.api.ClientModInitializer"
+    ]
+   }
+  }
+ ],
+ "resources": [
+  {
+   "glob": "META-INF/MANIFEST.MF"
+  },
+  {
+   "glob": "META-INF/log4j-provider.properties"
+  },
+  {
+   "glob": "META-INF/org/apache/logging/log4j/core/config/plugins/Log4j2Plugins.dat"
+  },
+  {
+   "glob": "META-INF/services/ca.fxco.moreculling.platform.services.IPlatformHelper"
+  },
+  {
+   "glob": "META-INF/services/de.maxhenkel.voicechat.intercompatibility.ClientCompatibilityManager"
+  },
+  {
+   "glob": "META-INF/services/de.maxhenkel.voicechat.intercompatibility.CommonCompatibilityManager"
+  },
+  {
+   "glob": "META-INF/services/java.net.spi.InetAddressResolverProvider"
+  },
+  {
+   "glob": "META-INF/services/java.net.spi.URLStreamHandlerProvider"
+  },
+  {
+   "glob": "META-INF/services/java.nio.channels.spi.SelectorProvider"
+  },
+  {
+   "glob": "META-INF/services/java.nio.file.spi.FileSystemProvider"
+  },
+  {
+   "glob": "META-INF/services/java.time.zone.ZoneRulesProvider"
+  },
+  {
+   "glob": "META-INF/services/javax.sound.sampled.spi.MixerProvider"
+  },
+  {
+   "glob": "META-INF/services/javax.xml.parsers.DocumentBuilderFactory"
+  },
+  {
+   "glob": "META-INF/services/net.caffeinemc.mods.lithium.common.services.PlatformMixinOverrides"
+  },
+  {
+   "glob": "META-INF/services/net.caffeinemc.mods.lithium.common.services.PlatformModCompat"
+  },
+  {
+   "glob": "META-INF/services/net.caffeinemc.mods.sodium.client.services.FRAPIRegistrarProvider"
+  },
+  {
+   "glob": "META-INF/services/net.caffeinemc.mods.sodium.client.services.FluidRendererFactory"
+  },
+  {
+   "glob": "META-INF/services/net.caffeinemc.mods.sodium.client.services.PlatformBlockAccess"
+  },
+  {
+   "glob": "META-INF/services/net.caffeinemc.mods.sodium.client.services.PlatformLevelAccess"
+  },
+  {
+   "glob": "META-INF/services/net.caffeinemc.mods.sodium.client.services.PlatformLevelRenderHooks"
+  },
+  {
+   "glob": "META-INF/services/net.caffeinemc.mods.sodium.client.services.PlatformMixinOverrides"
+  },
+  {
+   "glob": "META-INF/services/net.caffeinemc.mods.sodium.client.services.PlatformModelAccess"
+  },
+  {
+   "glob": "META-INF/services/net.caffeinemc.mods.sodium.client.services.PlatformModelEmitterProvider"
+  },
+  {
+   "glob": "META-INF/services/net.caffeinemc.mods.sodium.client.services.PlatformRuntimeInformation"
+  },
+  {
+   "glob": "META-INF/services/net.raphimc.immediatelyfast.service.PlatformService"
+  },
+  {
+   "glob": "META-INF/services/org.apache.logging.log4j.core.util.ContextDataProvider"
+  },
+  {
+   "glob": "META-INF/services/org.apache.logging.log4j.core.util.WatchEventService"
+  },
+  {
+   "glob": "META-INF/services/org.apache.logging.log4j.spi.Provider"
+  },
+  {
+   "glob": "META-INF/services/org.apache.logging.log4j.util.PropertySource"
+  },
+  {
+   "glob": "META-INF/services/org.slf4j.spi.SLF4JServiceProvider"
+  },
+  {
+   "glob": "META-INF/services/org.spongepowered.asm.service.IMixinService"
+  },
+  {
+   "glob": "META-INF/services/org.spongepowered.asm.service.IMixinServiceBootstrap"
+  },
+  {
+   "glob": "META-INF/services/org.vivecraft.Xloader"
+  },
+  {
+   "glob": "META-INF/services/org.vivecraft.Xplat"
+  },
+  {
+   "glob": "ModLoader"
+  },
+  {
+   "glob": "assets/.mcassetsroot"
+  },
+  {
+   "glob": "assets/lithium/lithium-mixin-config-default.properties"
+  },
+  {
+   "glob": "assets/lithium/lithium-mixin-config-dependencies.properties"
+  },
+  {
+   "glob": "assets/minecraft/lang/deprecated.json"
+  },
+  {
+   "glob": "assets/minecraft/lang/en_us.json"
+  },
+  {
+   "glob": "com/ibm/icu/ICUConfig.properties"
+  },
+  {
+   "glob": "com/ibm/icu/impl/data/icudata/langInfo.res"
+  },
+  {
+   "glob": "com/ibm/icu/impl/data/icudata/numberingSystems.res"
+  },
+  {
+   "glob": "com/ibm/icu/impl/data/icudata/pnames.icu"
+  },
+  {
+   "glob": "com/ibm/icu/impl/data/icudata/pool.res"
+  },
+  {
+   "glob": "com/ibm/icu/impl/data/icudata/root.res"
+  },
+  {
+   "glob": "com/ibm/icu/impl/data/icudata/supplementalData.res"
+  },
+  {
+   "glob": "com/ibm/icu/impl/data/icudata/ubidi.icu"
+  },
+  {
+   "glob": "com/ibm/icu/impl/data/icudata/uprops.icu"
+  },
+  {
+   "glob": "com/ibm/icu/impl/data/icudata/zoneinfo64.res"
+  },
+  {
+   "glob": "config-icon.png"
+  },
+  {
+   "glob": "data/.mcassetsroot"
+  },
+  {
+   "glob": "fabric-server-launch.properties"
+  },
+  {
+   "glob": "fabric.mod.json"
+  },
+  {
+   "glob": "log4j2-test.jsn"
+  },
+  {
+   "glob": "log4j2-test.json"
+  },
+  {
+   "glob": "log4j2-test.properties"
+  },
+  {
+   "glob": "log4j2-test.xml"
+  },
+  {
+   "glob": "log4j2-test.yaml"
+  },
+  {
+   "glob": "log4j2-test.yml"
+  },
+  {
+   "glob": "log4j2-test14dad5dc.jsn"
+  },
+  {
+   "glob": "log4j2-test14dad5dc.json"
+  },
+  {
+   "glob": "log4j2-test14dad5dc.properties"
+  },
+  {
+   "glob": "log4j2-test14dad5dc.xml"
+  },
+  {
+   "glob": "log4j2-test14dad5dc.yaml"
+  },
+  {
+   "glob": "log4j2-test14dad5dc.yml"
+  },
+  {
+   "glob": "log4j2.StatusLogger.properties"
+  },
+  {
+   "glob": "log4j2.component.properties"
+  },
+  {
+   "glob": "log4j2.jsn"
+  },
+  {
+   "glob": "log4j2.json"
+  },
+  {
+   "glob": "log4j2.properties"
+  },
+  {
+   "glob": "log4j2.simplelog.properties"
+  },
+  {
+   "glob": "log4j2.system.properties"
+  },
+  {
+   "glob": "log4j2.xml"
+  },
+  {
+   "glob": "log4j2.yaml"
+  },
+  {
+   "glob": "log4j2.yml"
+  },
+  {
+   "glob": "log4j214dad5dc.jsn"
+  },
+  {
+   "glob": "log4j214dad5dc.json"
+  },
+  {
+   "glob": "log4j214dad5dc.properties"
+  },
+  {
+   "glob": "log4j214dad5dc.xml"
+  },
+  {
+   "glob": "log4j214dad5dc.yaml"
+  },
+  {
+   "glob": "log4j214dad5dc.yml"
+  },
+  {
+   "glob": "mappings/mappings.tiny"
+  },
+  {
+   "glob": "net/caffeinemc/mods/lithium/common/LithiumMod.class"
+  },
+  {
+   "glob": "net/fabricmc/installer/ServerLauncher.class"
+  },
+  {
+   "glob": "net/fabricmc/loader/impl/junit/FabricLoaderLauncherSessionListener.class"
+  },
+  {
+   "glob": "net/minecrell/terminalconsole/util/LoggerNamePatternSelector.class"
+  },
+  {
+   "glob": "org/apache/logging/log4j/LogManager.class"
+  },
+  {
+   "glob": "org/junit/jupiter/api/Test.class"
+  },
+  {
+   "glob": "org/junit/jupiter/engine/JupiterTestEngine.class"
+  },
+  {
+   "glob": "org/junit/platform/engine/TestEngine.class"
+  },
+  {
+   "glob": "org/junit/platform/launcher/core/LauncherFactory.class"
+  },
+  {
+   "glob": "org/slf4j/Logger.class"
+  },
+  {
+   "glob": "packs/black_icons/pack.mcmeta"
+  },
+  {
+   "glob": "packs/black_icons/pack.png"
+  },
+  {
+   "glob": "packs/classic_icons/pack.mcmeta"
+  },
+  {
+   "glob": "packs/classic_icons/pack.png"
+  },
+  {
+   "glob": "packs/white_icons/pack.mcmeta"
+  },
+  {
+   "glob": "realmsVersion"
+  },
+  {
+   "glob": "rnnoise/weights_blob.bin"
+  },
+  {
+   "glob": "version.json"
+  },
+  {
+   "module": "java.base",
+   "glob": "jdk/internal/icu/impl/data/icudt76b/nfc.nrm"
+  },
+  {
+   "module": "java.base",
+   "glob": "jdk/internal/icu/impl/data/icudt76b/nfkc.nrm"
+  },
+  {
+   "module": "java.base",
+   "glob": "jdk/internal/icu/impl/data/icudt76b/uprops.icu"
+  },
+  {
+   "module": "java.base",
+   "glob": "sun/net/idn/uidna.spp"
+  },
+  {
+   "module": "jdk.jfr",
+   "glob": "jdk/jfr/internal/types/metadata.bin"
+  }
+ ]
+}

@@ -1,0 +1,8 @@
+[
+  {"name": "java.io.IOException", "methods": [{"name": "<init>", "parameterTypes": ["java.lang.String"]}]},
+  {"name": "java.lang.IllegalArgumentException", "methods": [{"name": "<init>", "parameterTypes": ["java.lang.String"]}]},
+  {"name": "java.lang.IllegalStateException", "methods": [{"name": "<init>", "parameterTypes": ["java.lang.String"]}]},
+  {"name": "java.lang.RuntimeException", "methods": [{"name": "<init>", "parameterTypes": ["java.lang.String"]}]},
+  {"name": "[S"},
+  {"name": "de.maxhenkel.opus4j.OpusEncoder$Application", "fields": [{"name": "value"}]}
+]

@@ -1,0 +1,79 @@
+From 0feea309e0de4071b366fe9bc4dedc9c208e78f7 Mon Sep 17 00:00:00 2001
+From: rebelancap <7285817+rebelancap@users.noreply.github.com>
+Date: Mon, 12 Oct 2026 17:19:40 -0600
+Subject: [PATCH 2/2] openxr: guard input lookups on profiles without a
+ binding; origin fixes
+
+- findActiveBindingControllerType / XRInputAction.getActiveAction: the
+  active interaction profile may have no handle at activeAction (or no
+  handle list at all), which threw IndexOutOfBounds / NPE.
+- getOriginName returned memUTF8 of the IntBuffer holding the length
+  instead of the string buffer.
+- getOriginControllerType compared an origin PATH to the right aim
+  action handle (always LEFT); decide from the path string instead.
+
+Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>
+---
+ .../client_vr/provider/openxr/MCOpenXR.java        | 14 ++++++++++----
+ .../provider/openxr/control/XRInputAction.java     |  6 ++++--
+ 2 files changed, 14 insertions(+), 6 deletions(-)
+
+diff --git a/common/src/main/java/org/vivecraft/client_vr/provider/openxr/MCOpenXR.java b/common/src/main/java/org/vivecraft/client_vr/provider/openxr/MCOpenXR.java
+index 218941b6..3c24df58 100644
+--- a/common/src/main/java/org/vivecraft/client_vr/provider/openxr/MCOpenXR.java
++++ b/common/src/main/java/org/vivecraft/client_vr/provider/openxr/MCOpenXR.java
+@@ -155,8 +155,12 @@ public class MCOpenXR extends MCVR<XRInputAction> {
+         } else {
+             var action = this.getInputAction(keyMapping);
+             for (ControllerType controllerType : ControllerType.values()) {
+-                var handedaction = action.getHandle(this.activeController[controllerType.ordinal()])
+-                    .get(action.activeAction);
++                var handles = action.getHandle(this.activeController[controllerType.ordinal()]);
++                if (action.activeAction < 0 || action.activeAction >= handles.size()) {
++                    // no binding for this action on the active profile
++                    continue;
++                }
++                var handedaction = handles.get(action.activeAction);
+                 if (handedaction.hand() != controllerType) {
+                     continue;
+                 }
+@@ -1095,7 +1099,8 @@ public class MCOpenXR extends MCVR<XRInputAction> {
+             ByteBuffer byteBuffer = stack.calloc(size);
+             error = XR10.xrGetInputSourceLocalizedName(this.session, info, buf, byteBuffer);
+             logError(error, "xrGetInputSourceLocalizedName", "get String");
+-            return MemoryUtil.memUTF8(MemoryUtil.memAddress(buf));
++            // the string is in byteBuffer, buf only holds its length
++            return MemoryUtil.memUTF8(MemoryUtil.memAddress(byteBuffer));
+         }
+     }
+ 
+@@ -1111,7 +1116,8 @@ public class MCOpenXR extends MCVR<XRInputAction> {
+ 
+     @Override
+     public ControllerType getOriginControllerType(long inputValueHandle) {
+-        if (inputValueHandle == this.aim[RIGHT_CONTROLLER]) {
++        // the argument is an origin path (from xrEnumerateBoundSourcesForAction), not an action handle
++        if (inputValueHandle != 0L && getString(inputValueHandle).startsWith(BOTH_HANDS[1])) {
+             return ControllerType.RIGHT;
+         }
+         return ControllerType.LEFT;
+diff --git a/common/src/main/java/org/vivecraft/client_vr/provider/openxr/control/XRInputAction.java b/common/src/main/java/org/vivecraft/client_vr/provider/openxr/control/XRInputAction.java
+index 32f0fb82..38288501 100644
+--- a/common/src/main/java/org/vivecraft/client_vr/provider/openxr/control/XRInputAction.java
++++ b/common/src/main/java/org/vivecraft/client_vr/provider/openxr/control/XRInputAction.java
+@@ -64,8 +64,10 @@ public class XRInputAction extends InputAction {
+         if (this.activeAction == 0) {
+             return null;
+         }
+-        return this.handles.get(controllers[this.digitalData().get(this.activeAction).hand.ordinal()])
+-            .get(this.activeAction);
++        ControllerType hand = this.digitalData().get(this.activeAction).hand;
++        List<HandedAction> list = hand == null ? null : this.handles.get(controllers[hand.ordinal()]);
++        // the active profile may have no binding for this action
++        return list == null || this.activeAction >= list.size() ? null : list.get(this.activeAction);
+     }
+ 
+     @Override
+-- 
+2.54.0 (Apple Git-157)
+

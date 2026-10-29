@@ -1,0 +1,52 @@
+[
+ {
+  "name": "net.caffeinemc.mods.sodium.client.render.vertex.serializers.VertexSerializerRegistryImpl",
+  "methods": [
+   {
+    "name": "<init>",
+    "parameterTypes": []
+   }
+  ]
+ },
+ {
+  "name": "net.caffeinemc.mods.sodium.client.render.chunk.BlockEntityRenderHandlerImpl",
+  "methods": [
+   {
+    "name": "<init>",
+    "parameterTypes": []
+   }
+  ]
+ },
+ {
+  "name": "net.caffeinemc.mods.sodium.client.data.fingerprint.HashedFingerprint",
+  "allDeclaredConstructors": true,
+  "allDeclaredMethods": true,
+  "allDeclaredFields": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "com.mojang.authlib.yggdrasil.YggdrasilServicesKeyInfo$KeyData",
+  "allDeclaredConstructors": true,
+  "allDeclaredMethods": true,
+  "allDeclaredFields": true,
+  "allRecordComponents": true
+ },
+ {
+  "name": "net.minecraft.client.sounds.SoundManager",
+  "fields": [ { "name": "soundEngine" } ]
+ },
+ {
+  "name": "net.minecraft.client.sounds.SoundEngine",
+  "fields": [ { "name": "executor" } ]
+ },
+ {
+  "name": "net.minecraft.server.network.EventLoopGroupHolder",
+  "fields": [
+   { "name": "LOCAL" },
+   { "name": "NIO" },
+   { "name": "EPOLL" },
+   { "name": "KQUEUE" },
+   { "name": "group" }
+  ]
+ }
+]

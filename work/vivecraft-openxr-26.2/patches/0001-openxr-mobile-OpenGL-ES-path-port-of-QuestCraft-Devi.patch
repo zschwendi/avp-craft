@@ -1,0 +1,268 @@
+From ff0b3ab6f8e14f1b38e21f2481554fa48c204437 Mon Sep 17 00:00:00 2001
+From: rebelancap <7285817+rebelancap@users.noreply.github.com>
+Date: Mon, 12 Oct 2026 17:19:40 -0600
+Subject: [PATCH 1/2] openxr: mobile OpenGL ES path (port of QuestCraft
+ DeviceCompat.Mobile)
+
+Upstream's DeviceCompat.Mobile has its GLES code commented out because
+stock LWJGL 3.4.1 lwjgl-openxr ships no XR_KHR_opengl_es_enable /
+XR_KHR_android_create_instance / XR_KHR_loader_init_android bindings
+(QuestCraft used a custom LWJGL build). Port QuestCraft's working
+implementation onto upstream's interface, writing the five structs by
+hand from the Khronos openxr.h layouts and calling
+xrGetOpenGLESGraphicsRequirementsKHR through xrGetInstanceProcAddr +
+JNI.callPJPI (the same call LWJGL's generated KHROpenGLEnable makes).
+
+- DeviceCompat.mobileRequested(): -Dvivecraft.openxr.mobile=true|false
+  wins when set, else os.version contains "Android" (QuestCraft rule).
+- Mobile: xrInitializeLoaderKHR(XrLoaderInitInfoAndroidKHR),
+  XrInstanceCreateInfoAndroidKHR on the instance chain, GLES graphics
+  requirements before xrCreateSession, XrGraphicsBindingOpenGLESAndroidKHR
+  from VLoader's EGL handles, swapchain images typed
+  XR_TYPE_SWAPCHAIN_IMAGE_OPENGL_ES_KHR. Vulkan is refused with a message.
+- QuestCraft's 2.5 s loader delay is opt-in:
+  -Dvivecraft.openxr.mobile.loaderDelayMs=2500.
+- VRSettings: default stereo provider is OPENXR on the mobile path.
+
+Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>
+---
+ .../provider/openxr/DeviceCompat.java         | 156 ++++++++++++------
+ .../client_vr/settings/VRSettings.java        |   4 +-
+ 2 files changed, 111 insertions(+), 49 deletions(-)
+
+diff --git a/common/src/main/java/org/vivecraft/client_vr/provider/openxr/DeviceCompat.java b/common/src/main/java/org/vivecraft/client_vr/provider/openxr/DeviceCompat.java
+index b291d6dc..bf43fa20 100644
+--- a/common/src/main/java/org/vivecraft/client_vr/provider/openxr/DeviceCompat.java
++++ b/common/src/main/java/org/vivecraft/client_vr/provider/openxr/DeviceCompat.java
+@@ -9,6 +9,7 @@ import org.lwjgl.PointerBuffer;
+ import org.lwjgl.glfw.*;
+ import org.lwjgl.opengl.GLX13;
+ import org.lwjgl.openxr.*;
++import org.lwjgl.system.JNI;
+ import org.lwjgl.system.MemoryStack;
+ import org.lwjgl.system.MemoryUtil;
+ import org.lwjgl.system.linux.X11;
+@@ -17,6 +18,7 @@ import org.vivecraft.client_vr.render.RenderConfigException;
+ import org.vivecraft.client_vr.render.helpers.graphics.GraphicsHelper;
+ import org.vivecraft.client_vr.render.helpers.graphics.vulkan.VulkanHelper;
+ import org.vivecraft.client_vr.settings.VRSettings;
++import org.vivecraft.util.VLoader;
+ 
+ import java.nio.ByteBuffer;
+ import java.nio.IntBuffer;
+@@ -81,8 +83,24 @@ public interface DeviceCompat {
+      */
+     long getInstanceCreateAddition(MemoryStack stack);
+ 
++    /**
++     * The mobile (OpenGL ES) path is chosen by {@code -Dvivecraft.openxr.mobile=true|false} when the property is set,
++     * otherwise by an Android {@code os.version} (the original QuestCraft heuristic). The property exists so a
++     * non-Android runtime that exposes {@code XR_KHR_opengl_es_enable} (e.g. an EGL/ANGLE stack on Apple platforms)
++     * can select it without spoofing os.version.
++     *
++     * @return true if the mobile / OpenGL ES OpenXR path should be used
++     */
++    static boolean mobileRequested() {
++        String forced = System.getProperty("vivecraft.openxr.mobile");
++        if (forced != null && !forced.isBlank()) {
++            return Boolean.parseBoolean(forced.trim());
++        }
++        return System.getProperty("os.version", "").contains("Android");
++    }
++
+     static DeviceCompat detectDevice() {
+-        return System.getProperty("os.version").contains("Android") ? new Mobile() : new Desktop();
++        return mobileRequested() ? new Mobile() : new Desktop();
+     }
+ 
+     class Desktop implements DeviceCompat {
+@@ -241,82 +259,124 @@ public interface DeviceCompat {
+         }
+     }
+ 
++    /**
++     * OpenXR on OpenGL ES (XR_KHR_opengl_es_enable), ported from the QuestCraft fork's working implementation
++     * (QuestCraftPlusPlus/VivecraftMod OpenXR-1.21.5 / OpenXR-1.21.10 DeviceCompat.Mobile).
++     * <p>
++     * Stock LWJGL 3.4.1 lwjgl-openxr has no bindings for XR_KHR_opengl_es_enable, XR_KHR_android_create_instance
++     * or XR_KHR_loader_init_android (QuestCraft shipped a custom LWJGL build for them), so the five structs and the
++     * one extension function are written by hand from the Khronos openxr.h layouts below. Every struct starts with
++     * {XrStructureType type (4 bytes + 4 padding), const void* next}.
++     */
+     class Mobile implements DeviceCompat {
+ 
++        public static final String XR_KHR_OPENGL_ES_ENABLE_EXTENSION_NAME = "XR_KHR_opengl_es_enable";
++        public static final int XR_TYPE_INSTANCE_CREATE_INFO_ANDROID_KHR = 1000008000;
++        public static final int XR_TYPE_GRAPHICS_BINDING_OPENGL_ES_ANDROID_KHR = 1000024001;
++        public static final int XR_TYPE_SWAPCHAIN_IMAGE_OPENGL_ES_KHR = 1000024002;
++        public static final int XR_TYPE_GRAPHICS_REQUIREMENTS_OPENGL_ES_KHR = 1000024003;
++        public static final int XR_TYPE_LOADER_INIT_INFO_ANDROID_KHR = 1000089000;
++
++        // {type, next, applicationVM, applicationContext|applicationActivity}
++        private static final int SIZEOF_ANDROID_INFO = 32;
++        // {type, next, XrVersion minApiVersionSupported, XrVersion maxApiVersionSupported}
++        private static final int SIZEOF_GLES_REQUIREMENTS = 32;
++        // {type, next, EGLDisplay display, EGLConfig config, EGLContext context}
++        private static final int SIZEOF_GLES_BINDING = 40;
++
++        private static long androidInfo(MemoryStack stack, int type, long vm, long context) {
++            long struct = stack.ncalloc(8, 1, SIZEOF_ANDROID_INFO);
++            MemoryUtil.memPutInt(struct, type);
++            MemoryUtil.memPutAddress(struct + 8, MemoryUtil.NULL);
++            MemoryUtil.memPutAddress(struct + 16, vm);
++            MemoryUtil.memPutAddress(struct + 24, context);
++            return struct;
++        }
++
+         @Override
+         public void initOpenXRLoader(MemoryStack stack) {
+             DeviceCompat.super.initOpenXRLoader(stack);
+-//            VLoader.setupAndroid();
+-//            XrLoaderInitInfoAndroidKHR initInfo = XrLoaderInitInfoAndroidKHR.calloc(stack).set(
+-//                KHRLoaderInitAndroid.XR_TYPE_LOADER_INIT_INFO_ANDROID_KHR,
+-//                NULL,
+-//                VLoader.getDalvikVM(),
+-//                VLoader.getDalvikActivity()
+-//            );
+-//
+-//            KHRLoaderInit.xrInitializeLoaderKHR(XrLoaderInitInfoBaseHeaderKHR.create(initInfo.address()));
++            VRSettings.LOGGER.info("Vivecraft: OpenXR using the mobile OpenGL ES path ({})",
++                System.getProperty("vivecraft.openxr.mobile") != null ? "-Dvivecraft.openxr.mobile" : "Android");
++            VLoader.setupAndroid();
++            // QuestCraft waits 2.5 s here for the Android XR environment; off by default, opt in with the property
++            long delay = Long.getLong("vivecraft.openxr.mobile.loaderDelayMs", 0L);
++            if (delay > 0L) {
++                try {
++                    Thread.sleep(delay);
++                } catch (InterruptedException ignored) {}
++            }
++            long initInfo = androidInfo(stack, XR_TYPE_LOADER_INIT_INFO_ANDROID_KHR,
++                VLoader.getDalvikVM(), VLoader.getDalvikActivity());
++            int error = KHRLoaderInit.nxrInitializeLoaderKHR(initInfo);
++            MCOpenXR.logError(error, "xrInitializeLoaderKHR", "android");
+         }
+ 
+         @Override
+         public String getGraphicsExtension() {
+-            //return KHROpenGLESEnable.XR_KHR_OPENGL_ES_ENABLE_EXTENSION_NAME;
+-            return null;
++            if (GraphicsHelper.INSTANCE.getType() != GraphicsHelper.Type.OPENGL) {
++                throw new IllegalStateException(
++                    "The mobile OpenXR path only supports OpenGL (ES), but the game runs " +
++                        GraphicsHelper.INSTANCE.getType());
++            }
++            return XR_KHR_OPENGL_ES_ENABLE_EXTENSION_NAME;
+         }
+ 
+         @Override
+         public void checkRequirements(
+             MemoryStack stack, XrInstance instance, long systemID) throws RenderConfigException
+-        {}
++        {
++            // the spec requires xrGetOpenGLESGraphicsRequirementsKHR before xrCreateSession
++            PointerBuffer function = stack.callocPointer(1);
++            int error = XR10.xrGetInstanceProcAddr(instance, "xrGetOpenGLESGraphicsRequirementsKHR", function);
++            MCOpenXR.logError(error, "xrGetInstanceProcAddr", "xrGetOpenGLESGraphicsRequirementsKHR");
++            if (error < 0 || function.get(0) == MemoryUtil.NULL) {
++                throw new IllegalStateException("OpenXR runtime does not provide xrGetOpenGLESGraphicsRequirementsKHR");
++            }
++
++            long requirements = stack.ncalloc(8, 1, SIZEOF_GLES_REQUIREMENTS);
++            MemoryUtil.memPutInt(requirements, XR_TYPE_GRAPHICS_REQUIREMENTS_OPENGL_ES_KHR);
++            error = JNI.callPJPI(instance.address(), systemID, requirements, function.get(0));
++            MCOpenXR.logError(error, "xrGetOpenGLESGraphicsRequirementsKHR", "");
++
++            long min = MemoryUtil.memGetLong(requirements + 16);
++            long max = MemoryUtil.memGetLong(requirements + 24);
++            VRSettings.LOGGER.info("Vivecraft: OpenXR runtime supports OpenGL ES {}.{} to {}.{}",
++                XR10.XR_VERSION_MAJOR(min), XR10.XR_VERSION_MINOR(min),
++                XR10.XR_VERSION_MAJOR(max), XR10.XR_VERSION_MINOR(max));
++        }
+ 
+         @Override
+         public XrSwapchainImageOpenGLKHR.Buffer createOpenglImageBuffers(MemoryStack stack, int imageCount) {
+-//            XrSwapchainImageOpenGLKHR.Buffer swapchainImageBuffer = XrSwapchainImageOpenGLKHR.calloc(imageCount, stack);
+-//            for (XrSwapchainImageOpenGLKHR image : swapchainImageBuffer) {
+-//                image.type$Default();
+-//            }
+-//
+-//            return swapchainImageBuffer;
+-            return null;
++            // XrSwapchainImageOpenGLESKHR has the same layout as XrSwapchainImageOpenGLKHR {type, next, uint32 image},
++            // only the type differs
++            XrSwapchainImageOpenGLKHR.Buffer swapchainImageBuffer = XrSwapchainImageOpenGLKHR.calloc(imageCount, stack);
++            for (XrSwapchainImageOpenGLKHR image : swapchainImageBuffer) {
++                image.type(XR_TYPE_SWAPCHAIN_IMAGE_OPENGL_ES_KHR);
++            }
++            return swapchainImageBuffer;
+         }
+ 
+         @Override
+         public XrSwapchainImageVulkanKHR.Buffer createVulkanImageBuffers(MemoryStack stack, int imageCount) {
+-//            XrSwapchainImageVulkanKHR.Buffer swapchainImageBuffer = XrSwapchainImageVulkanKHR.calloc(imageCount, stack);
+-//            for (XrSwapchainImageVulkanKHR image : swapchainImageBuffer) {
+-//                image.type$Default();
+-//            }
+-//
+-//
+-            return null;
++            throw new UnsupportedOperationException("The mobile OpenXR path does not support Vulkan");
+         }
+ 
+         @Override
+         public long getInstanceCreateAddition(MemoryStack stack) {
+-//            return XrInstanceCreateInfoAndroidKHR.calloc(stack).set(
+-//                KHRAndroidCreateInstance.XR_TYPE_INSTANCE_CREATE_INFO_ANDROID_KHR,
+-//                NULL,
+-//                VLoader.getDalvikVM(),
+-//                VLoader.getDalvikActivity()
+-//            ).address();
+-            return MemoryUtil.NULL;
++            return androidInfo(stack, XR_TYPE_INSTANCE_CREATE_INFO_ANDROID_KHR,
++                VLoader.getDalvikVM(), VLoader.getDalvikActivity());
+         }
+ 
+         @Override
+         public long getSessionCreateAddition(MemoryStack stack, XrInstance instance, long systemID) {
+-//            XrGraphicsRequirementsOpenGLESKHR graphicsRequirements = XrGraphicsRequirementsOpenGLESKHR.calloc(stack)
+-//                  .type$Default();
+-//            KHROpenGLESEnable.xrGetOpenGLESGraphicsRequirementsKHR(instance, systemID, graphicsRequirements);
+-//            XrGraphicsBindingOpenGLESAndroidKHR graphicsBinding = XrGraphicsBindingOpenGLESAndroidKHR.calloc(stack);
+-//            graphicsBinding.set(
+-//                KHROpenGLESEnable.XR_TYPE_GRAPHICS_BINDING_OPENGL_ES_ANDROID_KHR,
+-//                NULL,
+-//                VLoader.getEGLDisplay(),
+-//                VLoader.getEGLConfig(),
+-//                VLoader.getEGLContext()
+-//            );
+-//
+-//            return graphicsBinding;
+-            return MemoryUtil.NULL;
++            long binding = stack.ncalloc(8, 1, SIZEOF_GLES_BINDING);
++            MemoryUtil.memPutInt(binding, XR_TYPE_GRAPHICS_BINDING_OPENGL_ES_ANDROID_KHR);
++            MemoryUtil.memPutAddress(binding + 8, MemoryUtil.NULL);
++            MemoryUtil.memPutAddress(binding + 16, VLoader.getEGLDisplay());
++            MemoryUtil.memPutAddress(binding + 24, VLoader.getEGLConfig());
++            MemoryUtil.memPutAddress(binding + 32, VLoader.getEGLContext());
++            return binding;
+         }
+     }
+ }
+diff --git a/common/src/main/java/org/vivecraft/client_vr/settings/VRSettings.java b/common/src/main/java/org/vivecraft/client_vr/settings/VRSettings.java
+index b0962441..dfbedb0c 100644
+--- a/common/src/main/java/org/vivecraft/client_vr/settings/VRSettings.java
++++ b/common/src/main/java/org/vivecraft/client_vr/settings/VRSettings.java
+@@ -242,7 +242,9 @@ public class VRSettings {
+     public int version = UNKNOWN_VERSION;
+ 
+     @SettingField(VrOptions.VR_PLUGIN)
+-    public VRProvider stereoProviderPluginID = VRProvider.OPENVR;
++    // the mobile (OpenGL ES) build has no OpenVR, default to OpenXR there (QuestCraft default)
++    public VRProvider stereoProviderPluginID =
++        org.vivecraft.client_vr.provider.openxr.DeviceCompat.mobileRequested() ? VRProvider.OPENXR : VRProvider.OPENVR;
+     public boolean storeDebugAim = false;
+     @SettingField
+     public int smoothRunTickCount = 20;
+-- 
+2.54.0 (Apple Git-157)
+

@@ -1,0 +1,80 @@
+From 2fb8b28acfe4782e59611a9905f6e8185ea7da65 Mon Sep 17 00:00:00 2001
+From: rebelancap <7285817+rebelancap@users.noreply.github.com>
+Date: Mon, 12 Oct 2026 18:45:54 -0600
+Subject: [PATCH] openxr: Touch map - QuestCraft layout (use, teleport,
+ inventory, menu)
+
+Klepton patch 0004 (orchestrator, on Austin's "it should be the same as it
+is now"): make upstream's Touch map (XRBinding.quest2Bindings) QuestCraft's
+Touch layout, QC Vivecraft 1.2.5 XRBindings == QC 1.3.7 oculus_defaults.json:
+
+- vivecraft.key.ingameMenuButton: left Y         -> left menu
+- key.inventory:                  left X         -> left Y
+- key.use:                        right A        -> left trigger (A no longer uses AND jumps)
+- vivecraft.key.teleport:         left trigger   -> left X
+- vivecraft.key.teleportFallback: left trigger   -> left X
+
+key.sneak stays a plain press: QC 1.3.7's TOGGLE would be inert, because
+loadDefaultBindings types each handle from ControllerMapping (BOOLEAN), and
+QC 1.2.5 had none. Sneak toggling is the game's Sneak: Toggle option.
+Push-to-talk (patch 0003) is unchanged. Other profiles are untouched.
+---
+ .../provider/openxr/control/XRBinding.java    | 23 +++++++++++++------
+ 1 file changed, 16 insertions(+), 7 deletions(-)
+
+diff --git a/common/src/main/java/org/vivecraft/client_vr/provider/openxr/control/XRBinding.java b/common/src/main/java/org/vivecraft/client_vr/provider/openxr/control/XRBinding.java
+index 768ac062..c9661c58 100644
+--- a/common/src/main/java/org/vivecraft/client_vr/provider/openxr/control/XRBinding.java
++++ b/common/src/main/java/org/vivecraft/client_vr/provider/openxr/control/XRBinding.java
+@@ -33,10 +33,14 @@ public record XRBinding(@Nullable VRInputActionSet actionSet, String key, String
+     private static HashSet<XRBinding> quest2Bindings() {
+         HashSet<XRBinding> set = new HashSet<>();
+ 
++        // Klepton: this map is QuestCraft's Touch layout (QC Vivecraft 1.2.5 XRBindings.quest2Bindings ==
++        // QC 1.3.7 assets/vivecraft/input/oculus_defaults.json), the layout our players already know. Rows that
++        // differ from upstream are marked "QC:".
++        // QC: menu on the left menu button, inventory on left Y (upstream: Y / X).
+         set.add(
+-            new XRBinding(null, "/actions/global/in/vivecraft.key.ingameMenuButton", "/user/hand/left/input/y/click",
++            new XRBinding(null, "/actions/global/in/vivecraft.key.ingameMenuButton", "/user/hand/left/input/menu/click",
+                 ActionType.BOOLEAN));
+-        set.add(new XRBinding(null, "/actions/global/in/key.inventory", "/user/hand/left/input/x/click",
++        set.add(new XRBinding(null, "/actions/global/in/key.inventory", "/user/hand/left/input/y/click",
+             ActionType.BOOLEAN));
+ 
+         set.add(new XRBinding(null, "/actions/gui/in/vivecraft.key.guiShift", "/user/hand/left/input/squeeze/value",
+@@ -61,14 +65,16 @@ public record XRBinding(@Nullable VRInputActionSet actionSet, String key, String
+                 ActionType.VEC1));
+         set.add(new XRBinding(null, "/actions/ingame/in/key.attack", "/user/hand/right/input/trigger/value",
+             ActionType.VEC1));
+-        set.add(new XRBinding(null, "/actions/ingame/in/vivecraft.key.teleport", "/user/hand/left/input/trigger/value",
+-            ActionType.VEC1));
++        // QC: teleport and teleportFallback on left X (upstream: left trigger).
++        set.add(new XRBinding(null, "/actions/ingame/in/vivecraft.key.teleport", "/user/hand/left/input/x/click",
++            ActionType.BOOLEAN));
+         set.add(new XRBinding(null, "/actions/ingame/in/vivecraft.key.radialMenu", "/user/hand/right/input/b/click",
+             ActionType.BOOLEAN));
+-        set.add(
+-            new XRBinding(null, "/actions/ingame/in/key.use", "/user/hand/right/input/a/click", ActionType.BOOLEAN));
++        // QC: use on the left trigger (upstream: right A, which would also jump).
++        set.add(new XRBinding(null, "/actions/ingame/in/key.use", "/user/hand/left/input/trigger/value",
++            ActionType.VEC1));
+         set.add(new XRBinding(null, "/actions/ingame/in/vivecraft.key.teleportFallback",
+-            "/user/hand/left/input/trigger/value", ActionType.VEC1));
++            "/user/hand/left/input/x/click", ActionType.BOOLEAN));
+         // Klepton: jump on the right A button, QuestCraft's Touch default (QC Vivecraft 1.2.5 XRBindings and
+         // QC 1.3.7 oculus_defaults.json agree). Upstream had it on the left thumbstick click, which is the
+         // push-to-talk button below.
+@@ -77,6 +83,9 @@ public record XRBinding(@Nullable VRInputActionSet actionSet, String key, String
+         set.add(
+             new XRBinding(null, "/actions/ingame/in/vivecraft.key.freeMoveStrafe", "/user/hand/left/input/thumbstick",
+                 ActionType.VEC2));
++        // QC 1.3.7 marks sneak TOGGLE, QC 1.2.5 (our 1.21.5 build) has no type, i.e. a plain press. Kept as a
++        // plain press: loadDefaultBindings gives each handle ControllerMapping's type (BOOLEAN), not this one, so
++        // TOGGLE here would be inert; sneak toggling is the game's own Sneak: Toggle option either way.
+         set.add(new XRBinding(null, "/actions/ingame/in/key.sneak", "/user/hand/right/input/thumbstick/click",
+             ActionType.BOOLEAN));
+         set.add(new XRBinding(null, "/actions/ingame/in/vivecraft.key.rotateAxis", "/user/hand/right/input/thumbstick",
+-- 
+2.54.0 (Apple Git-157)
+

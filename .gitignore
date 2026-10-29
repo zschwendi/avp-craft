@@ -1,20 +1,75 @@
-/.cache/
+# Build products. The scripts and the reachability JSON stay tracked.
+# Do not ignore work/ wholesale.
+
 /build/
-/dist/
-__pycache__/
-*.pyc
+/visionos/build/
+# The MoltenVK checkout is a symlink at the repo root. A trailing slash
+# does not match a symlink, so git would add the link and its absolute target.
+/vendor-moltenvk
+/visionos/Frameworks/
+/visionos/*.xcodeproj/
+**/*.xcodeproj/
+
+# ANGLE checkout and every build product except the two retargeted
+# framework trees and their BSD notice.
+/vendor/*
+!/vendor/out/
+/vendor/out/*
+!/vendor/out/LICENSE
+!/vendor/out/xros/
+!/vendor/out/xrsim/
+
+# Native-image downloads, JDKs, and baked outputs. inst-26.2 keeps the
+# asset-index id and the reachability JSON. *.cp files are absolute paths.
+/work/native-image/graalvm/
+# `out` is a symlink to the private bake. No trailing slash, or git adds the link.
+/work/native-image/out
+/work/native-image/dl/
+/work/native-image/logs/
+/work/native-image/inst-26.2/*
+!/work/native-image/inst-26.2/asset-index-id.txt
+!/work/native-image/inst-26.2/config/
+/work/native-image/inst-26.2/config/*
+!/work/native-image/inst-26.2/config/t23-trim/
+!/work/native-image/inst-26.2/config/t23-extra/
+
+# Natives: scripts and provenance stay. Built dylibs do not.
+# These build dirs are symlinks. Patterns without a trailing slash match the link.
+/work/natives/build
+/work/natives/downloads/
+/work/natives/ltw/build
+/work/natives/openxr-shim/xros
+/work/natives/openxr-shim/xrsimulator
+/work/natives/svc/xros
+/work/natives/svc/xrsimulator
+/work/natives/svc/macosx
+
+# Local leftovers.
 .DS_Store
-*.jar
-*.dylib
-*.class
-*.mp4
-*.mov
-*.png
-*.jpg
-*.jpeg
-*.zip
-*.mrpack
+**/.DS_Store
+*.pyc
+__pycache__/
+*.log
 accounts.json
-saves/
-logs/
-resourcepacks/
+msa-refresh.json
+
+# Orchestration notes from the snapshot rounds (name a team id / UDID / private paths).
+/work/SNAPSHOT-PLAN.md
+/work/MOD-LICENSES.md
+/work/DOCS-REPORT.md
+/work/SNAPSHOT-REPORT.md
+/work/all-ports/
+
+# Private orchestration notes (charter, brief, status) live beside the public tree but are never published.
+/CLAUDE.md
+/BRIEF.md
+/STATUS.md
+/ota/
+
+# Additional source-build downloads and generated native dependencies.
+/work/src/
+/work/natives/openal/
+/work/vivecraft-openxr-26.2/VivecraftMod/
+/work/native-image/bakeagent/
+/work/native-image/baked/
+/work/native-image/lwjgl-fork-t4/

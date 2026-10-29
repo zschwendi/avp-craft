@@ -1,0 +1,69 @@
+From 223fc82dee45048d8e13bf99f83c2b6261c0e5f4 Mon Sep 17 00:00:00 2001
+From: rebelancap <7285817+rebelancap@users.noreply.github.com>
+Date: Mon, 12 Oct 2026 18:42:03 -0600
+Subject: [PATCH] openxr: Touch map - jump on right A (QuestCraft default), SVC
+ push-to-talk on left stick click
+
+Klepton patch 0003 (Austin, 2026-10-12): the left thumbstick click is a bad
+jump button and is our push-to-talk gesture from the 1.21.5 build.
+
+- key.jump: /user/hand/left/input/thumbstick/click -> /user/hand/right/input/a/click,
+  QuestCraft's Touch default (QC Vivecraft 1.2.5 XRBindings.quest2Bindings and
+  QC 1.3.7 assets/vivecraft/input/oculus_defaults.json both put it there).
+- /actions/mod/in/key.push_to_talk (Simple Voice Chat 2.6.24 KeyMapping
+  "key.push_to_talk", a mod binding -> MOD action set) on
+  /user/hand/left/input/thumbstick/click, added only when
+  getInputActionByName() finds it, because loadDefaultBindings dereferences
+  the lookup without a null check.
+
+Only the Touch (quest2Bindings) map changes; every other profile is upstream.
+Note: upstream's Touch map also has key.use on right A, so A now uses AND jumps
+(QC keeps use on the left trigger). Left for Austin to decide.
+---
+ .../provider/openxr/control/XRBinding.java       | 16 +++++++++++++++-
+ 1 file changed, 15 insertions(+), 1 deletion(-)
+
+diff --git a/common/src/main/java/org/vivecraft/client_vr/provider/openxr/control/XRBinding.java b/common/src/main/java/org/vivecraft/client_vr/provider/openxr/control/XRBinding.java
+index 41f36948..768ac062 100644
+--- a/common/src/main/java/org/vivecraft/client_vr/provider/openxr/control/XRBinding.java
++++ b/common/src/main/java/org/vivecraft/client_vr/provider/openxr/control/XRBinding.java
+@@ -9,6 +9,9 @@ import java.util.HashSet;
+ 
+ public record XRBinding(@Nullable VRInputActionSet actionSet, String key, String controller, ActionType actionType) {
+ 
++    /** Simple Voice Chat's push-to-talk KeyMapping ("key.push_to_talk") as a Vivecraft MOD-set action name. */
++    public static final String SVC_PUSH_TO_TALK = "/actions/mod/in/key.push_to_talk";
++
+     public static HashSet<String> supportedHeadsets() {
+         HashSet<String> set = new HashSet<>();
+         if (MCOpenXR.get().session.getCapabilities().XR_HTC_vive_cosmos_controller_interaction) {
+@@ -66,7 +69,10 @@ public record XRBinding(@Nullable VRInputActionSet actionSet, String key, String
+             new XRBinding(null, "/actions/ingame/in/key.use", "/user/hand/right/input/a/click", ActionType.BOOLEAN));
+         set.add(new XRBinding(null, "/actions/ingame/in/vivecraft.key.teleportFallback",
+             "/user/hand/left/input/trigger/value", ActionType.VEC1));
+-        set.add(new XRBinding(null, "/actions/ingame/in/key.jump", "/user/hand/left/input/thumbstick/click",
++        // Klepton: jump on the right A button, QuestCraft's Touch default (QC Vivecraft 1.2.5 XRBindings and
++        // QC 1.3.7 oculus_defaults.json agree). Upstream had it on the left thumbstick click, which is the
++        // push-to-talk button below.
++        set.add(new XRBinding(null, "/actions/ingame/in/key.jump", "/user/hand/right/input/a/click",
+             ActionType.BOOLEAN));
+         set.add(
+             new XRBinding(null, "/actions/ingame/in/vivecraft.key.freeMoveStrafe", "/user/hand/left/input/thumbstick",
+@@ -76,6 +82,14 @@ public record XRBinding(@Nullable VRInputActionSet actionSet, String key, String
+         set.add(new XRBinding(null, "/actions/ingame/in/vivecraft.key.rotateAxis", "/user/hand/right/input/thumbstick",
+             ActionType.VEC2));
+ 
++        // Klepton: Simple Voice Chat push-to-talk on the left thumbstick click. SVC's KeyMapping is a mod binding,
++        // so it lands in the MOD action set. Only suggested when SVC registered it: loadDefaultBindings
++        // dereferences getInputActionByName(key) without a null check.
++        if (MCOpenXR.get().getInputActionByName(SVC_PUSH_TO_TALK) != null) {
++            set.add(new XRBinding(null, SVC_PUSH_TO_TALK, "/user/hand/left/input/thumbstick/click",
++                ActionType.BOOLEAN));
++        }
++
+         set.add(new XRBinding(null, "/actions/keyboard/in/vivecraft.key.keyboardShift",
+             "/user/hand/left/input/squeeze/value", ActionType.VEC1));
+         set.add(new XRBinding(null, "/actions/keyboard/in/vivecraft.key.keyboardShift",
+-- 
+2.54.0 (Apple Git-157)
+
