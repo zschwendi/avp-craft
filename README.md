@@ -1,3 +1,5 @@
+**[IPA and Windows installation status](docs/SIDELOADING.md)**
+
 # AVPcraft — Minecraft on Apple Vision Pro
 
 **Minecraft: Java Edition 26.2, running entirely on your Vision Pro.**
