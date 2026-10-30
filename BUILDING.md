@@ -1,6 +1,6 @@
-# Building AVPcraft (Build 72 host with lower HUD)
+# Building AVPcraft
 
-The host source matches AVPcraft Build 72's audio and turning changes, with the newer lower-HUD patch and independent profile migration preserved. Build 72 is verified installed on a physical Vision Pro and uses the same native game payload as Build 71. The patched Vivecraft Fabric jar has been built from the pinned source and checked locally. The complete native-image/relink/host installation sequence has not been repeated for the newer HUD or the clean-build repairs. See [build recovery](docs/BUILD-RECOVERY.md) for the verified scope, and [AVP_INSTALL.md](AVP_INSTALL.md) for signing and installation.
+A fresh public checkout has produced a signed **AVPcraft Build 73** app, including the lower-HUD native game image and Build 72 host changes. The rebuilt Vivecraft JAR matches the pinned hash; native compilation and both platform links passed. Headset gameplay and the new HUD's appearance remain unverified. See [clean-build evidence](docs/CLEAN-BUILD.md), [build recovery](docs/BUILD-RECOVERY.md), and [AVP_INSTALL.md](AVP_INSTALL.md) for signing and installation.
 
 Build the visionOS app from this repo plus the downloads below. The Minecraft client, the mod jars, and `libminecraft.dylib` are build outputs. They are not in git. GitHub rejects files over 100 MB, and `libminecraft.dylib` is about 202 MB of compiled client.
 
@@ -36,11 +36,52 @@ The source retains the Build 72 host plus the HUD changes listed in SOURCE-SNAPS
 - CMake (with visionOS support), Ninja, Git, curl, make, zip/unzip and Xcode command-line tools.
 - A clone path without spaces: some inherited shell scripts do not quote every path.
 - Python 3 with Pillow. `visionos/mkicon.py` imports it. `run.sh` runs that step with `python3.13` when `python3.13 -c "import PIL"` works, and otherwise with `python3`.
-- About 40 GB free. An ANGLE-from-source build needs about 12 GB more.
-- Enough RAM for `native-image -J-Xmx28g`. The bake was written for a 36 GB machine. It will not start on a 16 GB Mac.
+- Space for project downloads, caches and compiler outputs, with operating-system and swap headroom; see the measurements below.
+- Native compilation verified on a 32 GiB M4 Mac using a 12 GiB maximum heap and one compiler worker. Heap and worker count are configurable; the minimum supported RAM size has not yet been established.
 - A Microsoft account that owns Minecraft: Java Edition, used when you **launch**. The download step does not check ownership.
 
 The simulator build targets the **Apple Vision Pro** simulator on visionOS 27.0. `KL_XR_STAGE_DROP=1.6` is the simulator head offset.
+
+### Storage and memory
+
+The October 29, 2026 clean build completed native compilation and the signed
+host-app build with these retained sizes. Rows overlap where stated; do not add
+all of them together. GiB means 1,073,741,824 bytes.
+
+| Component | Measured size | Scope |
+| --- | ---: | --- |
+| Complete build task folder | 7.002 GiB | Includes source, downloads, generated outputs, isolated Gradle cache, evidence and backup |
+| Source checkout with generated outputs | 6.116 GiB | Subset of the task folder; includes extracted GraalVM and DerivedData |
+| Isolated Gradle cache | 0.756 GiB | Subset of the task folder, outside the source checkout |
+| Host DerivedData | 1.165 GiB | Subset of the source checkout; includes the app bundle |
+| Fresh signed app bundle | 0.828 GiB | Includes the game payload; excludes user worlds |
+| Retained GraalVM download archive | 0.329 GiB | Separate from the task folder; 353,673,229 file bytes |
+
+Folder sizes are allocated filesystem bytes; the external archive row uses its
+file size. Together, the completed task folder and retained archive account for
+about **7.33 GiB**. These are Mac artifact measurements, not headset storage or a
+continuously measured peak across the entire build. APFS shared extents and
+copies can affect allocated totals.
+
+This build used the included ANGLE frameworks. Installed Xcode/SDKs and OpenJDK
+are outside those measurements. Operating-system swap, retained retries and
+other build configurations need separate headroom; 7.33 GiB is not a guaranteed
+free-space requirement. Building ANGLE from source is optional and adds its own
+source/build tree (historically about 12 GB). The earlier 40 GB figure was not a
+measured requirement.
+
+`build-shared.sh` retains its historical **28 GiB maximum heap** as the default;
+that setting is not proof that 28 GiB of RAM is required. `NATIVE_IMAGE_HEAP`
+accepts a positive integer followed by `m`, `M`, `g` or `G`, and
+`NATIVE_IMAGE_THREADS` accepts a positive integer (default `2`). The clean
+Minecraft 26.2 compile **passed with a 12 GiB heap and one worker on a 32 GiB M4
+Mac**. Native-image reported 10 minutes 29 seconds to generate the library;
+`/usr/bin/time -l` recorded **7,989,919,744 bytes (7.44 GiB) maximum resident set
+size** for the compiler process. That is not total system RAM usage or proof
+that a 16 GiB Mac is supported. Keep native-image separate from simultaneous
+Gradle/native compilation, and retain each attempt's timing log. These build
+results do not establish headset gameplay. See [Native image](#7-native-image)
+for the settings and output paths.
 
 ## 1. GraalVM
 
@@ -60,7 +101,9 @@ Confirm `Contents/Home/release` reads `25.0.4`. The JDK is under the [GraalVM Fr
 
 The tarball that produced this image is 353,673,229 bytes, sha256 `0b79e23c133facbad2f7aa55a3b76d17bd59d2fa15e2735bb63391ace223fd13`. Oracle serves that file as `latest` (Last-Modified Thu, 16 Jul 2026 13:18:02 GMT). Check the sha256 before you trust a new download. `Contents/Home/release` reads `JAVA_VERSION=25.0.4` and `JAVA_RUNTIME_VERSION=25.0.4+7-LTS-jvmci-b01`.
 
-Point `JAVA_HOME` at `.../graalvm-jdk-25.0.4+7.1/Contents/Home` for the Vivecraft Gradle build.
+This GraalVM installation is for the later bake and native-image steps. The
+Vivecraft Gradle build uses **OpenJDK 25.0.4.1** instead; set `JAVA_HOME` as shown
+in [section 3](#3-vivecraft-jar), then switch it to GraalVM in section 6.
 
 ## 2. ANGLE
 
@@ -104,14 +147,15 @@ The original patches 0001–0005 form the build 71 baseline. Patch 0006 adds the
 cd VivecraftMod
 printf 'project.build.excludeForge=true\nproject.build.excludeNeoforge=true\n' > local.properties
 export JAVA_HOME="/path/to/jdk-25.0.4.1/Contents/Home"
-./gradlew --no-daemon --max-workers=2 :fabric:build -x test -Pfabric_api_version=0.161.0+26.2
+./gradlew --no-daemon --max-workers=2 :fabric:build -x test \
+  -Pfabric_loom=1.15.5 -Pfabric_api_version=0.161.0+26.2
 mkdir -p build/canonical
 python3 "$ROOT/work/vivecraft-openxr-26.2/canonicalize-vivecraft-jar.py" \
   build/libs/vivecraft-26.2-1.3.15-fabric.jar \
   build/canonical/vivecraft-26.2-1.3.15-fabric.jar
 ```
 
-For this jar build, the verified compiler is OpenJDK 25.0.4.1, Gradle 9.3.0 and Fabric Loom 1.15.5. Set `JAVA_HOME` to your matching JDK installation in the command above. The GraalVM installation in section 1 is still used for the later bake/native-image steps.
+For this jar build, the verified compiler is OpenJDK 25.0.4.1, Gradle 9.3.0 and Fabric Loom 1.15.5. A fresh source build with a new Gradle cache resolved Loom 1.15.5 and reproduced the normalized jar hash below. The command pins that version explicitly. Set `JAVA_HOME` to your matching JDK installation in the command above. The GraalVM installation in section 1 is still used for the later bake/native-image steps. This jar result does not establish an end-to-end native app build.
 
 The normalized jar is `VivecraftMod/build/canonical/vivecraft-26.2-1.3.15-fabric.jar`. The normalizer is required: Loom inserts changing ZIP metadata for nested dependency jars even when every payload byte is identical. It produces a deterministic stored ZIP while preserving all entry names and uncompressed bytes. It never changes the input jar. The output path must be new; move or remove only the previous generated canonical jar before intentionally repeating this step. Python 3.9.6 and 3.14.6 produced identical bytes in verification.
 
@@ -140,6 +184,7 @@ This downloads the Minecraft 26.2 client, vanilla and Fabric libraries, LWJGL 3.
 Run this section from the repository root (`cd "$ROOT"`). Download the source archives that the native scripts expect, then verify their pinned checksums:
 
 ```bash
+export JOBS=2
 mkdir -p work/natives/downloads work/native-image/dl/libffi
 curl -fL https://github.com/libffi/libffi/releases/download/v3.5.2/libffi-3.5.2.tar.gz -o work/native-image/dl/libffi/libffi-3.5.2.tar.gz
 printf '%s  %s\n' f3a3082a23b37c293a4fcd1053147b371f2ff91fa7ea1b2a52e335676bac82dc work/native-image/dl/libffi/libffi-3.5.2.tar.gz | shasum -a 256 -c -
@@ -151,6 +196,12 @@ work/native-image/scripts/t2/build-lwjgl341-natives.sh macosx
 work/native-image/scripts/t2/build-lwjgl341-natives-xros.sh
 work/native-image/scripts/t2/build-klglfw341.sh
 ```
+
+`JOBS=2` bounds parallel work in the native dependency helpers (LWJGL/libffi,
+FreeType, OpenAL, Simple Voice Chat and the LTW fallback). Run the commands
+sequentially as shown. `JOBS` does not set Gradle workers or native-image workers;
+those have separate settings. Use a positive integer and reduce it to `1` if
+needed while monitoring memory pressure.
 
 OpenAL Soft 1.25.2 is required **before** the visionOS LWJGL build: that build copies `work/natives/openal/<sdk>/libopenal.dylib` into `work/natives/build/lwjgl-3.4.1/<sdk>/`. The helper downloads a hash-pinned upstream archive and builds CoreAudio dylibs with RTKit disabled. Both device and simulator builds passed against SDK 27 during the build-recovery check. This does not establish byte-for-byte identity with the installed app's older OpenAL library.
 
@@ -269,7 +320,11 @@ the terminal prints the final `[BAKE] defined-at-runtime=...` summary and
 `inst-26.2/bake/summary.txt` exists. If the world has not loaded before the full pass
 starts, preserve that output and repeat with a larger delay. Read
 `fullpass-failures.txt` and investigate failures; elapsed time or a copied class
-count alone does not establish a usable capture. After the pass completes, use
+count alone does not establish a usable capture. The [pinned bake audit](docs/KNOT-BAKE.md)
+classifies the exact 49 requests found in the verified capture and provides
+checks for the mod hashes, failure names and generated references. Matching
+only the count is not sufficient; new failures or changed configuration need
+investigation. After the pass completes, use
 **Save and Quit**, then quit normally before pruning. No timer closes the game for
 you. `-Dvivecraft.openxr.mobile=true` selects the mobile OpenGL ES path.
 
@@ -315,16 +370,40 @@ Those three JSON files are in this tree. `*.cp` files are generated and contain 
 
 From `work/native-image`. `-O1` is the default when `CPFILE` points at an `inst-*` classpath. `-O2` does not link at this size.
 
-```
+```bash
+# First attempt in a fresh checkout. Choose a new path and log tag for a retry.
+export T8OUT="$PWD/out/t8-26.2"
+export LOGTAG="26.2-attempt-1"
+# Verified for the clean 26.2 compile on a 32 GiB M4 Mac.
+export NATIVE_IMAGE_HEAP=12g NATIVE_IMAGE_THREADS=1
 MCV=26.2 \
   CPFILE="$PWD/inst-26.2/t4-ni.cp" \
   CONFIG_DIRS="$PWD/inst-26.2/config/t23-trim,$PWD/inst-26.2/config/t23-extra" \
-  T8OUT="$PWD/out/t8-26.2" \
   scripts/t8/build-shared.sh
 
-MCV=26.2 T8OUT="$PWD/out/t8-26.2" scripts/t8/relink-xros.sh xros
-MCV=26.2 T8OUT="$PWD/out/t8-26.2" scripts/t8/relink-xros.sh xrsimulator
+MCV=26.2 scripts/t8/relink-xros.sh xros
+MCV=26.2 scripts/t8/relink-xros.sh xrsimulator
 ```
+
+Without the two resource exports, the script uses `NATIVE_IMAGE_HEAP=28g` and
+`NATIVE_IMAGE_THREADS=2`. It rejects invalid settings before changing outputs,
+and refuses nonempty `T8OUT/ni` or `T8OUT/tmp` instead of deleting them. Use a
+unique `T8OUT` **and** `LOGTAG` for every retry so both objects and timing evidence
+survive; logs are written to `logs/t8-build-$LOGTAG.txt`.
+
+`relink-xros.sh` also refuses an existing `T8OUT/<sdk>/libminecraft.dylib`; it
+does not overwrite a previous result. It keeps each link attempt's objects and
+logs under `T8OUT/<sdk>/relink-attempt.*` and exits with an error when compilation
+or linking fails. A retry after a failed link can use the same compiled inputs
+only when no final library exists. To replace an existing final result, use a
+new attempt directory containing the matching native-image inputs and preserve
+the earlier result.
+
+The app packaging step currently expects the successful libraries under
+`out/t8-26.2/xros/` and `out/t8-26.2/xrsimulator/`; it does not honor an alternate
+`T8OUT`. If a retry succeeds elsewhere, preserve the previous attempt and place
+the verified retry's platform libraries at those expected paths before building
+the app. Keep its compiler objects and logs at the unique attempt path.
 
 `relink-xros.sh` runs `work/xros-probe/scripts/patch_buildver.py`. The device dylib is `out/t8-26.2/xros/libminecraft.dylib`.
 
@@ -362,4 +441,13 @@ The commands above create your own signed app after all native and game inputs h
 
 The complete client build includes an interactive host-JVM Knot bake and pruning step. It is not a one-command unattended build. Do not skip it, substitute an unrelated classpath, or present the old Mac/Prism instructions as a Vision Pro install. The jar manifest pins the patched Vivecraft jar hash; a local jar whose hash differs needs investigation before the manifest is changed.
 
-The publication audit checked source paths and script syntax; it did not download dependencies, compile a fresh native image, install a rebuilt app, or validate runtime behavior. Native libraries, game downloads/assets, generated classpaths, caches and signing profiles remain build inputs/outputs outside Git. The OpenAL helper and clean-build bootstrap fixes added for publication require end-to-end validation. Historical notes in `visionos/README.md` describe earlier Klepton targets; use this guide and `AVP_INSTALL.md` for AVPcraft.
+The later [fresh-source build](docs/CLEAN-BUILD.md) downloaded and checked the
+public inputs, ran a real disposable-world bake, compiled the native game,
+linked device and simulator libraries, and produced a signed visionOS app.
+That evidence supersedes the initial publication audit's compile-only limits;
+headset gameplay is still a separate check. Native libraries, game assets,
+generated classpaths, caches and signing profiles remain outputs outside Git.
+The upstream voice-codec recipe includes a moving minimp3 branch, recorded in
+the clean-build evidence. Historical notes in `visionos/README.md` describe
+earlier Klepton targets; use this guide and [AVP_INSTALL.md](AVP_INSTALL.md)
+for AVPcraft.

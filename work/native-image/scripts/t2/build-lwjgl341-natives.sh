@@ -14,6 +14,10 @@
 #   vulkan/shaderc/spvc/vma (26.2 Vulkan backend: forced off; 26.2 only loads shaderc/spvc/vma after VK.create()
 #   succeeded). freetype: macosx = stock Maven dylib, visionOS = build-freetype.sh (FreeType 2.14.1, same commit).
 set -e
+# Keep native dependency builds within the requested compiler-job budget.
+JOBS=${JOBS:-2}
+case "$JOBS" in ''|*[!0-9]*) echo "JOBS must be a positive integer" >&2; exit 2;; esac
+if ! [ "$JOBS" -ge 1 ] 2>/dev/null; then echo "JOBS must be a positive integer" >&2; exit 2; fi
 ROOT="$(cd "$(dirname "$0")/../../../.." && pwd)"
 N="$ROOT/work/natives"
 W="$ROOT/work/native-image"
@@ -47,14 +51,27 @@ build_one() {
     ( cd $B/libffi-src/libffi-3.5.2 && CC="$CC -target $TGT -isysroot $SDK" CFLAGS="-O3 -fPIC" \
         ./configure --build=aarch64-apple-darwin$(uname -r | cut -d. -f1) --host=aarch64-apple-darwin \
         --prefix=$FO --disable-shared --enable-static --disable-docs --disable-multi-os-directory >$B/libffi-configure.log 2>&1 \
-      && make -j8 >$B/libffi-make.log 2>&1 && make install >>$B/libffi-make.log 2>&1 \
+      && make -j"$JOBS" >$B/libffi-make.log 2>&1 && make install >>$B/libffi-make.log 2>&1 \
       && cp aarch64-apple-darwin/fficonfig.h $FO/ ) || { echo "libffi failed ($B/libffi-*.log)"; exit 1; }
   fi
   grep -q 'FFI_EXEC_TRAMPOLINE_TABLE 1' $FO/fficonfig.h || { echo "libffi: no trampoline table"; exit 1; }
   cc1() { # cc1 <objdir> <flags...> -- files
     local d=$1; shift; local fl=(); while [ "$1" != "--" ]; do fl+=("$1"); shift; done; shift
-    rm -f $d/*.o; for f in "$@"; do $CC -c -ObjC $CF "${fl[@]}" "$f" -o $d/$(basename ${f%.*}).o 2>>$B/cc.log & done; wait
-    [ $(ls $d/*.o 2>/dev/null | wc -l) -eq $# ] || { echo "compile failed in $d (see $B/cc.log)"; exit 1; }
+    local f pid failed=0
+    local pids=()
+    rm -f "$d"/*.o
+    for f in "$@"; do
+      $CC -c -ObjC $CF "${fl[@]}" "$f" -o "$d/$(basename "${f%.*}").o" 2>>"$B/cc.log" &
+      pids+=("$!")
+      if [ "${#pids[@]}" -ge "$JOBS" ]; then
+        for pid in "${pids[@]}"; do if ! wait "$pid"; then failed=1; fi; done
+        pids=()
+        [ "$failed" -eq 0 ] || { echo "compile failed in $d (see $B/cc.log)"; return 1; }
+      fi
+    done
+    for pid in "${pids[@]}"; do if ! wait "$pid"; then failed=1; fi; done
+    [ "$failed" -eq 0 ] && [ "$(ls "$d"/*.o 2>/dev/null | wc -l)" -eq "$#" ] \
+      || { echo "compile failed in $d (see $B/cc.log)"; return 1; }
   }
   # core: LWJGL's bundled ffi.h + aarch64/ffitarget.h (trampoline table on Apple), static libffi 3.5.2
   cc1 $B/core -Wall -Wno-unused-parameter -I$L/core/src/main/c/libffi -I$L/core/src/main/c/libffi/aarch64 -- \

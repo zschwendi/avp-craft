@@ -9,6 +9,10 @@
 # Usage: build-svc.sh [xros|xrsimulator|macosx ...]   (default: xros xrsimulator macosx)
 #        LIBS="opus4j rnnoise4j" build-svc.sh xros    (default LIBS: all four)
 set -euo pipefail
+# Keep native dependency builds within the requested compiler-job budget.
+JOBS=${JOBS:-2}
+case "$JOBS" in ''|*[!0-9]*) echo "JOBS must be a positive integer" >&2; exit 2;; esac
+if ! [ "$JOBS" -ge 1 ] 2>/dev/null; then echo "JOBS must be a positive integer" >&2; exit 2; fi
 N="$(cd "$(dirname "$0")/.." && pwd)"
 D="$N/downloads/svc"
 MIN=26.0
@@ -32,7 +36,7 @@ for S in ${@:-xros xrsimulator macosx}; do
       -DOPUS_BUILD_PROGRAMS=OFF -DOPUS_BUILD_TESTING=OFF \
       -DCMAKE_SHARED_LINKER_FLAGS="-Wl,-install_name,@rpath/lib$r.dylib -Wl,-dead_strip" \
       > "$N/build/svc-$r-$S-cmake.log" 2>&1 || { tail -30 "$N/build/svc-$r-$S-cmake.log"; exit 1; }
-    cmake --build "$B" --target "$r" -j12 > "$N/build/svc-$r-$S-build.log" 2>&1 \
+    cmake --build "$B" --target "$r" --parallel "$JOBS" > "$N/build/svc-$r-$S-build.log" 2>&1 \
       || { tail -30 "$N/build/svc-$r-$S-build.log"; exit 1; }
     cp -L "$B/lib$r.dylib" "$OUT/lib$r.dylib"
     install_name_tool -id "@rpath/lib$r.dylib" "$OUT/lib$r.dylib" 2>/dev/null || true

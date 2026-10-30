@@ -2,7 +2,7 @@
 
 **Lower-HUD source update:** the current repo places the head-locked health/food/hotbar 15 degrees lower only after rebuilding the patched Vivecraft jar and native game image. A host build with an older prepared `libminecraft.dylib` will retain the old game-side placement. Follow [BUILDING.md](BUILDING.md) and [HUD placement](docs/HUD-PLACEMENT.md) for that rebuild.
 
-This repository contains the AVPcraft Build 72 host changes, verified against the source of the installed headset build, plus the newer lower-HUD work. It is a developer source release. The full source-to-headset build has not been rerun from a clean checkout for this publication. See [build recovery](docs/BUILD-RECOVERY.md) for the repaired build blockers and validation.
+A fresh public checkout has produced a signed AVPcraft Build 73 app, including the rebuilt lower-HUD game image and Build 72 host changes. It remains a developer source release: the fresh app still needs physical-headset gameplay acceptance. See [clean-build evidence](docs/CLEAN-BUILD.md) for the exact build, signing and installation boundary, and [build recovery](docs/BUILD-RECOVERY.md) for the original repaired blockers.
 
 ## What you need
 

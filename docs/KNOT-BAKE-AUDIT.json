@@ -1,0 +1,249 @@
+{
+  "schemaVersion": 1,
+  "auditDateUTC": "2026-10-30",
+  "scope": "Fresh Minecraft 26.2 Fabric/Knot capture; native compilation and device acceptance are outside this audit.",
+  "acceptance": "These exact 49 failures may proceed only under the pinned mod configuration and disabled-feature conditions below. A matching count alone is not acceptance; investigate changed names, hashes, configuration or unresolved generated references.",
+  "minecraft": "26.2",
+  "modManifest": {
+    "path": "work/native-image/scripts/m3a/mods-26.2.json",
+    "sha256": "0aa97409120524052acfd486c287a47a5f91ab1c54d4ec3d2027dc9dd3c4cc64",
+    "topLevelModCount": 13
+  },
+  "modVersions": [
+    {
+      "id": "fabric-api",
+      "version": "0.161.0+26.2",
+      "file": "Fabric-API.jar"
+    },
+    {
+      "id": "sodium",
+      "version": "mc26.2-0.9.2-fabric",
+      "file": "Sodium.jar"
+    },
+    {
+      "id": "lithium",
+      "version": "mc26.2-0.25.3-fabric",
+      "file": "Lithium.jar"
+    },
+    {
+      "id": "simple-voice-chat",
+      "version": "fabric-2.6.24+26.2",
+      "file": "Simple-Voice-Chat.jar"
+    },
+    {
+      "id": "cloth-config",
+      "version": "26.2.155+fabric",
+      "file": "Cloth-Config.jar"
+    },
+    {
+      "id": "entityculling",
+      "version": "1.11.3",
+      "file": "EntityCulling.jar"
+    },
+    {
+      "id": "ferrite-core",
+      "version": "9.0.0-fabric",
+      "file": "Ferrite-Core.jar"
+    },
+    {
+      "id": "immediatelyfast",
+      "version": "1.16.5+26.2-fabric",
+      "file": "ImmediatelyFast.jar"
+    },
+    {
+      "id": "krypton",
+      "version": "0.3.1",
+      "file": "Krypton.jar"
+    },
+    {
+      "id": "moreculling",
+      "version": "1.8.1",
+      "file": "MoreCulling.jar"
+    },
+    {
+      "id": "badoptimizations",
+      "version": "2.4.1",
+      "file": "BadOptimizations.jar"
+    },
+    {
+      "id": "better-biome-blend",
+      "version": "26.2-1.4.0-fabric",
+      "file": "bbrb.jar"
+    },
+    {
+      "id": "vivecraft-openxr-ours",
+      "version": "26.2-1.3.15 (openxr@13eafae1 + patches 0001-0006, lower head HUD, tree bc542a09, canonical ZIP)",
+      "file": "Vivecraft.jar"
+    }
+  ],
+  "requiredConditions": {
+    "sodiumRendererPresent": true,
+    "sodiumMetadataKey": "fabric-renderer-api-v1:contains_renderer",
+    "indigoMixinApplication": false,
+    "indigoRendererRegistration": false,
+    "lithiumBundledDefault": "mixin.ai.pathing=false",
+    "lithiumRuntimeOverrides": 0,
+    "rebakeOnModOrFeatureChanges": true,
+    "checkDeployedLithiumConfig": true
+  },
+  "capture": {
+    "normalSaveAndQuit": true,
+    "clientExitCode": 0,
+    "worldReadyMilliseconds": 22440,
+    "fullPassStartSeconds": 300,
+    "definedAtRuntime": 14878,
+    "fullPassTransformed": 34513,
+    "alreadyDefined": 14833,
+    "skippedMixinClasses": 1055,
+    "nullClassResults": 0,
+    "failedClassResults": 49,
+    "otherLoaderClasses": 0,
+    "scannedOverlayClasses": 49404,
+    "loadedChunkArea": [
+      3,
+      3
+    ],
+    "minimumAdvancedGameTicks": 100
+  },
+  "generatedClosure": {
+    "additionalClassesRecovered": 13,
+    "matchingNamesPresent": 31,
+    "anonymousRelocationsPresent": 20,
+    "unresolvedReferences": [],
+    "genFailEntries": 0,
+    "genNullEntries": 0,
+    "note": "The 31 generated-pattern matches include preexisting generated helper definitions; they are not 31 newly generated classes."
+  },
+  "failureNames": {
+    "normalization": "Sort unique internal class names by Unicode code point (Python sorted on str); UTF-8; one name per LF-terminated line, including the final LF. Exclude exception text.",
+    "count": 49,
+    "sha256": "0badbd5737a24f5cc3cc901332b82cd1b487bd264f140d9ff94818e68850c8d3"
+  },
+  "categoryCounts": {
+    "original_anonymous_or_local_mixin_class": 25,
+    "disabled_lithium_pathing_accessor": 1,
+    "lithium_mixin_namespace_container": 5,
+    "mixin_interface_template": 16,
+    "disabled_indigo_static_accessor": 2
+  },
+  "referenceAudit": {
+    "totalReferenceSites": 27,
+    "provenanceAnnotationStringSites": 22,
+    "executableReferenceSites": 5,
+    "failedNamesWithExecutableReferences": 3,
+    "methodInvocationSites": 4,
+    "typeCheckSites": 1,
+    "unresolvedGeneratedReferences": 0,
+    "limitations": "Static ASM references and literal class-name strings only; not proof of arbitrary dynamically constructed reflection or native runtime behavior."
+  },
+  "sourceArchives": {
+    "BadOptimizations.jar": {
+      "sha256": "06cee46d81d3a0afb8e993dfbe4b990a3be92f52abde3590cc396490cb6eb4d2"
+    },
+    "Lithium.jar": {
+      "sha256": "fdde92e238e8075f89ad7f701f2a3d5854af88ba9a67657184a4407b104ac563"
+    },
+    "MoreCulling.jar": {
+      "sha256": "ea04505496e4d35a8c94199884b6fafa69057efe50f2096d2988c11163d49122"
+    },
+    "Sodium.jar": {
+      "sha256": "16a5e91db49750f8c046ecca3b8f2af5a28ea6f9b6581b42f123ca8fda20864f"
+    },
+    "Vivecraft.jar": {
+      "sha256": "f317964c49f8e1dace17dcc4ea4a8d4f9d29c7e5a2888c61b73259f4355deac4"
+    },
+    "fabric-block-getter-api-v2-2.0.7+ec56b6019e-966c8d9cdabc4f8e.jar": {
+      "sha256": "1dfe5f51dc614910bdf419dab2ac73c46d10fb7f29cfb21b49263333bb149749"
+    },
+    "fabric-content-registries-v0-11.+37b1aa249e-721bfa86eda2c2c1.jar": {
+      "sha256": "1e7ad0db5cf0ca5ffa505185ccd94fdbc29573ed85cf157a3514eb4f60d7d986"
+    },
+    "fabric-creative-tab-api-v1-5.0.1+6468574f9e-e248256412bb8ac0.jar": {
+      "sha256": "b126dbac5cfc4b07568609089c23eaeb1e9dc968e9c04a336e2995a12df3d7ba"
+    },
+    "fabric-data-generation-api-v1-25+c0da0b829e-ccb1c785a966edc3.jar": {
+      "sha256": "857c428b1481af2d29b05a7c0e1840a14fb3fc37e6317e669c43f45f36a9e6ff"
+    },
+    "fabric-item-api-v1-14.5.0+c68f6cbe9e-f3ee7a6183ae5f28.jar": {
+      "sha256": "074dc670b3d862345f3b7823d47ad0b0fa559c04760a353673d7f36c29a4957e"
+    },
+    "fabric-model-loading-api-v1-8.0.+c80601bb9e-a74d153caf5ba601.jar": {
+      "sha256": "3fdb571624f6b5cde0085efa29e59f95aa828ade504c93016d13c69eb7605cff"
+    },
+    "fabric-registry-sync-v0-7.1.1+c7bd5b8e9e-8c221961a9c5172c.jar": {
+      "sha256": "4c0d4b6e81b872ac63396d99ebb45bc83ce955c1234e55d53e744a26cde4df9c"
+    },
+    "fabric-renderer-api-v1-14.1.4+2b0d8a229e-928fd47aea11c460.jar": {
+      "sha256": "caf1be7dbc73479618c689d3f2161f500822e4a0ebffd9b3836641e1874f2b0e"
+    },
+    "fabric-renderer-indigo-9.1.4+2b0d8a229e-b24db722b3714a18.jar": {
+      "sha256": "ee92b7cf1895f5eabe95ed288afe531a9b3a941713b340020482b41977115dea"
+    },
+    "fabric-rendering-v1-25.3.3+515ac5339e-2281779a8e4b2fcb.jar": {
+      "sha256": "13f4e84559e2fa7c1220c8aa12b1d6f3b5463692c8c1e8840b7b5e0a057b8a5c"
+    },
+    "fabric-resource-conditions-api-v+10e9a28b9e-f834ed286ec08414.jar": {
+      "sha256": "bedf189c0fc5a1314efab58ec1b168f236740ddfcfe54f766aa204a260f369b8"
+    },
+    "fabric-resource-loader-v1-2.0.13+9edec1269e-28376715ed6c3abf.jar": {
+      "sha256": "a0825a89eb44f9bd1ac7e237757adb230dc31d4202ccf5c638aa22376befb738"
+    },
+    "fabric-transfer-api-v1-8.0.13+11dbb7d79e-10f1197b575d3001.jar": {
+      "sha256": "546e5dc5f364c65a9f1f011d589514b9807059d107fb55fccc13dd377bf88c26"
+    },
+    "trender-1.0.17-732ae7d59a5de51d.jar": {
+      "sha256": "513291e198031bc6d8c16fb452d91f2620c8181255b44b565c7210d2eec166d0"
+    }
+  },
+  "classes": [
+    {"name":"ca/fxco/moreculling/mixin/blocks/LeavesBlock_typesMixin$1","category":"original_anonymous_or_local_mixin_class","rawClassSha256":"321026ef6bd27c29681980a2f43aca34a9bc18aadd3926da069caec46faf044c","sources":["MoreCulling.jar"]},
+    {"name":"ca/fxco/moreculling/mixin/blocks/MangroveRootsBlock_typesMixin$1","category":"original_anonymous_or_local_mixin_class","rawClassSha256":"57f023d6d1f6cccba3e7818085478c6355bfca16b71f376493ee1311035fb5c6","sources":["MoreCulling.jar"]},
+    {"name":"ca/fxco/moreculling/mixin/compat/MorecullingFabricBlockModelFeatureRenderer_sodiumMixin$1","category":"original_anonymous_or_local_mixin_class","rawClassSha256":"de02bba409bb191ceb1bfbe82d81f87c757bc71e4e1a3c4e2616841bce7c8ebf","sources":["MoreCulling.jar"]},
+    {"name":"dev/tr7zw/trender/gui/impl/mixin/client/DevTitleScreenMixin$1","category":"original_anonymous_or_local_mixin_class","rawClassSha256":"e13a71ce43cae777ad54cf02d40e07d40f7b9d61c4fd9edbc51d0ee6bc688889","sources":["trender-1.0.17-732ae7d59a5de51d.jar"]},
+    {"name":"dev/tr7zw/trender/gui/impl/mixin/client/PauseMenuScreenMixin$1","category":"original_anonymous_or_local_mixin_class","rawClassSha256":"48e81dca4e0741062a52372b5d5295a28b3473b4a034758bfa1664508654800f","sources":["trender-1.0.17-732ae7d59a5de51d.jar"]},
+    {"name":"me/thosea/badoptimizations/mixin/MixinDebugHud_AddText$1","category":"original_anonymous_or_local_mixin_class","rawClassSha256":"b9b1c6f8246b487f66c2b432ef5aedfef30b3ce1960043c132ef48c34551b768","sources":["BadOptimizations.jar"]},
+    {"name":"net/caffeinemc/mods/lithium/mixin/ai/pathing/PathfindingContextAccessor","category":"disabled_lithium_pathing_accessor","rawClassSha256":"88bac968c7a2476d802617aab427a54138cfffa49160b09981ccc3c01e3105b1","sources":["Lithium.jar"],"executableReferences":[{"caller":"net/caffeinemc/mods/lithium/common/ai/pathing/PathNodeCache","method":"getNodeTypeFromNeighbors(Lnet/minecraft/world/level/pathfinder/PathfindingContext;IIILnet/minecraft/world/level/pathfinder/PathType;)Lnet/minecraft/world/level/pathfinder/PathType;","operation":"TYPE_INSN"},{"caller":"net/caffeinemc/mods/lithium/common/ai/pathing/PathNodeCache","method":"getNodeTypeFromNeighbors(Lnet/minecraft/world/level/pathfinder/PathfindingContext;IIILnet/minecraft/world/level/pathfinder/PathType;)Lnet/minecraft/world/level/pathfinder/PathType;","operation":"CALL getLastNodePos"}]},
+    {"name":"net/caffeinemc/mods/lithium/mixin/ai/poi/PoiSectionMixin$1","category":"original_anonymous_or_local_mixin_class","rawClassSha256":"ea6e9044338696e596af8e0380c5a80f76121759c2aacb8a9c4b5547dbf4b0f9","sources":["Lithium.jar"]},
+    {"name":"net/caffeinemc/mods/lithium/mixin/ai/poi/SectionStorageMixin$1","category":"original_anonymous_or_local_mixin_class","rawClassSha256":"806a5a182dd55403089d5aaf0dde510647910890c4de5334fde550d9cea05406","sources":["Lithium.jar"]},
+    {"name":"net/caffeinemc/mods/lithium/mixin/ai/useless_behaviors/BrainMixin$1","category":"original_anonymous_or_local_mixin_class","rawClassSha256":"2cec0595f4ff2975252e9dc99c417138aea7ce96aa93942ef5fb6e5c4d9b7af8","sources":["Lithium.jar"]},
+    {"name":"net/caffeinemc/mods/lithium/mixin/alloc/composter/ComposterMixin","category":"lithium_mixin_namespace_container","rawClassSha256":"22b2e697c39ef4da9153d9f83ff8895b1d089d74d49d0e9a6afdf60c570be19a","sources":["Lithium.jar"]},
+    {"name":"net/caffeinemc/mods/lithium/mixin/block/hopper/ComposterMixin","category":"lithium_mixin_namespace_container","rawClassSha256":"93770f6c5da77009716fc80912a3066eb794e19b3c986ed1d07c07a58c02697b","sources":["Lithium.jar"]},
+    {"name":"net/caffeinemc/mods/lithium/mixin/block/hopper/InventoryAccessors","category":"lithium_mixin_namespace_container","rawClassSha256":"21d159679b5799279cfe078fbb0f287c17b20435b928df3765861a43588fd7fb","sources":["Lithium.jar"]},
+    {"name":"net/caffeinemc/mods/lithium/mixin/debug/palette/ClientBoundLevelChunkPacketDataAccessor","category":"mixin_interface_template","rawClassSha256":"44fc561d3582f7147edeb0ad821ae2250d502ed867bd09f60068bf4620b62be1","sources":["Lithium.jar"]},
+    {"name":"net/caffeinemc/mods/lithium/mixin/entity/collisions/intersection/EntityGetterMixin","category":"mixin_interface_template","rawClassSha256":"c96327cb7d1109d40c9fe82a536d7d9794f3c8b98aef60ec35e4a015c4b5b045","sources":["Lithium.jar"],"provenanceAnnotationMentions":1},
+    {"name":"net/caffeinemc/mods/lithium/mixin/math/fast_util/AxisCycleDirectionMixin","category":"lithium_mixin_namespace_container","rawClassSha256":"06d3d3c900023af8d5642ee3c0b8c24c11c53dd73ffcd21cca05292b6eb8ebb8","sources":["Lithium.jar"]},
+    {"name":"net/caffeinemc/mods/lithium/mixin/minimal_nonvanilla/spawning/EntitySectionStorageMixin$1","category":"original_anonymous_or_local_mixin_class","rawClassSha256":"af9b3d0c0951caeaca464903a1bc8981a0f2284eeacb1e6ca18c90ed6f9fec7e","sources":["Lithium.jar"]},
+    {"name":"net/caffeinemc/mods/lithium/mixin/util/chunk_access/LevelReaderMixin","category":"mixin_interface_template","rawClassSha256":"f66a5d34b7b611e17e6229ba23f9264ece4705ab66d193e176b2c43acc0e9ffc","sources":["Lithium.jar"],"provenanceAnnotationMentions":1},
+    {"name":"net/caffeinemc/mods/lithium/mixin/util/inventory_change_listening/StackListReplacementTracking","category":"lithium_mixin_namespace_container","rawClassSha256":"92985991d73524c68c7ba4e1a647e6825f3ee7e608d205ec495ab5c749dba6b0","sources":["Lithium.jar"]},
+    {"name":"net/caffeinemc/mods/lithium/mixin/world/chunk_ticking/random_block_ticking/PalettedContainerMixin$1","category":"original_anonymous_or_local_mixin_class","rawClassSha256":"bee96a04e19706f0b6de8178169e2a5de28d85f912ea1cf0503f9186091d4e1e","sources":["Lithium.jar"]},
+    {"name":"net/caffeinemc/mods/lithium/mixin/world/explosions/entity_raycast/ServerExplosionMixin$1","category":"original_anonymous_or_local_mixin_class","rawClassSha256":"ebc19d4395396f60b17c591646969d2be3d43b8373685aff65f8cd533acf04e0","sources":["Lithium.jar"]},
+    {"name":"net/caffeinemc/mods/lithium/mixin/world/raycast/BlockGetterMixin","category":"mixin_interface_template","rawClassSha256":"f5e7fc50d80face97b26cf5ddb345c5f8df4c9dbc38e195299876976187740a3","sources":["Lithium.jar"],"provenanceAnnotationMentions":2},
+    {"name":"net/caffeinemc/mods/lithium/mixin/world/raycast/BlockGetterMixin$1","category":"original_anonymous_or_local_mixin_class","rawClassSha256":"4e7902561fa8fbc909a96ebc88957fe56b48a5d24d465405051bb6d4fee653b8","sources":["Lithium.jar"]},
+    {"name":"net/caffeinemc/mods/sodium/mixin/features/render/immediate/buffer_builder/sorting/VertexSortingMixin","category":"mixin_interface_template","rawClassSha256":"78f7d765698e95053adc77c307d27e2f01f22b49ffe53ad287731a1d213510fb","sources":["Sodium.jar"],"provenanceAnnotationMentions":3},
+    {"name":"net/caffeinemc/mods/sodium/mixin/features/render/immediate/matrix_stack/VertexConsumerMixin","category":"mixin_interface_template","rawClassSha256":"33cbb375b206e185f0beb7a264d48d6a7295d55ea816b7fdee6357da309f914f","sources":["Sodium.jar"],"provenanceAnnotationMentions":2},
+    {"name":"net/fabricmc/fabric/mixin/blockgetter/LevelReaderMixin","category":"mixin_interface_template","rawClassSha256":"34a153557b81ca72de1f2634b4adc18f608122121962b4a3f3ce9cb47d39d158","sources":["fabric-block-getter-api-v2-2.0.7+ec56b6019e-966c8d9cdabc4f8e.jar"],"provenanceAnnotationMentions":2},
+    {"name":"net/fabricmc/fabric/mixin/client/indigo/renderer/BlockModelLighterAccessor","category":"disabled_indigo_static_accessor","rawClassSha256":"198006cbf626c7e77bf19694350a79cc1ecb3fd83fa8d01aabf95a987a99b137","sources":["fabric-renderer-indigo-9.1.4+2b0d8a229e-b24db722b3714a18.jar"],"executableReferences":[{"caller":"net/fabricmc/fabric/impl/client/indigo/renderer/render/AltModelBlockRendererImpl","method":"<init>(ZZLnet/minecraft/client/color/block/BlockColors;)V","operation":"CALL fabric_getCACHE"}]},
+    {"name":"net/fabricmc/fabric/mixin/client/indigo/renderer/ItemFeatureRendererAccessor","category":"disabled_indigo_static_accessor","rawClassSha256":"ecf5525b1afe1b5d5fbdda5bae10ae05196c53c505779efd42aea7a63bc64cfa","sources":["fabric-renderer-indigo-9.1.4+2b0d8a229e-b24db722b3714a18.jar"],"executableReferences":[{"caller":"net/fabricmc/fabric/impl/client/indigo/renderer/render/ExtendedItemFeatureRenderer","method":"bufferFoil(Lnet/fabricmc/fabric/impl/client/indigo/renderer/mesh/MutableQuadViewImpl;)V","operation":"CALL fabric_computeFoilDecalPose"},{"caller":"net/fabricmc/fabric/impl/client/indigo/renderer/render/ExtendedItemFeatureRenderer","method":"getFoilBuffer(Lnet/minecraft/client/renderer/rendertype/RenderType;Lcom/mojang/blaze3d/vertex/PoseStack$Pose;)Lcom/mojang/blaze3d/vertex/VertexConsumer;","operation":"CALL fabric_useTransparentGlint"}]},
+    {"name":"net/fabricmc/fabric/mixin/client/model/loading/BlockStateModelUnbakedMixin","category":"mixin_interface_template","rawClassSha256":"ad5c31447a32b0386b6c2e2cf50033f9b07de9a9c168d50e43582814ff204845","sources":["fabric-model-loading-api-v1-8.0.+c80601bb9e-a74d153caf5ba601.jar"],"provenanceAnnotationMentions":2},
+    {"name":"net/fabricmc/fabric/mixin/client/renderer/block/model/MultiPartModelMixin$1Key","category":"original_anonymous_or_local_mixin_class","rawClassSha256":"5e29e8829542387ba368463e0482d0afdc6d6895ae76090543e1d3589841cc1f","sources":["fabric-renderer-api-v1-14.1.4+2b0d8a229e-928fd47aea11c460.jar"]},
+    {"name":"net/fabricmc/fabric/mixin/client/renderer/block/render/MovingBlockFeatureRendererMixin$1","category":"original_anonymous_or_local_mixin_class","rawClassSha256":"45edf31e2827366a667fdf1d677050946aad21a7ff707e278456c81c1233030c","sources":["fabric-renderer-api-v1-14.1.4+2b0d8a229e-928fd47aea11c460.jar"]},
+    {"name":"net/fabricmc/fabric/mixin/client/rendering/ClientTooltipComponentMixin","category":"mixin_interface_template","rawClassSha256":"b9cf45e8aaee25ecd43f4cafb1df19935f92b426af3f1bd4cd0eec0ef49e1319","sources":["fabric-rendering-v1-25.3.3+515ac5339e-2281779a8e4b2fcb.jar"],"provenanceAnnotationMentions":1},
+    {"name":"net/fabricmc/fabric/mixin/content/registry/WeatheringCopperMixin","category":"mixin_interface_template","rawClassSha256":"54f2eedb3b0b7995c1347428289ace1c4bb02911cb18376fce93567803b4cf92","sources":["fabric-content-registries-v0-11.+37b1aa249e-721bfa86eda2c2c1.jar"],"provenanceAnnotationMentions":1},
+    {"name":"net/fabricmc/fabric/mixin/creativetab/CreativeModeTabsMixin$1CreativeModeTabPosition","category":"original_anonymous_or_local_mixin_class","rawClassSha256":"20bfc9df3def93122e893b125b5cc0a0db0f637b9e92b10070b04ccac1fd6857","sources":["fabric-creative-tab-api-v1-5.0.1+6468574f9e-e248256412bb8ac0.jar"]},
+    {"name":"net/fabricmc/fabric/mixin/datagen/DataProviderMixin","category":"mixin_interface_template","rawClassSha256":"16ea82bb89fa00cda5ae397b11bf0a37b63b27bde2ff986eccc76ac83e14a6e5","sources":["fabric-data-generation-api-v1-25+c0da0b829e-ccb1c785a966edc3.jar"],"provenanceAnnotationMentions":1},
+    {"name":"net/fabricmc/fabric/mixin/item/CraftingRecipeMixin","category":"mixin_interface_template","rawClassSha256":"69cf9b35fed5da90751c8cbce2e715af95bf99ccf31e7d09c3e6795c4bd947f2","sources":["fabric-item-api-v1-14.5.0+c68f6cbe9e-f3ee7a6183ae5f28.jar"],"provenanceAnnotationMentions":2},
+    {"name":"net/fabricmc/fabric/mixin/registry/sync/MappedRegistryMixin$1","category":"original_anonymous_or_local_mixin_class","rawClassSha256":"0c9c9966be349b4dd38f1ede0151cf4a68c4087c78aaf9cdf9295f1c536235a7","sources":["fabric-registry-sync-v0-7.1.1+c7bd5b8e9e-8c221961a9c5172c.jar"]},
+    {"name":"net/fabricmc/fabric/mixin/resource/client/ClientTooltipComponentMixin","category":"mixin_interface_template","rawClassSha256":"7570592120690eec0a5ee3527e02ec7cd956312a9f93945b001e15ddcaecc043","sources":["fabric-resource-loader-v1-2.0.13+9edec1269e-28376715ed6c3abf.jar"],"provenanceAnnotationMentions":1},
+    {"name":"net/fabricmc/fabric/mixin/resource/conditions/DataProviderMixin","category":"mixin_interface_template","rawClassSha256":"660e6ee621b9a5185d331c5fa53d444e3a92254438363792fe9111000a5831fd","sources":["fabric-resource-conditions-api-v+10e9a28b9e-f834ed286ec08414.jar"],"provenanceAnnotationMentions":1},
+    {"name":"net/fabricmc/fabric/mixin/transfer/ChiseledBookShelfBlockEntityMixin$1","category":"original_anonymous_or_local_mixin_class","rawClassSha256":"9725aee2e22a06e8c6f07135945815111552c91c24af27d6187f6e5f2099ccd4","sources":["fabric-transfer-api-v1-8.0.13+11dbb7d79e-10f1197b575d3001.jar"]},
+    {"name":"net/fabricmc/fabric/mixin/transfer/ListBackedContainerMixin","category":"mixin_interface_template","rawClassSha256":"1a1472e9c33421411b7cd131914533f354730d2375ce3456c5465140fff31887","sources":["fabric-transfer-api-v1-8.0.13+11dbb7d79e-10f1197b575d3001.jar"],"provenanceAnnotationMentions":1},
+    {"name":"org/vivecraft/mixin/client/renderer/entity/AvatarRendererMixin$1","category":"original_anonymous_or_local_mixin_class","rawClassSha256":"1877271f448833d8a40681d03a7949700e2f0a3d34380670eee00b149ff478b4","sources":["Vivecraft.jar"]},
+    {"name":"org/vivecraft/mixin/client_vr/CameraVRMixin$1","category":"original_anonymous_or_local_mixin_class","rawClassSha256":"c3793da51dd30a17097a3fdf6e0bd9c2f681843eed96a5d7e62b135cfb5f9b43","sources":["Vivecraft.jar"]},
+    {"name":"org/vivecraft/mixin/client_vr/MinecraftVRMixin$1","category":"original_anonymous_or_local_mixin_class","rawClassSha256":"95ffccf258b54b7c2d5d6b6c8169b2515493c980009b4c88510567b3e5178bc8","sources":["Vivecraft.jar"]},
+    {"name":"org/vivecraft/mixin/client_vr/renderer/ItemInHandRendererVRMixin$1","category":"original_anonymous_or_local_mixin_class","rawClassSha256":"6e3844c5e459622c4f97e3dceebe646bb6299decbcfcbf77d2606ee976a89a1c","sources":["Vivecraft.jar"]},
+    {"name":"org/vivecraft/mixin/client_vr/world/AbstractBoatMixin$1","category":"original_anonymous_or_local_mixin_class","rawClassSha256":"3be1c548711726bf4a552f2857496eeb9de3a40aeddda54f6d1369323b1e72bd","sources":["Vivecraft.jar"]},
+    {"name":"org/vivecraft/mixin/server/ServerPlayerMixin$1","category":"original_anonymous_or_local_mixin_class","rawClassSha256":"e2920f151dfc668a8157baf40dad2430e38011055db43100a04335e5a7da1c90","sources":["Vivecraft.jar"]},
+    {"name":"org/vivecraft/mixin/world/entity/projectile/ProjectileDeflectionMixin","category":"mixin_interface_template","rawClassSha256":"50ec9a95b0e5e2426696b7da023a51716ad0654ec4c58dcbe9f3705adf181bf4","sources":["Vivecraft.jar"],"provenanceAnnotationMentions":1},
+    {"name":"org/vivecraft/mod_compat_vr/iris/mixin/irisshaders/IrisCommonUniformsMixin$1","category":"original_anonymous_or_local_mixin_class","rawClassSha256":"e92f563e7cde8fe5405a61f2bae82579905d343a26b816c902d6c87333683578","sources":["Vivecraft.jar"]}
+  ]
+}

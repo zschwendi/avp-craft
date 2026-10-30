@@ -26,6 +26,15 @@ OBJ=$TMP/libminecraft.o; EXP=$TMP/exported_symbols.list
 [ -f $OBJ ] && [ -f $EXP ] || { echo "missing $OBJ / $EXP: run build-shared.sh"; exit 1; }
 NI=$T8OUT/ni/libminecraft.dylib
 DST=$T8OUT/$SDKNAME; mkdir -p $DST
+OUTF=$DST/libminecraft.dylib
+# An earlier result must never satisfy this attempt's success check. Keep it
+# and its evidence intact; use a new T8OUT for a deliberate repeat build.
+if [ -e "$OUTF" ] || [ -L "$OUTF" ]; then
+  echo "refusing existing $OUTF; use a new T8OUT to preserve the previous result" >&2
+  exit 1
+fi
+ATTEMPT=$(mktemp -d "$DST/relink-attempt.XXXXXX")
+echo "[relink] attempt evidence: $ATTEMPT"
 # --- archive + library lists from the image's metadata
 STATICS=$(strings -a $NI | sed -n 's/^.*Target\.StaticLibraries=//p' | head -1 | tr '|' ' ')
 LIBS=$(strings -a $NI | sed -n 's/^.*VM\.Target\.Libraries=//p' | head -1 | tr '|' '\n')
@@ -37,7 +46,7 @@ done <<< "$LIBS"
 # visionOS: CFNetwork is not re-exported through CoreServices (xros-probe REPORT, route B step 3)
 LIBFLAGS+=(-framework CFNetwork)
 echo "[relink] libs: ${LIBFLAGS[*]}"
-ARCH=$DST/archives; rm -rf $ARCH; mkdir -p $ARCH
+ARCH=$ATTEMPT/archives; mkdir -p "$ARCH"
 ARGS=()
 for n in $STATICS; do
   a=""; for d in $G/lib/svm/clibraries/darwin-aarch64 $G/lib/static/darwin-aarch64; do [ -f $d/$n ] && a=$d/$n && break; done
@@ -50,15 +59,35 @@ for n in $STATICS; do
   ARGS+=("$ARCH/$n")
 done
 # --- exports: native-image's list + the two klmc_* symbols
-cp $EXP $DST/exported_symbols.list; printf '_klmc_main\n_klmc_version\n' >> $DST/exported_symbols.list
+cp "$EXP" "$ATTEMPT/exported_symbols.list"; printf '_klmc_main\n_klmc_version\n' >> "$ATTEMPT/exported_symbols.list"
 VER="klmc t8a $(date -u +%Y-%m-%dT%H:%MZ) $SDKNAME ni=$(shasum -a 256 $OBJ | cut -c1-12)"
-xcrun --sdk $SDKNAME clang -target $TRIPLE -isysroot $SDK -O2 -c -o $DST/klmc_entry.o -DKLMC_VERSION="\"$VER\"" $S/klmc_entry.c
-OUTF=$DST/libminecraft.dylib
+if xcrun --sdk $SDKNAME clang -target $TRIPLE -isysroot $SDK -O2 -c -o "$ATTEMPT/klmc_entry.o" -DKLMC_VERSION="\"$VER\"" $S/klmc_entry.c \
+    > "$ATTEMPT/compile.log" 2>&1; then
+  cat "$ATTEMPT/compile.log"
+else
+  RC=$?; cat "$ATTEMPT/compile.log" >&2
+  echo "ENTRY COMPILE FAILED ($RC); evidence kept in $ATTEMPT" >&2
+  exit "$RC"
+fi
+LINKOUT=$ATTEMPT/libminecraft.dylib
 T0=$(date +%s)
-xcrun --sdk $SDKNAME clang -target $TRIPLE -isysroot $SDK -dynamiclib -o $OUTF $OBJ $DST/klmc_entry.o \
-  -Wl,-exported_symbols_list,$DST/exported_symbols.list -install_name @rpath/libminecraft.dylib \
-  "${ARGS[@]}" "${LIBFLAGS[@]}" -Wl,-x ${EXTRA_LDFLAGS:-} 2>&1 | grep -v 'reducing alignment of section' || true
-[ -f $OUTF ] || { echo "LINK FAILED"; exit 1; }
+if xcrun --sdk $SDKNAME clang -target $TRIPLE -isysroot $SDK -dynamiclib -o "$LINKOUT" $OBJ "$ATTEMPT/klmc_entry.o" \
+    -Wl,-exported_symbols_list,"$ATTEMPT/exported_symbols.list" -install_name @rpath/libminecraft.dylib \
+    "${ARGS[@]}" "${LIBFLAGS[@]}" -Wl,-x ${EXTRA_LDFLAGS:-} > "$ATTEMPT/link.log" 2>&1; then
+  # Filtering is only for display; the unfiltered log and compiler status remain authoritative.
+  grep -v 'reducing alignment of section' "$ATTEMPT/link.log" || true
+else
+  RC=$?; cat "$ATTEMPT/link.log" >&2
+  echo "LINK FAILED ($RC); evidence kept in $ATTEMPT" >&2
+  exit "$RC"
+fi
+[ -s "$LINKOUT" ] || { echo "LINK FAILED: no nonempty output; evidence kept in $ATTEMPT" >&2; exit 1; }
+# Publish complete bytes atomically without replacing a result another attempt
+# might have produced meanwhile. Keep the attempt copy as build evidence.
+# os.link treats an existing destination directory/symlink as a collision too;
+# BSD ln would otherwise place the file inside a directory created in a race.
+python3 -I -c 'import os, sys; os.link(sys.argv[1], sys.argv[2])' "$LINKOUT" "$OUTF" \
+  || { echo "LINK NOT PUBLISHED: destination unavailable; evidence kept in $ATTEMPT" >&2; exit 1; }
 echo "[relink] link $(( $(date +%s) - T0 )) s"
 rm -rf $ARCH
 # --- verify
@@ -74,4 +103,8 @@ rm -rf $ARCH
   echo "== undefined (non-system check: all must resolve from the imports above)"; nm -u $OUTF | wc -l
   echo "== klmc_version: $VER"
   echo "== segments"; size -m $OUTF | grep -E '^Segment|total' | head -12
-} | tee $DST/verify.txt
+} | tee "$ATTEMPT/verify.txt"
+# Retain the established summary path while preserving any earlier evidence.
+[ ! -e "$DST/verify.txt" ] || cp -p "$DST/verify.txt" "$ATTEMPT/previous-verify.txt"
+cp "$ATTEMPT/verify.txt" "$ATTEMPT/verify-summary.txt"
+python3 -I -c 'import os, sys; os.replace(sys.argv[1], sys.argv[2])' "$ATTEMPT/verify-summary.txt" "$DST/verify.txt"

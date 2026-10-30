@@ -6,6 +6,10 @@
 #   work/natives/ltw/build/<sdk>/libltw.dylib  (make -C work/natives/ltw SDK=<sdk>, only if missing or KL_LTW_REBUILD=1)
 # Also rebuilds the macOS libklglfw (lwjgl-fork-t4/natives) so the T4/T8a host runs keep using the same source.
 set -euo pipefail
+# Keep native dependency builds within the requested compiler-job budget.
+JOBS=${JOBS:-2}
+case "$JOBS" in ''|*[!0-9]*) echo "JOBS must be a positive integer" >&2; exit 2;; esac
+if ! [ "$JOBS" -ge 1 ] 2>/dev/null; then echo "JOBS must be a positive integer" >&2; exit 2; fi
 _HERE="$(cd "$(dirname "$0")" && pwd)"
 W="$(cd "$_HERE/../.." && pwd)"
 ROOT="$(cd "$_HERE/../../../.." && pwd)"
@@ -24,7 +28,7 @@ for sdk in $SDKS; do
   xcrun --sdk $sdk clang -dynamiclib $CF -target $t -install_name @rpath/libklglfw.dylib -o $O/libklglfw.dylib $S/klglfw.c
   xcrun --sdk $sdk clang -dynamiclib $CF -target $t -install_name @rpath/libklegl.dylib -o $O/libklegl.dylib $S/klegl_bridge.c
   if [ ! -f $LTWDIR/build/$sdk/libltw.dylib ] || [ "${KL_LTW_REBUILD:-0}" = 1 ]; then
-    make -C $LTWDIR SDK=$sdk -j12 > $O/ltw-make.log 2>&1 || { tail -20 $O/ltw-make.log; exit 1; }
+    make -C $LTWDIR SDK=$sdk -j"$JOBS" > $O/ltw-make.log 2>&1 || { tail -20 $O/ltw-make.log; exit 1; }
   fi
   for f in $O/libklglfw.dylib $O/libklegl.dylib $LTWDIR/build/$sdk/libltw.dylib; do
     printf '  %-60s %s %s\n' "${f#"$ROOT/"}" "$(stat -f%z $f)" \

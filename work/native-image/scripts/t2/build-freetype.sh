@@ -6,6 +6,10 @@
 # Differences from LWJGL's own build: no bundled HarfBuzz (26.2 has no lwjgl-harfbuzz), no brotli/png/bzip2;
 # zlib = the system libz. macosx uses LWJGL's stock Maven libfreetype (build-lwjgl341-natives.sh).
 set -e
+# Keep native dependency builds within the requested compiler-job budget.
+JOBS=${JOBS:-2}
+case "$JOBS" in ''|*[!0-9]*) echo "JOBS must be a positive integer" >&2; exit 2;; esac
+if ! [ "$JOBS" -ge 1 ] 2>/dev/null; then echo "JOBS must be a positive integer" >&2; exit 2; fi
 ROOT="$(cd "$(dirname "$0")/../../../.." && pwd)"
 N="$ROOT/work/natives"
 TB=$N/downloads/freetype-VER-2-14-1.tar.gz
@@ -20,7 +24,7 @@ for P in ${*:-xrsimulator xros}; do
     -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON \
     -DFT_DISABLE_HARFBUZZ=ON -DFT_DISABLE_BROTLI=ON -DFT_DISABLE_PNG=ON -DFT_DISABLE_BZIP2=ON -DFT_REQUIRE_ZLIB=ON \
     -DCMAKE_SHARED_LINKER_FLAGS="-Wl,-install_name,@rpath/libfreetype.dylib" > $B/cmake.log 2>&1 || { tail -30 $B/cmake.log; exit 1; }
-  make -C $B/build -j12 freetype > $B/make.log 2>&1 || { tail -30 $B/make.log; exit 1; }
+  make -C $B/build -j"$JOBS" freetype > $B/make.log 2>&1 || { tail -30 $B/make.log; exit 1; }
   cp -L $(ls $B/build/libfreetype*.dylib | head -1) $O/libfreetype.dylib
   install_name_tool -id @rpath/libfreetype.dylib $O/libfreetype.dylib
   strip -x $O/libfreetype.dylib

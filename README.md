@@ -26,10 +26,20 @@ is from an earlier Mac project and doesn't install anything on a headset.
 | To play | To build |
 | --- | --- |
 | Apple Vision Pro on **visionOS 26 or later** | Apple silicon Mac with **Xcode 27 and the visionOS SDK** |
-| A Microsoft account that **already owns Minecraft: Java Edition**. A Bedrock-only account doesn't pass the Java check. | Memory for a **28 GB build heap** (`native-image -J-Xmx28g`). The build was written for a 36 GB Mac; a 16 GB Mac isn't enough. |
-| A compatible gamepad, such as DualSense, for windowed play; **PSVR2 Sense controllers** for immersive play | About **40 GB free**, plus about 12 GB more if you build ANGLE from source |
+| A Microsoft account that **already owns Minecraft: Java Edition**. A Bedrock-only account doesn't pass the Java check. | Native compilation verified on a **32 GiB M4 Mac** with a 12 GiB heap and one compiler worker. Minimum supported RAM is not established. |
+| A compatible gamepad, such as DualSense, for windowed play; **PSVR2 Sense controllers** for immersive play | Space for downloads, caches and compiler outputs; see the measured footprint below |
 | | Your own signing team, able to grant the app's required memory capabilities |
 | | A headset paired with Xcode, with **Developer Mode** turned on |
+
+The fresh signed app bundle is about **0.83 GiB**, including its game payload
+but excluding your worlds. The completed build folder plus its retained GraalVM
+download measured about **7.33 GiB** using the included ANGLE frameworks. This
+excludes installed Xcode/SDKs and OpenJDK, and is a completed footprint rather
+than a continuously measured build peak. Allow extra space for swap and retries.
+The native compiler passed with a **12 GiB heap and one worker**, recording
+**7.44 GiB peak process memory**. See [build resources](BUILDING.md#storage-and-memory)
+for the measurements and settings; they do not establish a minimum RAM size or
+headset gameplay verification.
 
 Your existing Java Edition purchase is the game license used here; you don't
 need to buy a separate Vision Pro edition. Internet access is needed for build
@@ -134,19 +144,19 @@ There's no built-in Bedrock crossplay.
 
 ## Current status
 
-The host source is based on **AVPcraft 0.4.0 / build 72**, verified installed
-on a physical Vision Pro. It includes that build's audio policy and Smooth /
-45-degree Snap turning selection. The source also moves the head-locked HUD
-(health, food and hotbar) **15 degrees lower**. To get that change, you must
-rebuild Vivecraft, the native game client *and* the host app. The updated jar
-and its migration checks pass. A new native image and the HUD's look on a
-headset haven't been verified. See [HUD placement](docs/HUD-PLACEMENT.md),
-[build recovery](docs/BUILD-RECOVERY.md) and
-[SOURCE-SNAPSHOT.json](SOURCE-SNAPSHOT.json).
+**Build 73 has now been built from a fresh public checkout through a signed
+visionOS app.** That run rebuilt Vivecraft, the launcher helpers, native
+libraries and the complete game image. It includes the head-locked HUD
+(health, food and hotbar) **15 degrees lower**, plus Build 72's audio policy
+and Smooth / 45-degree Snap setting.
 
-The complete source-to-headset build has not yet been repeated from a clean
-public checkout. These are developer build instructions, not a verified
-one-click installer. Seamless switching between windowed and immersive play,
+Build 72 is the existing physical-headset reference. Fresh Build 73 headset
+gameplay and the lower HUD's appearance have not yet been verified. See
+[clean-build evidence](docs/CLEAN-BUILD.md), [HUD placement](docs/HUD-PLACEMENT.md)
+and [source provenance](SOURCE-SNAPSHOT.json).
+
+These remain developer build instructions with an interactive bake step.
+Seamless switching between windowed and immersive play,
 audio after closing the launcher, and hands/controller presentation remain
 unfinished.
 

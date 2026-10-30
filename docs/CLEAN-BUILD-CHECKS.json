@@ -1,0 +1,81 @@
+{
+  "date_utc": "2026-10-30",
+  "date_local": "2026-10-29",
+  "public_clone_base": "80f7833ee60ec0b60fecdb6a014c8eaae6c9552f",
+  "test_build": 73,
+  "minecraft": "26.2",
+  "toolchains": {
+    "xcode": "27.1 (27A9275)",
+    "visionOS_SDK": "27.0",
+    "deployment_target": "26.0",
+    "vivecraft_JDK": "OpenJDK 25.0.4.1",
+    "Gradle": "9.3.0",
+    "Loom": "1.15.5",
+    "GraalVM": "25.0.4+7.1"
+  },
+  "vivecraft_sha256": "f317964c49f8e1dace17dcc4ea4a8d4f9d29c7e5a2888c61b73259f4355deac4",
+  "native_image": {
+    "success": true,
+    "heap": "12g",
+    "workers": 1,
+    "reported_generation_seconds": 629,
+    "maximum_resident_set_size_bytes": 7989919744,
+    "host_memory_GiB": 32,
+    "host_chip": "Apple M4",
+    "private_old_game_outputs_reused": false
+  },
+  "relinked_libraries": [
+    {
+      "sdk": "xros",
+      "link_succeeded": true,
+      "platform": 11,
+      "minimum_os": "26.0",
+      "sdk_version": "27.0",
+      "bytes": 201657800,
+      "sha256": "375bcdd766071f535d01be28d56dca6e5928a535cc4695519e9f9a3407465332",
+      "system_imports_only": true,
+      "required_exports_present": true
+    },
+    {
+      "sdk": "xrsimulator",
+      "link_succeeded": true,
+      "platform": 12,
+      "minimum_os": "26.0",
+      "sdk_version": "27.0",
+      "bytes": 203233440,
+      "sha256": "a1663246f0dfab95ad7dfa0ad214263fedefd8b4a5dd8d0566e9fc0dc8c695c6",
+      "system_imports_only": true,
+      "required_exports_present": true
+    }
+  ],
+  "signed_app": {
+    "success": true,
+    "build": 73,
+    "version": "0.4.0",
+    "separate_test_identity": true,
+    "signature_verified": true,
+    "installed": false,
+    "gameplay_verified_on_headset": false,
+    "package_audit_passed": true,
+    "assets_verified": 5057,
+    "required_classpath_entries_verified": 139,
+    "intentional_compiled_overlay_omissions": 1,
+    "pinned_mods_verified": 13,
+    "license_files_verified": 97,
+    "fresh_minecraft_sections_matched": 17,
+    "memory_entitlements_verified": true,
+    "private_data_excluded": true,
+    "installation_attempt": "Not installed: the reference headset required unlocking. Existing Build72 remained intact."
+  },
+  "completed_storage_bytes": {
+    "entire_task": 7518638080,
+    "source_checkout": 6567510016,
+    "gradle_cache": 811683840,
+    "app": 889266176,
+    "host_derived_data": 1251430400,
+    "verified_toolchain_download_archive_bytes": 353673229
+  },
+  "storage_scope": "Completed build allocated sizes, not measured full-build peak. App and DerivedData are subsets of source/task. Xcode and installed OpenJDK excluded; GraalVM extraction included in source, archive external. Evidence and backup included in entire task.",
+  "bake_audit": "KNOT-BAKE.md",
+  "proof_boundary": "Fresh source build, real Mac JVM test world, native compilation, device/simulator relink, signed visionOS app. Physical installation pending; headset gameplay and HUD placement not yet validated."
+}

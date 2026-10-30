@@ -1,5 +1,9 @@
 # Build 72 source and fresh-checkout repairs
 
+**Follow-up:** the repaired source has now produced a signed Build 73 app from a
+fresh public checkout. See [clean-build evidence](CLEAN-BUILD.md) and the
+[pinned bake audit](KNOT-BAKE.md). The history below explains the original fixes.
+
 The installed AVPcraft reference is version 0.4.0, build 72. Its saved host source
 matches the successful build receipt. This repository now includes its audio
 policy, background-audio declaration and Smooth / 45-degree Snap setting. The
@@ -61,9 +65,11 @@ fixtures, launcher compilation and class equivalence, fresh-instance migration,
 and the corrected BakeAgent compile have been checked. See
 [BUILD-RECOVERY-CHECKS.json](BUILD-RECOVERY-CHECKS.json) for the recorded results.
 
-A complete new game bake, native-image compilation, packaged app and headset
-gameplay run from this public source are still separate acceptance steps. The
-reported 49 bake transformation failures cannot be classified without that
-capture's failure log; matching historical pruning counts does not prove success.
-These repairs do not claim that every later native compilation or runtime issue
-has already been ruled out.
+At the time of the initial repair audit, a complete fresh bake, native image,
+app package and headset run were separate acceptance steps. The later
+[clean-build evidence](CLEAN-BUILD.md) records the successful bake, native image,
+platform links and signed app; headset gameplay remains unverified. Its exact
+49 full-pass failures are classified in the [pinned bake audit](KNOT-BAKE.md).
+That classification cannot be applied to another report based on count alone;
+compare the exact failures and pinned inputs. Matching historical pruning
+counts also does not establish runtime success.
