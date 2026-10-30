@@ -27,6 +27,15 @@ installation from Windows, Linux and macOS. It pairs wirelessly and signs with
 the recipient's Apple account. That solves signing/installing an existing
 compatible IPA; it does not build AVPcraft's native Minecraft client.
 
+There is an additional sign-in dependency: Apparition's
+[0.4.2 release notes](https://github.com/illixion/Apparition/releases/tag/v0.4.2)
+report that Apple rejects its Android-library anisette provider. Windows
+free-account signing needs a working compatible external anisette service;
+the Linux/Docker provider alone no longer supplies a working sign-in route.
+See [Apparition's current options](https://github.com/illixion/Apparition#anisette).
+Your own paid developer certificate and device provisioning profiles can
+bypass Apple-ID sign-in. The maintainer does not need recipients' credentials.
+
 AVPcraft also requires memory capabilities, including **Extended Virtual
 Addressing**. Apparition's [signing documentation](https://github.com/illixion/Apparition)
 states that this capability requires a paid developer account. A free-account
