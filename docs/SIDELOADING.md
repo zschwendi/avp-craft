@@ -5,6 +5,17 @@ belongs to the previous Mac project and cannot install AVPcraft on Vision Pro.
 The currently supported route remains [building from source](../BUILDING.md)
 and [installing with your own signing team](../AVP_INSTALL.md).
 
+## Current platform targets
+
+| Platform | Current public AVPcraft status |
+| --- | --- |
+| Apple Vision Pro | Native source-build target; no public client IPA |
+| iPhone / iPad | No supported app target in this published version |
+| Native macOS app | No supported app target in this published version; the Mac JVM/native tools prepare the Vision Pro build |
+| Older Mac modpack | The historical v0.1.0 release belongs to the previous Mac project, not this native AVPcraft client |
+
+The processor architecture does not make these builds interchangeable. There is no single “any ARM64” IPA for iOS, visionOS and macOS. See the current [build prerequisites](../BUILDING.md) and [supported installation target](../README.md).
+
 ## Why this port is different
 
 AVPcraft's build compiles Minecraft and its mods into `libminecraft.dylib` and
