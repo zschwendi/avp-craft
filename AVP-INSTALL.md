@@ -1,3 +1,6 @@
+For the IPA route and its current limits, see [sideloading](docs/SIDELOADING.md).
+The guide below covers building from source.
+
 # Install AVPcraft on Apple Vision Pro
 
 AVPcraft runs Minecraft: Java Edition locally on Vision Pro using Vivecraft
