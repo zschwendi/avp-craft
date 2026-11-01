@@ -30,7 +30,22 @@ This is a completed working-set measurement, **not a measured whole-build peak o
 
 ## Remaining acceptance
 
-Physical installation is pending: the reference headset required unlocking during
-the install attempt, and the existing Build 72 remained installed. A signed app and the Mac bake's rendered world do not establish fresh headset gameplay, the lower HUD's visual placement, or fixes for audio/window/immersive behavior. Those checks remain separate. A changed mod set, compiler, renderer or feature configuration also needs its own bake and validation.
+On November 1, 2026, **AVPcraft Clean Test 0.4.0 / Build 73** was installed on the
+physical reference Vision Pro running visionOS 27.2. A fresh device app-list
+readback verified Build 73 and the preserved original Build 72. No existing
+app was uninstalled, and no account or world data was migrated into the separate
+test identity. This was an installation check; the app was not launched.
+
+The first install command timed out after 180 seconds, but the host installation
+service finished successfully after about 204 seconds. A subsequent identical
+install returned success in 12.6 seconds, followed by another device readback.
+For a large first install, a command timeout alone does not establish failure;
+check the device's installed apps and installation logs before retrying.
+
+Fresh headset gameplay, the lower HUD's visual placement, and fixes for
+audio/window/immersive behavior remain unverified. A signed app, installation
+receipt and the Mac bake's rendered world do not establish those outcomes.
+A changed mod set, compiler, renderer or feature configuration also needs its
+own bake and validation.
 
 The upstream voice-codec build still fetches minimp3 from its `master` branch; this run resolved `ea99364f61c14656440e8d77e9c233ccf3124633`. The current build therefore does not claim that every transitive upstream download is immutable.

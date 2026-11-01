@@ -54,7 +54,7 @@
     "version": "0.4.0",
     "separate_test_identity": true,
     "signature_verified": true,
-    "installed": false,
+    "installed": true,
     "gameplay_verified_on_headset": false,
     "package_audit_passed": true,
     "assets_verified": 5057,
@@ -65,7 +65,12 @@
     "fresh_minecraft_sections_matched": 17,
     "memory_entitlements_verified": true,
     "private_data_excluded": true,
-    "installation_attempt": "Not installed: the reference headset required unlocking. Existing Build72 remained intact."
+    "installation_attempt": "Installed and independently read back on the physical reference Vision Pro. The first CLI timed out at180s, but its host install service completed at203.5s. A subsequent identical install returned success in12.637s; final app readback confirmed Build73 alongside original Build72.",
+    "installed_date_utc": "2026-11-01",
+    "installed_version_readback": "0.4.0 / 73",
+    "installed_visionOS_version": "27.2",
+    "original_build72_preserved": true,
+    "launched_during_installation_check": false
   },
   "completed_storage_bytes": {
     "entire_task": 7518638080,
@@ -77,5 +82,5 @@
   },
   "storage_scope": "Completed build allocated sizes, not measured full-build peak. App and DerivedData are subsets of source/task. Xcode and installed OpenJDK excluded; GraalVM extraction included in source, archive external. Evidence and backup included in entire task.",
   "bake_audit": "KNOT-BAKE.md",
-  "proof_boundary": "Fresh source build, real Mac JVM test world, native compilation, device/simulator relink, signed visionOS app. Physical installation pending; headset gameplay and HUD placement not yet validated."
+  "proof_boundary": "Fresh source build, real Mac JVM test world, native compilation, device/simulator relink, signed visionOS app, physical headset installation and version readback. Build73 headset gameplay, HUD placement and audio behavior remain unverified."
 }

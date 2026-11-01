@@ -10,7 +10,8 @@
     "See docs/BUILD-RECOVERY.md and docs/BUILD-RECOVERY-CHECKS.json for repaired build inputs and verification limits.",
     "Gameclient/assets/accountdata/saves/compiledgamebinaries remain excluded; bundledANGLEframeworks retain upstream notices.",
     "Baseline hash tables record original builds; current_changed_source_sha256 records subsequent changes.",
-    "A fresh public checkout rebuilt the game and produced signed Build73; docs/CLEAN-BUILD.md records measured resources and separates headset acceptance."
+    "A fresh public checkout rebuilt the game and produced signed Build73; docs/CLEAN-BUILD.md records measured resources and separates headset acceptance.",
+    "Fresh Build73 was installed and independently read back on the physical reference Vision Pro on2026-11-01 alongside the preserved original Build72. This installation check did not launch the app or validate headset gameplay."
   ],
   "build71_baseline_host_source_sha256": {
     "visionos/Sources/KleptonCompositor.swift": "9d01eb89a45dd5c541923c653c1af37e6c727f25a35449e31ae35cb348c018e7",

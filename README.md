@@ -152,8 +152,9 @@ libraries and the complete game image. It includes the head-locked HUD
 (health, food and hotbar) **15 degrees lower**, plus Build 72's audio policy
 and Smooth / 45-degree Snap setting.
 
-Build 72 is the existing physical-headset reference. Fresh Build 73 headset
-gameplay and the lower HUD's appearance have not yet been verified. See
+Fresh Build 73 was installed and its version read back on a physical Vision Pro
+on November 1, 2026, as **AVPcraft Clean Test**, alongside the preserved Build 72.
+Build 73 headset gameplay and the lower HUD's appearance have not yet been verified. See
 [clean-build evidence](docs/CLEAN-BUILD.md), [HUD placement](docs/HUD-PLACEMENT.md)
 and [source provenance](SOURCE-SNAPSHOT.json).
 
